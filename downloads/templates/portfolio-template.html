@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portfolio Template - Code4Boy</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Segoe UI', sans-serif; background: #0f0f23; color: #e0e0e0; }
+    .hero { min-height: 100vh; display: flex; align-items: center; justify-content: center; text-align: center; padding: 20px; background: linear-gradient(135deg, #0f0f23 0%, #1a1a3e 100%); }
+    .hero h1 { font-size: 3rem; margin-bottom: 15px; background: linear-gradient(90deg, #00f0ff, #8b00ff); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    .hero p { font-size: 1.2rem; color: #888; max-width: 500px; margin: 0 auto 30px; }
+    .btn { display: inline-block; padding: 12px 30px; border: 2px solid #00f0ff; color: #00f0ff; text-decoration: none; border-radius: 8px; transition: 0.3s; }
+    .btn:hover { background: #00f0ff; color: #0f0f23; }
+    section { max-width: 1000px; margin: 0 auto; padding: 80px 20px; }
+    section h2 { font-size: 2rem; text-align: center; margin-bottom: 40px; color: #00f0ff; }
+    .projects { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; }
+    .project { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; padding: 25px; transition: 0.3s; }
+    .project:hover { border-color: #00f0ff; transform: translateY(-3px); }
+    .project h3 { color: #fff; margin-bottom: 10px; }
+    .project p { color: #888; font-size: 0.95rem; }
+    .skills { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; }
+    .skill { padding: 8px 20px; background: rgba(0,240,255,0.08); border: 1px solid rgba(0,240,255,0.2); border-radius: 20px; color: #00f0ff; font-size: 0.9rem; }
+    footer { text-align: center; padding: 30px; border-top: 1px solid rgba(255,255,255,0.1); color: #555; }
+    @media (max-width: 768px) { .hero h1 { font-size: 2rem; } }
+  </style>
+</head>
+<body>
+  <div class="hero">
+    <div>
+      <h1>Your Name</h1>
+      <p>Web Developer | Designer | Creative Thinker</p>
+      <a href="#projects" class="btn">View My Work</a>
+    </div>
+  </div>
+  <section id="skills">
+    <h2>My Skills</h2>
+    <div class="skills">
+      <span class="skill">HTML5</span>
+      <span class="skill">CSS3</span>
+      <span class="skill">JavaScript</span>
+      <span class="skill">React</span>
+      <span class="skill">Python</span>
+      <span class="skill">Node.js</span>
+      <span class="skill">Git</span>
+      <span class="skill">Figma</span>
+    </div>
+  </section>
+  <section id="projects">
+    <h2>Projects</h2>
+    <div class="projects">
+      <div class="project">
+        <h3>Project One</h3>
+        <p>A description of your amazing project goes here. Explain what it does and what technologies you used.</p>
+      </div>
+      <div class="project">
+        <h3>Project Two</h3>
+        <p>Another great project showcase. Add images, links, and details about your work.</p>
+      </div>
+      <div class="project">
+        <h3>Project Three</h3>
+        <p>Show off your skills with a third project. Include live demo links if possible.</p>
+      </div>
+    </div>
+  </section>
+  <footer>
+    <p>Built with Code4Boy Portfolio Template</p>
+  </footer>
+</body>
+</html>

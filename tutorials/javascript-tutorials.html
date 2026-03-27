@@ -1,0 +1,292 @@
+<!-- JavaScript Tutorials Content -->
+<div class="section-header reveal">
+  <h2 class="section-title"><i class="fab fa-js" style="color:#f7df1e"></i> JavaScript <span class="highlight">Tutorials</span></h2>
+  <div class="neon-line mt-20"></div>
+</div>
+
+<div class="tutorial-content reveal">
+  <h2>1. JavaScript Basics</h2>
+  <div class="step-indicator">Step 1 — What is JavaScript?</div>
+  <p>JavaScript is the programming language of the web. It adds interactivity to websites — from form validation to animations to fetching data from servers.</p>
+  
+  <h3>Your First JavaScript Code</h3>
+  <div class="code-block">
+    <div class="code-header">
+      <span class="code-lang">JavaScript</span>
+      <button class="copy-btn">📋 Copy</button>
+    </div>
+    <pre><code><span class="code-comment">// Hello World</span>
+console.<span class="code-function">log</span>(<span class="code-string">"Hello, Code4Boy!"</span>);
+
+<span class="code-comment">// Variables</span>
+<span class="code-keyword">let</span> name = <span class="code-string">"Code4Boy"</span>;
+<span class="code-keyword">const</span> age = <span class="code-number">25</span>;
+<span class="code-keyword">var</span> isCoding = <span class="code-keyword">true</span>;
+
+<span class="code-comment">// Data Types</span>
+<span class="code-keyword">let</span> skills = [<span class="code-string">"HTML"</span>, <span class="code-string">"CSS"</span>, <span class="code-string">"JavaScript"</span>];
+<span class="code-keyword">let</span> developer = {
+  name: <span class="code-string">"Code4Boy"</span>,
+  level: <span class="code-string">"Intermediate"</span>
+};
+
+<span class="code-comment">// Functions</span>
+<span class="code-keyword">function</span> <span class="code-function">greet</span>(name) {
+  <span class="code-keyword">return</span> <span class="code-string">`Hi, I'm ${name}!`</span>;
+}
+
+console.<span class="code-function">log</span>(<span class="code-function">greet</span>(<span class="code-string">"Code4Boy"</span>));</code></pre>
+  </div>
+
+  <h2>2. DOM Manipulation</h2>
+  <div class="step-indicator">Step 2 — Interacting with HTML</div>
+  <p>The Document Object Model (DOM) lets JavaScript interact with HTML elements. You can change content, styles, and respond to user actions.</p>
+  
+  <div class="code-block">
+    <div class="code-header">
+      <span class="code-lang">JavaScript</span>
+      <button class="copy-btn">📋 Copy</button>
+    </div>
+    <pre><code><span class="code-comment">// Select elements</span>
+<span class="code-keyword">const</span> heading = document.<span class="code-function">querySelector</span>(<span class="code-string">'.heading'</span>);
+<span class="code-keyword">const</span> button = document.<span class="code-function">getElementById</span>(<span class="code-string">'myButton'</span>);
+
+<span class="code-comment">// Change content</span>
+heading.textContent = <span class="code-string">'New Heading Text'</span>;
+
+<span class="code-comment">// Change styles</span>
+heading.style.color = <span class="code-string">'#00b4d8'</span>;
+heading.style.fontSize = <span class="code-string">'2rem'</span>;
+
+<span class="code-comment">// Add event listener</span>
+button.<span class="code-function">addEventListener</span>(<span class="code-string">'click'</span>, () =&gt; {
+  heading.classList.<span class="code-function">toggle</span>(<span class="code-string">'active'</span>);
+});
+
+<span class="code-comment">// Create new element</span>
+<span class="code-keyword">const</span> newDiv = document.<span class="code-function">createElement</span>(<span class="code-string">'div'</span>);
+newDiv.className = <span class="code-string">'card'</span>;
+newDiv.innerHTML = <span class="code-string">'&lt;h3&gt;New Card&lt;/h3&gt;&lt;p&gt;Content here&lt;/p&gt;'</span>;
+document.body.<span class="code-function">appendChild</span>(newDiv);</code></pre>
+  </div>
+
+  <h2>3. ES6+ Modern JavaScript</h2>
+  <div class="step-indicator">Step 3 — Modern Syntax & Features</div>
+  <p>ES6 (ECMAScript 2015) introduced powerful features that make JavaScript more concise and readable.</p>
+  
+  <div class="code-block">
+    <div class="code-header">
+      <span class="code-lang">JavaScript</span>
+      <button class="copy-btn">📋 Copy</button>
+    </div>
+    <pre><code><span class="code-comment">// Arrow Functions</span>
+<span class="code-keyword">const</span> add = (a, b) =&gt; a + b;
+<span class="code-keyword">const</span> greet = name =&gt; <span class="code-string">`Hi ${name}!`</span>;
+
+<span class="code-comment">// Destructuring</span>
+<span class="code-keyword">const</span> person = { name: <span class="code-string">"Code4Boy"</span>, age: <span class="code-number">25</span> };
+<span class="code-keyword">const</span> { name, age } = person;
+
+<span class="code-keyword">const</span> colors = [<span class="code-string">"red"</span>, <span class="code-string">"green"</span>, <span class="code-string">"blue"</span>];
+<span class="code-keyword">const</span> [first, second] = colors;
+
+<span class="code-comment">// Spread Operator</span>
+<span class="code-keyword">const</span> arr1 = [<span class="code-number">1</span>, <span class="code-number">2</span>, <span class="code-number">3</span>];
+<span class="code-keyword">const</span> arr2 = [...arr1, <span class="code-number">4</span>, <span class="code-number">5</span>];
+
+<span class="code-keyword">const</span> obj1 = { a: <span class="code-number">1</span> };
+<span class="code-keyword">const</span> obj2 = { ...obj1, b: <span class="code-number">2</span> };
+
+<span class="code-comment">// Template Literals</span>
+<span class="code-keyword">const</span> greeting = <span class="code-string">`Hello, my name is ${name} and I'm ${age} years old.`</span>;
+
+<span class="code-comment">// Array Methods</span>
+<span class="code-keyword">const</span> numbers = [<span class="code-number">1</span>, <span class="code-number">2</span>, <span class="code-number">3</span>, <span class="code-number">4</span>, <span class="code-number">5</span>];
+
+<span class="code-keyword">const</span> doubled = numbers.<span class="code-function">map</span>(n =&gt; n * <span class="code-number">2</span>);
+<span class="code-keyword">const</span> evens = numbers.<span class="code-function">filter</span>(n =&gt; n % <span class="code-number">2</span> === <span class="code-number">0</span>);
+<span class="code-keyword">const</span> sum = numbers.<span class="code-function">reduce</span>((acc, n) =&gt; acc + n, <span class="code-number">0</span>);
+
+<span class="code-comment">// Find method</span>
+<span class="code-keyword">const</span> found = numbers.<span class="code-function">find</span>(n =&gt; n &gt; <span class="code-number">3</span>);
+
+<span class="code-comment">// Some & Every</span>
+<span class="code-keyword">const</span> hasEven = numbers.<span class="code-function">some</span>(n =&gt; n % <span class="code-number">2</span> === <span class="code-number">0</span>);
+<span class="code-keyword">const</span> allPositive = numbers.<span class="code-function">every</span>(n =&gt; n &gt; <span class="code-number">0</span>);</code></pre>
+  </div>
+
+  <h2>4. Async JavaScript (Promises & Async/Await)</h2>
+  <div class="step-indicator">Step 4 — Asynchronous Programming</div>
+  <p>Async JavaScript lets you perform operations like fetching data from APIs without blocking your code.</p>
+  
+  <div class="code-block">
+    <div class="code-header">
+      <span class="code-lang">JavaScript</span>
+      <button class="copy-btn">📋 Copy</button>
+    </div>
+    <pre><code><span class="code-comment">// Callback Pattern (Old)</span>
+<span class="code-keyword">function</span> <span class="code-function">fetchData</span>(callback) {
+  <span class="code-function">setTimeout</span>(() =&gt; {
+    <span class="code-keyword">const</span> data = { id: <span class="code-number">1</span>, name: <span class="code-string">"Code4Boy"</span> };
+    <span class="code-function">callback</span>(data);
+  }, <span class="code-number">1000</span>);
+}
+
+<span class="code-function">fetchData</span>(data =&gt; {
+  console.<span class="code-function">log</span>(<span class="code-string">"Callback:"</span>, data);
+});
+
+<span class="code-comment">// Promise Pattern</span>
+<span class="code-keyword">function</span> <span class="code-function">fetchUser</span>() {
+  <span class="code-keyword">return new Promise</span>((resolve, reject) =&gt; {
+    <span class="code-function">setTimeout</span>(() =&gt; {
+      <span class="code-function">resolve</span>({ id: <span class="code-number">1</span>, name: <span class="code-string">"Code4Boy"</span> });
+    }, <span class="code-number">1000</span>);
+  });
+}
+
+<span class="code-function">fetchUser</span>()
+  .<span class="code-function">then</span>(user =&gt; console.<span class="code-function">log</span>(<span class="code-string">"Promise:"</span>, user))
+  .<span class="code-function">catch</span>(error =&gt; console.<span class="code-function">error</span>(error));
+
+<span class="code-comment">// Async/Await (Modern)</span>
+<span class="code-keyword">async function</span> <span class="code-function">getUser</span>() {
+  <span class="code-keyword">try</span> {
+    <span class="code-keyword">const</span> user = <span class="code-keyword">await</span> <span class="code-function">fetchUser</span>();
+    console.<span class="code-function">log</span>(<span class="code-string">"Async/Await:"</span>, user);
+  } <span class="code-keyword">catch</span> (error) {
+    console.<span class="code-function">error</span>(error);
+  }
+}
+
+<span class="code-function">getUser</span>();
+
+<span class="code-comment">// Fetch API</span>
+<span class="code-keyword">async function</span> <span class="code-function">fetchAPI</span>() {
+  <span class="code-keyword">try</span> {
+    <span class="code-keyword">const</span> response = <span class="code-keyword">await</span> <span class="code-function">fetch</span>(<span class="code-string">'https://api.github.com/users/code4boy'</span>);
+    <span class="code-keyword">const</span> data = <span class="code-keyword">await</span> response.<span class="code-function">json</span>();
+    console.<span class="code-function">log</span>(data);
+  } <span class="code-keyword">catch</span> (error) {
+    console.<span class="code-function">error</span>(<span class="code-string">'Error:'</span>, error);
+  }
+}
+
+<span class="code-function">fetchAPI</span>();</code></pre>
+  </div>
+
+  <h2>5. Event Handling</h2>
+  <div class="step-indicator">Step 5 — User Interactions</div>
+  <p>Events let your code respond to user actions like clicks, keypresses, mouse movements, and more.</p>
+  
+  <div class="code-block">
+    <div class="code-header">
+      <span class="code-lang">JavaScript</span>
+      <button class="copy-btn">📋 Copy</button>
+    </div>
+    <pre><code><span class="code-comment">// Click Event</span>
+button.<span class="code-function">addEventListener</span>(<span class="code-string">'click'</span>, (e) =&gt; {
+  console.<span class="code-function">log</span>(<span class="code-string">'Clicked!'</span>, e.target);
+});
+
+<span class="code-comment">// Form Submit</span>
+form.<span class="code-function">addEventListener</span>(<span class="code-string">'submit'</span>, (e) =&gt; {
+  e.<span class="code-function">preventDefault</span>();
+  <span class="code-keyword">const</span> formData = <span class="code-keyword">new</span> <span class="code-function">FormData</span>(form);
+  console.<span class="code-function">log</span>(formData.<span class="code-function">get</span>(<span class="code-string">'email'</span>));
+});
+
+<span class="code-comment">// Keyboard Events</span>
+input.<span class="code-function">addEventListener</span>(<span class="code-string">'keydown'</span>, (e) =&gt; {
+  console.<span class="code-function">log</span>(<span class="code-string">'Key pressed:'</span>, e.key);
+});
+
+input.<span class="code-function">addEventListener</span>(<span class="code-string">'keyup'</span>, (e) =&gt; {
+  <span class="code-keyword">if</span> (e.key === <span class="code-string">'Enter'</span>) {
+    console.<span class="code-function">log</span>(<span class="code-string">'Enter pressed!'</span>);
+  }
+});
+
+<span class="code-comment">// Mouse Events</span>
+element.<span class="code-function">addEventListener</span>(<span class="code-string">'mouseenter'</span>, () =&gt; {
+  element.style.background = <span class="code-string">'#00b4d8'</span>;
+});
+
+element.<span class="code-function">addEventListener</span>(<span class="code-string">'mouseleave'</span>, () =&gt; {
+  element.style.background = <span class="code-string">''</span>;
+});
+
+<span class="code-comment">// Input Event (Real-time)</span>
+searchInput.<span class="code-function">addEventListener</span>(<span class="code-string">'input'</span>, (e) =&gt; {
+  <span class="code-keyword">const</span> searchTerm = e.target.value.<span class="code-function">toLowerCase</span>();
+  <span class="code-function">filterItems</span>(searchTerm);
+});
+
+<span class="code-comment">// Event Bubbling & Delegation</span>
+document.<span class="code-function">querySelector</span>(<span class="code-string">'.list'</span>).<span class="code-function">addEventListener</span>(<span class="code-string">'click'</span>, (e) =&gt; {
+  <span class="code-keyword">if</span> (e.target.matches(<span class="code-string">'.item'</span>)) {
+    console.<span class="code-function">log</span>(<span class="code-string">'Item clicked:'</span>, e.target.textContent);
+  }
+});</code></pre>
+  </div>
+
+  <h2>6. LocalStorage & SessionStorage</h2>
+  <div class="step-indicator">Step 6 — Browser Storage</div>
+  <p>LocalStorage and SessionStorage let you store data in the browser. LocalStorage persists even after closing the browser.</p>
+  
+  <div class="code-block">
+    <div class="code-header">
+      <span class="code-lang">JavaScript</span>
+      <button class="copy-btn">📋 Copy</button>
+    </div>
+    <pre><code><span class="code-comment">// LocalStorage - Persistent Storage</span>
+
+<span class="code-comment">// Save data</span>
+localStorage.<span class="code-function">setItem</span>(<span class="code-string">'username'</span>, <span class="code-string">'Code4Boy'</span>);
+localStorage.<span class="code-function">setItem</span>(<span class="code-string">'age'</span>, <span class="code-number">25</span>);
+
+<span class="code-comment">// Get data</span>
+<span class="code-keyword">const</span> username = localStorage.<span class="code-function">getItem</span>(<span class="code-string">'username'</span>);
+<span class="code-keyword">const</span> age = localStorage.<span class="code-function">getItem</span>(<span class="code-string">'age'</span>);
+
+<span class="code-comment">// Remove data</span>
+localStorage.<span class="code-function">removeItem</span>(<span class="code-string">'username'</span>);
+
+<span class="code-comment">// Clear all</span>
+localStorage.<span class="code-function">clear</span>();
+
+<span class="code-comment">// Store Objects (JSON.stringify)</span>
+<span class="code-keyword">const</span> user = { name: <span class="code-string">'Code4Boy'</span>, skills: [<span class="code-string">'JS'</span>, <span class="code-string">'Python'</span>] };
+localStorage.<span class="code-function">setItem</span>(<span class="code-string">'user'</span>, JSON.<span class="code-function">stringify</span>(user));
+
+<span class="code-keyword">const</span> storedUser = JSON.<span class="code-function">parse</span>(localStorage.<span class="code-function">getItem</span>(<span class="code-string">'user'</span>));
+
+<span class="code-comment">// SessionStorage - Temporary (cleared when tab closes)</span>
+sessionStorage.<span class="code-function">setItem</span>(<span class="code-string">'tempData'</span>, <span class="code-string">'Some data'</span>);
+<span class="code-keyword">const</span> temp = sessionStorage.<span class="code-function">getItem</span>(<span class="code-string">'tempData'</span>);
+
+<span class="code-comment">// Real Example: Dark Mode Toggle</span>
+<span class="code-keyword">const</span> themeToggle = document.<span class="code-function">querySelector</span>(<span class="code-string">'#theme-toggle'</span>);
+<span class="code-keyword">const</span> currentTheme = localStorage.<span class="code-function">getItem</span>(<span class="code-string">'theme'</span>);
+
+<span class="code-keyword">if</span> (currentTheme === <span class="code-string">'dark'</span>) {
+  document.body.classList.<span class="code-function">add</span>(<span class="code-string">'dark-theme'</span>);
+}
+
+themeToggle.<span class="code-function">addEventListener</span>(<span class="code-string">'click'</span>, () =&gt; {
+  document.body.classList.<span class="code-function">toggle</span>(<span class="code-string">'dark-theme'</span>);
+  <span class="code-keyword">const</span> theme = document.body.classList.<span class="code-function">contains</span>(<span class="code-string">'dark-theme'</span>) ? <span class="code-string">'dark'</span> : <span class="code-string">'light'</span>;
+  localStorage.<span class="code-function">setItem</span>(<span class="code-string">'theme'</span>, theme);
+});</code></pre>
+  </div>
+
+  <h2>📺 Watch: JavaScript Full Course (Hindi)</h2>
+  <div class="video-container">
+    <iframe width="100%" height="400" src="https://www.youtube.com/embed/VlPiVmYuoqw" title="JavaScript Tutorial - Apna College" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+  </div>
+  <!-- Disclaimer -->
+  <div style="margin-top:15px;padding:12px 16px;background:rgba(255,193,7,0.08);border:1px solid rgba(255,193,7,0.25);border-radius:8px;font-size:0.85rem;color:var(--text-secondary);">
+    <i class="fas fa-exclamation-triangle" style="color:#ffc107;margin-right:6px;"></i>
+    <strong style="color:var(--text-primary);">Disclaimer:</strong> This video is not created by Code4Boy. This tutorial is created by <strong>Apna College</strong>. All credits go to the original creator. We have embedded this for educational purposes only.
+  </div>
+</div>

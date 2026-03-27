@@ -1,0 +1,344 @@
+<!-- Other/Miscellaneous Tutorials Content -->
+<div class="section-header reveal">
+  <h2 class="section-title"><i class="fas fa-folder-open" style="color:#6c757d"></i> Other <span class="highlight">Tutorials</span></h2>
+  <div class="neon-line mt-20"></div>
+</div>
+
+<div class="tutorial-content reveal">
+  <p style="text-align:center;color:var(--text-secondary);font-size:1.1rem;padding:40px 20px;">
+    <i class="fas fa-compass" style="font-size:3rem;display:block;margin-bottom:20px;opacity:0.5;"></i>
+    Miscellaneous tutorials covering additional topics, frameworks, and tools.
+  </p>
+
+  <h2>1. Git & GitHub Basics</h2>
+  <div class="step-indicator">Step 1 — Version Control</div>
+  <p>Git is a version control system for tracking changes in computer files and coordinating work on those files among multiple people. GitHub is a platform for hosting Git repositories.</p>
+  
+  <div class="code-block">
+    <div class="code-header">
+      <span class="code-lang">Git Commands</span>
+      <button class="copy-btn">📋 Copy</button>
+    </div>
+    <pre><code><span class="code-comment"># Initialize a new Git repository</span>
+git init
+
+<span class="code-comment"># Clone an existing repository</span>
+git clone https://github.com/username/project.git
+
+<span class="code-comment"># Check status of changes</span>
+git status
+
+<span class="code-comment"># Add files to staging area</span>
+git add .
+
+<span class="code-comment"># Commit changes</span>
+git commit -m <span class="code-string">"Add new feature"</span>
+
+<span class="code-comment"># Push to remote repository</span>
+git push origin main
+
+<span class="code-comment"># Create a new branch</span>
+git checkout -b feature-branch
+
+<span class="code-comment"># Switch branches</span>
+git checkout main
+
+<span class="code-comment"># Merge branches</span>
+git merge feature-branch
+
+<span class="code-comment"># View commit history</span>
+git log --oneline</code></pre>
+  </div>
+
+  <h2>2. VS Code Essential Shortcuts</h2>
+  <div class="step-indicator">Step 2 — Productivity Tips</div>
+  <p>Visual Studio Code is the most popular code editor. Master these keyboard shortcuts to boost your productivity:</p>
+  
+  <div class="code-block">
+    <div class="code-header">
+      <span class="code-lang">Shortcuts</span>
+      <button class="copy-btn">📋 Copy</button>
+    </div>
+    <pre><code><span class="code-comment"># General</span>
+Ctrl + P          Quick Open (search files)
+Ctrl + Shift + P  Command Palette
+Ctrl + `          Toggle Terminal
+Ctrl + B          Toggle Sidebar
+
+<span class="code-comment"># Editing</span>
+Ctrl + D          Select next occurrence
+Ctrl + F2         Select all occurrences
+Alt + ↑/↓         Move line up/down
+Shift + Alt + ↓   Copy line down
+Ctrl + /          Toggle comment
+Ctrl + X          Cut line
+Ctrl + Z          Undo
+Ctrl + Y          Redo
+
+<span class="code-comment"># Navigation</span>
+F12               Go to Definition
+Alt + ←/→         Go back/forward
+Ctrl + G          Go to line
+Ctrl + T          Search symbol
+
+<span class="code-comment"># Multi-Cursor</span>
+Alt + Click       Add cursor
+Ctrl + Alt + ↑/↓  Insert cursor above/below
+
+<span class="code-comment"># Refactoring</span>
+F2                Rename symbol
+Ctrl + Shift + O  Outline (go to symbol)
+Ctrl + K Ctrl + F Format selection</code></pre>
+  </div>
+
+  <h2>3. Command Line Basics</h2>
+  <div class="step-indicator">Step 3 — Terminal Commands</div>
+  <p>The command line (terminal) gives you powerful control over your computer. Here are essential commands every developer should know:</p>
+  
+  <div class="code-block">
+    <div class="code-header">
+      <span class="code-lang">Terminal</span>
+      <button class="copy-btn">📋 Copy</button>
+    </div>
+    <pre><code><span class="code-comment"># Navigation</span>
+pwd                 Print working directory
+cd folder           Change directory
+cd ..               Go up one directory
+ls                  List files
+ls -la              List all files (including hidden)
+
+<span class="code-comment"># File Operations</span>
+touch file.txt      Create empty file
+mkdir folder        Create directory
+rm file             Remove file
+rm -rf folder       Remove directory (force)
+cp file1 file2      Copy file
+mv file1 file2      Move/rename file
+cat file            Display file content
+less file           View file page by page
+
+<span class="code-comment"># System</span>
+clear               Clear terminal
+whoami              Current user
+hostname            Computer name
+ps aux              Running processes
+kill PID            Kill process
+top                 Task manager (Mac/Linux)
+tasklist            Task manager (Windows)
+
+<span class="code-comment"># Network</span>
+ping google.com     Test connection
+curl http://url     Make HTTP request
+wget http://url     Download file
+ssh user@host       SSH connection</code></pre>
+  </div>
+
+  <h2>4. NPM Package Manager</h2>
+  <div class="step-indicator">Step 4 — Node Package Management</div>
+  <p>NPM (Node Package Manager) is used to install, manage, and share JavaScript packages. It's essential for modern web development.</p>
+  
+  <div class="code-block">
+    <div class="code-header">
+      <span class="code-lang">NPM</span>
+      <button class="copy-btn">📋 Copy</button>
+    </div>
+    <pre><code><span class="code-comment"># Initialize new project</span>
+npm init -y
+
+<span class="code-comment"># Install packages</span>
+npm install package-name
+npm i package-name          <span class="code-comment"># Shortcut</span>
+npm install -g package      <span class="code-comment"># Global install</span>
+
+<span class="code-comment"># Save as dependency</span>
+npm install --save package  <span class="code-comment"># production</span>
+npm install --save-dev package  <span class="code-comment"># development</span>
+
+<span class="code-comment"># Uninstall packages</span>
+npm uninstall package
+
+<span class="code-comment"># Update packages</span>
+npm update package
+npm update                  <span class="code-comment"># Update all</span>
+
+<span class="code-comment"># List installed packages</span>
+npm list
+npm list --depth=0          <span class="code-comment"># Top level only</span>
+
+<span class="code-comment"># Run scripts (from package.json)</span>
+npm run dev
+npm run build
+npm run test
+
+<span class="code-comment"># Clear cache</span>
+npm cache clean --force
+
+<span class="code-comment"># Check for outdated packages</span>
+npm outdated
+
+<span class="code-comment"># Security audit</span>
+npm audit
+npm audit fix</code></pre>
+  </div>
+
+  <h2>5. CSS Flexbox Crash Course</h2>
+  <div class="step-indicator">Step 5 — Modern Layouts</div>
+  <p>Flexbox is a one-dimensional layout method that makes it easy to align items in rows or columns. Perfect for responsive design!</p>
+  
+  <div class="code-block">
+    <div class="code-header">
+      <span class="code-lang">CSS</span>
+      <button class="copy-btn">📋 Copy</button>
+    </div>
+    <pre><code><span class="code-comment"># Container Properties</span>
+.container {
+  display: flex;
+  
+  <span class="code-comment"># Main axis alignment</span>
+  justify-content: flex-start;    <span class="code-comment"># Default</span>
+  justify-content: flex-end;
+  justify-content: center;
+  justify-content: space-between;
+  justify-content: space-around;
+  
+  <span class="code-comment"># Cross axis alignment</span>
+  align-items: stretch;           <span class="code-comment"># Default</span>
+  align-items: flex-start;
+  align-items: flex-end;
+  align-items: center;
+  
+  <span class="code-comment"># Direction</span>
+  flex-direction: row;            <span class="code-comment"># Default</span>
+  flex-direction: column;
+  
+  <span class="code-comment"># Wrap</span>
+  flex-wrap: nowrap;              <span class="code-comment"># Default</span>
+  flex-wrap: wrap;
+}
+
+<span class="code-comment"># Item Properties</span>
+.item {
+  <span class="code-comment"># Size</span>
+  flex: 1;                        <span class="code-comment"># grow shrink basis</span>
+  flex-grow: 1;                   <span class="code-comment"># How much to grow</span>
+  flex-shrink: 1;                 <span class="code-comment"># How much to shrink</span>
+  flex-basis: 200px;              <span class="code-comment"># Initial size</span>
+  
+  <span class="code-comment"># Order</span>
+  order: 1;                       <span class="code-comment"># Reorder items</span>
+  
+  <span class="code-comment"># Self alignment</span>
+  align-self: center;
+}</code></pre>
+  </div>
+
+  <h2>6. CSS Grid Layout</h2>
+  <div class="step-indicator">Step 6 — Two-Dimensional Layouts</div>
+  <p>CSS Grid is a two-dimensional layout system that works with rows and columns. Perfect for complex layouts!</p>
+  
+  <div class="code-block">
+    <div class="code-header">
+      <span class="code-lang">CSS</span>
+      <button class="copy-btn">📋 Copy</button>
+    </div>
+    <pre><code><span class="code-comment"># Container Setup</span>
+.container {
+  display: grid;
+  
+  <span class="code-comment"># Define columns</span>
+  grid-template-columns: 200px 200px 200px;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: 1fr 2fr 1fr;
+  
+  <span class="code-comment"># Define rows</span>
+  grid-template-rows: 100px 200px 100px;
+  
+  <span class="code-comment"># Gap between cells</span>
+  gap: 20px;
+  grid-gap: 20px;               <span class="code-comment"># Old syntax</span>
+  
+  <span class="code-comment"># Named areas</span>
+  grid-template-areas: 
+    "header header header"
+    "sidebar content content"
+    "footer footer footer";
+}
+
+<span class="code-comment"># Item Placement</span>
+.item {
+  <span class="code-comment"># Position by line numbers</span>
+  grid-column-start: 1;
+  grid-column-end: 3;
+  grid-row-start: 1;
+  grid-row-end: 2;
+  
+  <span class="code-comment"># Shorthand</span>
+  grid-column: 1 / 3;
+  grid-row: 1 / 2;
+  
+  <span class="code-comment"># Position by area names</span>
+  grid-area: header;
+}</code></pre>
+  </div>
+
+  <h2>7. Responsive Design Media Queries</h2>
+  <div class="step-indicator">Step 7 — Mobile-First Design</div>
+  <p>Media queries make your website responsive across different screen sizes. Follow mobile-first approach for best results.</p>
+  
+  <div class="code-block">
+    <div class="code-header">
+      <span class="code-lang">CSS</span>
+      <button class="copy-btn">📋 Copy</button>
+    </div>
+    <pre><code><span class="code-comment"># Mobile First Approach</span>
+
+<span class="code-comment"># Base styles (mobile)</span>
+body {
+  font-size: 16px;
+  padding: 16px;
+}
+
+<span class="code-comment"># Tablet (min-width: 768px)</span>
+@media (min-width: 768px) {
+  body {
+    font-size: 18px;
+    padding: 24px;
+  }
+  
+  .container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+<span class="code-comment"># Desktop (min-width: 1024px)</span>
+@media (min-width: 1024px) {
+  body {
+    font-size: 20px;
+  }
+  
+  .container {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+<span class="code-comment"># Large Desktop (min-width: 1440px)</span>
+@media (min-width: 1440px) {
+  .container {
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+}
+
+<span class="code-comment"># Common Breakpoints</span>
+<span class="code-comment"># Phone: 320px - 480px</span>
+<span class="code-comment"># Tablet: 768px - 1024px</span>
+<span class="code-comment"># Laptop: 1024px - 1440px</span>
+<span class="code-comment"># Desktop: 1440px+</span></code></pre>
+  </div>
+
+  <h2>📺 Watch: More Tutorials Coming Soon</h2>
+  <div class="video-container">
+    <iframe width="100%" height="400" src="https://www.youtube.com/embed/videoseries?list=PLBlnK6fEyqRjMH3mWf6kwqiTbT798eAOd" title="Web Development Playlist" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+  </div>
+</div>

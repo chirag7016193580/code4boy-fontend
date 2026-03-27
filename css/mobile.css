@@ -1,0 +1,3391 @@
+/* ============================================
+   Code4Boy - Mobile Responsive Fixes
+   Comprehensive mobile-first responsive overrides
+   Loaded LAST to ensure proper cascade
+   ============================================ */
+
+/* ============================================
+   GLOBAL MOBILE FIXES
+   ============================================ */
+@media (max-width: 768px) {
+  /* Prevent horizontal overflow */
+  html, body {
+    overflow-x: hidden !important;
+    max-width: 100vw;
+  }
+
+  /* Fix all sections padding */
+  .section {
+    padding: 50px 16px !important;
+  }
+
+  .section-header {
+    margin-bottom: 24px;
+  }
+
+  .section-title {
+    font-size: clamp(1.3rem, 5vw, 1.8rem) !important;
+    line-height: 1.3;
+  }
+
+  .section-desc {
+    font-size: 0.9rem !important;
+    padding: 0 8px;
+  }
+
+  .section-badge {
+    font-size: 0.75rem !important;
+    padding: 6px 14px !important;
+  }
+
+  .neon-line {
+    margin-top: 12px !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .section {
+    padding: 40px 12px !important;
+  }
+
+  .section-title {
+    font-size: clamp(1.2rem, 5vw, 1.5rem) !important;
+  }
+
+  .section-desc {
+    font-size: 0.85rem !important;
+  }
+}
+
+/* ============================================
+   NAVBAR - Mobile
+   ============================================ */
+@media (max-width: 768px) {
+  .navbar {
+    padding: 6px 0 !important;
+  }
+
+  .nav-container {
+    padding: 0 12px !important;
+  }
+
+  .nav-container {
+    flex-wrap: nowrap !important;
+  }
+
+  .nav-logo {
+    gap: 8px !important;
+    flex-shrink: 1 !important;
+    min-width: 0 !important;
+    overflow: hidden !important;
+  }
+
+  .nav-logo img {
+    width: 36px !important;
+    height: 36px !important;
+    flex-shrink: 0 !important;
+  }
+
+  .nav-logo span {
+    font-size: 1.1rem !important;
+    letter-spacing: 1px !important;
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+  }
+
+  .nav-right {
+    gap: 8px !important;
+    flex-shrink: 0 !important;
+  }
+
+  .nav-search-btn {
+    font-size: 1rem !important;
+    padding: 6px !important;
+  }
+
+  .theme-toggle {
+    padding: 5px 10px !important;
+    font-size: 0.9rem !important;
+  }
+
+  .theme-toggle span {
+    display: none !important;
+  }
+
+  /* Mobile menu - full screen */
+  .menu-toggle {
+    display: flex !important;
+  }
+
+  .nav-links {
+    position: fixed !important;
+    top: 0 !important;
+    right: 0 !important;
+    width: 100% !important;
+    height: 100vh !important;
+    height: 100dvh !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 8px !important;
+    z-index: 999 !important;
+    padding: 80px 24px 40px !important;
+    transform: translateX(100%) !important;
+    transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    background: rgba(6, 6, 19, 0.98) !important;
+    backdrop-filter: blur(24px) !important;
+    -webkit-backdrop-filter: blur(24px) !important;
+  }
+
+  .nav-links.active {
+    transform: translateX(0) !important;
+  }
+
+  .nav-links li {
+    width: 100%;
+    text-align: center;
+  }
+
+  .nav-links li a {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 10px !important;
+    font-size: 1.05rem !important;
+    padding: 14px 24px !important;
+    border-radius: 12px !important;
+    width: 100% !important;
+  }
+
+  .nav-links li a::after {
+    display: none !important;
+  }
+
+  .nav-links li a i {
+    font-size: 1rem !important;
+  }
+
+  /* Flatten More dropdown in mobile - show all items inline */
+  .nav-more-dropdown {
+    width: 100%;
+  }
+
+  .nav-more-btn {
+    display: none !important;
+  }
+
+  .nav-more-menu {
+    position: static !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    transform: none !important;
+    background: none !important;
+    border: none !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+    min-width: unset !important;
+  }
+
+  .nav-more-menu::before,
+  .nav-more-menu::after,
+  .nav-more-menu li + li::before {
+    display: none !important;
+  }
+
+  .nav-more-menu li {
+    width: 100%;
+    text-align: center;
+  }
+
+  .nav-more-menu li a {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 10px !important;
+    font-size: 1.05rem !important;
+    padding: 14px 24px !important;
+    border-radius: 12px !important;
+    width: 100% !important;
+  }
+
+  /* Auth button in mobile */
+  .auth-btn-container {
+    transform: scale(0.85);
+  }
+}
+
+@media (max-width: 480px) {
+  .nav-container {
+    padding: 0 10px !important;
+  }
+
+  .nav-logo img {
+    width: 30px !important;
+    height: 30px !important;
+  }
+
+  .nav-logo span {
+    font-size: 0.9rem !important;
+    letter-spacing: 0.5px !important;
+  }
+
+  .nav-right {
+    gap: 4px !important;
+  }
+
+  .nav-search-btn {
+    font-size: 0.9rem !important;
+    padding: 5px !important;
+  }
+
+  .theme-toggle {
+    padding: 4px 8px !important;
+    font-size: 0.85rem !important;
+  }
+
+  .auth-btn-container {
+    transform: scale(0.75) !important;
+    margin: 0 -4px !important;
+  }
+}
+
+/* Extra small phones (320px and below) */
+@media (max-width: 360px) {
+  .nav-container {
+    padding: 0 8px !important;
+  }
+
+  .nav-logo {
+    gap: 6px !important;
+  }
+
+  .nav-logo img {
+    width: 28px !important;
+    height: 28px !important;
+  }
+
+  .nav-logo span {
+    font-size: 0.8rem !important;
+    letter-spacing: 0 !important;
+  }
+
+  .nav-right {
+    gap: 3px !important;
+  }
+
+  .nav-search-btn {
+    font-size: 0.85rem !important;
+    padding: 4px !important;
+  }
+
+  .theme-toggle {
+    padding: 3px 6px !important;
+    font-size: 0.8rem !important;
+  }
+
+  .auth-btn-container {
+    transform: scale(0.7) !important;
+    margin: 0 -6px !important;
+  }
+
+  .menu-toggle span {
+    width: 22px !important;
+  }
+}
+
+/* ============================================
+   SEARCH MODAL - Mobile
+   ============================================ */
+@media (max-width: 768px) {
+  .search-modal {
+    padding-top: 10vh !important;
+  }
+
+  .search-modal-content {
+    width: 95% !important;
+    padding: 16px !important;
+  }
+
+  .search-modal-input {
+    font-size: 1rem !important;
+    padding: 14px 16px !important;
+  }
+}
+
+/* ============================================
+   HERO SECTION - Mobile
+   ============================================ */
+@media (max-width: 768px) {
+  .hero {
+    padding: 100px 16px 50px !important;
+    min-height: auto !important;
+  }
+
+  .hero-container {
+    grid-template-columns: 1fr !important;
+    gap: 30px !important;
+    text-align: center !important;
+  }
+
+  .hero-left {
+    text-align: center !important;
+  }
+
+  .hero h1 {
+    font-size: clamp(1.6rem, 6vw, 2.4rem) !important;
+    line-height: 1.25 !important;
+  }
+
+  .hero-desc,
+  .hero p {
+    font-size: 0.95rem !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    max-width: 100% !important;
+    padding: 0 4px;
+  }
+
+  .hero-badge,
+  .hero .hero-badge {
+    font-size: 0.72rem !important;
+    padding: 6px 14px !important;
+  }
+
+  /* Hero buttons stack */
+  .hero-buttons {
+    flex-direction: column !important;
+    align-items: center !important;
+    gap: 12px !important;
+    width: 100%;
+  }
+
+  .hero-buttons .btn-primary,
+  .hero-buttons .btn-secondary {
+    width: 100% !important;
+    max-width: 280px !important;
+    justify-content: center !important;
+    text-align: center !important;
+  }
+
+  /* Stats grid */
+  .hero-stats-grid {
+    grid-template-columns: 1fr 1fr !important;
+    max-width: 100% !important;
+    gap: 12px !important;
+    margin: 0 auto !important;
+  }
+
+  .stat-card {
+    padding: 16px 12px !important;
+  }
+
+  .stat-card .stat-number {
+    font-size: 1.3rem !important;
+  }
+
+  .stat-card .stat-label {
+    font-size: 0.65rem !important;
+  }
+
+  .stat-card .stat-icon {
+    font-size: 1.3rem !important;
+  }
+
+  /* Hero stats inline */
+  .hero-stats {
+    flex-wrap: wrap !important;
+    gap: 12px !important;
+    justify-content: center !important;
+  }
+
+  .stat-item {
+    padding: 10px 14px !important;
+  }
+
+  .stat-number {
+    font-size: 1.3rem !important;
+  }
+
+  /* Floating orbs - reduce on mobile */
+  .hero::before,
+  .hero::after {
+    width: 200px !important;
+    height: 200px !important;
+    opacity: 0.3 !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero {
+    padding: 90px 12px 40px !important;
+  }
+
+  .hero h1 {
+    font-size: clamp(1.4rem, 7vw, 2rem) !important;
+  }
+
+  .hero-stats-grid {
+    gap: 8px !important;
+  }
+
+  .stat-card {
+    padding: 14px 10px !important;
+  }
+
+  .stat-card .stat-number {
+    font-size: 1.2rem !important;
+  }
+
+  .btn-primary,
+  .btn-secondary {
+    padding: 11px 22px !important;
+    font-size: 0.82rem !important;
+  }
+}
+
+/* ============================================
+   PAGE HEADER - Mobile (sub-pages)
+   ============================================ */
+@media (max-width: 768px) {
+  .page-header {
+    padding: 100px 16px 36px !important;
+    text-align: center;
+  }
+
+  .page-header h1 {
+    font-size: clamp(1.5rem, 6vw, 2.2rem) !important;
+    line-height: 1.3 !important;
+  }
+
+  .page-header p {
+    font-size: 0.9rem !important;
+    padding: 0 8px;
+  }
+
+  .breadcrumb {
+    font-size: 0.78rem !important;
+    padding: 5px 14px !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .page-header {
+    padding: 90px 12px 30px !important;
+  }
+
+  .page-header h1 {
+    font-size: clamp(1.3rem, 7vw, 1.8rem) !important;
+  }
+
+  .breadcrumb {
+    font-size: 0.72rem !important;
+  }
+}
+
+/* ============================================
+   ROADMAP SECTION - Mobile
+   ============================================ */
+@media (max-width: 768px) {
+  .roadmap-grid {
+    grid-template-columns: 1fr !important;
+    gap: 16px !important;
+  }
+
+  .roadmap-card {
+    padding: 20px !important;
+  }
+
+  .roadmap-number {
+    font-size: 2.5rem !important;
+  }
+
+  .roadmap-card h3 {
+    font-size: 1.05rem !important;
+  }
+
+  .roadmap-card p {
+    font-size: 0.88rem !important;
+  }
+
+  /* Roadmap timeline */
+  .roadmap-timeline {
+    padding-left: 24px !important;
+  }
+
+  .roadmap-step {
+    flex-direction: column !important;
+    padding: 16px !important;
+  }
+
+  .roadmap-icon {
+    width: 36px !important;
+    height: 36px !important;
+    min-width: 36px !important;
+    font-size: 1.1rem !important;
+  }
+
+  .roadmap-skills {
+    flex-wrap: wrap !important;
+    gap: 6px !important;
+  }
+
+  .roadmap-skills span {
+    font-size: 0.72rem !important;
+    padding: 3px 8px !important;
+  }
+}
+
+/* ============================================
+   TUTORIAL CARDS / CARDS GRID - Mobile
+   ============================================ */
+@media (max-width: 768px) {
+  .cards-grid {
+    grid-template-columns: 1fr !important;
+    gap: 16px !important;
+  }
+
+  .card {
+    padding: 20px !important;
+  }
+
+  .card h3 {
+    font-size: 1rem !important;
+  }
+
+  .card p {
+    font-size: 0.88rem !important;
+  }
+
+  .card-tag {
+    font-size: 0.7rem !important;
+    padding: 3px 10px !important;
+  }
+
+  .card-link {
+    font-size: 0.85rem !important;
+  }
+}
+
+/* ============================================
+   CATEGORY CARDS - Mobile
+   ============================================ */
+@media (max-width: 768px) {
+  .category-cards {
+    grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)) !important;
+    gap: 12px !important;
+  }
+
+  .category-card {
+    padding: 16px 10px !important;
+  }
+
+  .category-card .cat-icon {
+    font-size: 1.5rem !important;
+    margin-bottom: 8px !important;
+  }
+
+  .category-card h3 {
+    font-size: 0.85rem !important;
+  }
+
+  .category-card p {
+    font-size: 0.72rem !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .category-cards {
+    grid-template-columns: repeat(auto-fill, minmax(110px, 1fr)) !important;
+    gap: 8px !important;
+  }
+
+  .category-card {
+    padding: 14px 8px !important;
+  }
+
+  .category-card .cat-icon {
+    font-size: 1.3rem !important;
+  }
+
+  .category-card h3 {
+    font-size: 0.78rem !important;
+  }
+}
+
+/* ============================================
+   PROJECT CARDS - Mobile
+   ============================================ */
+@media (max-width: 768px) {
+  .project-card {
+    padding: 0 !important;
+  }
+
+  .project-preview {
+    height: 140px !important;
+    font-size: 2.5rem !important;
+  }
+
+  .project-body {
+    padding: 18px !important;
+  }
+
+  .project-body h3 {
+    font-size: 1.05rem !important;
+  }
+
+  .project-body p {
+    font-size: 0.88rem !important;
+  }
+
+  .project-features {
+    font-size: 0.82rem !important;
+  }
+
+  .project-features li {
+    padding: 3px 0 !important;
+  }
+
+  .project-buttons {
+    flex-wrap: wrap !important;
+    gap: 10px !important;
+  }
+
+  .project-buttons .btn-download {
+    font-size: 0.78rem !important;
+    padding: 8px 16px !important;
+  }
+}
+
+/* ============================================
+   SKILLS TRACKER - Mobile
+   ============================================ */
+@media (max-width: 768px) {
+  .skills-tracker-grid {
+    grid-template-columns: 1fr !important;
+    gap: 14px !important;
+  }
+
+  .skill-tracker-card {
+    padding: 18px !important;
+  }
+
+  .skill-tracker-header {
+    flex-wrap: wrap !important;
+    gap: 10px !important;
+  }
+
+  .skill-tracker-icon {
+    font-size: 1.3rem !important;
+  }
+
+  .skill-tracker-info h3 {
+    font-size: 0.95rem !important;
+  }
+
+  .skill-tracker-actions {
+    flex-direction: column !important;
+    gap: 8px !important;
+  }
+
+  .skill-action-btn {
+    width: 100% !important;
+    text-align: center !important;
+    justify-content: center !important;
+    padding: 10px 16px !important;
+    font-size: 0.82rem !important;
+  }
+}
+
+/* ============================================
+   VIDEO SECTION - Mobile
+   ============================================ */
+@media (max-width: 768px) {
+  .video-grid {
+    grid-template-columns: 1fr !important;
+    gap: 16px !important;
+  }
+
+  .video-card {
+    border-radius: 12px !important;
+    overflow: hidden !important;
+  }
+
+  .video-thumb {
+    height: 200px !important;
+  }
+
+  .video-thumb iframe {
+    border-radius: 0 !important;
+  }
+
+  .video-info {
+    padding: 14px !important;
+  }
+
+  .video-info h3 {
+    font-size: 0.95rem !important;
+    line-height: 1.3 !important;
+  }
+
+  .video-info p {
+    font-size: 0.82rem !important;
+  }
+
+  /* YouTube nav */
+  .youtube-nav {
+    flex-direction: column !important;
+    text-align: center !important;
+    gap: 12px !important;
+    padding: 16px !important;
+  }
+
+  .yt-brand {
+    justify-content: center !important;
+  }
+
+  .yt-stats {
+    margin-left: 0 !important;
+    justify-content: center !important;
+    flex-wrap: wrap !important;
+    gap: 12px !important;
+  }
+
+  .yt-subscribe {
+    width: 100% !important;
+    max-width: 200px !important;
+    justify-content: center !important;
+    margin: 0 auto !important;
+  }
+
+  /* Video containers in tutorials */
+  .video-container {
+    margin: 0 -8px;
+  }
+
+  .video-container iframe {
+    height: 220px !important;
+    border-radius: 8px !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .video-thumb {
+    height: 180px !important;
+  }
+
+  .video-container iframe {
+    height: 190px !important;
+  }
+}
+
+/* ============================================
+   TOOLS GRID - Mobile
+   ============================================ */
+@media (max-width: 768px) {
+  .tools-grid {
+    grid-template-columns: 1fr !important;
+    gap: 14px !important;
+  }
+
+  .tool-card {
+    padding: 18px !important;
+  }
+
+  .tool-icon {
+    font-size: 1.6rem !important;
+    width: 48px !important;
+    height: 48px !important;
+  }
+
+  .tool-info h3 {
+    font-size: 1rem !important;
+  }
+
+  .tool-info p {
+    font-size: 0.85rem !important;
+  }
+
+  .tool-actions {
+    flex-wrap: wrap !important;
+    gap: 8px !important;
+  }
+}
+
+/* ============================================
+   ERROR CARDS - Mobile
+   ============================================ */
+@media (max-width: 768px) {
+  .error-card {
+    padding: 18px !important;
+  }
+
+  .error-card h3 {
+    font-size: 1rem !important;
+    line-height: 1.4 !important;
+  }
+
+  .error-card p {
+    font-size: 0.88rem !important;
+  }
+
+  .error-search-input {
+    font-size: 0.9rem !important;
+    padding: 12px 16px !important;
+  }
+
+  .error-card .solution {
+    padding: 14px !important;
+    font-size: 0.85rem !important;
+  }
+
+  .code-block {
+    font-size: 0.78rem !important;
+    overflow-x: auto !important;
+  }
+
+  .code-block pre {
+    overflow-x: auto !important;
+    white-space: pre-wrap !important;
+    word-break: break-word !important;
+  }
+
+  .code-header {
+    flex-wrap: wrap !important;
+    gap: 8px !important;
+    padding: 8px 12px !important;
+  }
+}
+
+/* ============================================
+   DOWNLOAD GRID - Mobile
+   ============================================ */
+@media (max-width: 768px) {
+  .download-grid {
+    grid-template-columns: 1fr !important;
+    gap: 14px !important;
+  }
+
+  .download-card {
+    padding: 20px !important;
+  }
+
+  .dl-icon {
+    font-size: 2rem !important;
+    margin-bottom: 10px !important;
+  }
+
+  .download-card h3 {
+    font-size: 1rem !important;
+  }
+
+  .download-card p {
+    font-size: 0.85rem !important;
+  }
+
+  .btn-download {
+    width: 100% !important;
+    text-align: center !important;
+    justify-content: center !important;
+    padding: 10px 20px !important;
+    font-size: 0.82rem !important;
+  }
+}
+
+/* ============================================
+   FAQ SECTION - Mobile
+   ============================================ */
+@media (max-width: 768px) {
+  .faq-container {
+    padding: 0 !important;
+  }
+
+  .faq-item {
+    border-radius: 10px !important;
+  }
+
+  .faq-question {
+    font-size: 0.88rem !important;
+    padding: 14px 16px !important;
+    gap: 10px !important;
+  }
+
+  .faq-question span {
+    flex: 1;
+    text-align: left;
+  }
+
+  .faq-answer {
+    padding: 0 16px !important;
+  }
+
+  .faq-answer p {
+    font-size: 0.85rem !important;
+    line-height: 1.6 !important;
+  }
+
+  .faq-item.active .faq-answer {
+    padding: 12px 16px 16px !important;
+  }
+}
+
+/* ============================================
+   NEWSLETTER SECTION - Mobile
+   ============================================ */
+@media (max-width: 768px) {
+  .newsletter-wrapper {
+    padding: 30px 16px !important;
+    border-radius: 14px !important;
+  }
+
+  .newsletter-wrapper h2,
+  .newsletter-wrapper .section-title {
+    font-size: 1.3rem !important;
+  }
+
+  .newsletter-wrapper p {
+    font-size: 0.88rem !important;
+  }
+
+  .newsletter-input-group {
+    flex-direction: column !important;
+    gap: 10px !important;
+  }
+
+  .newsletter-input-group input {
+    width: 100% !important;
+    padding: 12px 16px !important;
+    font-size: 0.9rem !important;
+  }
+
+  .newsletter-input-group .btn-primary {
+    width: 100% !important;
+    justify-content: center !important;
+    text-align: center !important;
+  }
+}
+
+/* ============================================
+   TESTIMONIALS - Mobile
+   ============================================ */
+@media (max-width: 768px) {
+  .testimonials-carousel {
+    flex-direction: column !important;
+    gap: 10px !important;
+  }
+
+  .testimonials-track {
+    min-height: 280px !important;
+  }
+
+  .testimonial-nav-btn {
+    display: none !important;
+  }
+
+  .testimonial-card {
+    padding: 20px !important;
+  }
+
+  .testimonial-card blockquote p {
+    font-size: 0.9rem !important;
+    line-height: 1.6 !important;
+  }
+
+  .testimonial-author {
+    flex-direction: column !important;
+    text-align: center !important;
+    gap: 8px !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .testimonials-track {
+    min-height: 320px !important;
+  }
+
+  .testimonial-card {
+    padding: 16px !important;
+  }
+}
+
+/* ============================================
+   SECURITY SECTION - Mobile
+   ============================================ */
+@media (max-width: 768px) {
+  .security-grid {
+    grid-template-columns: 1fr !important;
+    gap: 14px !important;
+  }
+
+  .security-feature-card {
+    padding: 20px !important;
+  }
+
+  .security-icon {
+    width: 48px !important;
+    height: 48px !important;
+    font-size: 1.2rem !important;
+  }
+
+  .security-feature-card h3 {
+    font-size: 0.95rem !important;
+  }
+
+  .security-feature-card p {
+    font-size: 0.85rem !important;
+  }
+}
+
+/* ============================================
+   WHY CHOOSE US - Mobile
+   ============================================ */
+@media (max-width: 768px) {
+  .why-choose-grid {
+    grid-template-columns: 1fr !important;
+    gap: 14px !important;
+  }
+
+  .why-card {
+    padding: 24px 18px !important;
+  }
+
+  .why-card .why-icon {
+    width: 52px !important;
+    height: 52px !important;
+    font-size: 1.3rem !important;
+  }
+
+  .why-card h3 {
+    font-size: 1rem !important;
+  }
+
+  .why-card p {
+    font-size: 0.85rem !important;
+  }
+}
+
+/* ============================================
+   COOKIE CONSENT - Mobile
+   ============================================ */
+@media (max-width: 768px) {
+  .cookie-content {
+    flex-direction: column !important;
+    text-align: center !important;
+    padding: 16px !important;
+    gap: 12px !important;
+  }
+
+  .cookie-text {
+    flex-direction: column !important;
+    gap: 8px !important;
+  }
+
+  .cookie-text p {
+    font-size: 0.8rem !important;
+    line-height: 1.5 !important;
+  }
+
+  .cookie-text i {
+    font-size: 1.2rem !important;
+  }
+
+  .cookie-actions {
+    width: 100% !important;
+    justify-content: center !important;
+    gap: 8px !important;
+  }
+
+  .cookie-accept,
+  .cookie-decline {
+    padding: 8px 18px !important;
+    font-size: 0.72rem !important;
+    flex: 1 !important;
+  }
+}
+
+/* ============================================
+   TRUST BAR - Mobile
+   ============================================ */
+@media (max-width: 768px) {
+  .trust-bar {
+    padding: 10px 12px !important;
+  }
+
+  .trust-badges {
+    gap: 12px !important;
+  }
+
+  .trust-badge-item {
+    font-size: 0.62rem !important;
+    gap: 4px !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .trust-badges {
+    gap: 8px !important;
+  }
+}
+
+/* ============================================
+   CHAT WIDGET - Mobile
+   ============================================ */
+@media (max-width: 768px) {
+  .chat-widget {
+    bottom: 16px !important;
+    right: 16px !important;
+  }
+
+  .chat-toggle {
+    width: 48px !important;
+    height: 48px !important;
+    font-size: 1.1rem !important;
+  }
+
+  .chat-window {
+    width: calc(100vw - 32px) !important;
+    max-height: 70vh !important;
+    right: -8px !important;
+    bottom: 60px !important;
+    border-radius: 14px !important;
+  }
+
+  .chat-header {
+    padding: 12px 16px !important;
+  }
+
+  .chat-header h4 {
+    font-size: 0.9rem !important;
+  }
+
+  .chat-messages {
+    padding: 12px !important;
+  }
+
+  .chat-msg-bubble {
+    max-width: 85% !important;
+    font-size: 0.85rem !important;
+  }
+
+  .chat-suggestions {
+    flex-wrap: wrap !important;
+    gap: 6px !important;
+  }
+
+  .chat-suggestion-btn {
+    font-size: 0.72rem !important;
+    padding: 6px 10px !important;
+  }
+
+  .chat-input-area {
+    padding: 10px !important;
+  }
+
+  .chat-input-area input {
+    font-size: 0.85rem !important;
+  }
+}
+
+/* ============================================
+   CODE PLAYGROUND FAB - Mobile
+   ============================================ */
+@media (max-width: 768px) {
+  .playground-fab {
+    bottom: 80px !important;
+    left: 12px !important;
+    padding: 12px !important;
+    border-radius: 50% !important;
+    font-size: 0.85rem !important;
+  }
+
+  .playground-fab .fab-label {
+    display: none !important;
+  }
+
+  .playground-fab i {
+    font-size: 1.1rem !important;
+  }
+
+  /* Playground fullscreen on mobile */
+  .playground-container {
+    height: 100vh !important;
+    height: 100dvh !important;
+    border-radius: 0 !important;
+    max-width: 100% !important;
+  }
+
+  .playground-overlay {
+    padding: 0 !important;
+  }
+
+  .playground-body {
+    flex-direction: column !important;
+  }
+
+  .playground-editors {
+    flex: none !important;
+    height: 45% !important;
+    border-right: none !important;
+    border-bottom: 1px solid rgba(247, 127, 0, 0.12) !important;
+  }
+
+  .playground-preview-wrap {
+    flex: 1 !important;
+  }
+
+  .playground-header {
+    flex-wrap: wrap !important;
+    gap: 6px !important;
+    padding: 8px 12px !important;
+  }
+
+  .playground-title {
+    font-size: 0.85rem !important;
+  }
+
+  .playground-actions {
+    flex-wrap: wrap !important;
+    gap: 4px !important;
+  }
+
+  .pg-btn {
+    padding: 5px 8px !important;
+    font-size: 0.72rem !important;
+  }
+
+  .pg-btn span {
+    display: none !important;
+  }
+
+  .playground-template-select {
+    font-size: 0.72rem !important;
+    padding: 4px 6px !important;
+  }
+
+  .playground-statusbar {
+    font-size: 0.65rem !important;
+    padding: 4px 10px !important;
+    gap: 10px !important;
+  }
+
+  .pg-shortcut {
+    display: none !important;
+  }
+
+  .playground-divider {
+    width: 100% !important;
+    height: 5px !important;
+    cursor: row-resize !important;
+  }
+}
+
+/* ============================================
+   FOOTER - Mobile
+   ============================================ */
+@media (max-width: 768px) {
+  .footer {
+    padding-top: 40px !important;
+  }
+
+  .footer-grid {
+    grid-template-columns: 1fr !important;
+    gap: 30px !important;
+    padding: 0 16px 30px !important;
+  }
+
+  .footer-col {
+    text-align: center !important;
+  }
+
+  .footer-col .nav-logo {
+    justify-content: center !important;
+  }
+
+  .footer-col h3 {
+    font-size: 1.05rem !important;
+    margin-bottom: 14px !important;
+  }
+
+  .footer-col p {
+    font-size: 0.88rem !important;
+  }
+
+  .footer-links {
+    text-align: center !important;
+  }
+
+  .footer-links li a {
+    font-size: 0.88rem !important;
+    padding: 6px 0 !important;
+  }
+
+  .social-links {
+    justify-content: center !important;
+    flex-wrap: wrap !important;
+    gap: 10px !important;
+  }
+
+  .social-link {
+    width: 40px !important;
+    height: 40px !important;
+    font-size: 1rem !important;
+  }
+
+  /* Contact form in footer */
+  .contact-form input,
+  .contact-form textarea {
+    font-size: 0.88rem !important;
+    padding: 12px 14px !important;
+  }
+
+  .contact-form textarea {
+    min-height: 100px !important;
+  }
+
+  .contact-form .btn-primary {
+    width: 100% !important;
+    justify-content: center !important;
+    text-align: center !important;
+  }
+
+  /* Footer bottom */
+  .footer-bottom {
+    flex-direction: column !important;
+    text-align: center !important;
+    gap: 12px !important;
+    padding: 20px 16px !important;
+  }
+
+  .footer-bottom p {
+    font-size: 0.82rem !important;
+  }
+
+  .footer-bottom-links {
+    flex-wrap: wrap !important;
+    justify-content: center !important;
+    gap: 12px !important;
+  }
+
+  .footer-bottom-links a {
+    font-size: 0.8rem !important;
+  }
+}
+
+/* ============================================
+   BACK TO TOP - Mobile
+   ============================================ */
+@media (max-width: 768px) {
+  .back-to-top {
+    bottom: 20px !important;
+    right: 16px !important;
+    width: 40px !important;
+    height: 40px !important;
+    font-size: 0.85rem !important;
+  }
+}
+
+/* ============================================
+   TAB NAV (Tutorials page) - Mobile
+   ============================================ */
+@media (max-width: 768px) {
+  .tab-nav {
+    flex-wrap: nowrap !important;
+    overflow-x: auto !important;
+    -webkit-overflow-scrolling: touch !important;
+    scrollbar-width: none !important;
+    gap: 6px !important;
+    padding: 8px 0 12px !important;
+  }
+
+  .tab-nav::-webkit-scrollbar {
+    display: none !important;
+  }
+
+  .tab-btn {
+    flex-shrink: 0 !important;
+    padding: 8px 16px !important;
+    font-size: 0.82rem !important;
+    white-space: nowrap !important;
+  }
+}
+
+/* ============================================
+   TUTORIAL CONTENT - Mobile
+   ============================================ */
+@media (max-width: 768px) {
+  .tutorial-content {
+    padding: 20px 14px !important;
+  }
+
+  .tutorial-content h2 {
+    font-size: 1.3rem !important;
+  }
+
+  .tutorial-content h3 {
+    font-size: 1.1rem !important;
+  }
+
+  .tutorial-content p {
+    font-size: 0.9rem !important;
+    line-height: 1.7 !important;
+  }
+
+  .step-indicator {
+    font-size: 0.82rem !important;
+    padding: 6px 14px !important;
+  }
+}
+
+/* ============================================
+   SCROLL PROGRESS BAR - Mobile
+   ============================================ */
+@media (max-width: 768px) {
+  .scroll-progress-bar,
+  .reading-progress {
+    height: 2px !important;
+  }
+}
+
+/* ============================================
+   MARQUEE - Mobile
+   ============================================ */
+@media (max-width: 768px) {
+  .c4b-marquee-content span {
+    font-size: 0.85rem !important;
+    padding: 0 10px !important;
+  }
+
+  .c4b-marquee-wrap {
+    padding: 12px 0 !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .c4b-marquee-content span {
+    font-size: 0.75rem !important;
+    padding: 0 8px !important;
+  }
+}
+
+/* ============================================
+   DISABLE HEAVY EFFECTS ON MOBILE
+   ============================================ */
+@media (max-width: 768px) {
+  /* Reduce 3D transforms on mobile for performance */
+  .card:hover,
+  .tool-card:hover,
+  .download-card:hover,
+  .project-card:hover {
+    transform: translateY(-4px) !important;
+  }
+
+  .stat-card:hover {
+    transform: translateY(-3px) !important;
+  }
+
+  .category-card:hover {
+    transform: translateY(-3px) !important;
+  }
+
+  /* Reduce parallax/floating elements for mobile performance */
+  .bg-glow {
+    opacity: 0.3 !important;
+  }
+
+  .particles {
+    display: none !important;
+  }
+
+  /* Custom cursor not needed on touch devices */
+  .c4b-cursor,
+  .c4b-cursor-dot,
+  .c4b-cursor-ring {
+    display: none !important;
+  }
+}
+
+/* ============================================
+   LOADER - Mobile
+   ============================================ */
+@media (max-width: 768px) {
+  .loader-logo img {
+    width: 60px !important;
+    height: 60px !important;
+  }
+
+  .loader-text {
+    font-size: 1rem !important;
+  }
+}
+
+/* ============================================
+   POWER STATUS - Mobile
+   ============================================ */
+@media (max-width: 768px) {
+  .power-status {
+    font-size: 0.7rem !important;
+    padding: 4px 10px !important;
+  }
+}
+
+/* ============================================
+   PROFILE / AUTH PAGES - Mobile
+   ============================================ */
+@media (max-width: 768px) {
+  .profile-container,
+  .auth-container {
+    padding: 20px 16px !important;
+    margin: 16px !important;
+    max-width: calc(100% - 32px) !important;
+  }
+
+  .profile-header {
+    flex-direction: column !important;
+    text-align: center !important;
+    gap: 16px !important;
+  }
+
+  .profile-avatar {
+    width: 80px !important;
+    height: 80px !important;
+  }
+
+  .profile-info h2 {
+    font-size: 1.2rem !important;
+  }
+}
+
+/* ============================================
+   NOTIFICATION TOAST - Mobile
+   ============================================ */
+@media (max-width: 768px) {
+  .c4b-notification {
+    width: calc(100% - 32px) !important;
+    left: 16px !important;
+    right: 16px !important;
+    max-width: none !important;
+    font-size: 0.85rem !important;
+    padding: 12px 16px !important;
+  }
+}
+
+/* ============================================
+   ADDITIONAL 320px BREAKPOINT
+   For very small devices
+   ============================================ */
+@media (max-width: 360px) {
+  .hero h1 {
+    font-size: 1.3rem !important;
+  }
+
+  .hero-stats-grid {
+    grid-template-columns: 1fr !important;
+    max-width: 200px !important;
+  }
+
+  .category-cards {
+    grid-template-columns: 1fr 1fr !important;
+  }
+
+  .nav-logo span {
+    font-size: 0.9rem !important;
+  }
+
+  .section-title {
+    font-size: 1.15rem !important;
+  }
+
+  .footer-bottom-links {
+    flex-direction: column !important;
+    gap: 8px !important;
+  }
+}
+
+/* ============================================
+   TABLET IMPROVEMENTS (769px - 1024px)
+   ============================================ */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .hero-container {
+    grid-template-columns: 1fr !important;
+    text-align: center !important;
+    gap: 36px !important;
+  }
+
+  .hero-left {
+    text-align: center !important;
+  }
+
+  .hero-buttons {
+    justify-content: center !important;
+  }
+
+  .hero-stats-grid {
+    max-width: 400px !important;
+    margin: 0 auto !important;
+  }
+
+  .cards-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+
+  .download-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+
+  .tools-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+
+  .footer-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+
+  .section {
+    padding: 60px 24px !important;
+  }
+}
+
+/* ============================================
+   LANDSCAPE MOBILE FIX
+   ============================================ */
+@media (max-height: 500px) and (orientation: landscape) {
+  .hero {
+    padding-top: 80px !important;
+    padding-bottom: 30px !important;
+    min-height: auto !important;
+  }
+
+  .nav-links {
+    padding-top: 60px !important;
+    gap: 4px !important;
+  }
+
+  .nav-links li a {
+    padding: 8px 20px !important;
+    font-size: 0.9rem !important;
+  }
+}
+
+/* ============================================
+   SAFE AREA INSETS (notched phones)
+   ============================================ */
+@supports (padding: max(0px)) {
+  @media (max-width: 768px) {
+    .navbar {
+      padding-left: max(12px, env(safe-area-inset-left)) !important;
+      padding-right: max(12px, env(safe-area-inset-right)) !important;
+    }
+
+    .footer-bottom {
+      padding-bottom: max(20px, env(safe-area-inset-bottom)) !important;
+    }
+
+    .cookie-content {
+      padding-bottom: max(16px, env(safe-area-inset-bottom)) !important;
+    }
+
+    .chat-widget {
+      bottom: max(16px, env(safe-area-inset-bottom)) !important;
+    }
+
+    .playground-fab {
+      bottom: max(80px, calc(env(safe-area-inset-bottom) + 64px)) !important;
+    }
+
+    .back-to-top {
+      bottom: max(20px, env(safe-area-inset-bottom)) !important;
+    }
+  }
+}
+
+/* ============================================
+   MOBILE ANIMATIONS & INTERACTIONS
+   Beautiful, smooth, touch-friendly animations
+   ============================================ */
+
+/* ---- Tap Ripple Effect ---- */
+@media (max-width: 768px) {
+  .btn-primary,
+  .btn-secondary,
+  .btn-download,
+  .card,
+  .project-card,
+  .tool-card,
+  .category-card,
+  .download-card,
+  .roadmap-card,
+  .stat-card,
+  .faq-question,
+  .skill-action-btn,
+  .social-link,
+  .nav-links li a,
+  .tab-btn,
+  .cookie-accept,
+  .cookie-decline {
+    position: relative !important;
+    overflow: hidden !important;
+    -webkit-tap-highlight-color: transparent !important;
+  }
+
+  .mobile-ripple {
+    position: absolute;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(139, 92, 246, 0.35) 0%, rgba(0, 212, 255, 0.15) 70%, transparent 100%);
+    transform: scale(0);
+    animation: mobileRippleExpand 0.6s ease-out forwards;
+    pointer-events: none;
+    z-index: 10;
+  }
+
+  @keyframes mobileRippleExpand {
+    0% {
+      transform: scale(0);
+      opacity: 1;
+    }
+    100% {
+      transform: scale(4);
+      opacity: 0;
+    }
+  }
+}
+
+/* ---- Card Touch Active State ---- */
+@media (max-width: 768px) {
+  .card:active,
+  .project-card:active,
+  .tool-card:active,
+  .download-card:active,
+  .roadmap-card:active,
+  .category-card:active {
+    transform: scale(0.97) !important;
+    transition: transform 0.15s ease !important;
+  }
+
+  .stat-card:active {
+    transform: scale(0.95) !important;
+    transition: transform 0.15s ease !important;
+  }
+
+  .btn-primary:active,
+  .btn-secondary:active,
+  .btn-download:active {
+    transform: scale(0.96) !important;
+    transition: transform 0.1s ease !important;
+  }
+
+  .social-link:active {
+    transform: scale(0.88) !important;
+  }
+}
+
+/* ---- Smooth Card Entrance Animations ---- */
+@media (max-width: 768px) {
+  .card,
+  .project-card,
+  .tool-card,
+  .download-card,
+  .roadmap-card,
+  .error-card,
+  .video-card,
+  .security-feature-card,
+  .why-card,
+  .skill-tracker-card {
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+                box-shadow 0.4s ease,
+                border-color 0.4s ease !important;
+  }
+
+  /* Touch hover glow */
+  .card.mobile-glow,
+  .project-card.mobile-glow,
+  .tool-card.mobile-glow,
+  .download-card.mobile-glow {
+    box-shadow: 0 8px 32px rgba(139, 92, 246, 0.15),
+                0 0 20px rgba(0, 212, 255, 0.08) !important;
+    border-color: rgba(139, 92, 246, 0.25) !important;
+  }
+}
+
+/* ---- Mobile Menu Slide Animation ---- */
+@media (max-width: 768px) {
+  .nav-links {
+    background: rgba(3, 0, 20, 0.97) !important;
+    backdrop-filter: blur(30px) saturate(180%) !important;
+    -webkit-backdrop-filter: blur(30px) saturate(180%) !important;
+  }
+
+  .nav-links.active li {
+    animation: menuItemSlideIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    opacity: 0;
+    transform: translateX(30px);
+  }
+
+  .nav-links.active li:nth-child(1) { animation-delay: 0.05s; }
+  .nav-links.active li:nth-child(2) { animation-delay: 0.1s; }
+  .nav-links.active li:nth-child(3) { animation-delay: 0.15s; }
+  .nav-links.active li:nth-child(4) { animation-delay: 0.2s; }
+  .nav-links.active li:nth-child(5) { animation-delay: 0.25s; }
+  .nav-links.active li:nth-child(6) { animation-delay: 0.3s; }
+  .nav-links.active li:nth-child(7) { animation-delay: 0.35s; }
+  .nav-links.active li:nth-child(8) { animation-delay: 0.4s; }
+  .nav-links.active li:nth-child(9) { animation-delay: 0.45s; }
+  .nav-links.active li:nth-child(10) { animation-delay: 0.5s; }
+
+  @keyframes menuItemSlideIn {
+    from {
+      opacity: 0;
+      transform: translateX(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  /* Menu link hover glow */
+  .nav-links li a:active {
+    background: rgba(139, 92, 246, 0.12) !important;
+    color: var(--neon-cyan) !important;
+    transition: all 0.15s ease !important;
+  }
+
+  /* Hamburger animation enhanced */
+  .menu-toggle span {
+    transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55) !important;
+  }
+}
+
+/* ---- Hero Section Mobile Animations ---- */
+@media (max-width: 768px) {
+  .hero-badge {
+    animation: mobileBadgePulse 3s ease-in-out infinite !important;
+  }
+
+  @keyframes mobileBadgePulse {
+    0%, 100% {
+      box-shadow: 0 0 0 0 rgba(139, 92, 246, 0.3);
+    }
+    50% {
+      box-shadow: 0 0 0 8px rgba(139, 92, 246, 0);
+    }
+  }
+
+  /* Gradient text shimmer on mobile */
+  .hero h1 .gradient-text,
+  .hero h1 .glow-text {
+    animation: mobileGradientShimmer 4s ease infinite !important;
+    background-size: 200% auto !important;
+  }
+
+  @keyframes mobileGradientShimmer {
+    0% { background-position: 0% center; }
+    50% { background-position: 100% center; }
+    100% { background-position: 0% center; }
+  }
+
+  /* Stat cards subtle float on mobile */
+  .stat-card {
+    animation: mobileStatFloat 4s ease-in-out infinite;
+  }
+
+  .stat-card:nth-child(1) { animation-delay: 0s; }
+  .stat-card:nth-child(2) { animation-delay: 0.5s; }
+  .stat-card:nth-child(3) { animation-delay: 1s; }
+  .stat-card:nth-child(4) { animation-delay: 1.5s; }
+
+  @keyframes mobileStatFloat {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-4px); }
+  }
+
+  /* Hero buttons glow effect */
+  .hero-buttons .btn-primary {
+    animation: mobileBtnGlow 3s ease-in-out infinite !important;
+  }
+
+  @keyframes mobileBtnGlow {
+    0%, 100% {
+      box-shadow: 0 4px 15px rgba(0, 212, 255, 0.2);
+    }
+    50% {
+      box-shadow: 0 4px 25px rgba(0, 212, 255, 0.4), 0 0 40px rgba(139, 92, 246, 0.15);
+    }
+  }
+}
+
+/* ---- Section Header Mobile Reveal ---- */
+@media (max-width: 768px) {
+  .section-badge {
+    animation: mobileBadgeFloat 3.5s ease-in-out infinite;
+  }
+
+  @keyframes mobileBadgeFloat {
+    0%, 100% { transform: translateY(0) scale(1); }
+    50% { transform: translateY(-3px) scale(1.02); }
+  }
+
+  .neon-line {
+    animation: mobileNeonPulse 3s ease-in-out infinite !important;
+  }
+
+  @keyframes mobileNeonPulse {
+    0%, 100% {
+      opacity: 0.7;
+      box-shadow: 0 0 8px rgba(0, 212, 255, 0.3);
+    }
+    50% {
+      opacity: 1;
+      box-shadow: 0 0 16px rgba(0, 212, 255, 0.5), 0 0 30px rgba(139, 92, 246, 0.2);
+    }
+  }
+}
+
+/* ---- Card Icon Animations on Mobile ---- */
+@media (max-width: 768px) {
+  /* Category card icons bounce on scroll reveal */
+  .category-card .cat-icon {
+    transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) !important;
+  }
+
+  .category-card:active .cat-icon {
+    transform: scale(1.25) !important;
+  }
+
+  /* Tool card icon spin on tap */
+  .tool-card:active .tool-icon {
+    transform: rotateY(180deg) !important;
+    transition: transform 0.5s ease !important;
+  }
+
+  /* Download icon pulse */
+  .download-card .dl-icon {
+    animation: mobileIconFloat 3s ease-in-out infinite;
+  }
+
+  @keyframes mobileIconFloat {
+    0%, 100% { transform: translateY(0) scale(1); }
+    50% { transform: translateY(-5px) scale(1.08); }
+  }
+
+  /* Roadmap number glow */
+  .roadmap-number {
+    animation: mobileNumberGlow 4s ease-in-out infinite;
+  }
+
+  @keyframes mobileNumberGlow {
+    0%, 100% { text-shadow: 0 0 10px rgba(0, 212, 255, 0.2); }
+    50% { text-shadow: 0 0 25px rgba(0, 212, 255, 0.5), 0 0 50px rgba(139, 92, 246, 0.2); }
+  }
+}
+
+/* ---- FAQ Accordion Mobile Animation ---- */
+@media (max-width: 768px) {
+  .faq-question {
+    transition: all 0.3s ease !important;
+  }
+
+  .faq-question:active {
+    background: rgba(139, 92, 246, 0.06) !important;
+  }
+
+  .faq-item.active .faq-question {
+    background: rgba(0, 212, 255, 0.04) !important;
+  }
+
+  .faq-answer {
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  }
+
+  .faq-question i,
+  .faq-question .faq-toggle {
+    transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) !important;
+  }
+
+  .faq-item.active .faq-question i,
+  .faq-item.active .faq-question .faq-toggle {
+    transform: rotate(180deg) !important;
+  }
+}
+
+/* ---- Newsletter Glow Effect ---- */
+@media (max-width: 768px) {
+  .newsletter-wrapper {
+    animation: mobileNewsletterGlow 5s ease-in-out infinite !important;
+  }
+
+  @keyframes mobileNewsletterGlow {
+    0%, 100% {
+      box-shadow: 0 4px 30px rgba(139, 92, 246, 0.1);
+    }
+    50% {
+      box-shadow: 0 8px 50px rgba(139, 92, 246, 0.2), 0 0 30px rgba(0, 212, 255, 0.08);
+    }
+  }
+
+  .newsletter-input-group input:focus {
+    border-color: rgba(0, 212, 255, 0.5) !important;
+    box-shadow: 0 0 0 3px rgba(0, 212, 255, 0.1) !important;
+    transition: all 0.3s ease !important;
+  }
+}
+
+/* ---- Social Links Bounce on Mobile ---- */
+@media (max-width: 768px) {
+  .social-link {
+    transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1) !important;
+  }
+
+  .social-link:active {
+    transform: scale(0.88) rotate(-8deg) !important;
+  }
+}
+
+/* ---- Chat Widget Bounce ---- */
+@media (max-width: 768px) {
+  .chat-toggle {
+    animation: mobileChatBounce 4s ease-in-out infinite !important;
+    animation-delay: 3s !important;
+  }
+
+  @keyframes mobileChatBounce {
+    0%, 85%, 100% { transform: scale(1); }
+    90% { transform: scale(1.12); }
+    95% { transform: scale(0.95); }
+  }
+}
+
+/* ---- Playground FAB Pulse ---- */
+@media (max-width: 768px) {
+  .playground-fab {
+    animation: mobileFabPulse 3s ease-in-out infinite !important;
+    animation-delay: 4s !important;
+  }
+
+  @keyframes mobileFabPulse {
+    0%, 100% {
+      box-shadow: 0 4px 12px rgba(0, 212, 255, 0.2);
+    }
+    50% {
+      box-shadow: 0 4px 20px rgba(0, 212, 255, 0.5), 0 0 40px rgba(139, 92, 246, 0.2);
+    }
+  }
+}
+
+/* ---- Back to Top Button Animation ---- */
+@media (max-width: 768px) {
+  .back-to-top {
+    transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) !important;
+  }
+
+  .back-to-top:active {
+    transform: scale(0.85) !important;
+  }
+
+  .back-to-top.visible {
+    animation: mobileBackTopAppear 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+  }
+
+  @keyframes mobileBackTopAppear {
+    from {
+      opacity: 0;
+      transform: scale(0.3) translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1) translateY(0);
+    }
+  }
+}
+
+/* ---- Scroll Reveal Animations for Mobile ---- */
+@media (max-width: 768px) {
+  .reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1),
+                transform 0.6s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  }
+
+  .reveal-left {
+    opacity: 0;
+    transform: translateX(-30px);
+    transition: opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1),
+                transform 0.6s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  }
+
+  .reveal-right {
+    opacity: 0;
+    transform: translateX(30px);
+    transition: opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1),
+                transform 0.6s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  }
+
+  .reveal.visible,
+  .reveal-left.visible,
+  .reveal-right.visible {
+    opacity: 1 !important;
+    transform: translate(0, 0) !important;
+  }
+}
+
+/* ---- Aurora Background on Mobile (lighter) ---- */
+@media (max-width: 768px) {
+  .bg-glow::before {
+    animation: mobileAurora 25s ease-in-out infinite !important;
+    opacity: 0.6 !important;
+  }
+
+  @keyframes mobileAurora {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    33% { transform: translate(-3%, 2%) scale(1.02); }
+    66% { transform: translate(2%, -3%) scale(0.99); }
+  }
+}
+
+/* ---- Skeleton Loading Shimmer (for lazy content) ---- */
+@media (max-width: 768px) {
+  .mobile-skeleton {
+    background: linear-gradient(
+      90deg,
+      rgba(139, 92, 246, 0.05) 0%,
+      rgba(0, 212, 255, 0.1) 50%,
+      rgba(139, 92, 246, 0.05) 100%
+    );
+    background-size: 200% 100%;
+    animation: mobileShimmer 1.5s ease-in-out infinite;
+    border-radius: 8px;
+  }
+
+  @keyframes mobileShimmer {
+    0% { background-position: -200% 0; }
+    100% { background-position: 200% 0; }
+  }
+}
+
+/* ---- Swipe Hint for Carousels ---- */
+@media (max-width: 768px) {
+  .testimonials-carousel::after {
+    content: '';
+    position: absolute;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    width: 40px;
+    background: linear-gradient(to left, var(--bg-primary), transparent);
+    pointer-events: none;
+    opacity: 0.5;
+    z-index: 2;
+  }
+}
+
+/* ---- Smooth Page Transition ---- */
+@media (max-width: 768px) {
+  main {
+    animation: mobilePageFadeIn 0.5s ease-out !important;
+  }
+
+  @keyframes mobilePageFadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+}
+
+/* ---- Input Focus Animations ---- */
+@media (max-width: 768px) {
+  input:focus,
+  textarea:focus,
+  .error-search-input:focus {
+    border-color: rgba(0, 212, 255, 0.5) !important;
+    box-shadow: 0 0 0 3px rgba(0, 212, 255, 0.1),
+                0 0 20px rgba(139, 92, 246, 0.08) !important;
+    transition: all 0.3s ease !important;
+    transform: scale(1.01);
+  }
+}
+
+/* ---- Tab Navigation Scroll Indicator ---- */
+@media (max-width: 768px) {
+  .tab-nav {
+    position: relative !important;
+  }
+
+  .tab-nav::after {
+    content: '';
+    position: absolute;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    width: 30px;
+    background: linear-gradient(to left, var(--bg-primary), transparent);
+    pointer-events: none;
+    z-index: 2;
+  }
+
+  .tab-btn {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  }
+
+  .tab-btn:active {
+    transform: scale(0.95) !important;
+  }
+
+  .tab-btn.active {
+    animation: mobileTabActive 0.3s ease forwards;
+  }
+
+  @keyframes mobileTabActive {
+    0% { transform: scale(0.95); }
+    50% { transform: scale(1.03); }
+    100% { transform: scale(1); }
+  }
+}
+
+/* ---- Testimonial Card Swipe Feel ---- */
+@media (max-width: 768px) {
+  .testimonial-card {
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  }
+
+  .testimonial-card.active {
+    animation: mobileTestimonialIn 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+
+  @keyframes mobileTestimonialIn {
+    from {
+      opacity: 0;
+      transform: translateX(30px) scale(0.95);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0) scale(1);
+    }
+  }
+}
+
+/* ---- Scroll Progress Bar Glow on Mobile ---- */
+@media (max-width: 768px) {
+  .scroll-progress-bar {
+    box-shadow: 0 0 8px rgba(0, 212, 255, 0.4), 0 0 16px rgba(139, 92, 246, 0.2) !important;
+  }
+}
+
+/* ---- Light Mode Mobile Animations ---- */
+@media (max-width: 768px) {
+  [data-theme="light"] .mobile-ripple {
+    background: radial-gradient(circle, rgba(26, 115, 232, 0.2) 0%, rgba(66, 133, 244, 0.1) 70%, transparent 100%);
+  }
+
+  [data-theme="light"] .nav-links {
+    background: rgba(248, 250, 252, 0.98) !important;
+  }
+
+  [data-theme="light"] .card.mobile-glow,
+  [data-theme="light"] .project-card.mobile-glow,
+  [data-theme="light"] .tool-card.mobile-glow,
+  [data-theme="light"] .download-card.mobile-glow {
+    box-shadow: 0 8px 32px rgba(26, 115, 232, 0.1),
+                0 0 20px rgba(66, 133, 244, 0.06) !important;
+  }
+
+  [data-theme="light"] .stat-card {
+    animation-name: mobileStatFloatLight;
+  }
+
+  @keyframes mobileStatFloatLight {
+    0%, 100% { transform: translateY(0); box-shadow: 0 2px 8px rgba(0,0,0,0.06); }
+    50% { transform: translateY(-4px); box-shadow: 0 6px 20px rgba(0,0,0,0.1); }
+  }
+
+  [data-theme="light"] .scroll-progress-bar {
+    box-shadow: 0 0 6px rgba(26, 115, 232, 0.3) !important;
+  }
+}
+
+/* ============================================
+   ENHANCED MOBILE FIXES v2.0
+   Additional responsive fixes for all pages
+   ============================================ */
+
+/* ============================================
+   VIDEO CONTAINER - Responsive Aspect Ratio
+   Fix iframes with fixed height="400"
+   ============================================ */
+@media (max-width: 768px) {
+  .video-container {
+    position: relative !important;
+    width: 100% !important;
+    padding-bottom: 56.25% !important; /* 16:9 aspect ratio */
+    height: 0 !important;
+    overflow: hidden !important;
+    border-radius: 12px !important;
+  }
+
+  .video-container iframe {
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    border-radius: 12px !important;
+  }
+
+  /* Tutorial content video containers */
+  .tutorial-content .video-container {
+    margin: 16px 0 !important;
+  }
+}
+
+/* ============================================
+   CODE BLOCKS - Mobile Overflow Fix
+   ============================================ */
+@media (max-width: 768px) {
+  .code-block {
+    border-radius: 10px !important;
+    margin: 12px 0 !important;
+    max-width: 100% !important;
+    overflow: hidden !important;
+  }
+
+  .code-block pre {
+    padding: 14px 12px !important;
+    font-size: 0.78rem !important;
+    line-height: 1.6 !important;
+    overflow-x: auto !important;
+    -webkit-overflow-scrolling: touch !important;
+    max-width: 100% !important;
+    white-space: pre !important;
+    word-wrap: normal !important;
+  }
+
+  .code-block pre code {
+    font-size: 0.78rem !important;
+    white-space: pre !important;
+  }
+
+  .code-header {
+    padding: 6px 12px !important;
+    font-size: 0.75rem !important;
+  }
+
+  .copy-btn {
+    font-size: 0.72rem !important;
+    padding: 3px 8px !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .code-block pre {
+    padding: 10px 8px !important;
+    font-size: 0.72rem !important;
+  }
+}
+
+/* ============================================
+   PLAYGROUND PAGE - Mobile Fixes
+   ============================================ */
+@media (max-width: 768px) {
+  .pg-page-container {
+    padding: 0 12px !important;
+  }
+
+  .pg-editor-section {
+    grid-template-columns: 1fr !important;
+    height: auto !important;
+    max-height: none !important;
+    gap: 12px !important;
+  }
+
+  .pg-editor-panel {
+    height: 55vh !important;
+    min-height: 380px !important;
+    border-radius: 12px !important;
+  }
+
+  /* VS Code Terminal mobile styles */
+  .pg-terminal-panel {
+    min-height: 180px !important;
+  }
+
+  .pg-terminal-header {
+    height: 32px !important;
+    padding: 0 8px !important;
+  }
+
+  .pg-term-tab {
+    padding: 0 10px !important;
+    font-size: 0.68rem !important;
+  }
+
+  .pg-terminal-header-actions button {
+    width: 24px !important;
+    height: 24px !important;
+    font-size: 0.68rem !important;
+  }
+
+  .pg-lang-grid {
+    grid-template-columns: repeat(auto-fill, minmax(85px, 1fr)) !important;
+    gap: 8px !important;
+  }
+
+  .pg-lang-card {
+    padding: 10px 6px !important;
+    border-radius: 10px !important;
+  }
+
+  .pg-lang-card .pg-lang-icon {
+    font-size: 1.3rem !important;
+  }
+
+  .pg-lang-card .pg-lang-name {
+    font-size: 0.7rem !important;
+  }
+
+  .pg-panel-header {
+    padding: 10px 12px !important;
+    flex-wrap: wrap !important;
+    gap: 8px !important;
+  }
+
+  .pg-panel-title {
+    font-size: 0.85rem !important;
+    gap: 6px !important;
+  }
+
+  .pg-panel-badge {
+    font-size: 0.65rem !important;
+    padding: 2px 8px !important;
+  }
+
+  .pg-panel-actions {
+    flex-wrap: wrap !important;
+    gap: 4px !important;
+  }
+
+  .pg-action-btn {
+    padding: 5px 10px !important;
+    font-size: 0.75rem !important;
+    border-radius: 6px !important;
+  }
+
+  .pg-category-nav {
+    gap: 6px !important;
+    overflow-x: auto !important;
+    flex-wrap: nowrap !important;
+    -webkit-overflow-scrolling: touch !important;
+    padding-bottom: 6px !important;
+  }
+
+  .pg-cat-btn {
+    padding: 6px 14px !important;
+    font-size: 0.78rem !important;
+    white-space: nowrap !important;
+    flex-shrink: 0 !important;
+  }
+
+  .pg-statusbar {
+    padding: 6px 12px !important;
+    font-size: 0.68rem !important;
+    gap: 10px !important;
+    flex-wrap: wrap !important;
+  }
+
+  .pg-example-row {
+    gap: 6px !important;
+    overflow-x: auto !important;
+    flex-wrap: nowrap !important;
+    -webkit-overflow-scrolling: touch !important;
+    padding-bottom: 6px !important;
+  }
+
+  .pg-example-btn {
+    padding: 5px 12px !important;
+    font-size: 0.75rem !important;
+    white-space: nowrap !important;
+    flex-shrink: 0 !important;
+  }
+
+  .pg-code-textarea {
+    font-size: 0.8rem !important;
+    padding: 12px !important;
+  }
+
+  .pg-output-content {
+    font-size: 0.8rem !important;
+    padding: 12px !important;
+  }
+
+  .pg-web-tabs {
+    overflow-x: auto !important;
+    -webkit-overflow-scrolling: touch !important;
+  }
+
+  .pg-web-tab {
+    padding: 8px 14px !important;
+    font-size: 0.78rem !important;
+    white-space: nowrap !important;
+  }
+
+  .pg-stdin-panel {
+    padding: 6px 10px !important;
+  }
+
+  .pg-stdin-textarea {
+    font-size: 0.78rem !important;
+    min-height: 40px !important;
+  }
+
+  .pg-download-file-btn {
+    padding: 8px 16px !important;
+    font-size: 0.82rem !important;
+  }
+
+  .pg-error-suggestions {
+    padding: 10px 14px !important;
+  }
+
+  .pg-error-suggestions .pg-suggest-title {
+    font-size: 0.82rem !important;
+  }
+
+  .pg-error-suggestions .pg-suggest-item {
+    font-size: 0.78rem !important;
+  }
+
+  /* CodeMirror mobile fix */
+  .pg-code-editor-wrap .CodeMirror {
+    font-size: 0.8rem !important;
+  }
+
+  /* Fullscreen mode on mobile */
+  body.pg-fullscreen-active .pg-editor-section {
+    grid-template-columns: 1fr !important;
+    height: auto !important;
+    min-height: auto !important;
+  }
+
+  body.pg-fullscreen-active .pg-editor-panel {
+    height: 50vh !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .pg-lang-grid {
+    grid-template-columns: repeat(auto-fill, minmax(70px, 1fr)) !important;
+  }
+
+  .pg-editor-panel {
+    height: 45vh !important;
+    min-height: 320px !important;
+  }
+
+  .pg-terminal-panel {
+    min-height: 150px !important;
+  }
+
+  .pg-lang-card .pg-lang-icon {
+    font-size: 1.1rem !important;
+  }
+
+  .pg-lang-card .pg-lang-name {
+    font-size: 0.65rem !important;
+  }
+}
+
+/* ============================================
+   AI TEACHER PAGE - Mobile Fixes
+   ============================================ */
+@media (max-width: 768px) {
+  .ai-container {
+    padding: 0 12px 30px !important;
+  }
+
+  .ai-chat-window {
+    height: calc(100vh - 220px) !important;
+    min-height: 380px !important;
+    border-radius: 14px !important;
+  }
+
+  .ai-chat-header {
+    padding: 12px 14px !important;
+    gap: 10px !important;
+  }
+
+  .ai-avatar {
+    width: 38px !important;
+    height: 38px !important;
+    font-size: 1rem !important;
+  }
+
+  .ai-header-info h3 {
+    font-size: 0.95rem !important;
+  }
+
+  .ai-header-info p {
+    font-size: 0.72rem !important;
+  }
+
+  .ai-header-actions {
+    display: none !important;
+  }
+
+  .ai-messages {
+    padding: 14px !important;
+    gap: 12px !important;
+  }
+
+  .ai-msg {
+    max-width: 92% !important;
+  }
+
+  .ai-msg-avatar {
+    width: 30px !important;
+    height: 30px !important;
+    font-size: 0.75rem !important;
+  }
+
+  .ai-msg-bubble {
+    padding: 10px 14px !important;
+    font-size: 0.87rem !important;
+    border-radius: 14px !important;
+  }
+
+  .ai-msg-bubble pre {
+    padding: 10px !important;
+    font-size: 0.75rem !important;
+    overflow-x: auto !important;
+    -webkit-overflow-scrolling: touch !important;
+  }
+
+  .ai-msg-bubble code {
+    font-size: 0.78rem !important;
+    padding: 1px 5px !important;
+  }
+
+  .ai-input-area {
+    padding: 12px 14px !important;
+    gap: 8px !important;
+  }
+
+  .ai-input-wrapper textarea {
+    min-height: 42px !important;
+    padding: 10px 14px !important;
+    font-size: 0.88rem !important;
+    border-radius: 12px !important;
+  }
+
+  .ai-send-btn {
+    width: 42px !important;
+    height: 42px !important;
+    border-radius: 12px !important;
+    font-size: 1rem !important;
+  }
+
+  .ai-quick-topics {
+    gap: 6px !important;
+    overflow-x: auto !important;
+    flex-wrap: nowrap !important;
+    -webkit-overflow-scrolling: touch !important;
+    padding-bottom: 6px !important;
+  }
+
+  .ai-topic-btn {
+    font-size: 0.72rem !important;
+    padding: 6px 12px !important;
+    white-space: nowrap !important;
+    flex-shrink: 0 !important;
+  }
+
+  .ai-suggestions {
+    gap: 4px !important;
+  }
+
+  .ai-suggestion-chip {
+    font-size: 0.72rem !important;
+    padding: 4px 10px !important;
+  }
+
+  .ai-speak-btn {
+    width: 28px !important;
+    height: 28px !important;
+    font-size: 0.7rem !important;
+  }
+
+  .ai-typing-dots {
+    padding: 12px 16px !important;
+    border-radius: 14px !important;
+  }
+
+  .ai-typing-dots span {
+    width: 6px !important;
+    height: 6px !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .ai-chat-window {
+    height: calc(100vh - 200px) !important;
+    min-height: 350px !important;
+    border-radius: 10px !important;
+  }
+
+  .ai-msg-bubble {
+    padding: 8px 12px !important;
+    font-size: 0.84rem !important;
+  }
+
+  .ai-msg-bubble pre {
+    font-size: 0.72rem !important;
+    padding: 8px !important;
+  }
+}
+
+/* ============================================
+   ERROR CARDS - Enhanced Mobile
+   ============================================ */
+@media (max-width: 768px) {
+  .error-card {
+    padding: 18px 14px !important;
+    border-radius: 12px !important;
+    margin-bottom: 16px !important;
+  }
+
+  .error-card h3 {
+    font-size: 0.95rem !important;
+    gap: 8px !important;
+    flex-wrap: wrap !important;
+  }
+
+  .error-card p {
+    font-size: 0.85rem !important;
+    line-height: 1.6 !important;
+  }
+
+  .error-card .solution {
+    padding: 12px 14px !important;
+    border-radius: 8px !important;
+    margin-top: 12px !important;
+  }
+
+  .error-card .solution h4 {
+    font-size: 0.85rem !important;
+  }
+
+  .error-card .solution p {
+    font-size: 0.82rem !important;
+  }
+
+  .error-search-box {
+    margin: 0 auto 24px !important;
+    max-width: 100% !important;
+  }
+
+  .error-search-input {
+    padding: 12px 16px 12px 42px !important;
+    font-size: 0.88rem !important;
+    border-radius: 10px !important;
+  }
+
+  .error-search-box .search-icon {
+    left: 14px !important;
+    font-size: 0.85rem !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .error-card {
+    padding: 14px 12px !important;
+  }
+
+  .error-card h3 {
+    font-size: 0.88rem !important;
+  }
+
+  .error-card .solution p {
+    font-size: 0.78rem !important;
+  }
+}
+
+/* ============================================
+   PROJECT CARDS - Enhanced Mobile
+   ============================================ */
+@media (max-width: 768px) {
+  .project-card {
+    border-radius: 12px !important;
+  }
+
+  .project-preview {
+    padding: 16px !important;
+    max-height: 200px !important;
+    overflow: hidden !important;
+  }
+
+  .project-preview pre {
+    font-size: 0.72rem !important;
+    overflow-x: auto !important;
+    -webkit-overflow-scrolling: touch !important;
+  }
+
+  .project-card .project-info {
+    padding: 16px !important;
+  }
+
+  .project-card h3 {
+    font-size: 1rem !important;
+  }
+
+  .project-card p {
+    font-size: 0.85rem !important;
+  }
+
+  .project-features {
+    margin: 10px 0 !important;
+  }
+
+  .project-features li {
+    font-size: 0.82rem !important;
+    padding: 2px 0 !important;
+  }
+
+  .project-card .project-links {
+    gap: 8px !important;
+    flex-wrap: wrap !important;
+  }
+
+  .project-card .project-links a,
+  .project-card .project-links button {
+    font-size: 0.78rem !important;
+    padding: 6px 12px !important;
+    min-height: 36px !important;
+  }
+}
+
+/* ============================================
+   TOOLS GRID - Enhanced Mobile
+   ============================================ */
+@media (max-width: 768px) {
+  .tool-card {
+    border-radius: 12px !important;
+    padding: 18px 14px !important;
+  }
+
+  .tool-card .tool-icon {
+    width: 44px !important;
+    height: 44px !important;
+    border-radius: 12px !important;
+    font-size: 1.2rem !important;
+  }
+
+  .tool-card h3 {
+    font-size: 0.95rem !important;
+  }
+
+  .tool-card p {
+    font-size: 0.82rem !important;
+    line-height: 1.6 !important;
+  }
+
+  .tool-link {
+    font-size: 0.82rem !important;
+    padding: 8px 0 !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 6px !important;
+    min-height: 44px !important; /* Touch-friendly */
+  }
+}
+
+/* ============================================
+   DOWNLOAD CARDS - Enhanced Mobile
+   ============================================ */
+@media (max-width: 768px) {
+  .download-card {
+    padding: 20px 16px !important;
+    border-radius: 12px !important;
+    text-align: center !important;
+  }
+
+  .download-card .dl-icon {
+    font-size: 2rem !important;
+    margin-bottom: 12px !important;
+  }
+
+  .download-card h3 {
+    font-size: 0.95rem !important;
+    margin-bottom: 8px !important;
+  }
+
+  .download-card p {
+    font-size: 0.82rem !important;
+    line-height: 1.6 !important;
+  }
+
+  .btn-download {
+    padding: 10px 18px !important;
+    font-size: 0.82rem !important;
+    border-radius: 8px !important;
+    min-height: 44px !important; /* Touch-friendly */
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 6px !important;
+  }
+}
+
+/* ============================================
+   LANGUAGE ACCORDION (Downloads page) - Mobile
+   ============================================ */
+@media (max-width: 768px) {
+  .lang-accordion-wrapper {
+    margin: 20px auto 0 !important;
+  }
+
+  .lang-accordion-header {
+    padding: 12px 14px !important;
+    gap: 10px !important;
+  }
+
+  .lang-icon {
+    width: 36px !important;
+    height: 36px !important;
+    font-size: 1rem !important;
+    border-radius: 10px !important;
+  }
+
+  .lang-header-info h3 {
+    font-size: 0.95rem !important;
+  }
+
+  .lang-topic-count {
+    font-size: 0.72rem !important;
+  }
+
+  .lang-accordion-arrow {
+    width: 26px !important;
+    height: 26px !important;
+    font-size: 0.7rem !important;
+  }
+
+  .lang-accordion-body-inner {
+    padding: 14px 12px 12px !important;
+  }
+
+  .topic-list li {
+    font-size: 0.85rem !important;
+    padding: 6px 0 !important;
+    gap: 8px !important;
+  }
+
+  .topic-num {
+    width: 22px !important;
+    height: 22px !important;
+    font-size: 0.65rem !important;
+    border-radius: 6px !important;
+  }
+
+  .level-badge {
+    font-size: 0.68rem !important;
+    padding: 2px 10px !important;
+  }
+
+  .lang-learn-btn {
+    padding: 8px 18px !important;
+    font-size: 0.82rem !important;
+    border-radius: 8px !important;
+    min-height: 44px !important;
+  }
+}
+
+/* ============================================
+   TUTORIAL ACCORDION - Mobile
+   ============================================ */
+@media (max-width: 768px) {
+  .tut-accordion-header {
+    padding: 12px 14px !important;
+    gap: 10px !important;
+  }
+
+  .tut-accordion-header h2 {
+    font-size: 0.92rem !important;
+  }
+
+  .tut-accordion-icon {
+    width: 24px !important;
+    height: 24px !important;
+    font-size: 0.75rem !important;
+  }
+
+  .tut-accordion-body-inner {
+    padding: 14px !important;
+  }
+
+  .tut-topic-num {
+    width: 26px !important;
+    height: 26px !important;
+    font-size: 0.72rem !important;
+    border-radius: 6px !important;
+  }
+
+  /* Step indicator in tutorials */
+  .step-indicator {
+    font-size: 0.78rem !important;
+    padding: 5px 12px !important;
+  }
+
+  /* Tutorial content adjustments */
+  .tutorial-content {
+    padding: 0 !important;
+  }
+
+  .tutorial-content h2 {
+    font-size: 1.2rem !important;
+  }
+
+  .tutorial-content h3 {
+    font-size: 1rem !important;
+  }
+
+  .tutorial-content p,
+  .tutorial-content li {
+    font-size: 0.88rem !important;
+    line-height: 1.7 !important;
+  }
+
+  .tutorial-content img {
+    max-width: 100% !important;
+    height: auto !important;
+    border-radius: 8px !important;
+  }
+
+  .tutorial-content table {
+    display: block !important;
+    overflow-x: auto !important;
+    -webkit-overflow-scrolling: touch !important;
+    max-width: 100% !important;
+  }
+}
+
+/* ============================================
+   INTERSTITIAL AD / DOWNLOAD MODAL - Mobile
+   ============================================ */
+@media (max-width: 768px) {
+  .interstitial-overlay {
+    padding: 16px !important;
+  }
+
+  .interstitial-modal {
+    width: calc(100% - 32px) !important;
+    max-width: 400px !important;
+    padding: 24px 18px !important;
+    border-radius: 16px !important;
+  }
+
+  .interstitial-modal h2 {
+    font-size: 1.1rem !important;
+  }
+
+  .interstitial-modal p {
+    font-size: 0.85rem !important;
+  }
+
+  .interstitial-timer {
+    font-size: 2rem !important;
+  }
+
+  .interstitial-close,
+  .interstitial-skip {
+    min-height: 44px !important;
+    font-size: 0.85rem !important;
+  }
+}
+
+/* ============================================
+   BREADCRUMB - Mobile
+   ============================================ */
+@media (max-width: 768px) {
+  .breadcrumb {
+    font-size: 0.78rem !important;
+    padding: 6px 14px !important;
+    border-radius: 20px !important;
+    margin-bottom: 12px !important;
+    display: inline-flex !important;
+    flex-wrap: wrap !important;
+    gap: 4px !important;
+  }
+
+  .breadcrumb a {
+    font-size: 0.78rem !important;
+  }
+}
+
+/* ============================================
+   GLOBAL TOUCH-FRIENDLY IMPROVEMENTS
+   Minimum 44px touch targets
+   ============================================ */
+@media (max-width: 768px) {
+  /* All buttons minimum height */
+  .btn-primary,
+  .btn-secondary,
+  .btn-download,
+  .tab-btn,
+  .cookie-accept,
+  .cookie-decline {
+    min-height: 44px !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+
+  /* Links in footer */
+  .footer-links li a {
+    min-height: 40px !important;
+    display: inline-flex !important;
+    align-items: center !important;
+  }
+
+  /* Social links */
+  .social-link {
+    width: 40px !important;
+    height: 40px !important;
+    min-width: 40px !important;
+  }
+
+  /* Form inputs */
+  input[type="text"],
+  input[type="email"],
+  input[type="password"],
+  input[type="search"],
+  textarea,
+  select {
+    min-height: 44px !important;
+    font-size: 16px !important; /* Prevents iOS zoom on focus */
+  }
+
+  /* Contact form in footer */
+  .contact-form input,
+  .contact-form textarea {
+    font-size: 16px !important;
+    padding: 10px 14px !important;
+    border-radius: 8px !important;
+  }
+
+  .contact-form textarea {
+    min-height: 80px !important;
+  }
+
+  .contact-form .btn-primary {
+    width: 100% !important;
+    min-height: 44px !important;
+    font-size: 0.88rem !important;
+  }
+}
+
+/* ============================================
+   PREVENT HORIZONTAL OVERFLOW - Global
+   ============================================ */
+@media (max-width: 768px) {
+  * {
+    max-width: 100vw;
+  }
+
+  img,
+  video,
+  canvas,
+  iframe {
+    max-width: 100% !important;
+  }
+
+  /* Tables in content */
+  table {
+    display: block !important;
+    overflow-x: auto !important;
+    -webkit-overflow-scrolling: touch !important;
+  }
+
+  /* Pre elements */
+  pre {
+    max-width: 100% !important;
+    overflow-x: auto !important;
+    -webkit-overflow-scrolling: touch !important;
+    word-wrap: normal !important;
+  }
+}
+
+/* ============================================
+   NEWSLETTER - Enhanced Mobile
+   ============================================ */
+@media (max-width: 768px) {
+  .newsletter-wrapper {
+    padding: 32px 16px !important;
+    border-radius: 14px !important;
+  }
+
+  .newsletter-wrapper h2 {
+    font-size: 1.2rem !important;
+  }
+
+  .newsletter-wrapper p {
+    font-size: 0.85rem !important;
+  }
+
+  .newsletter-input-group {
+    flex-direction: column !important;
+    gap: 10px !important;
+    max-width: 100% !important;
+  }
+
+  .newsletter-input-group input {
+    width: 100% !important;
+    min-height: 44px !important;
+    font-size: 16px !important;
+    border-radius: 8px !important;
+  }
+
+  .newsletter-input-group button {
+    width: 100% !important;
+    min-height: 44px !important;
+    border-radius: 8px !important;
+  }
+}
+
+/* ============================================
+   READING PROGRESS BAR - Mobile
+   ============================================ */
+@media (max-width: 768px) {
+  .reading-progress {
+    height: 2px !important;
+  }
+
+  .reading-progress-fill {
+    height: 2px !important;
+  }
+}
+
+/* ============================================
+   PAGE HEADER - Enhanced Mobile
+   ============================================ */
+@media (max-width: 768px) {
+  .page-header {
+    padding: 100px 16px 40px !important;
+  }
+
+  .page-header h1 {
+    font-size: clamp(1.4rem, 6vw, 2rem) !important;
+    line-height: 1.3 !important;
+  }
+
+  .page-header p {
+    font-size: 0.88rem !important;
+    line-height: 1.6 !important;
+    padding: 0 8px !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .page-header {
+    padding: 90px 12px 32px !important;
+  }
+
+  .page-header h1 {
+    font-size: 1.3rem !important;
+  }
+
+  .page-header p {
+    font-size: 0.82rem !important;
+  }
+}
+
+/* ============================================
+   REDUCED MOTION - Accessibility
+   ============================================ */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ============================================
+   PRINT STYLES - Mobile friendly
+   ============================================ */
+@media print {
+  .navbar,
+  .menu-toggle,
+  .back-to-top,
+  .chat-widget,
+  .cookie-consent,
+  .playground-fab,
+  .bg-grid,
+  .bg-glow,
+  .particles,
+  .scroll-progress-bar {
+    display: none !important;
+  }
+
+  body {
+    background: #fff !important;
+    color: #000 !important;
+  }
+}
+
+/* ============================================
+   EXTRA SMALL DEVICES (320px)
+   ============================================ */
+@media (max-width: 360px) {
+  .pg-lang-grid {
+    grid-template-columns: repeat(3, 1fr) !important;
+  }
+
+  .pg-editor-panel {
+    height: 260px !important;
+    min-height: 220px !important;
+  }
+
+  .ai-chat-window {
+    min-height: 320px !important;
+    border-radius: 8px !important;
+  }
+
+  .ai-msg-bubble {
+    padding: 8px 10px !important;
+    font-size: 0.82rem !important;
+  }
+
+  .error-card h3 {
+    font-size: 0.85rem !important;
+  }
+
+  .tool-card {
+    padding: 14px 12px !important;
+  }
+
+  .download-card {
+    padding: 16px 12px !important;
+  }
+
+  .btn-primary,
+  .btn-secondary {
+    padding: 10px 16px !important;
+    font-size: 0.82rem !important;
+  }
+
+  .hero-buttons {
+    flex-direction: column !important;
+    gap: 10px !important;
+  }
+
+  .hero-buttons .btn-primary,
+  .hero-buttons .btn-secondary {
+    width: 100% !important;
+    text-align: center !important;
+    justify-content: center !important;
+  }
+}

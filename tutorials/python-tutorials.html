@@ -1,0 +1,321 @@
+<!-- Python Tutorials Content -->
+<div class="section-header reveal">
+  <h2 class="section-title"><i class="fab fa-python" style="color:#06d6a0"></i> Python <span class="highlight">Tutorials</span></h2>
+  <div class="neon-line mt-20"></div>
+</div>
+
+<div class="tutorial-content reveal">
+  <h2>1. Python for Beginners</h2>
+  <div class="step-indicator">Step 1 — Getting Started</div>
+  <p>Python is one of the most popular programming languages in the world. It's known for its simple, readable syntax — perfect for beginners.</p>
+  <div class="code-block">
+    <div class="code-header">
+      <span class="code-lang">Python</span>
+      <button class="copy-btn">📋 Copy</button>
+    </div>
+    <pre><code><span class="code-comment"># Hello World</span>
+<span class="code-function">print</span>(<span class="code-string">"Hello, World!"</span>)
+
+<span class="code-comment"># Variables</span>
+name = <span class="code-string">"Code4Boy"</span>
+age = <span class="code-number">25</span>
+is_coding = <span class="code-keyword">True</span>
+
+<span class="code-comment"># Lists</span>
+languages = [<span class="code-string">"Python"</span>, <span class="code-string">"JavaScript"</span>, <span class="code-string">"HTML"</span>]
+
+<span class="code-comment"># Dictionary</span>
+developer = {
+    <span class="code-string">"name"</span>: <span class="code-string">"Code4Boy"</span>,
+    <span class="code-string">"skills"</span>: [<span class="code-string">"Python"</span>, <span class="code-string">"Web Dev"</span>],
+    <span class="code-string">"level"</span>: <span class="code-string">"Intermediate"</span>
+}
+
+<span class="code-comment"># F-string</span>
+<span class="code-function">print</span>(<span class="code-string">f"Hi, I'm {name} and I know {len(languages)} languages!"</span>)</code></pre>
+  </div>
+
+  <h2>2. Functions & Loops</h2>
+  <div class="step-indicator">Step 2 — Functions & Loops</div>
+  <p>Functions organize reusable code. Loops iterate over data. List comprehensions provide a concise way to create lists.</p>
+  <div class="code-block">
+    <div class="code-header">
+      <span class="code-lang">Python</span>
+      <button class="copy-btn">📋 Copy</button>
+    </div>
+    <pre><code><span class="code-comment"># Function with default parameter</span>
+<span class="code-keyword">def</span> <span class="code-function">greet</span>(name, greeting=<span class="code-string">"Hello"</span>):
+    <span class="code-keyword">return</span> <span class="code-string">f"{greeting}, {name}! Welcome to Code4Boy"</span>
+
+<span class="code-comment"># Lambda function</span>
+square = <span class="code-keyword">lambda</span> x: x ** <span class="code-number">2</span>
+
+<span class="code-comment"># For Loop</span>
+<span class="code-keyword">for</span> i <span class="code-keyword">in</span> <span class="code-function">range</span>(<span class="code-number">5</span>):
+    <span class="code-function">print</span>(<span class="code-string">f"Iteration {i}"</span>)
+
+<span class="code-comment"># For with enumerate</span>
+<span class="code-keyword">for</span> index, lang <span class="code-keyword">in</span> <span class="code-function">enumerate</span>(languages):
+    <span class="code-function">print</span>(<span class="code-string">f"{index + 1}. {lang}"</span>)
+
+<span class="code-comment"># While Loop</span>
+count = <span class="code-number">0</span>
+<span class="code-keyword">while</span> count &lt; <span class="code-number">5</span>):
+    <span class="code-function">print</span>(<span class="code-string">f"Count: {count}"</span>)
+    count += <span class="code-number">1</span>
+
+<span class="code-comment"># List Comprehension</span>
+squares = [x**<span class="code-number">2</span> <span class="code-keyword">for</span> x <span class="code-keyword">in</span> <span class="code-function">range</span>(<span class="code-number">10</span>)]
+evens = [x <span class="code-keyword">for</span> x <span class="code-keyword">in</span> <span class="code-function">range</span>(<span class="code-number">20</span>) <span class="code-keyword">if</span> x % <span class="code-number">2</span> == <span class="code-number">0</span>]
+
+<span class="code-comment"># Dict Comprehension</span>
+word_lengths = {word: <span class="code-function">len</span>(word) <span class="code-keyword">for</span> word <span class="code-keyword">in</span> languages}</code></pre>
+  </div>
+
+  <h2>3. Python OOP (Classes)</h2>
+  <div class="step-indicator">Step 3 — Object-Oriented Programming</div>
+  <p>Classes let you create your own data types with properties (attributes) and behaviors (methods).</p>
+  <div class="code-block">
+    <div class="code-header">
+      <span class="code-lang">Python</span>
+      <button class="copy-btn">📋 Copy</button>
+    </div>
+    <pre><code><span class="code-keyword">class</span> <span class="code-function">User</span>:
+    <span class="code-keyword">def</span> <span class="code-function">__init__</span>(self, name, email):
+        self.name = name
+        self.email = email
+        self.is_active = <span class="code-keyword">True</span>
+
+    <span class="code-keyword">def</span> <span class="code-function">greet</span>(self):
+        <span class="code-keyword">return</span> <span class="code-string">f"Hi, I'm {self.name}!"</span>
+
+    <span class="code-keyword">def</span> <span class="code-function">__str__</span>(self):
+        <span class="code-keyword">return</span> <span class="code-string">f"User({self.name}, {self.email})"</span>
+
+<span class="code-comment"># Inheritance</span>
+<span class="code-keyword">class</span> <span class="code-function">Admin</span>(User):
+    <span class="code-keyword">def</span> <span class="code-function">__init__</span>(self, name, email, level):
+        <span class="code-function">super</span>().__init__(name, email)
+        self.level = level
+
+    <span class="code-keyword">def</span> <span class="code-function">delete_user</span>(self, user_id):
+        <span class="code-function">print</span>(<span class="code-string">f"Admin {self.name} deleted user {user_id}"</span>)
+
+<span class="code-comment"># Usage</span>
+admin = Admin(<span class="code-string">"Code4Boy"</span>, <span class="code-string">"admin@code4boy.com"</span>, <span class="code-string">"super"</span>)
+<span class="code-function">print</span>(admin.greet())
+<span class="code-function">print</span>(<span class="code-function">isinstance</span>(admin, User))  <span class="code-comment"># True</span></code></pre>
+  </div>
+
+  <h2>4. File Handling</h2>
+  <div class="step-indicator">Step 4 — Reading & Writing Files</div>
+  <p>Python makes file operations simple with the built-in <code>open()</code> function and context managers.</p>
+  <div class="code-block">
+    <div class="code-header">
+      <span class="code-lang">Python</span>
+      <button class="copy-btn">📋 Copy</button>
+    </div>
+    <pre><code><span class="code-comment"># Write to a file</span>
+<span class="code-keyword">with</span> <span class="code-function">open</span>(<span class="code-string">"data.txt"</span>, <span class="code-string">"w"</span>) <span class="code-keyword">as</span> f:
+    f.write(<span class="code-string">"Hello from Code4Boy!\n"</span>)
+    f.write(<span class="code-string">"Learning Python is fun.\n"</span>)
+
+<span class="code-comment"># Read entire file</span>
+<span class="code-keyword">with</span> <span class="code-function">open</span>(<span class="code-string">"data.txt"</span>, <span class="code-string">"r"</span>) <span class="code-keyword">as</span> f:
+    content = f.read()
+    <span class="code-function">print</span>(content)
+
+<span class="code-comment"># Read line by line</span>
+<span class="code-keyword">with</span> <span class="code-function">open</span>(<span class="code-string">"data.txt"</span>, <span class="code-string">"r"</span>) <span class="code-keyword">as</span> f:
+    <span class="code-keyword">for</span> line <span class="code-keyword">in</span> f:
+        <span class="code-function">print</span>(line.strip())
+
+<span class="code-comment"># Append to file</span>
+<span class="code-keyword">with</span> <span class="code-function">open</span>(<span class="code-string">"data.txt"</span>, <span class="code-string">"a"</span>) <span class="code-keyword">as</span> f:
+    f.write(<span class="code-string">"New line added!\n"</span>)
+
+<span class="code-comment"># Working with JSON</span>
+<span class="code-keyword">import</span> json
+
+data = {<span class="code-string">"name"</span>: <span class="code-string">"Code4Boy"</span>, <span class="code-string">"tutorials"</span>: <span class="code-number">50</span>}
+
+<span class="code-comment"># Save JSON</span>
+<span class="code-keyword">with</span> <span class="code-function">open</span>(<span class="code-string">"data.json"</span>, <span class="code-string">"w"</span>) <span class="code-keyword">as</span> f:
+    json.dump(data, f, indent=<span class="code-number">2</span>)
+
+<span class="code-comment"># Load JSON</span>
+<span class="code-keyword">with</span> <span class="code-function">open</span>(<span class="code-string">"data.json"</span>, <span class="code-string">"r"</span>) <span class="code-keyword">as</span> f:
+    loaded = json.load(f)
+    <span class="code-function">print</span>(loaded[<span class="code-string">"name"</span>])</code></pre>
+  </div>
+
+  <h2>5. Error Handling</h2>
+  <div class="step-indicator">Step 5 — Try/Except</div>
+  <p>Error handling prevents your program from crashing. Use try/except blocks to catch and handle errors gracefully.</p>
+  <div class="code-block">
+    <div class="code-header">
+      <span class="code-lang">Python</span>
+      <button class="copy-btn">📋 Copy</button>
+    </div>
+    <pre><code><span class="code-comment"># Basic try/except</span>
+<span class="code-keyword">try</span>:
+    result = <span class="code-number">10</span> / <span class="code-number">0</span>
+<span class="code-keyword">except</span> ZeroDivisionError:
+    <span class="code-function">print</span>(<span class="code-string">"Cannot divide by zero!"</span>)
+
+<span class="code-comment"># Multiple exceptions</span>
+<span class="code-keyword">try</span>:
+    num = <span class="code-function">int</span>(<span class="code-function">input</span>(<span class="code-string">"Enter a number: "</span>))
+    result = <span class="code-number">100</span> / num
+<span class="code-keyword">except</span> ValueError:
+    <span class="code-function">print</span>(<span class="code-string">"That's not a valid number!"</span>)
+<span class="code-keyword">except</span> ZeroDivisionError:
+    <span class="code-function">print</span>(<span class="code-string">"Cannot divide by zero!"</span>)
+<span class="code-keyword">else</span>:
+    <span class="code-function">print</span>(<span class="code-string">f"Result: {result}"</span>)
+<span class="code-keyword">finally</span>:
+    <span class="code-function">print</span>(<span class="code-string">"This always executes"</span>)
+
+<span class="code-comment"># Custom Exception</span>
+<span class="code-keyword">class</span> <span class="code-function">InvalidAgeError</span>(Exception):
+    <span class="code-keyword">def</span> <span class="code-function">__init__</span>(self, age, message=<span class="code-string">"Age must be positive"</span>):
+        self.age = age
+        <span class="code-function">super</span>().__init__(message)
+
+<span class="code-keyword">def</span> <span class="code-function">set_age</span>(age):
+    <span class="code-keyword">if</span> age &lt; <span class="code-number">0</span>:
+        <span class="code-keyword">raise</span> InvalidAgeError(age)
+    <span class="code-keyword">return</span> age</code></pre>
+  </div>
+
+  <h2>6. Python Modules & Packages</h2>
+  <div class="step-indicator">Step 6 — Importing & Using Modules</div>
+  <p>Modules let you organize code into separate files. Python has a vast standard library and thousands of third-party packages.</p>
+  <div class="code-block">
+    <div class="code-header">
+      <span class="code-lang">Python</span>
+      <button class="copy-btn">📋 Copy</button>
+    </div>
+    <pre><code><span class="code-comment"># Built-in modules</span>
+<span class="code-keyword">import</span> os
+<span class="code-keyword">import</span> datetime
+<span class="code-keyword">import</span> random
+<span class="code-keyword">from</span> pathlib <span class="code-keyword">import</span> Path
+
+<span class="code-comment"># Current directory</span>
+<span class="code-function">print</span>(os.getcwd())
+
+<span class="code-comment"># Current date & time</span>
+now = datetime.datetime.now()
+<span class="code-function">print</span>(<span class="code-string">f"Today: {now.strftime('%Y-%m-%d %H:%M')}"</span>)
+
+<span class="code-comment"># Random numbers</span>
+num = random.randint(<span class="code-number">1</span>, <span class="code-number">100</span>)
+choice = random.choice([<span class="code-string">"HTML"</span>, <span class="code-string">"CSS"</span>, <span class="code-string">"Python"</span>])
+
+<span class="code-comment"># Working with paths</span>
+path = Path(<span class="code-string">"project/src/main.py"</span>)
+<span class="code-function">print</span>(path.exists())
+<span class="code-function">print</span>(path.suffix)  <span class="code-comment"># .py</span>
+
+<span class="code-comment"># Install third-party packages</span>
+<span class="code-comment"># pip install requests flask pandas</span>
+
+<span class="code-comment"># Using requests library</span>
+<span class="code-keyword">import</span> requests
+
+response = requests.get(<span class="code-string">"https://api.github.com/users/code4boy"</span>)
+<span class="code-keyword">if</span> response.status_code == <span class="code-number">200</span>:
+    data = response.json()
+    <span class="code-function">print</span>(data[<span class="code-string">"name"</span>])</code></pre>
+  </div>
+
+  <h2>7. Decorators & Generators</h2>
+  <div class="step-indicator">Step 7 — Advanced Python</div>
+  <p>Decorators modify function behavior without changing the function itself. Generators produce values lazily, one at a time.</p>
+  <div class="code-block">
+    <div class="code-header">
+      <span class="code-lang">Python</span>
+      <button class="copy-btn">📋 Copy</button>
+    </div>
+    <pre><code><span class="code-comment"># Decorator</span>
+<span class="code-keyword">import</span> time
+
+<span class="code-keyword">def</span> <span class="code-function">timer</span>(func):
+    <span class="code-keyword">def</span> <span class="code-function">wrapper</span>(*args, **kwargs):
+        start = time.time()
+        result = func(*args, **kwargs)
+        end = time.time()
+        <span class="code-function">print</span>(<span class="code-string">f"{func.__name__} took {end - start:.2f}s"</span>)
+        <span class="code-keyword">return</span> result
+    <span class="code-keyword">return</span> wrapper
+
+@timer
+<span class="code-keyword">def</span> <span class="code-function">slow_function</span>():
+    time.sleep(<span class="code-number">1</span>)
+    <span class="code-keyword">return</span> <span class="code-string">"Done!"</span>
+
+<span class="code-comment"># Generator</span>
+<span class="code-keyword">def</span> <span class="code-function">fibonacci</span>(n):
+    a, b = <span class="code-number">0</span>, <span class="code-number">1</span>
+    <span class="code-keyword">for</span> _ <span class="code-keyword">in</span> <span class="code-function">range</span>(n):
+        <span class="code-keyword">yield</span> a
+        a, b = b, a + b
+
+<span class="code-keyword">for</span> num <span class="code-keyword">in</span> fibonacci(<span class="code-number">10</span>):
+    <span class="code-function">print</span>(num, end=<span class="code-string">" "</span>)
+<span class="code-comment"># 0 1 1 2 3 5 8 13 21 34</span>
+
+<span class="code-comment"># Generator Expression</span>
+squares_gen = (x**<span class="code-number">2</span> <span class="code-keyword">for</span> x <span class="code-keyword">in</span> <span class="code-function">range</span>(<span class="code-number">1000000</span>))
+<span class="code-comment"># Memory efficient - doesn't create entire list</span></code></pre>
+  </div>
+
+  <h2>8. Python Web Development (Flask)</h2>
+  <div class="step-indicator">Step 8 — Building a Web App</div>
+  <p>Flask is a lightweight Python web framework. You can build APIs and web apps in just a few lines of code.</p>
+  <div class="code-block">
+    <div class="code-header">
+      <span class="code-lang">Python</span>
+      <button class="copy-btn">📋 Copy</button>
+    </div>
+    <pre><code><span class="code-comment"># pip install flask</span>
+<span class="code-keyword">from</span> flask <span class="code-keyword">import</span> Flask, jsonify, request
+
+app = Flask(__name__)
+
+<span class="code-comment"># Simple route</span>
+@app.route(<span class="code-string">"/"</span>)
+<span class="code-keyword">def</span> <span class="code-function">home</span>():
+    <span class="code-keyword">return</span> <span class="code-string">"Welcome to Code4Boy API!"</span>
+
+<span class="code-comment"># API endpoint</span>
+@app.route(<span class="code-string">"/api/tutorials"</span>)
+<span class="code-keyword">def</span> <span class="code-function">get_tutorials</span>():
+    tutorials = [
+        {<span class="code-string">"id"</span>: <span class="code-number">1</span>, <span class="code-string">"title"</span>: <span class="code-string">"HTML Basics"</span>, <span class="code-string">"category"</span>: <span class="code-string">"html"</span>},
+        {<span class="code-string">"id"</span>: <span class="code-number">2</span>, <span class="code-string">"title"</span>: <span class="code-string">"CSS Flexbox"</span>, <span class="code-string">"category"</span>: <span class="code-string">"css"</span>},
+        {<span class="code-string">"id"</span>: <span class="code-number">3</span>, <span class="code-string">"title"</span>: <span class="code-string">"Python OOP"</span>, <span class="code-string">"category"</span>: <span class="code-string">"python"</span>},
+    ]
+    <span class="code-keyword">return</span> jsonify(tutorials)
+
+<span class="code-comment"># POST endpoint</span>
+@app.route(<span class="code-string">"/api/tutorials"</span>, methods=[<span class="code-string">"POST"</span>])
+<span class="code-keyword">def</span> <span class="code-function">add_tutorial</span>():
+    data = request.get_json()
+    <span class="code-keyword">return</span> jsonify({<span class="code-string">"message"</span>: <span class="code-string">"Tutorial added!"</span>, <span class="code-string">"data"</span>: data}), <span class="code-number">201</span>
+
+<span class="code-keyword">if</span> __name__ == <span class="code-string">"__main__"</span>:
+    app.run(debug=<span class="code-keyword">True</span>)</code></pre>
+  </div>
+
+  <h2>📺 Watch: Python Full Course (Hindi)</h2>
+  <div class="video-container">
+    <iframe width="100%" height="400" src="https://www.youtube.com/embed/7wnove7K-ZQ" title="Python Tutorial - CodeWithHarry" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+  </div>
+  <!-- Disclaimer -->
+  <div style="margin-top:15px;padding:12px 16px;background:rgba(255,193,7,0.08);border:1px solid rgba(255,193,7,0.25);border-radius:8px;font-size:0.85rem;color:var(--text-secondary);">
+    <i class="fas fa-exclamation-triangle" style="color:#ffc107;margin-right:6px;"></i>
+    <strong style="color:var(--text-primary);">Disclaimer:</strong> This video is not created by Code4Boy. This tutorial is created by <strong>CodeWithHarry</strong>. All credits go to the original creator. We have embedded this for educational purposes only.
+  </div>
+</div>

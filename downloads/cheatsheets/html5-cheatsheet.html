@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HTML5 Cheat Sheet - Code4Boy</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Segoe UI', sans-serif; background: #1a1a2e; color: #e0e0e0; padding: 30px; }
+    h1 { text-align: center; color: #ff6600; margin-bottom: 10px; font-size: 2rem; }
+    .subtitle { text-align: center; color: #888; margin-bottom: 40px; }
+    .section { margin-bottom: 35px; }
+    .section h2 { color: #00f0ff; font-size: 1.3rem; margin-bottom: 15px; border-bottom: 2px solid rgba(0,240,255,0.2); padding-bottom: 8px; }
+    table { width: 100%; border-collapse: collapse; margin-bottom: 10px; }
+    th { background: rgba(0,240,255,0.1); color: #00f0ff; text-align: left; padding: 10px 15px; font-size: 0.85rem; }
+    td { padding: 8px 15px; border-bottom: 1px solid rgba(255,255,255,0.05); font-size: 0.9rem; }
+    td:first-child { color: #f07178; font-family: 'Courier New', monospace; white-space: nowrap; }
+    tr:hover { background: rgba(0,240,255,0.03); }
+    .footer { text-align: center; margin-top: 40px; color: #555; font-size: 0.85rem; }
+    @media print { body { background: #fff; color: #333; } th { background: #f0f0f0; color: #333; } td:first-child { color: #e74c3c; } .section h2 { color: #0066cc; } }
+  </style>
+</head>
+<body>
+  <h1>HTML5 Cheat Sheet</h1>
+  <p class="subtitle">Code4Boy - Quick Reference Guide</p>
+
+  <div class="section">
+    <h2>Document Structure</h2>
+    <table>
+      <tr><th>Tag</th><th>Description</th></tr>
+      <tr><td>&lt;!DOCTYPE html&gt;</td><td>Declares the document type (HTML5)</td></tr>
+      <tr><td>&lt;html&gt;</td><td>Root element of the HTML document</td></tr>
+      <tr><td>&lt;head&gt;</td><td>Contains metadata, title, links, scripts</td></tr>
+      <tr><td>&lt;body&gt;</td><td>Contains all visible page content</td></tr>
+      <tr><td>&lt;meta&gt;</td><td>Metadata (charset, viewport, description)</td></tr>
+      <tr><td>&lt;title&gt;</td><td>Page title shown in browser tab</td></tr>
+      <tr><td>&lt;link&gt;</td><td>Links external resources (CSS, icon)</td></tr>
+      <tr><td>&lt;script&gt;</td><td>Embeds or links JavaScript</td></tr>
+    </table>
+  </div>
+
+  <div class="section">
+    <h2>Text & Headings</h2>
+    <table>
+      <tr><th>Tag</th><th>Description</th></tr>
+      <tr><td>&lt;h1&gt; - &lt;h6&gt;</td><td>Headings (h1 is largest, h6 is smallest)</td></tr>
+      <tr><td>&lt;p&gt;</td><td>Paragraph</td></tr>
+      <tr><td>&lt;br&gt;</td><td>Line break</td></tr>
+      <tr><td>&lt;hr&gt;</td><td>Horizontal rule / separator</td></tr>
+      <tr><td>&lt;strong&gt;</td><td>Bold / important text</td></tr>
+      <tr><td>&lt;em&gt;</td><td>Italic / emphasized text</td></tr>
+      <tr><td>&lt;mark&gt;</td><td>Highlighted text</td></tr>
+      <tr><td>&lt;small&gt;</td><td>Smaller text</td></tr>
+      <tr><td>&lt;code&gt;</td><td>Inline code</td></tr>
+      <tr><td>&lt;pre&gt;</td><td>Preformatted text</td></tr>
+      <tr><td>&lt;blockquote&gt;</td><td>Block quotation</td></tr>
+      <tr><td>&lt;span&gt;</td><td>Inline container for styling</td></tr>
+    </table>
+  </div>
+
+  <div class="section">
+    <h2>Links & Media</h2>
+    <table>
+      <tr><th>Tag</th><th>Description</th></tr>
+      <tr><td>&lt;a href=""&gt;</td><td>Hyperlink</td></tr>
+      <tr><td>&lt;img src="" alt=""&gt;</td><td>Image</td></tr>
+      <tr><td>&lt;video&gt;</td><td>Video element</td></tr>
+      <tr><td>&lt;audio&gt;</td><td>Audio element</td></tr>
+      <tr><td>&lt;source&gt;</td><td>Media source for video/audio</td></tr>
+      <tr><td>&lt;iframe&gt;</td><td>Inline frame (embed external content)</td></tr>
+    </table>
+  </div>
+
+  <div class="section">
+    <h2>Lists</h2>
+    <table>
+      <tr><th>Tag</th><th>Description</th></tr>
+      <tr><td>&lt;ul&gt;</td><td>Unordered list (bullets)</td></tr>
+      <tr><td>&lt;ol&gt;</td><td>Ordered list (numbers)</td></tr>
+      <tr><td>&lt;li&gt;</td><td>List item</td></tr>
+      <tr><td>&lt;dl&gt;</td><td>Description list</td></tr>
+      <tr><td>&lt;dt&gt;</td><td>Description term</td></tr>
+      <tr><td>&lt;dd&gt;</td><td>Description detail</td></tr>
+    </table>
+  </div>
+
+  <div class="section">
+    <h2>Forms & Input</h2>
+    <table>
+      <tr><th>Tag</th><th>Description</th></tr>
+      <tr><td>&lt;form&gt;</td><td>Form container</td></tr>
+      <tr><td>&lt;input type="text"&gt;</td><td>Text input field</td></tr>
+      <tr><td>&lt;input type="email"&gt;</td><td>Email input with validation</td></tr>
+      <tr><td>&lt;input type="password"&gt;</td><td>Password field (masked)</td></tr>
+      <tr><td>&lt;input type="number"&gt;</td><td>Number input</td></tr>
+      <tr><td>&lt;input type="checkbox"&gt;</td><td>Checkbox</td></tr>
+      <tr><td>&lt;input type="radio"&gt;</td><td>Radio button</td></tr>
+      <tr><td>&lt;textarea&gt;</td><td>Multi-line text input</td></tr>
+      <tr><td>&lt;select&gt; + &lt;option&gt;</td><td>Dropdown menu</td></tr>
+      <tr><td>&lt;button&gt;</td><td>Clickable button</td></tr>
+      <tr><td>&lt;label&gt;</td><td>Label for form elements</td></tr>
+    </table>
+  </div>
+
+  <div class="section">
+    <h2>Semantic HTML5</h2>
+    <table>
+      <tr><th>Tag</th><th>Description</th></tr>
+      <tr><td>&lt;header&gt;</td><td>Page or section header</td></tr>
+      <tr><td>&lt;nav&gt;</td><td>Navigation links</td></tr>
+      <tr><td>&lt;main&gt;</td><td>Main content area</td></tr>
+      <tr><td>&lt;section&gt;</td><td>Thematic grouping of content</td></tr>
+      <tr><td>&lt;article&gt;</td><td>Self-contained content</td></tr>
+      <tr><td>&lt;aside&gt;</td><td>Sidebar / related content</td></tr>
+      <tr><td>&lt;footer&gt;</td><td>Page or section footer</td></tr>
+      <tr><td>&lt;figure&gt;</td><td>Media with caption</td></tr>
+      <tr><td>&lt;figcaption&gt;</td><td>Caption for figure</td></tr>
+    </table>
+  </div>
+
+  <div class="section">
+    <h2>Tables</h2>
+    <table>
+      <tr><th>Tag</th><th>Description</th></tr>
+      <tr><td>&lt;table&gt;</td><td>Table container</td></tr>
+      <tr><td>&lt;thead&gt;</td><td>Table header group</td></tr>
+      <tr><td>&lt;tbody&gt;</td><td>Table body group</td></tr>
+      <tr><td>&lt;tr&gt;</td><td>Table row</td></tr>
+      <tr><td>&lt;th&gt;</td><td>Table header cell</td></tr>
+      <tr><td>&lt;td&gt;</td><td>Table data cell</td></tr>
+    </table>
+  </div>
+
+  <p class="footer">Code4Boy &bull; html5-cheatsheet &bull; Print this page for a handy reference!</p>
+</body>
+</html>

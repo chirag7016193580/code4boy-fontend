@@ -1,0 +1,1683 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Code4Boy YouTube Videos - Watch all coding tutorials, projects, and guides on our YouTube channel.">
+  <meta name="keywords" content="coding videos, YouTube tutorials, programming videos, code4boy channel, learn coding">
+  <meta name="author" content="Code4Boy">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://code4boy.com/pages/youtube.html">
+  <meta property="og:title" content="Videos - Code4Boy">
+  <meta property="og:description" content="Watch coding tutorials, projects, and guides on the Code4Boy YouTube channel.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://code4boy.com/pages/youtube.html">
+  <meta property="og:image" content="https://code4boy.com/images/logo.jpg">
+  <meta property="og:site_name" content="Code4Boy">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Videos - Code4Boy">
+  <meta name="twitter:description" content="Watch coding tutorials, projects, and guides on the Code4Boy YouTube channel.">
+  <meta http-equiv="X-Content-Type-Options" content="nosniff">
+  <!-- X-Frame-Options removed: only works as HTTP header, not meta tag -->
+  <meta http-equiv="X-XSS-Protection" content="1; mode=block">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://accounts.google.com https://apis.google.com https://*.googleapis.com; style-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com https://fonts.googleapis.com https://accounts.google.com; font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com; img-src 'self' data: blob: https://*.googleusercontent.com https://*.google.com https://img.youtube.com https://i.ytimg.com; frame-src https://www.youtube.com https://accounts.google.com https://*.google.com; connect-src 'self' http://localhost:8000 http://127.0.0.1:8000 https://code4boy-backend.vercel.app https://ipapi.co https://accounts.google.com https://*.googleapis.com;">
+  <title>YouTube Videos - Code4Boy</title>
+  <link rel="icon" type="image/jpeg" href="../images/logo.jpg">
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/upgrade.css">
+  <link rel="stylesheet" href="../css/professional.css">
+  <link rel="stylesheet" href="../css/dark-override.css">
+  <link rel="stylesheet" href="../css/auth.css">
+  <link rel="stylesheet" href="../css/mobile.css">
+  <link rel="stylesheet" href="../css/ui-update.css">
+  <link rel="stylesheet" href="../css/upgrade-v2.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <style>
+    .yt-lite {
+      cursor: pointer;
+      position: relative;
+      background: #000;
+    }
+    .yt-lite img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: opacity 0.3s;
+    }
+    .yt-lite:hover img {
+      opacity: 0.85;
+    }
+    .yt-play-btn {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      border: none;
+      background: transparent;
+      cursor: pointer;
+      z-index: 2;
+      padding: 0;
+      transition: transform 0.2s, filter 0.2s;
+    }
+    .yt-lite:hover .yt-play-btn {
+      transform: translate(-50%, -50%) scale(1.1);
+      filter: brightness(1.2);
+    }
+    .yt-lite iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+
+    /* YouTube Action Buttons */
+    .yt-actions {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    .yt-action-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 20px;
+      border-radius: 24px;
+      font-family: var(--font-body);
+      font-size: 0.9rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      border: none;
+      cursor: pointer;
+    }
+    .yt-action-btn i {
+      font-size: 1.1rem;
+    }
+    .yt-action-btn.upload-btn {
+      background: linear-gradient(135deg, #ff4444, #cc0000);
+      color: #fff;
+      box-shadow: 0 4px 15px rgba(255, 68, 68, 0.3);
+    }
+    .yt-action-btn.upload-btn:hover {
+      background: linear-gradient(135deg, #ff6666, #ee0000);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(255, 68, 68, 0.4);
+      color: #fff;
+    }
+    .yt-action-btn.live-btn {
+      background: linear-gradient(135deg, #e62429, #b71c1c);
+      color: #fff;
+      box-shadow: 0 4px 15px rgba(230, 36, 41, 0.3);
+      position: relative;
+    }
+    .yt-action-btn.live-btn:hover {
+      background: linear-gradient(135deg, #ff3333, #d32f2f);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(230, 36, 41, 0.4);
+      color: #fff;
+    }
+    .live-dot {
+      width: 8px;
+      height: 8px;
+      background: #fff;
+      border-radius: 50%;
+      animation: livePulse 1.5s infinite;
+    }
+    @keyframes livePulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.5; transform: scale(0.8); }
+    }
+
+    /* Live Stats Dashboard */
+    .live-stats-dashboard {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+      margin-bottom: 30px;
+    }
+    .live-stat-box {
+      background: var(--glass-bg);
+      border: 1px solid var(--glass-border);
+      border-radius: var(--border-radius);
+      padding: 20px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      position: relative;
+      overflow: hidden;
+      transition: all 0.3s ease;
+    }
+    .live-stat-box:hover {
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-neon);
+      border-color: rgba(139, 92, 246, 0.3);
+    }
+    .live-stat-icon {
+      width: 48px;
+      height: 48px;
+      min-width: 48px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.3rem;
+    }
+    .live-stat-info {
+      display: flex;
+      flex-direction: column;
+    }
+    .live-stat-number {
+      font-family: var(--font-heading);
+      font-size: 1.8rem;
+      font-weight: 800;
+      color: var(--text-primary);
+      line-height: 1.1;
+    }
+    .live-stat-label {
+      font-size: 0.8rem;
+      color: var(--text-secondary);
+      font-weight: 500;
+      margin-top: 2px;
+    }
+    .live-stat-pulse {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #10b981;
+      animation: livePulse 2s infinite;
+    }
+    @media (max-width: 900px) {
+      .live-stats-dashboard {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+    @media (max-width: 480px) {
+      .live-stats-dashboard {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* Live Shows Section */
+    .live-section {
+      margin-top: 30px;
+    }
+    .live-section-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+    .live-section-header h2 {
+      font-family: var(--font-heading);
+      font-size: 1.5rem;
+      color: var(--text-primary);
+    }
+    .live-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: #e62429;
+      color: #fff;
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      animation: liveBadgePulse 2s infinite;
+    }
+    @keyframes liveBadgePulse {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(230, 36, 41, 0.4); }
+      50% { box-shadow: 0 0 0 8px rgba(230, 36, 41, 0); }
+    }
+    .live-cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 20px;
+    }
+    .live-card {
+      background: var(--glass-bg);
+      border: 1px solid var(--glass-border);
+      border-radius: var(--border-radius);
+      overflow: hidden;
+      transition: all 0.3s ease;
+    }
+    .live-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 30px rgba(230, 36, 41, 0.15);
+      border-color: rgba(230, 36, 41, 0.3);
+    }
+    .live-card-thumb {
+      position: relative;
+      padding-top: 56.25%;
+      background: #111;
+    }
+    .live-card-thumb img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .live-status {
+      position: absolute;
+      top: 12px;
+      left: 12px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 10px;
+      border-radius: 4px;
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: #fff;
+    }
+    .live-status.is-live {
+      background: #e62429;
+      animation: liveBadgePulse 2s infinite;
+    }
+    .live-status.upcoming {
+      background: rgba(0, 0, 0, 0.7);
+      backdrop-filter: blur(4px);
+    }
+    .live-status .status-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #fff;
+      animation: livePulse 1s infinite;
+    }
+    .live-card-info {
+      padding: 16px;
+    }
+    .live-card-info h3 {
+      font-family: var(--font-heading);
+      font-size: 1rem;
+      color: var(--text-primary);
+      margin-bottom: 8px;
+    }
+    .live-card-info p {
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+      margin-bottom: 12px;
+    }
+    .live-card-meta {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      font-size: 0.8rem;
+      color: var(--text-dim);
+    }
+    .live-card-meta span {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+    .live-card-meta i {
+      font-size: 0.75rem;
+    }
+    .live-card-actions {
+      padding: 0 16px 16px;
+      display: flex;
+      gap: 8px;
+    }
+    .live-card-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 16px;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      border: none;
+      cursor: pointer;
+    }
+    .live-card-btn.watch-btn {
+      background: #e62429;
+      color: #fff;
+    }
+    .live-card-btn.watch-btn:hover {
+      background: #ff3333;
+      color: #fff;
+    }
+    .live-card-btn.notify-btn {
+      background: var(--glass-bg);
+      color: var(--text-primary);
+      border: 1px solid var(--glass-border);
+    }
+    .live-card-btn.notify-btn:hover {
+      border-color: var(--neon-cyan);
+      color: var(--neon-cyan);
+    }
+    .no-live-message {
+      text-align: center;
+      padding: 40px 20px;
+      color: var(--text-secondary);
+    }
+    .no-live-message i {
+      font-size: 3rem;
+      color: var(--text-dim);
+      margin-bottom: 16px;
+      display: block;
+    }
+    .no-live-message p {
+      font-size: 1rem;
+      margin-bottom: 8px;
+    }
+    .no-live-message .sub-text {
+      font-size: 0.85rem;
+      color: var(--text-dim);
+    }
+
+    /* Subscriber Growth Section */
+    .subscriber-section {
+      margin-top: 40px;
+    }
+    .subscriber-section-header {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+    .subscriber-section-header h2 {
+      font-family: var(--font-heading);
+      font-size: 1.8rem;
+      color: var(--text-primary);
+      margin-bottom: 8px;
+    }
+    .subscriber-section-header p {
+      color: var(--text-secondary);
+      font-size: 0.95rem;
+    }
+    .subscriber-cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 20px;
+    }
+    .sub-card {
+      background: var(--glass-bg);
+      border: 1px solid var(--glass-border);
+      border-radius: var(--border-radius);
+      padding: 24px;
+      text-align: center;
+      transition: all 0.3s ease;
+    }
+    .sub-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-neon);
+      border-color: rgba(139, 92, 246, 0.3);
+    }
+    .sub-card-icon {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 16px;
+      font-size: 1.5rem;
+    }
+    .sub-card-icon.red {
+      background: rgba(230, 36, 41, 0.15);
+      color: #e62429;
+    }
+    .sub-card-icon.blue {
+      background: rgba(0, 119, 255, 0.15);
+      color: #0077ff;
+    }
+    .sub-card-icon.green {
+      background: rgba(16, 185, 129, 0.15);
+      color: #10b981;
+    }
+    .sub-card-icon.purple {
+      background: rgba(139, 92, 246, 0.15);
+      color: #8b5cf6;
+    }
+    .sub-card h3 {
+      font-family: var(--font-heading);
+      font-size: 1.05rem;
+      color: var(--text-primary);
+      margin-bottom: 8px;
+    }
+    .sub-card p {
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+      margin-bottom: 16px;
+      line-height: 1.5;
+    }
+    .sub-card-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 10px 20px;
+      border-radius: 24px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      border: 1px solid var(--glass-border);
+      color: var(--text-primary);
+      background: transparent;
+      cursor: pointer;
+    }
+    .sub-card-btn:hover {
+      border-color: var(--neon-cyan);
+      color: var(--neon-cyan);
+      background: rgba(0, 212, 255, 0.05);
+    }
+    .sub-card-btn.primary {
+      background: #e62429;
+      color: #fff;
+      border-color: #e62429;
+    }
+    .sub-card-btn.primary:hover {
+      background: #ff3333;
+      border-color: #ff3333;
+      color: #fff;
+    }
+
+    /* Share Modal */
+    .share-modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.7);
+      backdrop-filter: blur(8px);
+      z-index: 3000;
+      display: none;
+      align-items: center;
+      justify-content: center;
+    }
+    .share-modal-overlay.active {
+      display: flex;
+    }
+    .share-modal {
+      background: var(--bg-secondary);
+      border: 1px solid var(--glass-border);
+      border-radius: var(--border-radius);
+      padding: 30px;
+      max-width: 450px;
+      width: 90%;
+      position: relative;
+    }
+    .share-modal h3 {
+      font-family: var(--font-heading);
+      font-size: 1.2rem;
+      color: var(--text-primary);
+      margin-bottom: 8px;
+    }
+    .share-modal p {
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+      margin-bottom: 20px;
+    }
+    .share-modal-close {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      background: none;
+      border: none;
+      color: var(--text-secondary);
+      font-size: 1.2rem;
+      cursor: pointer;
+      padding: 4px;
+      transition: color 0.3s;
+    }
+    .share-modal-close:hover {
+      color: var(--text-primary);
+    }
+    .share-links {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+    }
+    .share-link {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      padding: 16px 8px;
+      border-radius: 12px;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      border: 1px solid var(--glass-border);
+      background: var(--glass-bg);
+    }
+    .share-link:hover {
+      transform: translateY(-2px);
+      border-color: rgba(139, 92, 246, 0.3);
+    }
+    .share-link i {
+      font-size: 1.5rem;
+    }
+    .share-link span {
+      font-size: 0.75rem;
+      color: var(--text-secondary);
+      font-weight: 500;
+    }
+    .share-link.whatsapp i { color: #25D366; }
+    .share-link.whatsapp:hover { background: rgba(37, 211, 102, 0.1); }
+    .share-link.telegram i { color: #0088cc; }
+    .share-link.telegram:hover { background: rgba(0, 136, 204, 0.1); }
+    .share-link.twitter i { color: #1DA1F2; }
+    .share-link.twitter:hover { background: rgba(29, 161, 242, 0.1); }
+    .share-link.facebook i { color: #4267B2; }
+    .share-link.facebook:hover { background: rgba(66, 103, 178, 0.1); }
+    .share-link.instagram i { color: #E4405F; }
+    .share-link.instagram:hover { background: rgba(228, 64, 95, 0.1); }
+    .share-link.copy-link i { color: var(--neon-cyan); }
+    .share-link.copy-link:hover { background: rgba(0, 212, 255, 0.1); }
+
+    .copy-url-bar {
+      display: flex;
+      margin-top: 16px;
+      border: 1px solid var(--glass-border);
+      border-radius: 10px;
+      overflow: hidden;
+    }
+    .copy-url-bar input {
+      flex: 1;
+      padding: 10px 14px;
+      border: none;
+      background: var(--glass-bg);
+      color: var(--text-primary);
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      outline: none;
+    }
+    .copy-url-bar button {
+      padding: 10px 18px;
+      background: var(--neon-cyan);
+      color: #000;
+      border: none;
+      font-weight: 600;
+      font-size: 0.8rem;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+    .copy-url-bar button:hover {
+      background: #00aadd;
+    }
+
+    /* Upload Modal */
+    .upload-modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.7);
+      backdrop-filter: blur(8px);
+      z-index: 3000;
+      display: none;
+      align-items: center;
+      justify-content: center;
+    }
+    .upload-modal-overlay.active {
+      display: flex;
+    }
+    .upload-modal {
+      background: var(--bg-secondary);
+      border: 1px solid var(--glass-border);
+      border-radius: var(--border-radius);
+      padding: 30px;
+      max-width: 500px;
+      width: 90%;
+      position: relative;
+      text-align: center;
+    }
+    .upload-modal-close {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      background: none;
+      border: none;
+      color: var(--text-secondary);
+      font-size: 1.2rem;
+      cursor: pointer;
+      padding: 4px;
+      transition: color 0.3s;
+    }
+    .upload-modal-close:hover {
+      color: var(--text-primary);
+    }
+    .upload-icon {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      background: rgba(255, 68, 68, 0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 20px;
+      font-size: 2rem;
+      color: #ff4444;
+    }
+    .upload-modal h3 {
+      font-family: var(--font-heading);
+      font-size: 1.3rem;
+      color: var(--text-primary);
+      margin-bottom: 12px;
+    }
+    .upload-modal p {
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+      margin-bottom: 8px;
+      line-height: 1.6;
+    }
+    .upload-steps {
+      text-align: left;
+      margin: 20px 0;
+      padding: 0;
+      list-style: none;
+    }
+    .upload-steps li {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      padding: 10px 0;
+      color: var(--text-secondary);
+      font-size: 0.88rem;
+    }
+    .upload-steps li .step-num {
+      width: 28px;
+      height: 28px;
+      min-width: 28px;
+      border-radius: 50%;
+      background: rgba(255, 68, 68, 0.15);
+      color: #ff4444;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 0.8rem;
+    }
+    .upload-modal-btns {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      margin-top: 20px;
+    }
+    .upload-modal-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 24px;
+      border-radius: 24px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      border: none;
+      cursor: pointer;
+    }
+    .upload-modal-btn.primary {
+      background: #ff4444;
+      color: #fff;
+    }
+    .upload-modal-btn.primary:hover {
+      background: #ff6666;
+      color: #fff;
+      transform: translateY(-2px);
+    }
+    .upload-modal-btn.secondary {
+      background: var(--glass-bg);
+      color: var(--text-primary);
+      border: 1px solid var(--glass-border);
+    }
+    .upload-modal-btn.secondary:hover {
+      border-color: var(--neon-cyan);
+      color: var(--neon-cyan);
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .yt-actions {
+        justify-content: center;
+      }
+      .live-cards-grid {
+        grid-template-columns: 1fr;
+      }
+      .subscriber-cards {
+        grid-template-columns: 1fr;
+      }
+      .share-links {
+        grid-template-columns: repeat(3, 1fr);
+      }
+      .upload-modal-btns {
+        flex-direction: column;
+      }
+      .subscriber-section-header h2 {
+        font-size: 1.4rem;
+      }
+    }
+  </style>
+
+  <!-- Structured Data - JSON-LD -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    "name": "Videos",
+    "description": "Watch coding tutorials, projects, and guides on the Code4Boy YouTube channel.",
+    "url": "https://code4boy.com/pages/youtube.html",
+    "isPartOf": { "@type": "WebSite", "name": "Code4Boy", "url": "https://code4boy.com/" },
+    "breadcrumb": {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://code4boy.com/" },
+        { "@type": "ListItem", "position": 2, "name": "Videos", "item": "https://code4boy.com/pages/youtube.html" }
+      ]
+    }
+  }
+  </script>
+</head>
+<body>
+
+  <!-- Iron Man HUD Corners -->
+  <div class="iron-hud-corner top-left"></div>
+  <div class="iron-hud-corner top-right"></div>
+  <div class="iron-hud-corner bottom-left"></div>
+  <div class="iron-hud-corner bottom-right"></div>
+  <div class="iron-scan-line"></div>
+
+  <div class="bg-grid"></div>
+  <div class="bg-glow"></div>
+  <div class="particles"></div>
+
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="../index.html" class="nav-logo">
+        <img src="../images/logo.jpg" alt="Code4Boy Logo">
+        <span>CODE4BOY</span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="../index.html"><i class="fas fa-home"></i> Home</a></li>
+        <li><a href="tutorials.html"><i class="fas fa-book"></i> Tutorials</a></li>
+        <li><a href="projects.html"><i class="fas fa-code"></i> Projects</a></li>
+        <li><a href="tools.html"><i class="fas fa-wrench"></i> Tools</a></li>
+        <li><a href="playground.html"><i class="fas fa-laptop-code"></i> Playground</a></li>
+        <li><a href="ai-teacher.html"><i class="fas fa-robot"></i> AI Teacher</a></li>
+        <li class="nav-more-dropdown">
+
+          <button class="nav-more-btn" aria-expanded="false" aria-haspopup="true"><i class="fas fa-ellipsis-h"></i> More</button>
+
+          <ul class="nav-more-menu">
+
+            <li><a href="errors.html"><i class="fas fa-bug"></i> Errors</a></li>
+
+            <li><a href="downloads.html"><i class="fas fa-download"></i> Downloads</a></li>
+
+            <li><a href="https://youtube.com/@code4boy-l4u" target="_blank" rel="noopener noreferrer" class="active"><i class="fab fa-youtube"></i> Videos</a></li>
+
+            <li><a href="../index.html#contact"><i class="fas fa-envelope"></i> Contact</a></li>
+
+          </ul>
+
+        </li>
+      </ul>
+      <div class="nav-right">
+        <button class="nav-search-btn" title="Search"><i class="fas fa-search"></i></button>
+        <button class="theme-toggle"><i class="fas fa-sun"></i> <span>Light</span></button>
+        <div id="authBtnContainer" class="auth-btn-container"></div>
+        <div class="menu-toggle"><span></span><span></span><span></span></div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Search Modal -->
+  <div class="search-modal">
+    <button class="search-close"><i class="fas fa-times"></i></button>
+    <div class="search-modal-content">
+      <input type="text" class="search-modal-input" placeholder="Search tutorials, projects, tools...">
+      <div class="search-results"></div>
+    </div>
+  </div>
+
+  <!-- Page Header -->
+  <div class="page-header">
+    <div class="breadcrumb">
+      <a href="../index.html">Home</a>
+      <span class="separator">/</span>
+      <span>YouTube Videos</span>
+    </div>
+    <h1>YouTube <span class="gradient-text" style="background:var(--gradient-neon);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">Videos</span></h1>
+    <p>Watch all our coding tutorials, project walkthroughs, and developer guides</p>
+    <div class="page-stats">
+      <div class="page-stat">
+        <div class="page-stat-icon red"><i class="fab fa-youtube"></i></div>
+        <div class="page-stat-info"><div class="page-stat-number">Videos</div><div class="page-stat-label">Tutorials</div></div>
+      </div>
+      <div class="page-stat">
+        <div class="page-stat-icon blue"><i class="fas fa-play-circle"></i></div>
+        <div class="page-stat-info"><div class="page-stat-number">HD</div><div class="page-stat-label">Quality</div></div>
+      </div>
+      <div class="page-stat">
+        <div class="page-stat-icon green"><i class="fas fa-closed-captioning"></i></div>
+        <div class="page-stat-info"><div class="page-stat-number">Subtitles</div><div class="page-stat-label">Available</div></div>
+      </div>
+      <div class="page-stat">
+        <div class="page-stat-icon purple"><i class="fas fa-bell"></i></div>
+        <div class="page-stat-info"><div class="page-stat-number">Subscribe</div><div class="page-stat-label">For Updates</div></div>
+      </div>
+    </div>
+    <div class="page-features">
+      <div class="page-feature"><i class="fas fa-video"></i><span>Project Walkthroughs</span></div>
+      <div class="page-feature"><i class="fas fa-chalkboard-teacher"></i><span>Step-by-step Guides</span></div>
+      <div class="page-feature"><i class="fas fa-broadcast-tower"></i><span>Live Streams</span></div>
+      <div class="page-feature"><i class="fas fa-share-alt"></i><span>Share & Download</span></div>
+    </div>
+  </div>
+
+  <!-- YouTube Channel Navbar -->
+  <section class="section" style="padding-top:20px">
+    <div class="youtube-nav reveal">
+      <div class="yt-brand">
+        <i class="fab fa-youtube"></i>
+        <span>Code4Boy</span>
+      </div>
+      <a href="https://youtube.com/@code4boy-l4u" target="_blank" class="yt-subscribe">
+        <i class="fab fa-youtube"></i> Subscribe
+      </a>
+      <div class="yt-stats">
+        <span><i class="fas fa-video"></i> 5 Videos</span>
+        <span><i class="fas fa-users"></i> 3 Subscribers</span>
+      </div>
+    </div>
+
+    <!-- YouTube Action Buttons -->
+    <div class="yt-actions reveal" style="margin-top:20px;justify-content:center">
+      <button class="yt-action-btn upload-btn" onclick="openUploadModal()">
+        <i class="fas fa-cloud-upload-alt"></i> Upload Video
+      </button>
+      <a href="https://studio.youtube.com/channel/live" target="_blank" rel="noopener noreferrer" class="yt-action-btn live-btn">
+        <span class="live-dot"></span> Go Live
+      </a>
+      <button class="yt-action-btn" style="background:linear-gradient(135deg,var(--neon-purple),var(--neon-pink));color:#fff;box-shadow:0 4px 15px rgba(139,92,246,0.3)" onclick="openShareModal()">
+        <i class="fas fa-share-alt"></i> Share Channel
+      </button>
+    </div>
+
+    <!-- Live Shows Section -->
+    <div class="live-section reveal" style="margin-top:30px">
+      <div class="live-section-header">
+        <h2><i class="fas fa-broadcast-tower" style="color:#e62429;margin-right:8px"></i> Live Shows</h2>
+        <span class="live-badge"><span class="status-dot" style="width:6px;height:6px;border-radius:50%;background:#fff;animation:livePulse 1s infinite"></span> LIVE</span>
+      </div>
+
+      <!-- Live Stats Dashboard -->
+      <div class="live-stats-dashboard">
+        <div class="live-stat-box">
+          <div class="live-stat-icon" style="background:rgba(230,36,41,0.15);color:#e62429">
+            <i class="fab fa-youtube"></i>
+          </div>
+          <div class="live-stat-info">
+            <span class="live-stat-number" data-target="3">0</span>
+            <span class="live-stat-label">Videos</span>
+          </div>
+          <div class="live-stat-pulse"></div>
+        </div>
+        <div class="live-stat-box">
+          <div class="live-stat-icon" style="background:rgba(0,119,255,0.15);color:#0077ff">
+            <i class="fas fa-users"></i>
+          </div>
+          <div class="live-stat-info">
+            <span class="live-stat-number" data-target="2">0</span>
+            <span class="live-stat-label">Subscribers</span>
+          </div>
+          <div class="live-stat-pulse"></div>
+        </div>
+        <div class="live-stat-box">
+          <div class="live-stat-icon" style="background:rgba(16,185,129,0.15);color:#10b981">
+            <i class="fas fa-eye"></i>
+          </div>
+          <div class="live-stat-info">
+            <span class="live-stat-number" data-target="150">0</span>
+            <span class="live-stat-label">Total Views</span>
+          </div>
+          <div class="live-stat-pulse"></div>
+        </div>
+        <div class="live-stat-box">
+          <div class="live-stat-icon" style="background:rgba(139,92,246,0.15);color:#8b5cf6">
+            <i class="fas fa-thumbs-up"></i>
+          </div>
+          <div class="live-stat-info">
+            <span class="live-stat-number" data-target="25">0</span>
+            <span class="live-stat-label">Total Likes</span>
+          </div>
+          <div class="live-stat-pulse"></div>
+        </div>
+      </div>
+
+      <!-- Live Stream Cards -->
+      <div class="live-cards-grid">
+        <div class="live-card">
+          <div class="live-card-thumb">
+            <img src="https://img.youtube.com/vi/2Qlf355_t50/hqdefault.jpg" alt="Live Coding Session" loading="lazy">
+            <div class="live-status upcoming">
+              <i class="fas fa-clock"></i> Upcoming
+            </div>
+          </div>
+          <div class="live-card-info">
+            <h3>Live Coding: Build a Portfolio Website</h3>
+            <p>Join us live as we build a complete portfolio website from scratch using HTML, CSS & JavaScript!</p>
+            <div class="live-card-meta">
+              <span><i class="fas fa-calendar"></i> Coming Soon</span>
+              <span><i class="fas fa-clock"></i> 2 Hours</span>
+            </div>
+          </div>
+          <div class="live-card-actions">
+            <a href="https://youtube.com/@code4boy-l4u" target="_blank" class="live-card-btn notify-btn">
+              <i class="fas fa-bell"></i> Set Reminder
+            </a>
+          </div>
+        </div>
+
+        <div class="live-card">
+          <div class="live-card-thumb">
+            <img src="https://img.youtube.com/vi/9g9ATtSbFrw/hqdefault.jpg" alt="Q&A Session" loading="lazy">
+            <div class="live-status upcoming">
+              <i class="fas fa-clock"></i> Upcoming
+            </div>
+          </div>
+          <div class="live-card-info">
+            <h3>Live Q&A: Coding Doubts Solved!</h3>
+            <p>Ask your coding doubts live! We'll answer questions about HTML, CSS, JavaScript, Python & more.</p>
+            <div class="live-card-meta">
+              <span><i class="fas fa-calendar"></i> Coming Soon</span>
+              <span><i class="fas fa-clock"></i> 1.5 Hours</span>
+            </div>
+          </div>
+          <div class="live-card-actions">
+            <a href="https://youtube.com/@code4boy-l4u" target="_blank" class="live-card-btn notify-btn">
+              <i class="fas fa-bell"></i> Set Reminder
+            </a>
+          </div>
+        </div>
+
+        <div class="live-card">
+          <div class="live-card-thumb">
+            <img src="https://img.youtube.com/vi/psKpMM92cEY/hqdefault.jpg" alt="Project Building" loading="lazy">
+            <div class="live-status upcoming">
+              <i class="fas fa-clock"></i> Upcoming
+            </div>
+          </div>
+          <div class="live-card-info">
+            <h3>Live Project: AI-Powered Web App</h3>
+            <p>Watch and code along as we build an AI-powered web application live on stream!</p>
+            <div class="live-card-meta">
+              <span><i class="fas fa-calendar"></i> Coming Soon</span>
+              <span><i class="fas fa-clock"></i> 3 Hours</span>
+            </div>
+          </div>
+          <div class="live-card-actions">
+            <a href="https://youtube.com/@code4boy-l4u" target="_blank" class="live-card-btn notify-btn">
+              <i class="fas fa-bell"></i> Set Reminder
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Category Filter -->
+    <div class="tab-nav reveal" style="margin-top:30px">
+      <button class="tab-btn active" data-tab="all">All Videos</button>
+      <button class="tab-btn" data-tab="code4boy">Code4Boy</button>
+      <button class="tab-btn" data-tab="html">HTML</button>
+      <button class="tab-btn" data-tab="css">CSS</button>
+      <button class="tab-btn" data-tab="javascript">JavaScript</button>
+      <button class="tab-btn" data-tab="python">Python</button>
+      <button class="tab-btn" data-tab="projects">Projects</button>
+      <button class="tab-btn" data-tab="tools">Tools</button>
+    </div>
+
+    <!-- Video Grid -->
+    <div class="video-grid mt-40">
+
+      <!-- Code4Boy Channel Videos -->
+      <div class="video-card reveal tab-content" data-tab="code4boy">
+        <div class="video-thumb yt-lite" data-id="2Qlf355_t50">
+          <img src="https://img.youtube.com/vi/2Qlf355_t50/hqdefault.jpg" alt="Hover Video Galaxy Hover - Code4Boy" loading="lazy">
+          <button class="yt-play-btn" aria-label="Play Hover Video Galaxy Hover - Code4Boy">
+            <svg viewBox="0 0 68 48" width="68" height="48"><path d="M66.52,7.74c-0.78-2.93-2.49-5.41-5.42-6.19C55.79,.13,34,0,34,0S12.21,.13,6.9,1.55C3.97,2.33,2.27,4.81,1.48,7.74C0.06,13.05,0,24,0,24s0.06,10.95,1.48,16.26c0.78,2.93,2.49,5.41,5.42,6.19C12.21,47.87,34,48,34,48s21.79-0.13,27.1-1.55c2.93-0.78,4.64-3.26,5.42-6.19C67.94,34.95,68,24,68,24S67.94,13.05,66.52,7.74z" fill="#f00"/><path d="M 45,24 27,14 27,34" fill="#fff"/></svg>
+          </button>
+        </div>
+        <div class="video-info">
+          <span class="card-tag">Code4Boy</span>
+          <h3>Hover Video | Galaxy Hover - Code4Boy</h3>
+          <p>Galaxy hover effect tutorial by Code4Boy</p>
+        </div>
+      </div>
+
+      <div class="video-card reveal tab-content" data-tab="code4boy">
+        <div class="video-thumb yt-lite" data-id="9g9ATtSbFrw">
+          <img src="https://img.youtube.com/vi/9g9ATtSbFrw/hqdefault.jpg" alt="AI Generated Video - Code4Boy" loading="lazy">
+          <button class="yt-play-btn" aria-label="Play AI Generated Video - Code4Boy">
+            <svg viewBox="0 0 68 48" width="68" height="48"><path d="M66.52,7.74c-0.78-2.93-2.49-5.41-5.42-6.19C55.79,.13,34,0,34,0S12.21,.13,6.9,1.55C3.97,2.33,2.27,4.81,1.48,7.74C0.06,13.05,0,24,0,24s0.06,10.95,1.48,16.26c0.78,2.93,2.49,5.41,5.42,6.19C12.21,47.87,34,48,34,48s21.79-0.13,27.1-1.55c2.93-0.78,4.64-3.26,5.42-6.19C67.94,34.95,68,24,68,24S67.94,13.05,66.52,7.74z" fill="#f00"/><path d="M 45,24 27,14 27,34" fill="#fff"/></svg>
+          </button>
+        </div>
+        <div class="video-info">
+          <span class="card-tag">Code4Boy</span>
+          <h3>AI Generated Video | Tech Video - Code4Boy</h3>
+          <p>AI generated tech video by Code4Boy</p>
+        </div>
+      </div>
+
+      <div class="video-card reveal tab-content" data-tab="code4boy">
+        <div class="video-thumb yt-lite" data-id="psKpMM92cEY">
+          <img src="https://img.youtube.com/vi/psKpMM92cEY/hqdefault.jpg" alt="Session Login Page - Code4Boy" loading="lazy">
+          <button class="yt-play-btn" aria-label="Play Session Login Page - Code4Boy">
+            <svg viewBox="0 0 68 48" width="68" height="48"><path d="M66.52,7.74c-0.78-2.93-2.49-5.41-5.42-6.19C55.79,.13,34,0,34,0S12.21,.13,6.9,1.55C3.97,2.33,2.27,4.81,1.48,7.74C0.06,13.05,0,24,0,24s0.06,10.95,1.48,16.26c0.78,2.93,2.49,5.41,5.42,6.19C12.21,47.87,34,48,34,48s21.79-0.13,27.1-1.55c2.93-0.78,4.64-3.26,5.42-6.19C67.94,34.95,68,24,68,24S67.94,13.05,66.52,7.74z" fill="#f00"/><path d="M 45,24 27,14 27,34" fill="#fff"/></svg>
+          </button>
+        </div>
+        <div class="video-info">
+          <span class="card-tag">Code4Boy</span>
+          <h3>Session Login Page | Using AI - Code4Boy</h3>
+          <p>Login page created using AI by Code4Boy</p>
+        </div>
+      </div>
+
+      <div class="video-card reveal tab-content" data-tab="code4boy">
+        <div class="video-thumb yt-lite" data-id="JWR5TwxvisE">
+          <img src="https://img.youtube.com/vi/JWR5TwxvisE/hqdefault.jpg" alt="Login Page Using ChatGPT - Code4Boy" loading="lazy">
+          <button class="yt-play-btn" aria-label="Play Login Page Using ChatGPT - Code4Boy">
+            <svg viewBox="0 0 68 48" width="68" height="48"><path d="M66.52,7.74c-0.78-2.93-2.49-5.41-5.42-6.19C55.79,.13,34,0,34,0S12.21,.13,6.9,1.55C3.97,2.33,2.27,4.81,1.48,7.74C0.06,13.05,0,24,0,24s0.06,10.95,1.48,16.26c0.78,2.93,2.49,5.41,5.42,6.19C12.21,47.87,34,48,34,48s21.79-0.13,27.1-1.55c2.93-0.78,4.64-3.26,5.42-6.19C67.94,34.95,68,24,68,24S67.94,13.05,66.52,7.74z" fill="#f00"/><path d="M 45,24 27,14 27,34" fill="#fff"/></svg>
+          </button>
+        </div>
+        <div class="video-info">
+          <span class="card-tag">Code4Boy</span>
+          <h3>Login Page Using ChatGPT | Moon Login Page - Code4Boy</h3>
+          <p>Moon themed login page created using ChatGPT by Code4Boy</p>
+        </div>
+      </div>
+
+      <div class="video-card reveal tab-content" data-tab="code4boy">
+        <div class="video-thumb yt-lite" data-id="SFvzp82subE">
+          <img src="https://img.youtube.com/vi/SFvzp82subE/hqdefault.jpg" alt="Login Page Using AI - Code4Boy" loading="lazy">
+          <button class="yt-play-btn" aria-label="Play Login Page Using AI - Code4Boy">
+            <svg viewBox="0 0 68 48" width="68" height="48"><path d="M66.52,7.74c-0.78-2.93-2.49-5.41-5.42-6.19C55.79,.13,34,0,34,0S12.21,.13,6.9,1.55C3.97,2.33,2.27,4.81,1.48,7.74C0.06,13.05,0,24,0,24s0.06,10.95,1.48,16.26c0.78,2.93,2.49,5.41,5.42,6.19C12.21,47.87,34,48,34,48s21.79-0.13,27.1-1.55c2.93-0.78,4.64-3.26,5.42-6.19C67.94,34.95,68,24,68,24S67.94,13.05,66.52,7.74z" fill="#f00"/><path d="M 45,24 27,14 27,34" fill="#fff"/></svg>
+          </button>
+        </div>
+        <div class="video-info">
+          <span class="card-tag">Code4Boy</span>
+          <h3>Login Page | For Developing By AI - Code4Boy</h3>
+          <p>Login page developed using AI by Code4Boy</p>
+        </div>
+      </div>
+
+      <!-- HTML Videos (Indian Creators) -->
+      <div class="video-card reveal tab-content" data-tab="html">
+        <div class="video-thumb yt-lite" data-id="HcOc7P5BMi4">
+          <img src="https://img.youtube.com/vi/HcOc7P5BMi4/hqdefault.jpg" alt="HTML Tutorial - Apna College" loading="lazy">
+          <button class="yt-play-btn" aria-label="Play HTML Tutorial - Apna College">
+            <svg viewBox="0 0 68 48" width="68" height="48"><path d="M66.52,7.74c-0.78-2.93-2.49-5.41-5.42-6.19C55.79,.13,34,0,34,0S12.21,.13,6.9,1.55C3.97,2.33,2.27,4.81,1.48,7.74C0.06,13.05,0,24,0,24s0.06,10.95,1.48,16.26c0.78,2.93,2.49,5.41,5.42,6.19C12.21,47.87,34,48,34,48s21.79-0.13,27.1-1.55c2.93-0.78,4.64-3.26,5.42-6.19C67.94,34.95,68,24,68,24S67.94,13.05,66.52,7.74z" fill="#f00"/><path d="M 45,24 27,14 27,34" fill="#fff"/></svg>
+          </button>
+        </div>
+        <div class="video-info">
+          <span class="card-tag">HTML</span>
+          <h3>HTML Tutorial for Beginners (Hindi) - Apna College</h3>
+          <p>Complete HTML tutorial in Hindi with notes & code by Shraddha Didi - Apna College</p>
+        </div>
+      </div>
+
+      <div class="video-card reveal tab-content" data-tab="html">
+        <div class="video-thumb yt-lite" data-id="BsDoLVMnmZs">
+          <img src="https://img.youtube.com/vi/BsDoLVMnmZs/hqdefault.jpg" alt="HTML in One Video - CodeWithHarry" loading="lazy">
+          <button class="yt-play-btn" aria-label="Play HTML in One Video - CodeWithHarry">
+            <svg viewBox="0 0 68 48" width="68" height="48"><path d="M66.52,7.74c-0.78-2.93-2.49-5.41-5.42-6.19C55.79,.13,34,0,34,0S12.21,.13,6.9,1.55C3.97,2.33,2.27,4.81,1.48,7.74C0.06,13.05,0,24,0,24s0.06,10.95,1.48,16.26c0.78,2.93,2.49,5.41,5.42,6.19C12.21,47.87,34,48,34,48s21.79-0.13,27.1-1.55c2.93-0.78,4.64-3.26,5.42-6.19C67.94,34.95,68,24,68,24S67.94,13.05,66.52,7.74z" fill="#f00"/><path d="M 45,24 27,14 27,34" fill="#fff"/></svg>
+          </button>
+        </div>
+        <div class="video-info">
+          <span class="card-tag">HTML</span>
+          <h3>HTML Tutorial in One Video (Hindi) - CodeWithHarry</h3>
+          <p>Learn complete HTML in one video in Hindi by CodeWithHarry</p>
+        </div>
+      </div>
+
+      <div class="video-card reveal tab-content" data-tab="html">
+        <div class="video-thumb yt-lite" data-id="5ccq_nLHneE">
+          <img src="https://img.youtube.com/vi/5ccq_nLHneE/hqdefault.jpg" alt="HTML Course - Thapa Technical" loading="lazy">
+          <button class="yt-play-btn" aria-label="Play HTML Course - Thapa Technical">
+            <svg viewBox="0 0 68 48" width="68" height="48"><path d="M66.52,7.74c-0.78-2.93-2.49-5.41-5.42-6.19C55.79,.13,34,0,34,0S12.21,.13,6.9,1.55C3.97,2.33,2.27,4.81,1.48,7.74C0.06,13.05,0,24,0,24s0.06,10.95,1.48,16.26c0.78,2.93,2.49,5.41,5.42,6.19C12.21,47.87,34,48,34,48s21.79-0.13,27.1-1.55c2.93-0.78,4.64-3.26,5.42-6.19C67.94,34.95,68,24,68,24S67.94,13.05,66.52,7.74z" fill="#f00"/><path d="M 45,24 27,14 27,34" fill="#fff"/></svg>
+          </button>
+        </div>
+        <div class="video-info">
+          <span class="card-tag">HTML</span>
+          <h3>Best HTML Course (Hindi) - Thapa Technical</h3>
+          <p>Complete HTML course in Hindi with projects & notes by Thapa Technical</p>
+        </div>
+      </div>
+
+      <!-- CSS Videos (Indian Creators) -->
+      <div class="video-card reveal tab-content" data-tab="css">
+        <div class="video-thumb yt-lite" data-id="ESnrn1kAD4E">
+          <img src="https://img.youtube.com/vi/ESnrn1kAD4E/hqdefault.jpg" alt="CSS Tutorial - Apna College" loading="lazy">
+          <button class="yt-play-btn" aria-label="Play CSS Tutorial - Apna College">
+            <svg viewBox="0 0 68 48" width="68" height="48"><path d="M66.52,7.74c-0.78-2.93-2.49-5.41-5.42-6.19C55.79,.13,34,0,34,0S12.21,.13,6.9,1.55C3.97,2.33,2.27,4.81,1.48,7.74C0.06,13.05,0,24,0,24s0.06,10.95,1.48,16.26c0.78,2.93,2.49,5.41,5.42,6.19C12.21,47.87,34,48,34,48s21.79-0.13,27.1-1.55c2.93-0.78,4.64-3.26,5.42-6.19C67.94,34.95,68,24,68,24S67.94,13.05,66.52,7.74z" fill="#f00"/><path d="M 45,24 27,14 27,34" fill="#fff"/></svg>
+          </button>
+        </div>
+        <div class="video-info">
+          <span class="card-tag">CSS</span>
+          <h3>CSS Tutorial for Beginners (Hindi) - Apna College</h3>
+          <p>Complete CSS with project, notes & code in Hindi by Shraddha Didi - Apna College</p>
+        </div>
+      </div>
+
+      <div class="video-card reveal tab-content" data-tab="css">
+        <div class="video-thumb yt-lite" data-id="Edsxf_NBFrw">
+          <img src="https://img.youtube.com/vi/Edsxf_NBFrw/hqdefault.jpg" alt="CSS in One Video - CodeWithHarry" loading="lazy">
+          <button class="yt-play-btn" aria-label="Play CSS in One Video - CodeWithHarry">
+            <svg viewBox="0 0 68 48" width="68" height="48"><path d="M66.52,7.74c-0.78-2.93-2.49-5.41-5.42-6.19C55.79,.13,34,0,34,0S12.21,.13,6.9,1.55C3.97,2.33,2.27,4.81,1.48,7.74C0.06,13.05,0,24,0,24s0.06,10.95,1.48,16.26c0.78,2.93,2.49,5.41,5.42,6.19C12.21,47.87,34,48,34,48s21.79-0.13,27.1-1.55c2.93-0.78,4.64-3.26,5.42-6.19C67.94,34.95,68,24,68,24S67.94,13.05,66.52,7.74z" fill="#f00"/><path d="M 45,24 27,14 27,34" fill="#fff"/></svg>
+          </button>
+        </div>
+        <div class="video-info">
+          <span class="card-tag">CSS</span>
+          <h3>CSS Tutorial in One Video (Hindi) - CodeWithHarry</h3>
+          <p>Learn complete CSS in one video in Hindi by CodeWithHarry</p>
+        </div>
+      </div>
+
+      <div class="video-card reveal tab-content" data-tab="css">
+        <div class="video-thumb yt-lite" data-id="MSICFljRcb4">
+          <img src="https://img.youtube.com/vi/MSICFljRcb4/hqdefault.jpg" alt="CSS Course - Thapa Technical" loading="lazy">
+          <button class="yt-play-btn" aria-label="Play CSS Course - Thapa Technical">
+            <svg viewBox="0 0 68 48" width="68" height="48"><path d="M66.52,7.74c-0.78-2.93-2.49-5.41-5.42-6.19C55.79,.13,34,0,34,0S12.21,.13,6.9,1.55C3.97,2.33,2.27,4.81,1.48,7.74C0.06,13.05,0,24,0,24s0.06,10.95,1.48,16.26c0.78,2.93,2.49,5.41,5.42,6.19C12.21,47.87,34,48,34,48s21.79-0.13,27.1-1.55c2.93-0.78,4.64-3.26,5.42-6.19C67.94,34.95,68,24,68,24S67.94,13.05,66.52,7.74z" fill="#f00"/><path d="M 45,24 27,14 27,34" fill="#fff"/></svg>
+          </button>
+        </div>
+        <div class="video-info">
+          <span class="card-tag">CSS</span>
+          <h3>Best CSS Course (Hindi) - Thapa Technical</h3>
+          <p>Complete CSS course in Hindi with projects by Thapa Technical</p>
+        </div>
+      </div>
+
+      <div class="video-card reveal tab-content" data-tab="css">
+        <div class="video-thumb yt-lite" data-id="WyxzAU3p8CE">
+          <img src="https://img.youtube.com/vi/WyxzAU3p8CE/hqdefault.jpg" alt="CSS Flexbox & Grid - Yahoo Baba" loading="lazy">
+          <button class="yt-play-btn" aria-label="Play CSS Flexbox & Grid - Yahoo Baba">
+            <svg viewBox="0 0 68 48" width="68" height="48"><path d="M66.52,7.74c-0.78-2.93-2.49-5.41-5.42-6.19C55.79,.13,34,0,34,0S12.21,.13,6.9,1.55C3.97,2.33,2.27,4.81,1.48,7.74C0.06,13.05,0,24,0,24s0.06,10.95,1.48,16.26c0.78,2.93,2.49,5.41,5.42,6.19C12.21,47.87,34,48,34,48s21.79-0.13,27.1-1.55c2.93-0.78,4.64-3.26,5.42-6.19C67.94,34.95,68,24,68,24S67.94,13.05,66.52,7.74z" fill="#f00"/><path d="M 45,24 27,14 27,34" fill="#fff"/></svg>
+          </button>
+        </div>
+        <div class="video-info">
+          <span class="card-tag">CSS</span>
+          <h3>CSS Flexbox & Grid in Hindi - Yahoo Baba</h3>
+          <p>Learn CSS Flexbox and Grid layout in Hindi with practical examples</p>
+        </div>
+      </div>
+
+      <!-- JavaScript Videos (Indian Creators) -->
+      <div class="video-card reveal tab-content" data-tab="javascript">
+        <div class="video-thumb yt-lite" data-id="VlPiVmYuoqw">
+          <img src="https://img.youtube.com/vi/VlPiVmYuoqw/hqdefault.jpg" alt="JavaScript Tutorial - Apna College" loading="lazy">
+          <button class="yt-play-btn" aria-label="Play JavaScript Tutorial - Apna College">
+            <svg viewBox="0 0 68 48" width="68" height="48"><path d="M66.52,7.74c-0.78-2.93-2.49-5.41-5.42-6.19C55.79,.13,34,0,34,0S12.21,.13,6.9,1.55C3.97,2.33,2.27,4.81,1.48,7.74C0.06,13.05,0,24,0,24s0.06,10.95,1.48,16.26c0.78,2.93,2.49,5.41,5.42,6.19C12.21,47.87,34,48,34,48s21.79-0.13,27.1-1.55c2.93-0.78,4.64-3.26,5.42-6.19C67.94,34.95,68,24,68,24S67.94,13.05,66.52,7.74z" fill="#f00"/><path d="M 45,24 27,14 27,34" fill="#fff"/></svg>
+          </button>
+        </div>
+        <div class="video-info">
+          <span class="card-tag">JavaScript</span>
+          <h3>JavaScript Full Course (Hindi) - Apna College</h3>
+          <p>Complete JavaScript tutorial in Hindi with notes & projects by Apna College</p>
+        </div>
+      </div>
+
+      <div class="video-card reveal tab-content" data-tab="javascript">
+        <div class="video-thumb yt-lite" data-id="onbBV0uFVpo">
+          <img src="https://img.youtube.com/vi/onbBV0uFVpo/hqdefault.jpg" alt="JavaScript in One Video - CodeWithHarry" loading="lazy">
+          <button class="yt-play-btn" aria-label="Play JavaScript in One Video - CodeWithHarry">
+            <svg viewBox="0 0 68 48" width="68" height="48"><path d="M66.52,7.74c-0.78-2.93-2.49-5.41-5.42-6.19C55.79,.13,34,0,34,0S12.21,.13,6.9,1.55C3.97,2.33,2.27,4.81,1.48,7.74C0.06,13.05,0,24,0,24s0.06,10.95,1.48,16.26c0.78,2.93,2.49,5.41,5.42,6.19C12.21,47.87,34,48,34,48s21.79-0.13,27.1-1.55c2.93-0.78,4.64-3.26,5.42-6.19C67.94,34.95,68,24,68,24S67.94,13.05,66.52,7.74z" fill="#f00"/><path d="M 45,24 27,14 27,34" fill="#fff"/></svg>
+          </button>
+        </div>
+        <div class="video-info">
+          <span class="card-tag">JavaScript</span>
+          <h3>JavaScript in One Video (Hindi) - CodeWithHarry</h3>
+          <p>Learn complete JavaScript in one video in Hindi by CodeWithHarry</p>
+        </div>
+      </div>
+
+      <div class="video-card reveal tab-content" data-tab="javascript">
+        <div class="video-thumb yt-lite" data-id="13gLB6hDHR8">
+          <img src="https://img.youtube.com/vi/13gLB6hDHR8/hqdefault.jpg" alt="JavaScript Basics - Thapa Technical" loading="lazy">
+          <button class="yt-play-btn" aria-label="Play JavaScript Basics - Thapa Technical">
+            <svg viewBox="0 0 68 48" width="68" height="48"><path d="M66.52,7.74c-0.78-2.93-2.49-5.41-5.42-6.19C55.79,.13,34,0,34,0S12.21,.13,6.9,1.55C3.97,2.33,2.27,4.81,1.48,7.74C0.06,13.05,0,24,0,24s0.06,10.95,1.48,16.26c0.78,2.93,2.49,5.41,5.42,6.19C12.21,47.87,34,48,34,48s21.79-0.13,27.1-1.55c2.93-0.78,4.64-3.26,5.42-6.19C67.94,34.95,68,24,68,24S67.94,13.05,66.52,7.74z" fill="#f00"/><path d="M 45,24 27,14 27,34" fill="#fff"/></svg>
+          </button>
+        </div>
+        <div class="video-info">
+          <span class="card-tag">JavaScript</span>
+          <h3>JavaScript Basics Course (Hindi) - Thapa Technical</h3>
+          <p>JavaScript basics complete course in Hindi with challenges by Thapa Technical</p>
+        </div>
+      </div>
+
+      <div class="video-card reveal tab-content" data-tab="javascript">
+        <div class="video-thumb yt-lite" data-id="hKB-YGF14SY">
+          <img src="https://img.youtube.com/vi/hKB-YGF14SY/hqdefault.jpg" alt="JavaScript DOM - Yahoo Baba" loading="lazy">
+          <button class="yt-play-btn" aria-label="Play JavaScript DOM - Yahoo Baba">
+            <svg viewBox="0 0 68 48" width="68" height="48"><path d="M66.52,7.74c-0.78-2.93-2.49-5.41-5.42-6.19C55.79,.13,34,0,34,0S12.21,.13,6.9,1.55C3.97,2.33,2.27,4.81,1.48,7.74C0.06,13.05,0,24,0,24s0.06,10.95,1.48,16.26c0.78,2.93,2.49,5.41,5.42,6.19C12.21,47.87,34,48,34,48s21.79-0.13,27.1-1.55c2.93-0.78,4.64-3.26,5.42-6.19C67.94,34.95,68,24,68,24S67.94,13.05,66.52,7.74z" fill="#f00"/><path d="M 45,24 27,14 27,34" fill="#fff"/></svg>
+          </button>
+        </div>
+        <div class="video-info">
+          <span class="card-tag">JavaScript</span>
+          <h3>JavaScript DOM in Hindi - Yahoo Baba</h3>
+          <p>JavaScript DOM manipulation complete tutorial in Hindi by Yahoo Baba</p>
+        </div>
+      </div>
+
+      <!-- Python Videos (Indian Creators) -->
+      <div class="video-card reveal tab-content" data-tab="python">
+        <div class="video-thumb yt-lite" data-id="7wnove7K-ZQ">
+          <img src="https://img.youtube.com/vi/7wnove7K-ZQ/hqdefault.jpg" alt="Python Course - CodeWithHarry" loading="lazy">
+          <button class="yt-play-btn" aria-label="Play Python Course - CodeWithHarry">
+            <svg viewBox="0 0 68 48" width="68" height="48"><path d="M66.52,7.74c-0.78-2.93-2.49-5.41-5.42-6.19C55.79,.13,34,0,34,0S12.21,.13,6.9,1.55C3.97,2.33,2.27,4.81,1.48,7.74C0.06,13.05,0,24,0,24s0.06,10.95,1.48,16.26c0.78,2.93,2.49,5.41,5.42,6.19C12.21,47.87,34,48,34,48s21.79-0.13,27.1-1.55c2.93-0.78,4.64-3.26,5.42-6.19C67.94,34.95,68,24,68,24S67.94,13.05,66.52,7.74z" fill="#f00"/><path d="M 45,24 27,14 27,34" fill="#fff"/></svg>
+          </button>
+        </div>
+        <div class="video-info">
+          <span class="card-tag">Python</span>
+          <h3>100 Days of Python (Hindi) - CodeWithHarry</h3>
+          <p>Complete Python course - 100 days of code in Hindi by CodeWithHarry</p>
+        </div>
+      </div>
+
+      <div class="video-card reveal tab-content" data-tab="python">
+        <div class="video-thumb yt-lite" data-id="fqF9M92jzUo">
+          <img src="https://img.youtube.com/vi/fqF9M92jzUo/hqdefault.jpg" alt="Python Crash Course - CodeWithHarry" loading="lazy">
+          <button class="yt-play-btn" aria-label="Play Python Crash Course - CodeWithHarry">
+            <svg viewBox="0 0 68 48" width="68" height="48"><path d="M66.52,7.74c-0.78-2.93-2.49-5.41-5.42-6.19C55.79,.13,34,0,34,0S12.21,.13,6.9,1.55C3.97,2.33,2.27,4.81,1.48,7.74C0.06,13.05,0,24,0,24s0.06,10.95,1.48,16.26c0.78,2.93,2.49,5.41,5.42,6.19C12.21,47.87,34,48,34,48s21.79-0.13,27.1-1.55c2.93-0.78,4.64-3.26,5.42-6.19C67.94,34.95,68,24,68,24S67.94,13.05,66.52,7.74z" fill="#f00"/><path d="M 45,24 27,14 27,34" fill="#fff"/></svg>
+          </button>
+        </div>
+        <div class="video-info">
+          <span class="card-tag">Python</span>
+          <h3>Python Crash Course (Hindi) - CodeWithHarry</h3>
+          <p>Python crash course with 5 projects in Hindi by CodeWithHarry</p>
+        </div>
+      </div>
+
+      <div class="video-card reveal tab-content" data-tab="python">
+        <div class="video-thumb yt-lite" data-id="vLqTf2b6GZw">
+          <img src="https://img.youtube.com/vi/vLqTf2b6GZw/hqdefault.jpg" alt="Python Tutorial - Apna College" loading="lazy">
+          <button class="yt-play-btn" aria-label="Play Python Tutorial - Apna College">
+            <svg viewBox="0 0 68 48" width="68" height="48"><path d="M66.52,7.74c-0.78-2.93-2.49-5.41-5.42-6.19C55.79,.13,34,0,34,0S12.21,.13,6.9,1.55C3.97,2.33,2.27,4.81,1.48,7.74C0.06,13.05,0,24,0,24s0.06,10.95,1.48,16.26c0.78,2.93,2.49,5.41,5.42,6.19C12.21,47.87,34,48,34,48s21.79-0.13,27.1-1.55c2.93-0.78,4.64-3.26,5.42-6.19C67.94,34.95,68,24,68,24S67.94,13.05,66.52,7.74z" fill="#f00"/><path d="M 45,24 27,14 27,34" fill="#fff"/></svg>
+          </button>
+        </div>
+        <div class="video-info">
+          <span class="card-tag">Python</span>
+          <h3>Python Full Course (Hindi) - Apna College</h3>
+          <p>Complete Python tutorial for beginners in Hindi by Apna College</p>
+        </div>
+      </div>
+
+      <!-- Project Videos (Indian Creators) -->
+      <div class="video-card reveal tab-content" data-tab="projects">
+        <div class="video-thumb yt-lite" data-id="oYRda7UtuhA">
+          <img src="https://img.youtube.com/vi/oYRda7UtuhA/hqdefault.jpg" alt="Portfolio Website - CodeWithHarry" loading="lazy">
+          <button class="yt-play-btn" aria-label="Play Portfolio Website - CodeWithHarry">
+            <svg viewBox="0 0 68 48" width="68" height="48"><path d="M66.52,7.74c-0.78-2.93-2.49-5.41-5.42-6.19C55.79,.13,34,0,34,0S12.21,.13,6.9,1.55C3.97,2.33,2.27,4.81,1.48,7.74C0.06,13.05,0,24,0,24s0.06,10.95,1.48,16.26c0.78,2.93,2.49,5.41,5.42,6.19C12.21,47.87,34,48,34,48s21.79-0.13,27.1-1.55c2.93-0.78,4.64-3.26,5.42-6.19C67.94,34.95,68,24,68,24S67.94,13.05,66.52,7.74z" fill="#f00"/><path d="M 45,24 27,14 27,34" fill="#fff"/></svg>
+          </button>
+        </div>
+        <div class="video-info">
+          <span class="card-tag">Project</span>
+          <h3>Portfolio Website Project (Hindi) - CodeWithHarry</h3>
+          <p>Build a professional portfolio website from scratch in Hindi by CodeWithHarry</p>
+        </div>
+      </div>
+
+      <!-- Removed: NEGSEGMBuk8 (E-Commerce Website - Thapa Technical) - Video unavailable -->
+      <!-- Removed: MJkdaVFHrto (Netflix Clone - Apna College) - Wrong video (not Indian content) -->
+
+      <!-- Tools Videos (Indian Creators) -->
+      <!-- Removed: HkWI2YZwlmc (VS Code Setup - CodeWithHarry) - Video unavailable -->
+
+      <div class="video-card reveal tab-content" data-tab="tools">
+        <div class="video-thumb yt-lite" data-id="gwWKnnCMQ5c">
+          <img src="https://img.youtube.com/vi/gwWKnnCMQ5c/hqdefault.jpg" alt="Git & GitHub Hindi - CodeWithHarry" loading="lazy">
+          <button class="yt-play-btn" aria-label="Play Git & GitHub Hindi - CodeWithHarry">
+            <svg viewBox="0 0 68 48" width="68" height="48"><path d="M66.52,7.74c-0.78-2.93-2.49-5.41-5.42-6.19C55.79,.13,34,0,34,0S12.21,.13,6.9,1.55C3.97,2.33,2.27,4.81,1.48,7.74C0.06,13.05,0,24,0,24s0.06,10.95,1.48,16.26c0.78,2.93,2.49,5.41,5.42,6.19C12.21,47.87,34,48,34,48s21.79-0.13,27.1-1.55c2.93-0.78,4.64-3.26,5.42-6.19C67.94,34.95,68,24,68,24S67.94,13.05,66.52,7.74z" fill="#f00"/><path d="M 45,24 27,14 27,34" fill="#fff"/></svg>
+          </button>
+        </div>
+        <div class="video-info">
+          <span class="card-tag">Tools</span>
+          <h3>Git & GitHub Tutorial (Hindi) - CodeWithHarry</h3>
+          <p>Learn Git and GitHub from scratch in Hindi by CodeWithHarry</p>
+        </div>
+      </div>
+
+      <div class="video-card reveal tab-content" data-tab="tools">
+        <div class="video-thumb yt-lite" data-id="vz1RlUyrc3w">
+          <img src="https://img.youtube.com/vi/vz1RlUyrc3w/hqdefault.jpg" alt="Chrome DevTools Hindi" loading="lazy">
+          <button class="yt-play-btn" aria-label="Play Chrome DevTools Hindi">
+            <svg viewBox="0 0 68 48" width="68" height="48"><path d="M66.52,7.74c-0.78-2.93-2.49-5.41-5.42-6.19C55.79,.13,34,0,34,0S12.21,.13,6.9,1.55C3.97,2.33,2.27,4.81,1.48,7.74C0.06,13.05,0,24,0,24s0.06,10.95,1.48,16.26c0.78,2.93,2.49,5.41,5.42,6.19C12.21,47.87,34,48,34,48s21.79-0.13,27.1-1.55c2.93-0.78,4.64-3.26,5.42-6.19C67.94,34.95,68,24,68,24S67.94,13.05,66.52,7.74z" fill="#f00"/><path d="M 45,24 27,14 27,34" fill="#fff"/></svg>
+          </button>
+        </div>
+        <div class="video-info">
+          <span class="card-tag">Tools</span>
+          <h3>Chrome DevTools Tutorial (Hindi) - WebDev Hindi</h3>
+          <p>Master Chrome DevTools for debugging in Hindi</p>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- View More on YouTube -->
+    <div class="text-center mt-40">
+      <a href="https://youtube.com/@code4boy-l4u" target="_blank" class="btn-primary">
+        <i class="fab fa-youtube"></i> View More on YouTube
+      </a>
+    </div>
+  </section>
+
+  <!-- Subscriber Growth Section -->
+  <section class="section subscriber-section reveal">
+    <div class="subscriber-section-header">
+      <h2>Grow With <span style="background:var(--gradient-neon);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">Code4Boy</span></h2>
+      <p>Help us grow our YouTube community! Subscribe, share, and join the coding family</p>
+    </div>
+    <div class="subscriber-cards">
+      <div class="sub-card reveal">
+        <div class="sub-card-icon red">
+          <i class="fab fa-youtube"></i>
+        </div>
+        <h3>Subscribe Now</h3>
+        <p>Subscribe to Code4Boy YouTube channel and never miss a tutorial, project walkthrough, or live coding session!</p>
+        <a href="https://youtube.com/@code4boy-l4u?sub_confirmation=1" target="_blank" class="sub-card-btn primary">
+          <i class="fab fa-youtube"></i> Subscribe Free
+        </a>
+      </div>
+
+      <div class="sub-card reveal">
+        <div class="sub-card-icon blue">
+          <i class="fas fa-bell"></i>
+        </div>
+        <h3>Turn On Notifications</h3>
+        <p>Click the bell icon on YouTube after subscribing so you get notified every time we upload a new video or go live!</p>
+        <a href="https://youtube.com/@code4boy-l4u" target="_blank" class="sub-card-btn">
+          <i class="fas fa-bell"></i> Go to Channel
+        </a>
+      </div>
+
+      <div class="sub-card reveal">
+        <div class="sub-card-icon green">
+          <i class="fas fa-share-alt"></i>
+        </div>
+        <h3>Share With Friends</h3>
+        <p>Share our channel with friends who want to learn coding. Spread the knowledge and help our community grow!</p>
+        <button class="sub-card-btn" onclick="openShareModal()">
+          <i class="fas fa-share-alt"></i> Share Channel
+        </button>
+      </div>
+
+      <div class="sub-card reveal">
+        <div class="sub-card-icon purple">
+          <i class="fas fa-upload"></i>
+        </div>
+        <h3>Upload Your Videos</h3>
+        <p>Got a coding tutorial or project to share? Upload your own videos to YouTube and join the creator community!</p>
+        <button class="sub-card-btn" onclick="openUploadModal()">
+          <i class="fas fa-upload"></i> Learn How
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Share Modal -->
+  <div class="share-modal-overlay" id="shareModal">
+    <div class="share-modal">
+      <button class="share-modal-close" onclick="closeShareModal()" aria-label="Close">
+        <i class="fas fa-times"></i>
+      </button>
+      <h3><i class="fas fa-share-alt" style="color:var(--neon-cyan);margin-right:8px"></i> Share Code4Boy Channel</h3>
+      <p>Share our YouTube channel with your friends and help us grow!</p>
+      <div class="share-links">
+        <a href="https://api.whatsapp.com/send?text=Check%20out%20Code4Boy%20YouTube%20channel%20for%20free%20coding%20tutorials!%20https://youtube.com/@code4boy-l4u" target="_blank" class="share-link whatsapp">
+          <i class="fab fa-whatsapp"></i>
+          <span>WhatsApp</span>
+        </a>
+        <a href="https://t.me/share/url?url=https://youtube.com/@code4boy-l4u&text=Check%20out%20Code4Boy%20-%20Free%20coding%20tutorials!" target="_blank" class="share-link telegram">
+          <i class="fab fa-telegram"></i>
+          <span>Telegram</span>
+        </a>
+        <a href="https://twitter.com/intent/tweet?text=Check%20out%20Code4Boy%20YouTube%20channel%20for%20free%20coding%20tutorials!&url=https://youtube.com/@code4boy-l4u" target="_blank" class="share-link twitter">
+          <i class="fab fa-twitter"></i>
+          <span>Twitter</span>
+        </a>
+        <a href="https://www.facebook.com/sharer/sharer.php?u=https://youtube.com/@code4boy-l4u" target="_blank" class="share-link facebook">
+          <i class="fab fa-facebook"></i>
+          <span>Facebook</span>
+        </a>
+        <a href="https://www.instagram.com/" target="_blank" class="share-link instagram">
+          <i class="fab fa-instagram"></i>
+          <span>Instagram</span>
+        </a>
+        <button class="share-link copy-link" onclick="copyChannelLink()">
+          <i class="fas fa-link"></i>
+          <span>Copy Link</span>
+        </button>
+      </div>
+      <div class="copy-url-bar">
+        <input type="text" value="https://youtube.com/@code4boy-l4u" readonly id="channelUrl">
+        <button onclick="copyChannelLink()">Copy</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Upload Modal -->
+  <div class="upload-modal-overlay" id="uploadModal">
+    <div class="upload-modal">
+      <button class="upload-modal-close" onclick="closeUploadModal()" aria-label="Close">
+        <i class="fas fa-times"></i>
+      </button>
+      <div class="upload-icon">
+        <i class="fas fa-cloud-upload-alt"></i>
+      </div>
+      <h3>Upload Video to YouTube</h3>
+      <p>Follow these simple steps to upload your coding tutorial or project video to YouTube:</p>
+      <ul class="upload-steps">
+        <li>
+          <span class="step-num">1</span>
+          <span>Go to <strong>YouTube Studio</strong> by clicking the button below</span>
+        </li>
+        <li>
+          <span class="step-num">2</span>
+          <span>Click the <strong>Create</strong> button (camera icon with +) at the top right</span>
+        </li>
+        <li>
+          <span class="step-num">3</span>
+          <span>Select <strong>Upload Video</strong> and choose your video file</span>
+        </li>
+        <li>
+          <span class="step-num">4</span>
+          <span>Add a <strong>title, description, tags</strong> and thumbnail for your video</span>
+        </li>
+        <li>
+          <span class="step-num">5</span>
+          <span>Set visibility to <strong>Public</strong> and click <strong>Publish</strong>!</span>
+        </li>
+      </ul>
+      <div class="upload-modal-btns">
+        <a href="https://studio.youtube.com" target="_blank" rel="noopener noreferrer" class="upload-modal-btn primary">
+          <i class="fas fa-external-link-alt"></i> Open YouTube Studio
+        </a>
+        <button class="upload-modal-btn secondary" onclick="closeUploadModal()">
+          <i class="fas fa-times"></i> Close
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <div class="nav-logo" style="margin-bottom:20px">
+          <img src="../images/logo.jpg" alt="Code4Boy" style="width:45px;height:45px;border-radius:50%;border:2px solid rgba(26,115,232,0.2)">
+          <span style="font-family:var(--font-heading);font-size:1.2rem;font-weight:700;color:#1a73e8">CODE4BOY</span>
+        </div>
+        <p>Learn coding free with AI-powered tutorials, real-world projects, and smart error solutions.</p>
+        <div class="social-links">
+          <a href="https://youtube.com/@code4boy-l4u" target="_blank" class="social-link"><i class="fab fa-youtube"></i></a>
+          <a href="https://github.com/code4boy" target="_blank" class="social-link"><i class="fab fa-github"></i></a>
+          <a href="https://twitter.com/code4boy" target="_blank" class="social-link"><i class="fab fa-twitter"></i></a>
+          <a href="https://instagram.com/code4boy" target="_blank" class="social-link"><i class="fab fa-instagram"></i></a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h3>Quick Links</h3>
+        <ul class="footer-links">
+          <li><a href="../index.html"><i class="fas fa-chevron-right"></i> Home</a></li>
+          <li><a href="tutorials.html"><i class="fas fa-chevron-right"></i> Tutorials</a></li>
+          <li><a href="projects.html"><i class="fas fa-chevron-right"></i> Projects</a></li>
+          <li><a href="tools.html"><i class="fas fa-chevron-right"></i> Tools</a></li>
+          <li><a href="errors.html"><i class="fas fa-chevron-right"></i> Error Solutions</a></li>
+          <li><a href="downloads.html"><i class="fas fa-chevron-right"></i> Downloads</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h3>Contact Us</h3>
+        <form class="contact-form">
+          <input type="text" placeholder="Your Name" required>
+          <input type="email" placeholder="Your Email" required>
+          <textarea placeholder="Your Message" required></textarea>
+          <button type="submit" class="btn-primary"><i class="fas fa-paper-plane"></i> Send</button>
+        </form>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2025 Code4Boy. All Rights Reserved.</p>
+      <div class="footer-bottom-links">
+        <a href="privacy-policy.html">Privacy Policy</a>
+        <a href="terms-of-use.html">Terms of Use</a>
+        <a href="sitemap.html">Sitemap</a>
+      </div>
+    </div>
+  </footer>
+
+  <button class="back-to-top"><i class="fas fa-chevron-up"></i></button>
+
+  <!-- Google Identity Services -->
+  <script src="https://accounts.google.com/gsi/client" async defer></script>
+  <script src="../js/google-config.js"></script>
+  <script src="../js/server-sync.js"></script>
+  <script src="../js/auth.js"></script>
+  <script src="../js/main.js"></script>
+  <script src="../js/mobile-animations.js"></script>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      document.querySelectorAll('.yt-lite').forEach(function(el) {
+        el.addEventListener('click', function() {
+          var id = this.getAttribute('data-id');
+          var iframe = document.createElement('iframe');
+          iframe.src = 'https://www.youtube.com/embed/' + id + '?autoplay=1';
+          iframe.setAttribute('frameborder', '0');
+          iframe.setAttribute('allowfullscreen', '');
+          iframe.setAttribute('allow', 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture');
+          this.innerHTML = '';
+          this.appendChild(iframe);
+          this.classList.add('playing');
+        });
+      });
+    });
+
+    // Upload Modal
+    function openUploadModal() {
+      document.getElementById('uploadModal').classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeUploadModal() {
+      document.getElementById('uploadModal').classList.remove('active');
+      document.body.style.overflow = 'auto';
+    }
+
+    // Share Modal
+    function openShareModal() {
+      document.getElementById('shareModal').classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeShareModal() {
+      document.getElementById('shareModal').classList.remove('active');
+      document.body.style.overflow = 'auto';
+    }
+
+    // Copy Channel Link
+    function copyChannelLink() {
+      var urlInput = document.getElementById('channelUrl');
+      urlInput.select();
+      urlInput.setSelectionRange(0, 99999);
+      navigator.clipboard.writeText(urlInput.value).then(function() {
+        var copyBtns = document.querySelectorAll('.copy-url-bar button');
+        copyBtns.forEach(function(btn) {
+          btn.textContent = 'Copied!';
+          setTimeout(function() { btn.textContent = 'Copy'; }, 2000);
+        });
+        var copyLink = document.querySelector('.copy-link span');
+        if (copyLink) {
+          copyLink.textContent = 'Copied!';
+          setTimeout(function() { copyLink.textContent = 'Copy Link'; }, 2000);
+        }
+      });
+    }
+
+    // Close modals on overlay click
+    document.addEventListener('click', function(e) {
+      if (e.target.id === 'uploadModal') closeUploadModal();
+      if (e.target.id === 'shareModal') closeShareModal();
+    });
+
+    // Close modals on Escape key
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') {
+        closeUploadModal();
+        closeShareModal();
+      }
+    });
+
+    // Live Stats Animated Counter
+    function animateLiveStats() {
+      var statNumbers = document.querySelectorAll('.live-stat-number');
+      statNumbers.forEach(function(el) {
+        var target = parseInt(el.getAttribute('data-target'));
+        var current = 0;
+        var duration = 2000;
+        var stepTime = Math.max(Math.floor(duration / target), 50);
+        var timer = setInterval(function() {
+          current++;
+          el.textContent = current;
+          if (current >= target) {
+            el.textContent = target;
+            clearInterval(timer);
+          }
+        }, stepTime);
+      });
+    }
+
+    // Trigger counter animation when stats section is visible
+    var statsObserver = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          animateLiveStats();
+          statsObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.3 });
+
+    var statsDashboard = document.querySelector('.live-stats-dashboard');
+    if (statsDashboard) {
+      statsObserver.observe(statsDashboard);
+    }
+  </script>
+  <script src="../js/miniplayer.js"></script>
+</body>
+</html>

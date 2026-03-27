@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VS Code Shortcuts Cheat Sheet - Code4Boy</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Segoe UI', sans-serif; background: #1a1a2e; color: #e0e0e0; padding: 30px; }
+    h1 { text-align: center; color: #0098ff; margin-bottom: 10px; font-size: 2rem; }
+    .subtitle { text-align: center; color: #888; margin-bottom: 40px; }
+    .section { margin-bottom: 35px; }
+    .section h2 { color: #00f0ff; font-size: 1.3rem; margin-bottom: 15px; border-bottom: 2px solid rgba(0,240,255,0.2); padding-bottom: 8px; }
+    table { width: 100%; border-collapse: collapse; margin-bottom: 10px; }
+    th { background: rgba(0,240,255,0.1); color: #00f0ff; text-align: left; padding: 10px 15px; font-size: 0.85rem; }
+    td { padding: 8px 15px; border-bottom: 1px solid rgba(255,255,255,0.05); font-size: 0.9rem; }
+    td:first-child { font-family: 'Courier New', monospace; white-space: nowrap; }
+    .key { display: inline-block; padding: 2px 8px; background: rgba(0,240,255,0.1); border: 1px solid rgba(0,240,255,0.2); border-radius: 4px; color: #00f0ff; font-size: 0.8rem; }
+    tr:hover { background: rgba(0,240,255,0.03); }
+    .note { background: rgba(0,240,255,0.05); border: 1px solid rgba(0,240,255,0.15); border-radius: 8px; padding: 12px 16px; margin: 10px 0; font-size: 0.9rem; color: #888; }
+    .footer { text-align: center; margin-top: 40px; color: #555; font-size: 0.85rem; }
+  </style>
+</head>
+<body>
+  <h1>VS Code Shortcuts Cheat Sheet</h1>
+  <p class="subtitle">Code4Boy - Boost Your Productivity</p>
+  <p class="note">These shortcuts are for Windows/Linux. For Mac, replace Ctrl with Cmd and Alt with Option.</p>
+
+  <div class="section">
+    <h2>General</h2>
+    <table>
+      <tr><th>Shortcut</th><th>Action</th></tr>
+      <tr><td><span class="key">Ctrl + Shift + P</span></td><td>Command Palette (access all commands)</td></tr>
+      <tr><td><span class="key">Ctrl + P</span></td><td>Quick Open (search files)</td></tr>
+      <tr><td><span class="key">Ctrl + ,</span></td><td>Open Settings</td></tr>
+      <tr><td><span class="key">Ctrl + `</span></td><td>Toggle Terminal</td></tr>
+      <tr><td><span class="key">Ctrl + B</span></td><td>Toggle Sidebar</td></tr>
+      <tr><td><span class="key">Ctrl + Shift + E</span></td><td>Explorer panel</td></tr>
+      <tr><td><span class="key">Ctrl + Shift + F</span></td><td>Search across files</td></tr>
+    </table>
+  </div>
+
+  <div class="section">
+    <h2>Editing</h2>
+    <table>
+      <tr><th>Shortcut</th><th>Action</th></tr>
+      <tr><td><span class="key">Ctrl + D</span></td><td>Select next occurrence of word</td></tr>
+      <tr><td><span class="key">Ctrl + Shift + L</span></td><td>Select all occurrences of word</td></tr>
+      <tr><td><span class="key">Alt + Up/Down</span></td><td>Move line up/down</td></tr>
+      <tr><td><span class="key">Shift + Alt + Up/Down</span></td><td>Copy line up/down</td></tr>
+      <tr><td><span class="key">Ctrl + Shift + K</span></td><td>Delete entire line</td></tr>
+      <tr><td><span class="key">Ctrl + /</span></td><td>Toggle line comment</td></tr>
+      <tr><td><span class="key">Shift + Alt + A</span></td><td>Toggle block comment</td></tr>
+      <tr><td><span class="key">Ctrl + H</span></td><td>Find and Replace</td></tr>
+      <tr><td><span class="key">Ctrl + Z</span></td><td>Undo</td></tr>
+      <tr><td><span class="key">Ctrl + Shift + Z</span></td><td>Redo</td></tr>
+      <tr><td><span class="key">Ctrl + [ / ]</span></td><td>Indent / Outdent line</td></tr>
+    </table>
+  </div>
+
+  <div class="section">
+    <h2>Multi-Cursor</h2>
+    <table>
+      <tr><th>Shortcut</th><th>Action</th></tr>
+      <tr><td><span class="key">Alt + Click</span></td><td>Add cursor at click position</td></tr>
+      <tr><td><span class="key">Ctrl + Alt + Up/Down</span></td><td>Add cursor above/below</td></tr>
+      <tr><td><span class="key">Ctrl + D</span></td><td>Add cursor at next match</td></tr>
+    </table>
+  </div>
+
+  <div class="section">
+    <h2>Navigation</h2>
+    <table>
+      <tr><th>Shortcut</th><th>Action</th></tr>
+      <tr><td><span class="key">Ctrl + G</span></td><td>Go to line number</td></tr>
+      <tr><td><span class="key">Ctrl + Shift + O</span></td><td>Go to symbol in file</td></tr>
+      <tr><td><span class="key">F12</span></td><td>Go to definition</td></tr>
+      <tr><td><span class="key">Alt + Left/Right</span></td><td>Navigate back/forward</td></tr>
+      <tr><td><span class="key">Ctrl + Tab</span></td><td>Switch between open files</td></tr>
+    </table>
+  </div>
+
+  <div class="section">
+    <h2>Must-Have Extensions</h2>
+    <table>
+      <tr><th>Extension</th><th>What It Does</th></tr>
+      <tr><td>Live Server</td><td>Auto-reload browser on file save</td></tr>
+      <tr><td>Prettier</td><td>Auto-format code on save</td></tr>
+      <tr><td>ESLint</td><td>JavaScript linting and error detection</td></tr>
+      <tr><td>Auto Rename Tag</td><td>Auto-rename matching HTML tags</td></tr>
+      <tr><td>Material Icon Theme</td><td>Beautiful file icons</td></tr>
+      <tr><td>GitLens</td><td>Enhanced Git integration</td></tr>
+      <tr><td>Path Intellisense</td><td>Auto-complete file paths</td></tr>
+    </table>
+  </div>
+
+  <p class="footer">Code4Boy &bull; vscode-shortcuts &bull; Print this page for a desk reference!</p>
+</body>
+</html>

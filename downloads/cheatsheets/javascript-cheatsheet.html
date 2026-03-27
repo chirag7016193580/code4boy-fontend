@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JavaScript ES6+ Cheat Sheet - Code4Boy</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Segoe UI', sans-serif; background: #1a1a2e; color: #e0e0e0; padding: 30px; }
+    h1 { text-align: center; color: #f7df1e; margin-bottom: 10px; font-size: 2rem; }
+    .subtitle { text-align: center; color: #888; margin-bottom: 40px; }
+    .section { margin-bottom: 35px; }
+    .section h2 { color: #00f0ff; font-size: 1.3rem; margin-bottom: 15px; border-bottom: 2px solid rgba(0,240,255,0.2); padding-bottom: 8px; }
+    .code-box { background: rgba(0,0,0,0.3); border: 1px solid rgba(0,240,255,0.15); border-radius: 8px; padding: 15px; margin: 8px 0 15px; font-family: 'Courier New', monospace; font-size: 0.88rem; line-height: 1.7; overflow-x: auto; }
+    .keyword { color: #c792ea; }
+    .string { color: #c3e88d; }
+    .comment { color: #546e7a; }
+    .func { color: #82aaff; }
+    .num { color: #f78c6c; }
+    table { width: 100%; border-collapse: collapse; margin-bottom: 10px; }
+    th { background: rgba(0,240,255,0.1); color: #00f0ff; text-align: left; padding: 10px 15px; font-size: 0.85rem; }
+    td { padding: 8px 15px; border-bottom: 1px solid rgba(255,255,255,0.05); font-size: 0.9rem; }
+    td:first-child { color: #82aaff; font-family: 'Courier New', monospace; }
+    .footer { text-align: center; margin-top: 40px; color: #555; font-size: 0.85rem; }
+    @media print { body { background: #fff; color: #333; } }
+  </style>
+</head>
+<body>
+  <h1>JavaScript ES6+ Cheat Sheet</h1>
+  <p class="subtitle">Code4Boy - Complete Quick Reference</p>
+
+  <div class="section">
+    <h2>Variables & Data Types</h2>
+    <div class="code-box">
+<span class="keyword">let</span> name = <span class="string">"Code4Boy"</span>;      <span class="comment">// Can be reassigned</span>
+<span class="keyword">const</span> PI = <span class="num">3.14</span>;             <span class="comment">// Cannot be reassigned</span>
+<span class="keyword">var</span> old = <span class="string">"avoid using var"</span>; <span class="comment">// Function-scoped (legacy)</span>
+
+<span class="comment">// Data Types</span>
+<span class="keyword">let</span> str = <span class="string">"Hello"</span>;          <span class="comment">// String</span>
+<span class="keyword">let</span> num = <span class="num">42</span>;               <span class="comment">// Number</span>
+<span class="keyword">let</span> bool = <span class="keyword">true</span>;            <span class="comment">// Boolean</span>
+<span class="keyword">let</span> arr = [<span class="num">1</span>, <span class="num">2</span>, <span class="num">3</span>];        <span class="comment">// Array</span>
+<span class="keyword">let</span> obj = { key: <span class="string">"value"</span> }; <span class="comment">// Object</span>
+<span class="keyword">let</span> n = <span class="keyword">null</span>;               <span class="comment">// Null</span>
+<span class="keyword">let</span> u = <span class="keyword">undefined</span>;          <span class="comment">// Undefined</span>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>Functions</h2>
+    <div class="code-box">
+<span class="comment">// Regular Function</span>
+<span class="keyword">function</span> <span class="func">greet</span>(name) {
+  <span class="keyword">return</span> <span class="string">`Hello, ${name}!`</span>;
+}
+
+<span class="comment">// Arrow Function</span>
+<span class="keyword">const</span> <span class="func">add</span> = (a, b) => a + b;
+
+<span class="comment">// Default Parameters</span>
+<span class="keyword">const</span> <span class="func">welcome</span> = (name = <span class="string">"Guest"</span>) => <span class="string">`Hi ${name}`</span>;
+
+<span class="comment">// Rest Parameters</span>
+<span class="keyword">const</span> <span class="func">sum</span> = (...nums) => nums.<span class="func">reduce</span>((a, b) => a + b, <span class="num">0</span>);
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>Array Methods</h2>
+    <table>
+      <tr><th>Method</th><th>Description</th><th>Example</th></tr>
+      <tr><td>.map()</td><td>Transform each element</td><td>arr.map(x => x * 2)</td></tr>
+      <tr><td>.filter()</td><td>Keep elements that pass test</td><td>arr.filter(x => x > 5)</td></tr>
+      <tr><td>.reduce()</td><td>Reduce to single value</td><td>arr.reduce((a,b) => a+b, 0)</td></tr>
+      <tr><td>.find()</td><td>Find first matching element</td><td>arr.find(x => x > 3)</td></tr>
+      <tr><td>.findIndex()</td><td>Find index of first match</td><td>arr.findIndex(x => x > 3)</td></tr>
+      <tr><td>.forEach()</td><td>Loop through each element</td><td>arr.forEach(x => log(x))</td></tr>
+      <tr><td>.includes()</td><td>Check if array contains value</td><td>arr.includes(5)</td></tr>
+      <tr><td>.some()</td><td>Check if any element passes</td><td>arr.some(x => x > 10)</td></tr>
+      <tr><td>.every()</td><td>Check if all elements pass</td><td>arr.every(x => x > 0)</td></tr>
+      <tr><td>.sort()</td><td>Sort elements</td><td>arr.sort((a,b) => a-b)</td></tr>
+      <tr><td>.flat()</td><td>Flatten nested arrays</td><td>[[1],[2]].flat()</td></tr>
+      <tr><td>...spread</td><td>Spread array elements</td><td>[...arr1, ...arr2]</td></tr>
+    </table>
+  </div>
+
+  <div class="section">
+    <h2>Destructuring & Spread</h2>
+    <div class="code-box">
+<span class="comment">// Array Destructuring</span>
+<span class="keyword">const</span> [a, b, ...rest] = [<span class="num">1</span>, <span class="num">2</span>, <span class="num">3</span>, <span class="num">4</span>];
+
+<span class="comment">// Object Destructuring</span>
+<span class="keyword">const</span> { name, age, ...others } = { name: <span class="string">"Ali"</span>, age: <span class="num">25</span>, city: <span class="string">"Delhi"</span> };
+
+<span class="comment">// Spread Operator</span>
+<span class="keyword">const</span> merged = { ...obj1, ...obj2 };
+<span class="keyword">const</span> clone = [...originalArray];
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>Promises & Async/Await</h2>
+    <div class="code-box">
+<span class="comment">// Promise</span>
+<span class="keyword">const</span> promise = <span class="keyword">new</span> <span class="func">Promise</span>((resolve, reject) => {
+  setTimeout(() => <span class="func">resolve</span>(<span class="string">"Done!"</span>), <span class="num">1000</span>);
+});
+promise.<span class="func">then</span>(result => <span class="func">console.log</span>(result));
+
+<span class="comment">// Async/Await</span>
+<span class="keyword">async function</span> <span class="func">fetchData</span>() {
+  <span class="keyword">const</span> res = <span class="keyword">await</span> <span class="func">fetch</span>(<span class="string">"https://api.example.com/data"</span>);
+  <span class="keyword">const</span> data = <span class="keyword">await</span> res.<span class="func">json</span>();
+  <span class="keyword">return</span> data;
+}
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>DOM Manipulation</h2>
+    <div class="code-box">
+<span class="comment">// Select Elements</span>
+document.<span class="func">getElementById</span>(<span class="string">"id"</span>);
+document.<span class="func">querySelector</span>(<span class="string">".class"</span>);
+document.<span class="func">querySelectorAll</span>(<span class="string">"div"</span>);
+
+<span class="comment">// Modify Elements</span>
+el.textContent = <span class="string">"New text"</span>;
+el.innerHTML = <span class="string">"&lt;b&gt;Bold&lt;/b&gt;"</span>;
+el.style.color = <span class="string">"red"</span>;
+el.classList.<span class="func">add</span>(<span class="string">"active"</span>);
+el.classList.<span class="func">toggle</span>(<span class="string">"hidden"</span>);
+
+<span class="comment">// Events</span>
+el.<span class="func">addEventListener</span>(<span class="string">"click"</span>, (e) => { ... });
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>Template Literals & String Methods</h2>
+    <div class="code-box">
+<span class="comment">// Template Literals</span>
+<span class="keyword">const</span> msg = <span class="string">`Hello ${name}, you are ${age} years old`</span>;
+
+<span class="comment">// String Methods</span>
+str.<span class="func">toUpperCase</span>()    <span class="comment">// "HELLO"</span>
+str.<span class="func">toLowerCase</span>()    <span class="comment">// "hello"</span>
+str.<span class="func">includes</span>(<span class="string">"lo"</span>)   <span class="comment">// true</span>
+str.<span class="func">startsWith</span>(<span class="string">"He"</span>) <span class="comment">// true</span>
+str.<span class="func">split</span>(<span class="string">", "</span>)       <span class="comment">// ["a", "b"]</span>
+str.<span class="func">trim</span>()            <span class="comment">// Remove whitespace</span>
+str.<span class="func">replace</span>(<span class="string">"a"</span>, <span class="string">"b"</span>) <span class="comment">// Replace first match</span>
+str.<span class="func">slice</span>(<span class="num">0</span>, <span class="num">5</span>)       <span class="comment">// Extract substring</span>
+    </div>
+  </div>
+
+  <p class="footer">Code4Boy &bull; javascript-es6-cheatsheet &bull; Print this page for reference!</p>
+</body>
+</html>

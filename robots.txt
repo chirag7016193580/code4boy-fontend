@@ -1,0 +1,10 @@
+# Code4Boy - Robots.txt
+# https://code4boy.com
+
+User-agent: *
+Allow: /
+Disallow: /admin.html
+Disallow: /admin
+
+# Sitemap
+Sitemap: https://code4boy.com/sitemap.xml

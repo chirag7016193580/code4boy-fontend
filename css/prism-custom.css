@@ -1,0 +1,154 @@
+/**
+ * Custom Prism.js overrides for Code4Boy
+ * Ensures syntax highlighting blends with the site's dark neon theme.
+ */
+
+/* Override Prism's default background so it matches Code4Boy code blocks */
+.code-block pre[class*="language-"],
+.code-block code[class*="language-"] {
+  background: rgba(6, 6, 19, 0.85) !important;
+  text-shadow: none !important;
+  font-family: var(--font-mono, 'JetBrains Mono', 'Fira Code', 'Cascadia Code', monospace) !important;
+  font-size: 0.9rem !important;
+  line-height: 1.7 !important;
+  tab-size: 2;
+}
+
+.code-block pre[class*="language-"] {
+  padding: 20px !important;
+  margin: 0 !important;
+  overflow-x: auto;
+  border-radius: 0 0 14px 14px;
+}
+
+/* Token colors - vibrant neon palette for dark background */
+.code-block .token.comment,
+.code-block .token.prolog,
+.code-block .token.doctype,
+.code-block .token.cdata {
+  color: #6a7a8a !important;
+  font-style: italic;
+}
+
+.code-block .token.punctuation {
+  color: #c0caf5 !important;
+}
+
+.code-block .token.namespace {
+  opacity: 0.8;
+}
+
+.code-block .token.property,
+.code-block .token.tag,
+.code-block .token.boolean,
+.code-block .token.number,
+.code-block .token.constant,
+.code-block .token.symbol,
+.code-block .token.deleted {
+  color: #ff7b72 !important;
+}
+
+.code-block .token.selector,
+.code-block .token.attr-name,
+.code-block .token.string,
+.code-block .token.char,
+.code-block .token.builtin,
+.code-block .token.inserted {
+  color: #7ee787 !important;
+}
+
+.code-block .token.operator,
+.code-block .token.entity,
+.code-block .token.url,
+.language-css .code-block .token.string,
+.style .code-block .token.string {
+  color: #79c0ff !important;
+}
+
+.code-block .token.atrule,
+.code-block .token.attr-value,
+.code-block .token.keyword {
+  color: #ff79c6 !important;
+}
+
+.code-block .token.function,
+.code-block .token.class-name {
+  color: #d2a8ff !important;
+}
+
+.code-block .token.regex,
+.code-block .token.important,
+.code-block .token.variable {
+  color: #ffa657 !important;
+}
+
+.code-block .token.important,
+.code-block .token.bold {
+  font-weight: bold;
+}
+
+.code-block .token.italic {
+  font-style: italic;
+}
+
+.code-block .token.entity {
+  cursor: help;
+}
+
+/* Light mode - keep code blocks dark for readability */
+[data-theme="light"] .code-block pre[class*="language-"],
+[data-theme="light"] .code-block code[class*="language-"] {
+  background: #1e1e2e !important;
+  color: #cdd6f4 !important;
+}
+
+[data-theme="light"] .code-block .token.comment,
+[data-theme="light"] .code-block .token.prolog,
+[data-theme="light"] .code-block .token.doctype,
+[data-theme="light"] .code-block .token.cdata {
+  color: #6c7086 !important;
+}
+
+[data-theme="light"] .code-block .token.punctuation {
+  color: #cdd6f4 !important;
+}
+
+[data-theme="light"] .code-block .token.property,
+[data-theme="light"] .code-block .token.tag,
+[data-theme="light"] .code-block .token.boolean,
+[data-theme="light"] .code-block .token.number,
+[data-theme="light"] .code-block .token.constant,
+[data-theme="light"] .code-block .token.symbol,
+[data-theme="light"] .code-block .token.deleted {
+  color: #f38ba8 !important;
+}
+
+[data-theme="light"] .code-block .token.selector,
+[data-theme="light"] .code-block .token.attr-name,
+[data-theme="light"] .code-block .token.string,
+[data-theme="light"] .code-block .token.char,
+[data-theme="light"] .code-block .token.builtin,
+[data-theme="light"] .code-block .token.inserted {
+  color: #a6e3a1 !important;
+}
+
+[data-theme="light"] .code-block .token.keyword,
+[data-theme="light"] .code-block .token.atrule,
+[data-theme="light"] .code-block .token.attr-value {
+  color: #cba6f7 !important;
+}
+
+[data-theme="light"] .code-block .token.function,
+[data-theme="light"] .code-block .token.class-name {
+  color: #89b4fa !important;
+}
+
+[data-theme="light"] .code-block .token.regex,
+[data-theme="light"] .code-block .token.important,
+[data-theme="light"] .code-block .token.variable {
+  color: #fab387 !important;
+}
+
+[data-theme="light"] .code-block .token.operator {
+  color: #89dceb !important;
+}

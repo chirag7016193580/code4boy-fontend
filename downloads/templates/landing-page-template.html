@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Landing Page Template - Code4Boy</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Segoe UI', sans-serif; color: #333; }
+    .hero { min-height: 100vh; display: flex; align-items: center; justify-content: center; text-align: center; padding: 20px; background: linear-gradient(135deg, #6366f1, #8b5cf6, #a855f7); color: #fff; }
+    .hero h1 { font-size: 3rem; margin-bottom: 20px; }
+    .hero p { font-size: 1.2rem; opacity: 0.9; max-width: 600px; margin: 0 auto 30px; }
+    .cta { display: inline-block; padding: 15px 40px; background: #fff; color: #6366f1; font-weight: 700; text-decoration: none; border-radius: 50px; font-size: 1.1rem; transition: 0.3s; }
+    .cta:hover { transform: scale(1.05); box-shadow: 0 10px 30px rgba(0,0,0,0.2); }
+    .features { max-width: 1100px; margin: 0 auto; padding: 80px 20px; }
+    .features h2 { text-align: center; font-size: 2rem; margin-bottom: 50px; }
+    .feature-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; }
+    .feature { text-align: center; padding: 30px; border-radius: 12px; background: #f8f9fa; }
+    .feature .icon { font-size: 2.5rem; margin-bottom: 15px; }
+    .feature h3 { margin-bottom: 10px; color: #6366f1; }
+    .pricing { background: #f8f9fa; padding: 80px 20px; }
+    .pricing h2 { text-align: center; font-size: 2rem; margin-bottom: 50px; }
+    .price-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; max-width: 900px; margin: 0 auto; }
+    .price-card { background: #fff; border-radius: 12px; padding: 40px 30px; text-align: center; box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
+    .price-card.featured { border: 2px solid #6366f1; transform: scale(1.05); }
+    .price-card h3 { margin-bottom: 10px; }
+    .price { font-size: 2.5rem; font-weight: 700; color: #6366f1; margin: 15px 0; }
+    .price span { font-size: 1rem; color: #888; }
+    .price-card ul { list-style: none; margin: 20px 0; }
+    .price-card li { padding: 8px 0; color: #666; }
+    footer { text-align: center; padding: 30px; background: #1a1a2e; color: #888; }
+    @media (max-width: 768px) { .hero h1 { font-size: 2rem; } .price-card.featured { transform: none; } }
+  </style>
+</head>
+<body>
+  <div class="hero">
+    <div>
+      <h1>Your Product Name</h1>
+      <p>A compelling tagline that describes your product or service in one powerful sentence.</p>
+      <a href="#pricing" class="cta">Get Started Free</a>
+    </div>
+  </div>
+  <div class="features">
+    <h2>Why Choose Us?</h2>
+    <div class="feature-grid">
+      <div class="feature">
+        <div class="icon">&#9889;</div>
+        <h3>Lightning Fast</h3>
+        <p>Optimized performance that loads in milliseconds, giving users the best experience.</p>
+      </div>
+      <div class="feature">
+        <div class="icon">&#128274;</div>
+        <h3>Secure</h3>
+        <p>Enterprise-grade security to protect your data and your users' privacy.</p>
+      </div>
+      <div class="feature">
+        <div class="icon">&#128736;</div>
+        <h3>Easy to Use</h3>
+        <p>Intuitive interface that anyone can use without technical knowledge.</p>
+      </div>
+    </div>
+  </div>
+  <div class="pricing" id="pricing">
+    <h2>Simple Pricing</h2>
+    <div class="price-cards">
+      <div class="price-card">
+        <h3>Basic</h3>
+        <div class="price">Free <span>/month</span></div>
+        <ul>
+          <li>5 Projects</li>
+          <li>Basic Support</li>
+          <li>1GB Storage</li>
+        </ul>
+      </div>
+      <div class="price-card featured">
+        <h3>Pro</h3>
+        <div class="price">$19 <span>/month</span></div>
+        <ul>
+          <li>Unlimited Projects</li>
+          <li>Priority Support</li>
+          <li>50GB Storage</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <footer>
+    <p>Built with Code4Boy Landing Page Template</p>
+  </footer>
+</body>
+</html>

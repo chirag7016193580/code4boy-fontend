@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Git & GitHub Cheat Sheet - Code4Boy</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Segoe UI', sans-serif; background: #1a1a2e; color: #e0e0e0; padding: 30px; }
+    h1 { text-align: center; color: #fff; margin-bottom: 10px; font-size: 2rem; }
+    .subtitle { text-align: center; color: #888; margin-bottom: 40px; }
+    .section { margin-bottom: 35px; }
+    .section h2 { color: #00f0ff; font-size: 1.3rem; margin-bottom: 15px; border-bottom: 2px solid rgba(0,240,255,0.2); padding-bottom: 8px; }
+    table { width: 100%; border-collapse: collapse; margin-bottom: 10px; }
+    th { background: rgba(0,240,255,0.1); color: #00f0ff; text-align: left; padding: 10px 15px; font-size: 0.85rem; }
+    td { padding: 8px 15px; border-bottom: 1px solid rgba(255,255,255,0.05); font-size: 0.9rem; }
+    td:first-child { color: #c3e88d; font-family: 'Courier New', monospace; white-space: nowrap; }
+    tr:hover { background: rgba(0,240,255,0.03); }
+    .footer { text-align: center; margin-top: 40px; color: #555; font-size: 0.85rem; }
+  </style>
+</head>
+<body>
+  <h1>Git & GitHub Cheat Sheet</h1>
+  <p class="subtitle">Code4Boy - Essential Commands Reference</p>
+
+  <div class="section">
+    <h2>Setup & Configuration</h2>
+    <table>
+      <tr><th>Command</th><th>Description</th></tr>
+      <tr><td>git config --global user.name "Name"</td><td>Set your name</td></tr>
+      <tr><td>git config --global user.email "email"</td><td>Set your email</td></tr>
+      <tr><td>git init</td><td>Initialize a new git repository</td></tr>
+      <tr><td>git clone &lt;url&gt;</td><td>Clone a remote repository</td></tr>
+    </table>
+  </div>
+
+  <div class="section">
+    <h2>Basic Commands</h2>
+    <table>
+      <tr><th>Command</th><th>Description</th></tr>
+      <tr><td>git status</td><td>Check status of working directory</td></tr>
+      <tr><td>git add &lt;file&gt;</td><td>Stage a specific file</td></tr>
+      <tr><td>git add .</td><td>Stage all changed files</td></tr>
+      <tr><td>git commit -m "message"</td><td>Commit staged changes</td></tr>
+      <tr><td>git log</td><td>View commit history</td></tr>
+      <tr><td>git log --oneline</td><td>View compact commit history</td></tr>
+      <tr><td>git diff</td><td>View unstaged changes</td></tr>
+      <tr><td>git diff --staged</td><td>View staged changes</td></tr>
+    </table>
+  </div>
+
+  <div class="section">
+    <h2>Branching</h2>
+    <table>
+      <tr><th>Command</th><th>Description</th></tr>
+      <tr><td>git branch</td><td>List all local branches</td></tr>
+      <tr><td>git branch &lt;name&gt;</td><td>Create a new branch</td></tr>
+      <tr><td>git checkout &lt;branch&gt;</td><td>Switch to a branch</td></tr>
+      <tr><td>git checkout -b &lt;name&gt;</td><td>Create and switch to new branch</td></tr>
+      <tr><td>git merge &lt;branch&gt;</td><td>Merge branch into current</td></tr>
+      <tr><td>git branch -d &lt;name&gt;</td><td>Delete a branch</td></tr>
+      <tr><td>git branch -a</td><td>List all branches (local + remote)</td></tr>
+    </table>
+  </div>
+
+  <div class="section">
+    <h2>Remote Operations</h2>
+    <table>
+      <tr><th>Command</th><th>Description</th></tr>
+      <tr><td>git remote add origin &lt;url&gt;</td><td>Add remote repository</td></tr>
+      <tr><td>git push origin &lt;branch&gt;</td><td>Push to remote branch</td></tr>
+      <tr><td>git push -u origin main</td><td>Push and set upstream</td></tr>
+      <tr><td>git pull</td><td>Fetch and merge from remote</td></tr>
+      <tr><td>git fetch</td><td>Fetch from remote (no merge)</td></tr>
+      <tr><td>git remote -v</td><td>View remote URLs</td></tr>
+    </table>
+  </div>
+
+  <div class="section">
+    <h2>Undoing Changes</h2>
+    <table>
+      <tr><th>Command</th><th>Description</th></tr>
+      <tr><td>git restore &lt;file&gt;</td><td>Discard working directory changes</td></tr>
+      <tr><td>git restore --staged &lt;file&gt;</td><td>Unstage a file</td></tr>
+      <tr><td>git reset HEAD~1</td><td>Undo last commit (keep changes)</td></tr>
+      <tr><td>git reset --hard HEAD~1</td><td>Undo last commit (discard changes)</td></tr>
+      <tr><td>git revert &lt;commit&gt;</td><td>Create new commit that undoes changes</td></tr>
+      <tr><td>git stash</td><td>Temporarily save uncommitted changes</td></tr>
+      <tr><td>git stash pop</td><td>Restore stashed changes</td></tr>
+    </table>
+  </div>
+
+  <div class="section">
+    <h2>GitHub Workflow</h2>
+    <table>
+      <tr><th>Step</th><th>Command</th></tr>
+      <tr><td>1. Fork repo on GitHub</td><td>(Click Fork button)</td></tr>
+      <tr><td>2. Clone your fork</td><td>git clone &lt;your-fork-url&gt;</td></tr>
+      <tr><td>3. Create feature branch</td><td>git checkout -b feature-name</td></tr>
+      <tr><td>4. Make changes & commit</td><td>git add . && git commit -m "msg"</td></tr>
+      <tr><td>5. Push to your fork</td><td>git push origin feature-name</td></tr>
+      <tr><td>6. Create Pull Request</td><td>(Click PR button on GitHub)</td></tr>
+    </table>
+  </div>
+
+  <p class="footer">Code4Boy &bull; git-github-cheatsheet &bull; Print this page for reference!</p>
+</body>
+</html>

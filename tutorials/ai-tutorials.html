@@ -1,0 +1,251 @@
+<!-- AI Tools Tutorials Content -->
+<div class="section-header reveal">
+  <h2 class="section-title"><i class="fas fa-robot" style="color:#7209b7"></i> AI Tools <span class="highlight">Tutorials</span></h2>
+  <div class="neon-line mt-20"></div>
+</div>
+
+<div class="tutorial-content reveal">
+  <h2>1. ChatGPT for Developers</h2>
+  <div class="step-indicator">Step 1 — ChatGPT Prompting for Code</div>
+  <p>AI tools like ChatGPT can dramatically speed up your coding workflow. The key is writing effective prompts. Here are the best prompt patterns for developers:</p>
+
+  <h3>Best Prompts for Coding with ChatGPT</h3>
+  <div class="code-block">
+    <div class="code-header">
+      <span class="code-lang">Prompts</span>
+      <button class="copy-btn">📋 Copy</button>
+    </div>
+    <pre><code><span class="code-comment"># Debugging</span>
+<span class="code-string">"I'm getting this error: [paste error]. Here's my code: [paste code]. What's wrong and how do I fix it?"</span>
+
+<span class="code-comment"># Code Generation</span>
+<span class="code-string">"Write a responsive navbar using HTML and CSS with a hamburger menu for mobile."</span>
+
+<span class="code-comment"># Code Explanation</span>
+<span class="code-string">"Explain this JavaScript code line by line: [paste code]"</span>
+
+<span class="code-comment"># Learning</span>
+<span class="code-string">"Explain CSS Flexbox like I'm a beginner. Include examples."</span>
+
+<span class="code-comment"># Optimization</span>
+<span class="code-string">"Optimize this function for better performance: [paste code]"</span>
+
+<span class="code-comment"># Code Review</span>
+<span class="code-string">"Review this code for bugs, security issues, and improvements: [paste code]"</span>
+
+<span class="code-comment"># Convert between languages</span>
+<span class="code-string">"Convert this Python function to JavaScript: [paste code]"</span></code></pre>
+  </div>
+
+  <h2>2. GitHub Copilot</h2>
+  <div class="step-indicator">Step 2 — GitHub Copilot Setup & Usage</div>
+  <p>GitHub Copilot is an AI pair programmer that suggests code as you type. It's trained on billions of lines of code and can write entire functions for you.</p>
+  <h3>Setup Steps:</h3>
+  <ol>
+    <li>Install VS Code from <strong>code.visualstudio.com</strong></li>
+    <li>Go to Extensions (Ctrl+Shift+X) and search "GitHub Copilot"</li>
+    <li>Install the extension and sign in with your GitHub account</li>
+    <li>Start coding — Copilot will suggest completions automatically</li>
+    <li>Press <strong>Tab</strong> to accept, <strong>Esc</strong> to dismiss, <strong>Alt+]</strong> for next suggestion</li>
+  </ol>
+  <h3>Tips for Better Copilot Suggestions:</h3>
+  <ul>
+    <li>Write clear function names and comments before the code</li>
+    <li>Add JSDoc or docstring descriptions for the function</li>
+    <li>Keep related code in the same file for better context</li>
+    <li>Use Copilot Chat (Ctrl+I) to ask questions inline</li>
+  </ul>
+  <div class="code-block">
+    <div class="code-header">
+      <span class="code-lang">JavaScript</span>
+      <button class="copy-btn">📋 Copy</button>
+    </div>
+    <pre><code><span class="code-comment">// Copilot Tip: Write a detailed comment, then let Copilot complete</span>
+
+<span class="code-comment">// Function to validate an email address using regex</span>
+<span class="code-comment">// Returns true if valid, false otherwise</span>
+<span class="code-keyword">function</span> <span class="code-function">validateEmail</span>(email) {
+  <span class="code-comment">// Copilot will auto-suggest the implementation!</span>
+  <span class="code-keyword">const</span> regex = <span class="code-string">/^[^\s@]+@[^\s@]+\.[^\s@]+$/</span>;
+  <span class="code-keyword">return</span> regex.<span class="code-function">test</span>(email);
+}
+
+<span class="code-comment">// Function to fetch user data from API and display in a card</span>
+<span class="code-keyword">async function</span> <span class="code-function">displayUserCard</span>(userId) {
+  <span class="code-keyword">const</span> response = <span class="code-keyword">await</span> <span class="code-function">fetch</span>(<span class="code-string">`/api/users/${userId}`</span>);
+  <span class="code-keyword">const</span> user = <span class="code-keyword">await</span> response.<span class="code-function">json</span>();
+  <span class="code-keyword">const</span> card = document.<span class="code-function">createElement</span>(<span class="code-string">"div"</span>);
+  card.className = <span class="code-string">"user-card"</span>;
+  card.innerHTML = <span class="code-string">`&lt;h3&gt;${user.name}&lt;/h3&gt;&lt;p&gt;${user.email}&lt;/p&gt;`</span>;
+  document.<span class="code-function">querySelector</span>(<span class="code-string">"#user-list"</span>).<span class="code-function">appendChild</span>(card);
+}</code></pre>
+  </div>
+
+  <h2>3. Cursor AI Editor</h2>
+  <div class="step-indicator">Step 3 — Using Cursor for Development</div>
+  <p>Cursor is an AI-powered code editor built on VS Code. It has built-in AI chat, code generation, and can understand your entire codebase.</p>
+  <h3>Key Cursor Features:</h3>
+  <ul>
+    <li><strong>Cmd+K (Ctrl+K)</strong> — Generate or edit code with AI</li>
+    <li><strong>Cmd+L (Ctrl+L)</strong> — Open AI chat panel</li>
+    <li><strong>Select code + Cmd+K</strong> — Edit selected code with AI instructions</li>
+    <li><strong>@codebase</strong> — Ask questions about your entire project</li>
+    <li><strong>@file</strong> — Reference specific files in your prompt</li>
+  </ul>
+  <div class="code-block">
+    <div class="code-header">
+      <span class="code-lang">Prompts</span>
+      <button class="copy-btn">📋 Copy</button>
+    </div>
+    <pre><code><span class="code-comment"># In Cursor Chat (Ctrl+L), try these prompts:</span>
+
+<span class="code-string">"@codebase How does the authentication system work in this project?"</span>
+
+<span class="code-string">"@file:src/App.js Add dark mode toggle to the navbar"</span>
+
+<span class="code-string">"Refactor this component to use React hooks instead of class component"</span>
+
+<span class="code-comment"># With code selected, press Ctrl+K:</span>
+<span class="code-string">"Add error handling and loading states"</span>
+<span class="code-string">"Convert to TypeScript with proper types"</span>
+<span class="code-string">"Add JSDoc comments to all functions"</span></code></pre>
+  </div>
+
+  <h2>4. Prompt Engineering for Coders</h2>
+  <div class="step-indicator">Step 4 — Writing Better Prompts</div>
+  <p>The quality of AI output depends heavily on your prompt. Follow these patterns for better results:</p>
+  <div class="code-block">
+    <div class="code-header">
+      <span class="code-lang">Prompts</span>
+      <button class="copy-btn">📋 Copy</button>
+    </div>
+    <pre><code><span class="code-comment"># Pattern 1: Role + Task + Context</span>
+<span class="code-string">"You are a senior frontend developer.
+Create a responsive pricing table component
+using HTML and CSS with glassmorphism design.
+It should have 3 tiers: Basic, Pro, Enterprise."</span>
+
+<span class="code-comment"># Pattern 2: Step-by-Step</span>
+<span class="code-string">"Build a todo app step by step:
+1. Create the HTML structure
+2. Add CSS styling with dark theme
+3. Add JavaScript for CRUD operations
+4. Add localStorage to persist data"</span>
+
+<span class="code-comment"># Pattern 3: Example-Based</span>
+<span class="code-string">"Here's an example API response:
+{\"users\": [{\"id\": 1, \"name\": \"John\"}]}
+
+Write a JavaScript function to fetch this API
+and display users in a card grid layout."</span>
+
+<span class="code-comment"># Pattern 4: Constraints</span>
+<span class="code-string">"Write a CSS animation for a bouncing ball.
+Constraints:
+- Pure CSS only, no JavaScript
+- Must work on all modern browsers
+- Use CSS custom properties for customization
+- Add reduced-motion media query"</span></code></pre>
+  </div>
+
+  <h2>5. AI Image & Design Tools</h2>
+  <div class="step-indicator">Step 5 — AI for Design</div>
+  <p>AI can also help with design tasks — generating images, logos, mockups, and UI designs for your projects.</p>
+  <ul>
+    <li><strong>DALL-E / Midjourney</strong> — Generate images from text descriptions</li>
+    <li><strong>Figma AI</strong> — Auto-generate UI components and layouts</li>
+    <li><strong>Remove.bg</strong> — Remove image backgrounds using AI</li>
+    <li><strong>Canva AI</strong> — Design graphics, social media posts, logo</li>
+    <li><strong>ColorMind</strong> — AI-generated color palettes for websites</li>
+  </ul>
+  <div class="code-block">
+    <div class="code-header">
+      <span class="code-lang">Prompts</span>
+      <button class="copy-btn">📋 Copy</button>
+    </div>
+    <pre><code><span class="code-comment"># Image generation prompts for web projects</span>
+
+<span class="code-string">"A modern tech website hero banner with dark blue gradient,
+floating code snippets, and neon accents, 16:9 ratio"</span>
+
+<span class="code-string">"Minimalist logo for a coding tutorial website called Code4Boy,
+using blue and cyan colors, flat design style"</span>
+
+<span class="code-string">"A set of 6 flat icons for web development:
+HTML, CSS, JavaScript, Python, React, Node.js"</span></code></pre>
+  </div>
+
+  <h2>6. AI-Powered Debugging & Testing</h2>
+  <div class="step-indicator">Step 6 — Debug & Test with AI</div>
+  <p>AI can help you find bugs faster and write tests for your code automatically.</p>
+  <div class="code-block">
+    <div class="code-header">
+      <span class="code-lang">Prompts</span>
+      <button class="copy-btn">📋 Copy</button>
+    </div>
+    <pre><code><span class="code-comment"># Debugging with AI</span>
+<span class="code-string">"I have a memory leak in my React app. The component
+re-renders infinitely. Here's my useEffect:
+[paste code]
+What's causing the infinite loop?"</span>
+
+<span class="code-comment"># Generate Unit Tests</span>
+<span class="code-string">"Write Jest unit tests for this function:
+[paste function]
+Include edge cases and error scenarios."</span>
+
+<span class="code-comment"># Performance Analysis</span>
+<span class="code-string">"Analyze this SQL query for performance issues
+and suggest optimizations:
+[paste query]"</span>
+
+<span class="code-comment"># Security Audit</span>
+<span class="code-string">"Review this Express.js API endpoint for security
+vulnerabilities (XSS, SQL injection, CSRF):
+[paste code]"</span></code></pre>
+  </div>
+
+  <h2>7. Building Projects with AI</h2>
+  <div class="step-indicator">Step 7 — AI-Assisted Project Workflow</div>
+  <p>Here's a recommended workflow for building projects with AI assistance:</p>
+  <ol>
+    <li><strong>Plan</strong> — Ask AI to create a project structure and feature list</li>
+    <li><strong>Design</strong> — Use AI to generate UI mockups and color schemes</li>
+    <li><strong>Code</strong> — Let Copilot/Cursor help write the code with inline suggestions</li>
+    <li><strong>Debug</strong> — Paste errors into ChatGPT for instant fixes</li>
+    <li><strong>Test</strong> — Ask AI to generate test cases for your functions</li>
+    <li><strong>Deploy</strong> — Use AI to write Dockerfiles, CI/CD configs, and deploy scripts</li>
+    <li><strong>Document</strong> — Ask AI to generate README.md and API docs</li>
+  </ol>
+  <div class="code-block">
+    <div class="code-header">
+      <span class="code-lang">Prompts</span>
+      <button class="copy-btn">📋 Copy</button>
+    </div>
+    <pre><code><span class="code-comment"># Project Planning</span>
+<span class="code-string">"I want to build a portfolio website with:
+- Hero section with animated background
+- Projects gallery with filter
+- Contact form with validation
+- Dark/Light theme toggle
+
+Create a folder structure and list all files
+I need to create."</span>
+
+<span class="code-comment"># Documentation</span>
+<span class="code-string">"Generate a professional README.md for my project.
+Include: description, features, setup instructions,
+tech stack, screenshots section, and license.
+Project: [describe your project]"</span>
+
+<span class="code-comment"># Deployment</span>
+<span class="code-string">"Write a Dockerfile for my Node.js Express app
+that uses MongoDB. Include multi-stage build
+for production optimization."</span></code></pre>
+  </div>
+
+  <h2>📺 Watch: AI Coding Tools</h2>
+  <div class="video-container">
+    <iframe width="100%" height="400" src="https://www.youtube.com/embed/jHv63Evnh4Q" title="AI Coding Tools" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+  </div>
+</div>

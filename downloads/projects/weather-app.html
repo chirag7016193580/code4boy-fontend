@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Weather App - Code4Boy Starter</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Segoe UI', sans-serif; min-height: 100vh; background: linear-gradient(135deg, #0f0f23, #1a1a3e); color: #e0e0e0; display: flex; align-items: center; justify-content: center; padding: 20px; }
+    .app { width: 100%; max-width: 420px; }
+    h1 { text-align: center; font-size: 1.8rem; margin-bottom: 25px; color: #00f0ff; }
+    .search { display: flex; gap: 10px; margin-bottom: 25px; }
+    .search input { flex: 1; padding: 14px 18px; background: rgba(255,255,255,0.05); border: 2px solid rgba(255,255,255,0.1); border-radius: 12px; color: #fff; font-size: 1rem; outline: none; }
+    .search input:focus { border-color: #00f0ff; }
+    .search button { padding: 14px 20px; background: #00f0ff; color: #0f0f23; border: none; border-radius: 12px; font-weight: 700; cursor: pointer; font-size: 1rem; }
+    .weather-card { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 20px; padding: 30px; text-align: center; }
+    .weather-card .city { font-size: 1.5rem; font-weight: 700; margin-bottom: 5px; }
+    .weather-card .date { color: #888; font-size: 0.9rem; margin-bottom: 20px; }
+    .weather-card .icon { font-size: 5rem; margin: 10px 0; }
+    .weather-card .temp { font-size: 3.5rem; font-weight: 700; color: #fff; }
+    .weather-card .desc { color: #00f0ff; font-size: 1.1rem; text-transform: capitalize; margin: 5px 0 20px; }
+    .details { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; margin-top: 20px; }
+    .detail { background: rgba(0,240,255,0.05); border-radius: 12px; padding: 15px 10px; }
+    .detail .label { font-size: 0.75rem; color: #888; margin-bottom: 5px; }
+    .detail .value { font-size: 1.1rem; font-weight: 600; color: #fff; }
+    .forecast { margin-top: 20px; }
+    .forecast h3 { font-size: 1rem; color: #888; margin-bottom: 12px; }
+    .forecast-row { display: flex; gap: 10px; }
+    .forecast-day { flex: 1; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.06); border-radius: 12px; padding: 12px 8px; text-align: center; }
+    .forecast-day .day { font-size: 0.75rem; color: #888; }
+    .forecast-day .f-icon { font-size: 1.5rem; margin: 5px 0; }
+    .forecast-day .f-temp { font-size: 0.9rem; font-weight: 600; }
+    .error { text-align: center; padding: 30px; color: #e94560; }
+    .loading { text-align: center; padding: 30px; color: #888; }
+    .note { text-align: center; margin-top: 20px; padding: 15px; background: rgba(0,240,255,0.05); border: 1px solid rgba(0,240,255,0.15); border-radius: 10px; font-size: 0.85rem; color: #888; }
+    .note code { background: rgba(0,0,0,0.3); padding: 2px 6px; border-radius: 4px; color: #00f0ff; }
+  </style>
+</head>
+<body>
+  <div class="app">
+    <h1>Weather App</h1>
+    <div class="search">
+      <input type="text" id="cityInput" placeholder="Enter city name..." value="London">
+      <button onclick="getWeather()">Search</button>
+    </div>
+    <div id="result">
+      <div class="weather-card">
+        <div class="city">London</div>
+        <div class="date" id="dateDisplay"></div>
+        <div class="icon">&#9925;</div>
+        <div class="temp">18&deg;C</div>
+        <div class="desc">Partly Cloudy</div>
+        <div class="details">
+          <div class="detail"><div class="label">Humidity</div><div class="value">65%</div></div>
+          <div class="detail"><div class="label">Wind</div><div class="value">12 km/h</div></div>
+          <div class="detail"><div class="label">Feels Like</div><div class="value">16&deg;C</div></div>
+        </div>
+        <div class="forecast">
+          <h3>5-Day Forecast</h3>
+          <div class="forecast-row">
+            <div class="forecast-day"><div class="day">Mon</div><div class="f-icon">&#9728;</div><div class="f-temp">22&deg;</div></div>
+            <div class="forecast-day"><div class="day">Tue</div><div class="f-icon">&#9925;</div><div class="f-temp">19&deg;</div></div>
+            <div class="forecast-day"><div class="day">Wed</div><div class="f-icon">&#127782;</div><div class="f-temp">15&deg;</div></div>
+            <div class="forecast-day"><div class="day">Thu</div><div class="f-icon">&#9728;</div><div class="f-temp">21&deg;</div></div>
+            <div class="forecast-day"><div class="day">Fri</div><div class="f-icon">&#9925;</div><div class="f-temp">18&deg;</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="note">
+      <strong>Starter Template:</strong> This is a demo with sample data. To use real weather data, sign up for a free API key at <code>openweathermap.org</code> and replace the <code>getWeather()</code> function with an actual API call.
+    </div>
+  </div>
+  <script>
+    document.getElementById('dateDisplay').textContent = new Date().toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
+
+    const demoData = {
+      'london': { city: 'London, UK', icon: '&#9925;', temp: 18, desc: 'Partly Cloudy', humidity: 65, wind: 12, feels: 16 },
+      'new york': { city: 'New York, US', icon: '&#9728;', temp: 24, desc: 'Clear Sky', humidity: 45, wind: 8, feels: 23 },
+      'tokyo': { city: 'Tokyo, JP', icon: '&#127782;', temp: 22, desc: 'Light Rain', humidity: 78, wind: 15, feels: 20 },
+      'delhi': { city: 'Delhi, IN', icon: '&#9728;', temp: 35, desc: 'Sunny', humidity: 30, wind: 10, feels: 38 },
+      'paris': { city: 'Paris, FR', icon: '&#9925;', temp: 20, desc: 'Cloudy', humidity: 55, wind: 14, feels: 18 },
+    };
+
+    function getWeather() {
+      const city = document.getElementById('cityInput').value.trim().toLowerCase();
+      const data = demoData[city];
+      const result = document.getElementById('result');
+
+      if (!data) {
+        result.innerHTML = `<div class="error">City not found in demo data. Try: London, New York, Tokyo, Delhi, or Paris.<br><br>For real data, integrate the OpenWeatherMap API.</div>`;
+        return;
+      }
+
+      result.innerHTML = `
+        <div class="weather-card">
+          <div class="city">${data.city}</div>
+          <div class="date">${new Date().toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })}</div>
+          <div class="icon">${data.icon}</div>
+          <div class="temp">${data.temp}&deg;C</div>
+          <div class="desc">${data.desc}</div>
+          <div class="details">
+            <div class="detail"><div class="label">Humidity</div><div class="value">${data.humidity}%</div></div>
+            <div class="detail"><div class="label">Wind</div><div class="value">${data.wind} km/h</div></div>
+            <div class="detail"><div class="label">Feels Like</div><div class="value">${data.feels}&deg;C</div></div>
+          </div>
+        </div>`;
+    }
+
+    document.getElementById('cityInput').addEventListener('keydown', e => { if (e.key === 'Enter') getWeather(); });
+  </script>
+</body>
+</html>

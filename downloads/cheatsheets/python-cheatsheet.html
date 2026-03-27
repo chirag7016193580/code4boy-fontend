@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Python Cheat Sheet - Code4Boy</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Segoe UI', sans-serif; background: #1a1a2e; color: #e0e0e0; padding: 30px; }
+    h1 { text-align: center; color: #00ff88; margin-bottom: 10px; font-size: 2rem; }
+    .subtitle { text-align: center; color: #888; margin-bottom: 40px; }
+    .section { margin-bottom: 35px; }
+    .section h2 { color: #00f0ff; font-size: 1.3rem; margin-bottom: 15px; border-bottom: 2px solid rgba(0,240,255,0.2); padding-bottom: 8px; }
+    .code-box { background: rgba(0,0,0,0.3); border: 1px solid rgba(0,240,255,0.15); border-radius: 8px; padding: 15px; margin: 8px 0 15px; font-family: 'Courier New', monospace; font-size: 0.88rem; line-height: 1.7; overflow-x: auto; }
+    .kw { color: #c792ea; } .st { color: #c3e88d; } .cm { color: #546e7a; } .fn { color: #82aaff; } .nu { color: #f78c6c; }
+    table { width: 100%; border-collapse: collapse; margin-bottom: 10px; }
+    th { background: rgba(0,240,255,0.1); color: #00f0ff; text-align: left; padding: 10px 15px; font-size: 0.85rem; }
+    td { padding: 8px 15px; border-bottom: 1px solid rgba(255,255,255,0.05); font-size: 0.9rem; }
+    td:first-child { color: #82aaff; font-family: 'Courier New', monospace; }
+    .footer { text-align: center; margin-top: 40px; color: #555; font-size: 0.85rem; }
+  </style>
+</head>
+<body>
+  <h1>Python Cheat Sheet</h1>
+  <p class="subtitle">Code4Boy - Complete Quick Reference</p>
+
+  <div class="section">
+    <h2>Variables & Data Types</h2>
+    <div class="code-box">
+name = <span class="st">"Code4Boy"</span>       <span class="cm"># String</span>
+age = <span class="nu">25</span>                  <span class="cm"># Integer</span>
+price = <span class="nu">9.99</span>              <span class="cm"># Float</span>
+is_active = <span class="kw">True</span>          <span class="cm"># Boolean</span>
+items = [<span class="nu">1</span>, <span class="nu">2</span>, <span class="nu">3</span>]         <span class="cm"># List</span>
+coords = (<span class="nu">10</span>, <span class="nu">20</span>)         <span class="cm"># Tuple (immutable)</span>
+user = {<span class="st">"name"</span>: <span class="st">"Ali"</span>}   <span class="cm"># Dictionary</span>
+unique = {<span class="nu">1</span>, <span class="nu">2</span>, <span class="nu">3</span>}        <span class="cm"># Set</span>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>String Methods</h2>
+    <table>
+      <tr><th>Method</th><th>Description</th><th>Example</th></tr>
+      <tr><td>.upper()</td><td>Convert to uppercase</td><td>"hello".upper() -> "HELLO"</td></tr>
+      <tr><td>.lower()</td><td>Convert to lowercase</td><td>"HELLO".lower() -> "hello"</td></tr>
+      <tr><td>.strip()</td><td>Remove whitespace</td><td>" hi ".strip() -> "hi"</td></tr>
+      <tr><td>.split()</td><td>Split into list</td><td>"a,b".split(",") -> ["a","b"]</td></tr>
+      <tr><td>.join()</td><td>Join list into string</td><td>",".join(["a","b"]) -> "a,b"</td></tr>
+      <tr><td>.replace()</td><td>Replace substring</td><td>"hi".replace("h","H")</td></tr>
+      <tr><td>.find()</td><td>Find index of substring</td><td>"hello".find("ll") -> 2</td></tr>
+      <tr><td>.startswith()</td><td>Check start</td><td>"hello".startswith("he") -> True</td></tr>
+      <tr><td>f-string</td><td>Format string</td><td>f"Hello {name}"</td></tr>
+    </table>
+  </div>
+
+  <div class="section">
+    <h2>Control Flow</h2>
+    <div class="code-box">
+<span class="cm"># If/Elif/Else</span>
+<span class="kw">if</span> age >= <span class="nu">18</span>:
+    <span class="fn">print</span>(<span class="st">"Adult"</span>)
+<span class="kw">elif</span> age >= <span class="nu">13</span>:
+    <span class="fn">print</span>(<span class="st">"Teen"</span>)
+<span class="kw">else</span>:
+    <span class="fn">print</span>(<span class="st">"Child"</span>)
+
+<span class="cm"># For Loop</span>
+<span class="kw">for</span> i <span class="kw">in</span> <span class="fn">range</span>(<span class="nu">5</span>):
+    <span class="fn">print</span>(i)
+
+<span class="cm"># While Loop</span>
+<span class="kw">while</span> count > <span class="nu">0</span>:
+    count -= <span class="nu">1</span>
+
+<span class="cm"># List Comprehension</span>
+squares = [x**<span class="nu">2</span> <span class="kw">for</span> x <span class="kw">in</span> <span class="fn">range</span>(<span class="nu">10</span>)]
+evens = [x <span class="kw">for</span> x <span class="kw">in</span> nums <span class="kw">if</span> x % <span class="nu">2</span> == <span class="nu">0</span>]
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>Functions</h2>
+    <div class="code-box">
+<span class="cm"># Regular Function</span>
+<span class="kw">def</span> <span class="fn">greet</span>(name, greeting=<span class="st">"Hello"</span>):
+    <span class="kw">return</span> f<span class="st">"{greeting}, {name}!"</span>
+
+<span class="cm"># Lambda Function</span>
+add = <span class="kw">lambda</span> a, b: a + b
+
+<span class="cm"># *args and **kwargs</span>
+<span class="kw">def</span> <span class="fn">func</span>(*args, **kwargs):
+    <span class="fn">print</span>(args)    <span class="cm"># Tuple of positional args</span>
+    <span class="fn">print</span>(kwargs)  <span class="cm"># Dict of keyword args</span>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>List Methods</h2>
+    <table>
+      <tr><th>Method</th><th>Description</th></tr>
+      <tr><td>.append(x)</td><td>Add element to end</td></tr>
+      <tr><td>.insert(i, x)</td><td>Insert at index</td></tr>
+      <tr><td>.pop(i)</td><td>Remove and return element at index</td></tr>
+      <tr><td>.remove(x)</td><td>Remove first occurrence of x</td></tr>
+      <tr><td>.sort()</td><td>Sort list in place</td></tr>
+      <tr><td>.reverse()</td><td>Reverse list in place</td></tr>
+      <tr><td>.index(x)</td><td>Find index of element</td></tr>
+      <tr><td>.count(x)</td><td>Count occurrences</td></tr>
+      <tr><td>len(list)</td><td>Get length</td></tr>
+      <tr><td>list[start:end]</td><td>Slice list</td></tr>
+    </table>
+  </div>
+
+  <div class="section">
+    <h2>Dictionary Methods</h2>
+    <table>
+      <tr><th>Method</th><th>Description</th></tr>
+      <tr><td>.get(key, default)</td><td>Get value safely</td></tr>
+      <tr><td>.keys()</td><td>Get all keys</td></tr>
+      <tr><td>.values()</td><td>Get all values</td></tr>
+      <tr><td>.items()</td><td>Get key-value pairs</td></tr>
+      <tr><td>.update(dict2)</td><td>Merge dictionaries</td></tr>
+      <tr><td>.pop(key)</td><td>Remove and return value</td></tr>
+      <tr><td>key in dict</td><td>Check if key exists</td></tr>
+    </table>
+  </div>
+
+  <div class="section">
+    <h2>File Handling</h2>
+    <div class="code-box">
+<span class="cm"># Read file</span>
+<span class="kw">with</span> <span class="fn">open</span>(<span class="st">"file.txt"</span>, <span class="st">"r"</span>) <span class="kw">as</span> f:
+    content = f.<span class="fn">read</span>()
+
+<span class="cm"># Write file</span>
+<span class="kw">with</span> <span class="fn">open</span>(<span class="st">"file.txt"</span>, <span class="st">"w"</span>) <span class="kw">as</span> f:
+    f.<span class="fn">write</span>(<span class="st">"Hello World"</span>)
+
+<span class="cm"># Read line by line</span>
+<span class="kw">with</span> <span class="fn">open</span>(<span class="st">"file.txt"</span>) <span class="kw">as</span> f:
+    <span class="kw">for</span> line <span class="kw">in</span> f:
+        <span class="fn">print</span>(line.<span class="fn">strip</span>())
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>Error Handling</h2>
+    <div class="code-box">
+<span class="kw">try</span>:
+    result = <span class="nu">10</span> / <span class="nu">0</span>
+<span class="kw">except</span> ZeroDivisionError <span class="kw">as</span> e:
+    <span class="fn">print</span>(f<span class="st">"Error: {e}"</span>)
+<span class="kw">except</span> Exception <span class="kw">as</span> e:
+    <span class="fn">print</span>(f<span class="st">"Something went wrong: {e}"</span>)
+<span class="kw">finally</span>:
+    <span class="fn">print</span>(<span class="st">"This always runs"</span>)
+    </div>
+  </div>
+
+  <p class="footer">Code4Boy &bull; python-cheatsheet &bull; Print this page for reference!</p>
+</body>
+</html>

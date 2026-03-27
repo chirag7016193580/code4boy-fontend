@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Code4Boy Error Solutions - Fix common coding errors with quick, easy solutions.">
+  <meta name="keywords" content="coding errors, error solutions, bug fix, JavaScript errors, Python errors, debugging, code4boy">
+  <meta name="author" content="Code4Boy">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://code4boy.com/pages/errors.html">
+  <meta property="og:title" content="Error Solutions - Code4Boy">
+  <meta property="og:description" content="Fix common coding errors with quick, easy solutions and debugging guides.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://code4boy.com/pages/errors.html">
+  <meta property="og:image" content="https://code4boy.com/images/logo.jpg">
+  <meta property="og:site_name" content="Code4Boy">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Error Solutions - Code4Boy">
+  <meta name="twitter:description" content="Fix common coding errors with quick, easy solutions and debugging guides.">
+  <meta http-equiv="X-Content-Type-Options" content="nosniff">
+  <meta http-equiv="X-Frame-Options" content="SAMEORIGIN">
+  <meta http-equiv="X-XSS-Protection" content="1; mode=block">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net https://accounts.google.com https://apis.google.com https://*.googleapis.com; style-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net https://cdnjs.cloudflare.com https://fonts.googleapis.com https://accounts.google.com; font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com; img-src 'self' data: blob: https://*.googleusercontent.com https://*.google.com; frame-src https://www.youtube.com https://accounts.google.com https://*.google.com; connect-src 'self' http://localhost:8000 http://127.0.0.1:8000 https://code4boy-backend.vercel.app https://ipapi.co https://accounts.google.com https://*.googleapis.com https://wandbox.org;">
+  <title>Error Solutions - Code4Boy</title>
+  <link rel="icon" type="image/jpeg" href="../images/logo.jpg">
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/upgrade.css">
+  <link rel="stylesheet" href="../css/professional.css">
+  <link rel="stylesheet" href="../css/dark-override.css">
+  <link rel="stylesheet" href="../css/auth.css">
+  <link rel="stylesheet" href="../css/mobile.css">
+  <link rel="stylesheet" href="../css/ui-update.css">
+  <link rel="stylesheet" href="../css/upgrade-v2.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <!-- Prism.js Syntax Highlighting -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism-tomorrow.min.css">
+  <link rel="stylesheet" href="../css/prism-custom.css">
+
+  <!-- Structured Data - JSON-LD -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    "name": "Error Solutions",
+    "description": "Fix common coding errors with quick, easy solutions and debugging guides.",
+    "url": "https://code4boy.com/pages/errors.html",
+    "isPartOf": { "@type": "WebSite", "name": "Code4Boy", "url": "https://code4boy.com/" },
+    "breadcrumb": {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://code4boy.com/" },
+        { "@type": "ListItem", "position": 2, "name": "Errors", "item": "https://code4boy.com/pages/errors.html" }
+      ]
+    }
+  }
+  </script>
+</head>
+<body>
+
+  <div class="bg-grid"></div>
+  <div class="bg-glow"></div>
+  <div class="particles"></div>
+
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="../index.html" class="nav-logo">
+        <img src="../images/logo.jpg" alt="Code4Boy Logo">
+        <span>CODE4BOY</span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="../index.html"><i class="fas fa-home"></i> Home</a></li>
+        <li><a href="tutorials.html"><i class="fas fa-book"></i> Tutorials</a></li>
+        <li><a href="projects.html"><i class="fas fa-code"></i> Projects</a></li>
+        <li><a href="tools.html"><i class="fas fa-wrench"></i> Tools</a></li>
+        <li><a href="playground.html"><i class="fas fa-laptop-code"></i> Playground</a></li>
+        <li><a href="ai-teacher.html"><i class="fas fa-robot"></i> AI Teacher</a></li>
+        <li class="nav-more-dropdown">
+
+          <button class="nav-more-btn" aria-expanded="false" aria-haspopup="true"><i class="fas fa-ellipsis-h"></i> More</button>
+
+          <ul class="nav-more-menu">
+
+            <li><a href="errors.html" class="active"><i class="fas fa-bug"></i> Errors</a></li>
+
+            <li><a href="downloads.html"><i class="fas fa-download"></i> Downloads</a></li>
+
+            <li><a href="https://youtube.com/@code4boy-l4u" target="_blank" rel="noopener noreferrer"><i class="fab fa-youtube"></i> Videos</a></li>
+
+            <li><a href="../index.html#contact"><i class="fas fa-envelope"></i> Contact</a></li>
+
+          </ul>
+
+        </li>
+      </ul>
+      <div class="nav-right">
+        <button class="nav-search-btn" title="Search"><i class="fas fa-search"></i></button>
+        <button class="theme-toggle"><i class="fas fa-sun"></i> <span>Light</span></button>
+        <div id="authBtnContainer" class="auth-btn-container"></div>
+        <div class="menu-toggle"><span></span><span></span><span></span></div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Search Modal -->
+  <div class="search-modal">
+    <button class="search-close"><i class="fas fa-times"></i></button>
+    <div class="search-modal-content">
+      <input type="text" class="search-modal-input" placeholder="Search tutorials, projects, tools...">
+      <div class="search-results"></div>
+    </div>
+  </div>
+
+  <!-- Page Header -->
+  <div class="page-header">
+    <div class="breadcrumb">
+      <a href="../index.html">Home</a>
+      <span class="separator">/</span>
+      <span>Error Solutions</span>
+    </div>
+    <h1>Error <span class="gradient-text" style="background:var(--gradient-neon);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">Solutions</span></h1>
+    <p>Quick fixes for the most common coding and software errors</p>
+    <div class="page-stats">
+      <div class="page-stat">
+        <div class="page-stat-icon red"><i class="fas fa-bug"></i></div>
+        <div class="page-stat-info"><div class="page-stat-number">10</div><div class="page-stat-label">Solutions</div></div>
+      </div>
+      <div class="page-stat">
+        <div class="page-stat-icon green"><i class="fas fa-check-circle"></i></div>
+        <div class="page-stat-info"><div class="page-stat-number">Tested</div><div class="page-stat-label">& Verified</div></div>
+      </div>
+      <div class="page-stat">
+        <div class="page-stat-icon blue"><i class="fas fa-search"></i></div>
+        <div class="page-stat-info"><div class="page-stat-number">Search</div><div class="page-stat-label">Enabled</div></div>
+      </div>
+      <div class="page-stat">
+        <div class="page-stat-icon purple"><i class="fas fa-filter"></i></div>
+        <div class="page-stat-info"><div class="page-stat-number">Multi</div><div class="page-stat-label">Categories</div></div>
+      </div>
+    </div>
+    <div class="page-features">
+      <div class="page-feature"><i class="fas fa-search"></i><span>Search Any Error</span></div>
+      <div class="page-feature"><i class="fas fa-clipboard-check"></i><span>Step-by-step Fixes</span></div>
+      <div class="page-feature"><i class="fas fa-code"></i><span>Code Solutions</span></div>
+      <div class="page-feature"><i class="fas fa-tags"></i><span>Categorized by Type</span></div>
+    </div>
+  </div>
+
+  <!-- Error Solutions -->
+  <section class="section" style="padding-top:20px">
+    
+    <!-- Search -->
+    <div class="error-search-box reveal">
+      <input type="text" class="error-search-input" placeholder="Search errors... (e.g., 'npm error', 'VLC audio')">
+      <i class="fas fa-search search-icon"></i>
+    </div>
+
+    <!-- Filter Tabs -->
+    <div class="tab-nav reveal" style="margin-bottom:40px">
+      <button class="tab-btn active" data-tab="all">All Errors</button>
+      <button class="tab-btn" data-tab="web">Web Dev</button>
+      <button class="tab-btn" data-tab="python">Python</button>
+      <button class="tab-btn" data-tab="software">Software</button>
+    </div>
+
+    <!-- Error Cards -->
+    <div class="reveal">
+      <!-- Error 1 -->
+      <div class="error-card tab-content" data-tab="web">
+        <h3><i class="fas fa-exclamation-triangle"></i> .ts file not running in HTML</h3>
+        <p>You linked a TypeScript (.ts) file directly in your HTML using a &lt;script&gt; tag, but the browser shows errors or nothing happens. Browsers cannot execute TypeScript directly.</p>
+        <div class="solution">
+          <h4><i class="fas fa-check-circle"></i> Solution</h4>
+          <p><strong>Step 1:</strong> Install TypeScript globally: <code>npm install -g typescript</code></p>
+          <p><strong>Step 2:</strong> Compile your TS file: <code>tsc filename.ts</code></p>
+          <p><strong>Step 3:</strong> Link the generated <code>filename.js</code> file in your HTML instead:</p>
+        </div>
+        <div class="code-block" style="margin-top:15px">
+          <div class="code-header">
+            <span class="code-lang">HTML</span>
+            <button class="copy-btn">📋 Copy</button>
+          </div>
+          <pre><code><span class="code-comment">&lt;!-- ❌ Wrong --&gt;</span>
+<span class="code-tag">&lt;script</span> <span class="code-attr">src</span>=<span class="code-string">"app.ts"</span><span class="code-tag">&gt;&lt;/script&gt;</span>
+
+<span class="code-comment">&lt;!-- ✅ Correct --&gt;</span>
+<span class="code-tag">&lt;script</span> <span class="code-attr">src</span>=<span class="code-string">"app.js"</span><span class="code-tag">&gt;&lt;/script&gt;</span></code></pre>
+        </div>
+        <div class="video-container" style="margin-top:20px">
+          <iframe width="100%" height="400" src="https://www.youtube.com/embed/d56mG7DezGs" title="TypeScript Setup" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+        </div>
+      </div>
+
+      <!-- Error 2 -->
+      <div class="error-card tab-content" data-tab="software">
+        <h3><i class="fas fa-exclamation-triangle"></i> VLC No Audio Fix</h3>
+        <p>VLC media player plays video but there's no audio. This can happen due to codec issues, wrong audio output settings, or system audio configuration.</p>
+        <div class="solution">
+          <h4><i class="fas fa-check-circle"></i> Solution</h4>
+          <p><strong>Method 1:</strong> Go to Tools → Preferences → Audio → Output Module → Change to "DirectSound" or "Windows multimedia Device output"</p>
+          <p><strong>Method 2:</strong> Reset all preferences: Tools → Preferences → Click "Reset Preferences" at the bottom</p>
+          <p><strong>Method 3:</strong> Update VLC to the latest version from <a href="https://www.videolan.org/" target="_blank">videolan.org</a></p>
+          <p><strong>Method 4:</strong> Check Windows Sound Settings: Right-click speaker icon → Sound Settings → Make sure correct output device is selected</p>
+        </div>
+      </div>
+
+      <!-- Error 3 -->
+      <div class="error-card tab-content" data-tab="web">
+        <h3><i class="fas fa-exclamation-triangle"></i> npm ERR! ERESOLVE unable to resolve dependency tree</h3>
+        <p>When running <code>npm install</code>, you get dependency resolution errors because different packages require conflicting versions of the same dependency.</p>
+        <div class="solution">
+          <h4><i class="fas fa-check-circle"></i> Solution</h4>
+          <p><strong>Quick Fix:</strong> Run <code>npm install --legacy-peer-deps</code></p>
+          <p><strong>Alternative:</strong> Run <code>npm install --force</code></p>
+          <p><strong>Best Practice:</strong> Check which packages conflict and update them to compatible versions in your <code>package.json</code>.</p>
+        </div>
+        <div class="code-block" style="margin-top:15px">
+          <div class="code-header">
+            <span class="code-lang">Terminal</span>
+            <button class="copy-btn">📋 Copy</button>
+          </div>
+          <pre><code><span class="code-comment"># Quick fix</span>
+npm install --legacy-peer-deps
+
+<span class="code-comment"># Or force install</span>
+npm install --force
+
+<span class="code-comment"># Clean install (delete node_modules first)</span>
+rm -rf node_modules package-lock.json
+npm install</code></pre>
+        </div>
+      </div>
+
+      <!-- Error 4 -->
+      <div class="error-card tab-content" data-tab="web">
+        <h3><i class="fas fa-exclamation-triangle"></i> CORS Error: Access-Control-Allow-Origin</h3>
+        <p>When fetching data from an API, you get: "Access to fetch has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present."</p>
+        <div class="solution">
+          <h4><i class="fas fa-check-circle"></i> Solution</h4>
+          <p><strong>For Development:</strong> Use a CORS proxy like <code>https://cors-anywhere.herokuapp.com/</code> before the API URL.</p>
+          <p><strong>For Production:</strong> Configure your server to send proper CORS headers.</p>
+          <p><strong>Node.js/Express:</strong> Install and use the <code>cors</code> middleware.</p>
+        </div>
+        <div class="code-block" style="margin-top:15px">
+          <div class="code-header">
+            <span class="code-lang">JavaScript</span>
+            <button class="copy-btn">📋 Copy</button>
+          </div>
+          <pre><code><span class="code-comment">// Express.js - Enable CORS</span>
+<span class="code-keyword">const</span> cors = <span class="code-function">require</span>(<span class="code-string">'cors'</span>);
+app.<span class="code-function">use</span>(<span class="code-function">cors</span>());</code></pre>
+        </div>
+      </div>
+
+      <!-- Error 5 -->
+      <div class="error-card tab-content" data-tab="python">
+        <h3><i class="fas fa-exclamation-triangle"></i> ModuleNotFoundError: No module named 'xyz'</h3>
+        <p>Python can't find the module you're trying to import. This usually means the package isn't installed or you're using the wrong Python environment.</p>
+        <div class="solution">
+          <h4><i class="fas fa-check-circle"></i> Solution</h4>
+          <p><strong>Step 1:</strong> Install the package: <code>pip install module_name</code></p>
+          <p><strong>Step 2:</strong> If using Python 3: <code>pip3 install module_name</code></p>
+          <p><strong>Step 3:</strong> Check if you're in the right virtual environment: <code>which python</code></p>
+        </div>
+        <div class="code-block" style="margin-top:15px">
+          <div class="code-header">
+            <span class="code-lang">Terminal</span>
+            <button class="copy-btn">📋 Copy</button>
+          </div>
+          <pre><code><span class="code-comment"># Install a package</span>
+pip install requests
+
+<span class="code-comment"># Or use pip3</span>
+pip3 install requests
+
+<span class="code-comment"># Create a virtual environment</span>
+python -m venv myenv
+source myenv/bin/activate  <span class="code-comment"># Linux/Mac</span>
+myenv\Scripts\activate     <span class="code-comment"># Windows</span>
+
+<span class="code-comment"># Then install</span>
+pip install requests</code></pre>
+        </div>
+      </div>
+
+      <!-- Error 6 -->
+      <div class="error-card tab-content" data-tab="python">
+        <h3><i class="fas fa-exclamation-triangle"></i> IndentationError: unexpected indent</h3>
+        <p>Python uses indentation (spaces/tabs) to define code blocks. Mixing tabs and spaces or inconsistent indentation causes this error.</p>
+        <div class="solution">
+          <h4><i class="fas fa-check-circle"></i> Solution</h4>
+          <p><strong>Fix 1:</strong> Use consistent indentation — always 4 spaces (recommended) or always tabs, never mix them.</p>
+          <p><strong>Fix 2:</strong> In VS Code, press Ctrl+Shift+P → "Convert Indentation to Spaces" to fix mixed tabs/spaces.</p>
+          <p><strong>Fix 3:</strong> Enable "Show Whitespace" in your editor to visualize indentation.</p>
+        </div>
+      </div>
+
+      <!-- Error 7 -->
+      <div class="error-card tab-content" data-tab="web">
+        <h3><i class="fas fa-exclamation-triangle"></i> Cannot read properties of null (reading 'addEventListener')</h3>
+        <p>JavaScript tries to call a method on an element that doesn't exist in the DOM. Usually because the script runs before the HTML element is loaded.</p>
+        <div class="solution">
+          <h4><i class="fas fa-check-circle"></i> Solution</h4>
+          <p><strong>Fix 1:</strong> Place your <code>&lt;script&gt;</code> tag at the bottom of <code>&lt;body&gt;</code>, just before <code>&lt;/body&gt;</code>.</p>
+          <p><strong>Fix 2:</strong> Wrap your code in <code>DOMContentLoaded</code> event.</p>
+          <p><strong>Fix 3:</strong> Add <code>defer</code> attribute to your script tag.</p>
+        </div>
+        <div class="code-block" style="margin-top:15px">
+          <div class="code-header">
+            <span class="code-lang">JavaScript</span>
+            <button class="copy-btn">📋 Copy</button>
+          </div>
+          <pre><code><span class="code-comment">// Fix: Wait for DOM to load</span>
+document.<span class="code-function">addEventListener</span>(<span class="code-string">'DOMContentLoaded'</span>, () => {
+  <span class="code-keyword">const</span> btn = document.<span class="code-function">querySelector</span>(<span class="code-string">'.btn'</span>);
+  <span class="code-keyword">if</span> (btn) {
+    btn.<span class="code-function">addEventListener</span>(<span class="code-string">'click'</span>, handleClick);
+  }
+});
+
+<span class="code-comment">// Or use defer in HTML:</span>
+<span class="code-comment">// &lt;script src="app.js" defer&gt;&lt;/script&gt;</span></code></pre>
+        </div>
+      </div>
+
+      <!-- Error 8 -->
+      <div class="error-card tab-content" data-tab="web">
+        <h3><i class="fas fa-exclamation-triangle"></i> 404 Error: Page Not Found</h3>
+        <p>The browser can't find the file or page you're trying to access. The URL path, file name, or server configuration might be wrong.</p>
+        <div class="solution">
+          <h4><i class="fas fa-check-circle"></i> Solution</h4>
+          <p><strong>Check 1:</strong> Verify the file path and file name (case-sensitive on Linux).</p>
+          <p><strong>Check 2:</strong> Make sure the file exists in the correct directory.</p>
+          <p><strong>Check 3:</strong> For relative paths, use <code>./</code> for same directory, <code>../</code> for parent directory.</p>
+          <p><strong>Check 4:</strong> Check your server configuration for correct routing.</p>
+        </div>
+      </div>
+
+      <!-- Error 9 -->
+      <div class="error-card tab-content" data-tab="software">
+        <h3><i class="fas fa-exclamation-triangle"></i> Git: "fatal: not a git repository"</h3>
+        <p>You're trying to run a git command but you're not inside a git repository directory.</p>
+        <div class="solution">
+          <h4><i class="fas fa-check-circle"></i> Solution</h4>
+          <p><strong>Fix 1:</strong> Navigate to your project folder: <code>cd my-project</code></p>
+          <p><strong>Fix 2:</strong> Initialize git if it's a new project: <code>git init</code></p>
+          <p><strong>Fix 3:</strong> Clone an existing repo: <code>git clone https://github.com/user/repo.git</code></p>
+        </div>
+      </div>
+
+      <!-- Error 10 -->
+      <div class="error-card tab-content" data-tab="web">
+        <h3><i class="fas fa-exclamation-triangle"></i> "Uncaught SyntaxError: Unexpected token" in JavaScript</h3>
+        <p>JavaScript encountered a character or token it wasn't expecting. Common causes: missing brackets, extra commas, or typos.</p>
+        <div class="solution">
+          <h4><i class="fas fa-check-circle"></i> Solution</h4>
+          <p><strong>Fix 1:</strong> Check for missing or extra brackets <code>{}</code>, parentheses <code>()</code>, or semicolons <code>;</code></p>
+          <p><strong>Fix 2:</strong> Look at the line number in the error message — the issue is usually on that line or the line above.</p>
+          <p><strong>Fix 3:</strong> Use an online JavaScript validator or your editor's linting extension (ESLint).</p>
+          <p><strong>Fix 4:</strong> Make sure you're not using reserved keywords as variable names.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <div class="nav-logo" style="margin-bottom:20px">
+          <img src="../images/logo.jpg" alt="Code4Boy" style="width:45px;height:45px;border-radius:50%;border:2px solid rgba(26,115,232,0.2)">
+          <span style="font-family:var(--font-heading);font-size:1.2rem;font-weight:700;color:#1a73e8">CODE4BOY</span>
+        </div>
+        <p>Learn coding free with AI-powered tutorials, real-world projects, and smart error solutions.</p>
+        <div class="social-links">
+          <a href="https://youtube.com/@code4boy-l4u" target="_blank" class="social-link"><i class="fab fa-youtube"></i></a>
+          <a href="https://github.com/code4boy" target="_blank" class="social-link"><i class="fab fa-github"></i></a>
+          <a href="https://twitter.com/code4boy" target="_blank" class="social-link"><i class="fab fa-twitter"></i></a>
+          <a href="https://instagram.com/code4boy" target="_blank" class="social-link"><i class="fab fa-instagram"></i></a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h3>Quick Links</h3>
+        <ul class="footer-links">
+          <li><a href="../index.html"><i class="fas fa-chevron-right"></i> Home</a></li>
+          <li><a href="tutorials.html"><i class="fas fa-chevron-right"></i> Tutorials</a></li>
+          <li><a href="projects.html"><i class="fas fa-chevron-right"></i> Projects</a></li>
+          <li><a href="tools.html"><i class="fas fa-chevron-right"></i> Tools</a></li>
+          <li><a href="errors.html"><i class="fas fa-chevron-right"></i> Error Solutions</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h3>Contact Us</h3>
+        <form class="contact-form">
+          <input type="text" placeholder="Your Name" required>
+          <input type="email" placeholder="Your Email" required>
+          <textarea placeholder="Your Message" required></textarea>
+          <button type="submit" class="btn-primary"><i class="fas fa-paper-plane"></i> Send</button>
+        </form>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2025 Code4Boy. All Rights Reserved.</p>
+      <div class="footer-bottom-links">
+        <a href="privacy-policy.html">Privacy Policy</a>
+        <a href="terms-of-use.html">Terms of Use</a>
+        <a href="sitemap.html">Sitemap</a>
+      </div>
+    </div>
+  </footer>
+
+  <button class="back-to-top"><i class="fas fa-chevron-up"></i></button>
+  <!-- Google Identity Services -->
+  <script src="https://accounts.google.com/gsi/client" async defer></script>
+  <script src="../js/google-config.js"></script>
+  <script src="../js/server-sync.js"></script>
+  <script src="../js/auth.js"></script>
+  <script src="../js/main.js"></script>
+  <script src="../js/mobile-animations.js"></script>
+  <script src="../js/code-runner.js"></script>
+  <!-- Prism.js Syntax Highlighting -->
+  <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/prism.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-python.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-bash.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-json.min.js"></script>
+  <script src="../js/prism-highlight.js"></script>
+  <script src="../js/miniplayer.js"></script>
+</body>
+</html>

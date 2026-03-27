@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CSS Flexbox & Grid Cheat Sheet - Code4Boy</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Segoe UI', sans-serif; background: #1a1a2e; color: #e0e0e0; padding: 30px; }
+    h1 { text-align: center; color: #0066ff; margin-bottom: 10px; font-size: 2rem; }
+    .subtitle { text-align: center; color: #888; margin-bottom: 40px; }
+    .section { margin-bottom: 35px; }
+    .section h2 { color: #00f0ff; font-size: 1.3rem; margin-bottom: 15px; border-bottom: 2px solid rgba(0,240,255,0.2); padding-bottom: 8px; }
+    .section h3 { color: #8b00ff; font-size: 1rem; margin: 15px 0 10px; }
+    table { width: 100%; border-collapse: collapse; margin-bottom: 15px; }
+    th { background: rgba(0,240,255,0.1); color: #00f0ff; text-align: left; padding: 10px 15px; font-size: 0.85rem; }
+    td { padding: 8px 15px; border-bottom: 1px solid rgba(255,255,255,0.05); font-size: 0.9rem; }
+    td:first-child { color: #c3e88d; font-family: 'Courier New', monospace; white-space: nowrap; }
+    tr:hover { background: rgba(0,240,255,0.03); }
+    .demo { background: rgba(0,240,255,0.05); border: 1px solid rgba(0,240,255,0.15); border-radius: 8px; padding: 15px; margin: 10px 0 20px; }
+    .demo-flex { display: flex; gap: 8px; flex-wrap: wrap; }
+    .demo-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+    .demo-item { background: rgba(0,240,255,0.15); border: 1px solid rgba(0,240,255,0.3); padding: 10px; text-align: center; border-radius: 4px; font-size: 0.8rem; color: #00f0ff; }
+    .footer { text-align: center; margin-top: 40px; color: #555; font-size: 0.85rem; }
+    @media print { body { background: #fff; color: #333; } }
+  </style>
+</head>
+<body>
+  <h1>CSS Flexbox & Grid Cheat Sheet</h1>
+  <p class="subtitle">Code4Boy - Visual Reference Guide</p>
+
+  <div class="section">
+    <h2>Flexbox - Container Properties</h2>
+    <table>
+      <tr><th>Property</th><th>Values</th><th>Description</th></tr>
+      <tr><td>display: flex</td><td>flex | inline-flex</td><td>Enables flexbox layout</td></tr>
+      <tr><td>flex-direction</td><td>row | column | row-reverse | column-reverse</td><td>Main axis direction</td></tr>
+      <tr><td>justify-content</td><td>flex-start | center | flex-end | space-between | space-around | space-evenly</td><td>Align items along main axis</td></tr>
+      <tr><td>align-items</td><td>stretch | center | flex-start | flex-end | baseline</td><td>Align items along cross axis</td></tr>
+      <tr><td>flex-wrap</td><td>nowrap | wrap | wrap-reverse</td><td>Allow items to wrap to next line</td></tr>
+      <tr><td>gap</td><td>10px | 1rem</td><td>Space between flex items</td></tr>
+      <tr><td>align-content</td><td>flex-start | center | space-between | stretch</td><td>Align wrapped lines</td></tr>
+    </table>
+    <h3>Visual: justify-content: space-between</h3>
+    <div class="demo">
+      <div class="demo-flex" style="justify-content:space-between">
+        <div class="demo-item">1</div>
+        <div class="demo-item">2</div>
+        <div class="demo-item">3</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>Flexbox - Item Properties</h2>
+    <table>
+      <tr><th>Property</th><th>Values</th><th>Description</th></tr>
+      <tr><td>flex-grow</td><td>0 | 1 | 2...</td><td>How much item should grow</td></tr>
+      <tr><td>flex-shrink</td><td>0 | 1</td><td>How much item should shrink</td></tr>
+      <tr><td>flex-basis</td><td>auto | 200px | 50%</td><td>Initial size before growing/shrinking</td></tr>
+      <tr><td>flex</td><td>1 | 0 1 auto</td><td>Shorthand for grow, shrink, basis</td></tr>
+      <tr><td>align-self</td><td>auto | center | flex-start | flex-end</td><td>Override container's align-items</td></tr>
+      <tr><td>order</td><td>0 | 1 | -1</td><td>Visual order of item</td></tr>
+    </table>
+  </div>
+
+  <div class="section">
+    <h2>CSS Grid - Container Properties</h2>
+    <table>
+      <tr><th>Property</th><th>Values</th><th>Description</th></tr>
+      <tr><td>display: grid</td><td>grid | inline-grid</td><td>Enables grid layout</td></tr>
+      <tr><td>grid-template-columns</td><td>1fr 1fr 1fr | repeat(3, 1fr) | auto</td><td>Define column sizes</td></tr>
+      <tr><td>grid-template-rows</td><td>100px auto 1fr</td><td>Define row sizes</td></tr>
+      <tr><td>gap</td><td>10px | 10px 20px</td><td>Row and column gaps</td></tr>
+      <tr><td>justify-items</td><td>start | center | end | stretch</td><td>Align items horizontally in cells</td></tr>
+      <tr><td>align-items</td><td>start | center | end | stretch</td><td>Align items vertically in cells</td></tr>
+      <tr><td>grid-auto-flow</td><td>row | column | dense</td><td>How auto-placed items flow</td></tr>
+    </table>
+    <h3>Visual: 3-column grid</h3>
+    <div class="demo">
+      <div class="demo-grid">
+        <div class="demo-item">1</div>
+        <div class="demo-item">2</div>
+        <div class="demo-item">3</div>
+        <div class="demo-item">4</div>
+        <div class="demo-item">5</div>
+        <div class="demo-item">6</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>CSS Grid - Item Properties</h2>
+    <table>
+      <tr><th>Property</th><th>Values</th><th>Description</th></tr>
+      <tr><td>grid-column</td><td>1 / 3 | span 2</td><td>Column start/end or span</td></tr>
+      <tr><td>grid-row</td><td>1 / 3 | span 2</td><td>Row start/end or span</td></tr>
+      <tr><td>grid-area</td><td>header | 1 / 1 / 2 / 3</td><td>Named area or row/col positions</td></tr>
+      <tr><td>justify-self</td><td>start | center | end | stretch</td><td>Align item horizontally in cell</td></tr>
+      <tr><td>align-self</td><td>start | center | end | stretch</td><td>Align item vertically in cell</td></tr>
+    </table>
+  </div>
+
+  <div class="section">
+    <h2>Responsive Patterns</h2>
+    <table>
+      <tr><th>Pattern</th><th>Code</th></tr>
+      <tr><td>Auto-fill columns</td><td>grid-template-columns: repeat(auto-fill, minmax(250px, 1fr))</td></tr>
+      <tr><td>Auto-fit columns</td><td>grid-template-columns: repeat(auto-fit, minmax(250px, 1fr))</td></tr>
+      <tr><td>Flex wrap cards</td><td>display: flex; flex-wrap: wrap; gap: 20px;</td></tr>
+      <tr><td>Equal height cards</td><td>display: grid; grid-template-columns: repeat(3, 1fr);</td></tr>
+    </table>
+  </div>
+
+  <p class="footer">Code4Boy &bull; css-flexbox-grid-cheatsheet &bull; Print this page for reference!</p>
+</body>
+</html>

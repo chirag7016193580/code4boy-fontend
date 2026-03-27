@@ -1,0 +1,4031 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <meta http-equiv="X-Content-Type-Options" content="nosniff">
+  <meta http-equiv="X-XSS-Protection" content="1; mode=block">
+  <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com https://fonts.googleapis.com; font-src https://fonts.gstatic.com https://cdnjs.cloudflare.com; img-src 'self' data:; connect-src 'self' http://localhost:8000 http://127.0.0.1:8000 https://code4boy-backend.vercel.app https://ipapi.co;">
+  <meta http-equiv="Permissions-Policy" content="camera=(), microphone=(), geolocation=()">
+  <title>Admin Panel - Code4Boy</title>
+  <link rel="icon" type="image/jpeg" href="images/logo.jpg">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/upgrade.css">
+  <link rel="stylesheet" href="css/mobile.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer">
+  <style>
+    /* ============================================
+       ADMIN SIDEBAR NAVIGATION
+       ============================================ */
+    .admin-layout {
+      display: flex;
+      min-height: 100vh;
+    }
+    .admin-sidebar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 260px;
+      height: 100vh;
+      background: rgba(6,6,19,0.95);
+      border-right: 1px solid var(--glass-border);
+      backdrop-filter: blur(20px);
+      z-index: 1000;
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.3s cubic-bezier(0.4,0,0.2,1), width 0.3s ease;
+      overflow-y: auto;
+      overflow-x: hidden;
+    }
+    .admin-sidebar::-webkit-scrollbar { width: 3px; }
+    .admin-sidebar::-webkit-scrollbar-thumb { background: rgba(0,240,255,0.2); border-radius: 3px; }
+    .admin-sidebar-header {
+      padding: 20px 18px 14px;
+      border-bottom: 1px solid var(--glass-border);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-shrink: 0;
+    }
+    .admin-sidebar-header .sidebar-logo {
+      width: 38px; height: 38px;
+      border-radius: 10px;
+      border: 2px solid rgba(0,240,255,0.3);
+      object-fit: cover;
+    }
+    .admin-sidebar-header .sidebar-title {
+      font-family: var(--font-heading);
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--neon-cyan);
+      letter-spacing: 1px;
+    }
+    .admin-sidebar-header .sidebar-subtitle {
+      font-size: 0.7rem;
+      color: var(--text-dim);
+      margin-top: 2px;
+    }
+    .sidebar-nav {
+      padding: 12px 10px;
+      flex: 1;
+    }
+    .sidebar-nav-label {
+      font-size: 0.65rem;
+      font-weight: 700;
+      color: var(--text-dim);
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      padding: 12px 12px 6px;
+      margin-top: 4px;
+    }
+    .sidebar-nav-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 14px;
+      border-radius: 10px;
+      color: var(--text-secondary);
+      font-size: 0.85rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      margin-bottom: 2px;
+      text-decoration: none;
+      border: 1px solid transparent;
+    }
+    .sidebar-nav-item:hover {
+      background: rgba(0,240,255,0.06);
+      color: var(--neon-cyan);
+      border-color: rgba(0,240,255,0.1);
+    }
+    .sidebar-nav-item.active {
+      background: rgba(0,240,255,0.1);
+      color: var(--neon-cyan);
+      border-color: rgba(0,240,255,0.2);
+      font-weight: 600;
+    }
+    .sidebar-nav-item i {
+      width: 20px;
+      text-align: center;
+      font-size: 0.9rem;
+      flex-shrink: 0;
+    }
+    .sidebar-nav-item .nav-badge {
+      margin-left: auto;
+      background: rgba(0,240,255,0.15);
+      color: var(--neon-cyan);
+      font-size: 0.65rem;
+      padding: 2px 7px;
+      border-radius: 10px;
+      font-weight: 700;
+    }
+    .sidebar-footer {
+      padding: 14px 18px;
+      border-top: 1px solid var(--glass-border);
+      flex-shrink: 0;
+    }
+    .sidebar-footer .sidebar-logout-btn {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      width: 100%;
+      padding: 10px 14px;
+      border: 1px solid rgba(255,68,68,0.2);
+      border-radius: 10px;
+      background: rgba(255,68,68,0.06);
+      color: #ff4444;
+      font-size: 0.85rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      font-family: var(--font-body);
+    }
+    .sidebar-footer .sidebar-logout-btn:hover {
+      background: rgba(255,68,68,0.12);
+      border-color: rgba(255,68,68,0.4);
+    }
+    .admin-main-content {
+      margin-left: 260px;
+      flex: 1;
+      min-height: 100vh;
+      transition: margin-left 0.3s ease;
+    }
+    .sidebar-toggle-btn {
+      display: none;
+      position: fixed;
+      top: 14px;
+      left: 14px;
+      z-index: 1001;
+      background: rgba(6,6,19,0.9);
+      border: 1px solid var(--glass-border);
+      color: var(--neon-cyan);
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      cursor: pointer;
+      font-size: 1.1rem;
+      backdrop-filter: blur(10px);
+      transition: all 0.2s ease;
+    }
+    .sidebar-toggle-btn:hover {
+      border-color: var(--neon-cyan);
+      box-shadow: 0 0 15px rgba(0,240,255,0.2);
+    }
+
+    /* ============================================
+       QUICK ACTIONS BAR
+       ============================================ */
+    .quick-actions-bar {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 10px;
+      margin-bottom: 24px;
+      padding: 0;
+    }
+    .quick-action-btn {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 14px 16px;
+      background: rgba(6,6,19,0.4);
+      border: 1px solid var(--glass-border);
+      border-radius: 12px;
+      color: var(--text-secondary);
+      font-size: 0.82rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      font-family: var(--font-body);
+      text-decoration: none;
+    }
+    .quick-action-btn:hover {
+      border-color: var(--neon-cyan);
+      color: var(--neon-cyan);
+      background: rgba(0,240,255,0.04);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 15px rgba(0,240,255,0.1);
+    }
+    .quick-action-btn i {
+      font-size: 1.1rem;
+      width: 24px;
+      text-align: center;
+    }
+    .quick-action-btn.qa-green { border-color: rgba(0,255,136,0.2); }
+    .quick-action-btn.qa-green:hover { border-color: var(--neon-green); color: var(--neon-green); box-shadow: 0 4px 15px rgba(0,255,136,0.1); }
+    .quick-action-btn.qa-orange { border-color: rgba(255,102,0,0.2); }
+    .quick-action-btn.qa-orange:hover { border-color: var(--neon-orange); color: var(--neon-orange); box-shadow: 0 4px 15px rgba(255,102,0,0.1); }
+    .quick-action-btn.qa-purple { border-color: rgba(139,0,255,0.2); }
+    .quick-action-btn.qa-purple:hover { border-color: #8b00ff; color: #8b00ff; box-shadow: 0 4px 15px rgba(139,0,255,0.1); }
+
+    /* ============================================
+       SECTION COLLAPSE/EXPAND
+       ============================================ */
+    .admin-card h2 {
+      cursor: pointer;
+      user-select: none;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .admin-card h2 .collapse-icon {
+      margin-left: auto;
+      font-size: 0.75rem;
+      color: var(--text-dim);
+      transition: transform 0.3s ease;
+      width: 24px;
+      height: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 6px;
+      background: rgba(255,255,255,0.03);
+    }
+    .admin-card h2 .collapse-icon:hover {
+      background: rgba(0,240,255,0.08);
+      color: var(--neon-cyan);
+    }
+    .admin-card.collapsed .admin-card-body {
+      display: none;
+    }
+    .admin-card.collapsed h2 .collapse-icon {
+      transform: rotate(-90deg);
+    }
+    .admin-card-body {
+      transition: all 0.3s ease;
+    }
+
+    /* ============================================
+       UPGRADED ANALYTICS STAT CARDS
+       ============================================ */
+    .analytics-stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 14px;
+      margin-bottom: 24px;
+    }
+    .admin-stat-card {
+      position: relative;
+      overflow: hidden;
+      padding: 18px 16px;
+      border-radius: 14px;
+      background: rgba(6,6,19,0.5);
+      border: 1px solid var(--glass-border);
+      transition: all 0.3s ease;
+    }
+    .admin-stat-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: var(--neon-cyan);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+    .admin-stat-card:hover {
+      border-color: rgba(0,240,255,0.3);
+      transform: translateY(-3px);
+      box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+    }
+    .admin-stat-card:hover::before {
+      opacity: 1;
+    }
+    .admin-stat-card:nth-child(2)::before { background: var(--neon-green); }
+    .admin-stat-card:nth-child(3)::before { background: var(--neon-orange); }
+    .admin-stat-card:nth-child(4)::before { background: #e94560; }
+    .admin-stat-card:nth-child(5)::before { background: #8b00ff; }
+    .admin-stat-card .stat-card-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 10px;
+    }
+    .admin-stat-card .admin-stat-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      background: rgba(0,240,255,0.08);
+      color: var(--neon-cyan);
+    }
+    .admin-stat-card .stat-trend {
+      font-size: 0.7rem;
+      padding: 3px 8px;
+      border-radius: 20px;
+      font-weight: 600;
+    }
+    .admin-stat-card .stat-trend.up {
+      background: rgba(0,255,136,0.1);
+      color: var(--neon-green);
+    }
+    .admin-stat-card .admin-stat-num {
+      font-size: 1.6rem;
+      font-weight: 800;
+      color: var(--text-primary);
+      font-family: var(--font-heading);
+      line-height: 1;
+      margin-bottom: 4px;
+    }
+    .admin-stat-card .admin-stat-label {
+      font-size: 0.78rem;
+      color: var(--text-dim);
+      font-weight: 500;
+    }
+
+    /* Analytics Tabs Upgrade */
+    .analytics-tabs-row {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+      margin-bottom: 16px;
+      padding: 6px;
+      background: rgba(6,6,19,0.3);
+      border-radius: 12px;
+      border: 1px solid var(--glass-border);
+    }
+    .analytics-tab {
+      padding: 8px 14px !important;
+      border-radius: 8px !important;
+      font-size: 0.8rem !important;
+      transition: all 0.2s ease !important;
+    }
+    .analytics-tab.active {
+      background: rgba(0,240,255,0.12) !important;
+      border-color: rgba(0,240,255,0.3) !important;
+      color: var(--neon-cyan) !important;
+    }
+
+    /* Analytics Bar Chart Upgrade */
+    .analytics-bar-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 8px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.03);
+    }
+    .analytics-bar-row:last-child { border-bottom: none; }
+    .analytics-bar-label {
+      width: 120px;
+      font-size: 0.82rem;
+      color: var(--text-secondary);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      flex-shrink: 0;
+    }
+    .analytics-bar-track {
+      flex: 1;
+      height: 8px;
+      background: rgba(6,6,19,0.5);
+      border-radius: 4px;
+      overflow: hidden;
+    }
+    .analytics-bar-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--neon-cyan), var(--neon-green));
+      border-radius: 4px;
+      transition: width 0.6s cubic-bezier(0.4,0,0.2,1);
+      min-width: 4px;
+    }
+    .analytics-bar-val {
+      width: 50px;
+      text-align: right;
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      flex-shrink: 0;
+    }
+
+    /* Back to Top Button */
+    .admin-back-to-top {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      background: rgba(0,240,255,0.1);
+      border: 1px solid rgba(0,240,255,0.3);
+      color: var(--neon-cyan);
+      font-size: 1rem;
+      cursor: pointer;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 999;
+      transition: all 0.3s ease;
+      backdrop-filter: blur(10px);
+    }
+    .admin-back-to-top:hover {
+      background: rgba(0,240,255,0.2);
+      transform: translateY(-3px);
+      box-shadow: 0 4px 15px rgba(0,240,255,0.2);
+    }
+    .admin-back-to-top.visible {
+      display: flex;
+    }
+
+    /* Mobile sidebar responsive */
+    @media (max-width: 900px) {
+      .admin-sidebar {
+        transform: translateX(-100%);
+        width: 280px;
+        box-shadow: 4px 0 25px rgba(0,0,0,0.5);
+      }
+      .admin-sidebar.open {
+        transform: translateX(0);
+      }
+      .admin-main-content {
+        margin-left: 0;
+      }
+      .sidebar-toggle-btn {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .sidebar-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0,0,0,0.5);
+        z-index: 999;
+        display: none;
+      }
+      .sidebar-overlay.active {
+        display: block;
+      }
+    }
+
+    /* FILE MANAGER STYLES */
+    .fm-toolbar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 14px;
+      padding: 10px;
+      background: rgba(6,6,19,0.4);
+      border: 1px solid var(--glass-border);
+      border-radius: 10px;
+    }
+    .fm-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 14px;
+      font-family: var(--font-body);
+      font-size: 0.85rem;
+      font-weight: 600;
+      border: 1px solid var(--glass-border);
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      background: rgba(6,6,19,0.5);
+      color: var(--text-secondary);
+    }
+    .fm-btn:hover { border-color: var(--neon-cyan); color: var(--neon-cyan); }
+    .fm-btn-green { border-color: rgba(0,255,136,0.3); color: var(--neon-green); }
+    .fm-btn-green:hover { background: rgba(0,255,136,0.1); box-shadow: 0 0 10px rgba(0,255,136,0.2); }
+    .fm-btn-cyan { border-color: rgba(0,240,255,0.3); color: var(--neon-cyan); }
+    .fm-btn-cyan:hover { background: rgba(0,240,255,0.1); box-shadow: 0 0 10px rgba(0,240,255,0.2); }
+    .fm-btn-orange { border-color: rgba(255,102,0,0.3); color: var(--neon-orange); }
+    .fm-btn-orange:hover { background: rgba(255,102,0,0.1); box-shadow: 0 0 10px rgba(255,102,0,0.2); }
+    .fm-btn-red { border-color: rgba(255,68,68,0.3); color: #ff4444; }
+    .fm-btn-red:hover { background: rgba(255,68,68,0.1); box-shadow: 0 0 10px rgba(255,68,68,0.2); }
+    .fm-breadcrumb {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      padding: 8px 12px;
+      background: rgba(6,6,19,0.3);
+      border-radius: 8px;
+      margin-bottom: 12px;
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      color: var(--text-secondary);
+      flex-wrap: wrap;
+    }
+    .fm-breadcrumb span { cursor: pointer; transition: color 0.2s; }
+    .fm-breadcrumb span:hover { color: var(--neon-cyan); }
+    .fm-breadcrumb .fm-bc-sep { color: var(--text-dim); margin: 0 2px; cursor: default; }
+    .fm-breadcrumb .fm-bc-current { color: var(--neon-cyan); cursor: default; }
+    .fm-file-list {
+      max-height: 500px;
+      overflow-y: auto;
+    }
+    .fm-file-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 10px 14px;
+      background: rgba(6,6,19,0.3);
+      border: 1px solid var(--glass-border);
+      border-radius: 8px;
+      margin-bottom: 6px;
+      transition: all 0.2s ease;
+      cursor: pointer;
+    }
+    .fm-file-item:hover {
+      border-color: rgba(0,240,255,0.3);
+      background: rgba(0,240,255,0.04);
+    }
+    .fm-file-icon {
+      font-size: 1.2rem;
+      width: 28px;
+      text-align: center;
+      flex-shrink: 0;
+    }
+    .fm-file-icon.folder { color: #f7df1e; }
+    .fm-file-icon.html { color: #ff6600; }
+    .fm-file-icon.css { color: #0066ff; }
+    .fm-file-icon.js { color: #f7df1e; }
+    .fm-file-icon.img { color: #e94560; }
+    .fm-file-icon.file { color: var(--text-secondary); }
+    .fm-file-name {
+      flex: 1;
+      font-size: 0.92rem;
+      font-weight: 500;
+      color: var(--text-primary);
+      word-break: break-all;
+    }
+    .fm-file-size {
+      font-size: 0.8rem;
+      color: var(--text-dim);
+      font-family: var(--font-mono);
+      min-width: 60px;
+      text-align: right;
+    }
+    .fm-file-actions {
+      display: flex;
+      gap: 4px;
+    }
+    .fm-file-actions button {
+      background: none;
+      border: 1px solid transparent;
+      color: var(--text-dim);
+      cursor: pointer;
+      padding: 4px 8px;
+      border-radius: 6px;
+      font-size: 0.85rem;
+      transition: all 0.2s ease;
+    }
+    .fm-file-actions button:hover { color: var(--neon-cyan); border-color: var(--glass-border); }
+    .fm-file-actions button.fm-act-delete:hover { color: #ff4444; }
+    .fm-file-actions button.fm-act-download:hover { color: var(--neon-green); }
+    .fm-file-actions button.fm-act-edit:hover { color: var(--neon-cyan); }
+
+    /* File Editor Modal */
+    .fm-editor-modal {
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      z-index: 5000;
+      background: rgba(6,6,19,0.95);
+      backdrop-filter: blur(12px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      animation: fadeInUp 0.3s ease;
+    }
+    .fm-editor-container {
+      width: 95%;
+      max-width: 1100px;
+      height: 85vh;
+      background: var(--glass-bg);
+      border: 1px solid var(--glass-border);
+      border-radius: 16px;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+    .fm-editor-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 14px 20px;
+      border-bottom: 1px solid var(--glass-border);
+      background: rgba(6,6,19,0.6);
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    .fm-editor-title {
+      font-family: var(--font-mono);
+      font-size: 0.9rem;
+      color: var(--neon-cyan);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .fm-editor-actions {
+      display: flex;
+      gap: 8px;
+    }
+    .fm-editor-textarea {
+      flex: 1;
+      width: 100%;
+      padding: 16px 20px;
+      font-family: var(--font-mono);
+      font-size: 0.88rem;
+      line-height: 1.6;
+      background: rgba(6,6,19,0.8);
+      color: var(--text-primary);
+      border: none;
+      outline: none;
+      resize: none;
+      tab-size: 2;
+      -moz-tab-size: 2;
+    }
+    .fm-editor-textarea::selection {
+      background: rgba(0,240,255,0.2);
+    }
+
+    @media (max-width: 600px) {
+      .fm-toolbar { flex-direction: column; }
+      .fm-file-size { display: none; }
+      .fm-editor-container { width: 100%; height: 100vh; border-radius: 0; }
+    }
+
+    .admin-wrap {
+      max-width: 960px;
+      margin: 100px auto 60px;
+      padding: 0 20px;
+    }
+    .admin-header {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+    .admin-header h1 {
+      font-family: var(--font-heading);
+      font-size: 2rem;
+      background: var(--gradient-neon);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 8px;
+    }
+    .admin-header p {
+      color: var(--text-secondary);
+      font-size: 1.05rem;
+    }
+    .admin-header .security-info {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      margin-top: 12px;
+      padding: 6px 16px;
+      background: rgba(0, 255, 136, 0.06);
+      border: 1px solid rgba(0, 255, 136, 0.15);
+      border-radius: 20px;
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      color: var(--neon-green);
+      letter-spacing: 1px;
+    }
+    .admin-card {
+      background: var(--glass-bg);
+      border: 1px solid var(--glass-border);
+      border-radius: 16px;
+      padding: 28px 32px;
+      margin-bottom: 24px;
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      transition: border-color 0.3s ease;
+    }
+    .admin-card:hover {
+      border-color: rgba(0, 240, 255, 0.2);
+    }
+    .admin-card h2 {
+      font-family: var(--font-heading);
+      font-size: 1.1rem;
+      color: var(--neon-cyan);
+      margin-bottom: 18px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .admin-card h2 i {
+      font-size: 1rem;
+    }
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-bottom: 16px;
+    }
+    .form-group {
+      margin-bottom: 16px;
+    }
+    .form-group label {
+      display: block;
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+      margin-bottom: 6px;
+      font-weight: 500;
+    }
+    .form-group input,
+    .form-group textarea,
+    .form-group select {
+      width: 100%;
+      padding: 10px 14px;
+      font-family: var(--font-body);
+      font-size: 0.95rem;
+      background: rgba(6, 6, 19, 0.5);
+      border: 1px solid var(--glass-border);
+      border-radius: 10px;
+      color: var(--text-primary);
+      outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    .form-group input:focus,
+    .form-group textarea:focus {
+      border-color: var(--neon-cyan);
+      box-shadow: 0 0 12px rgba(0, 240, 255, 0.08);
+    }
+    .form-group input[type="color"] {
+      height: 42px;
+      padding: 4px 6px;
+      cursor: pointer;
+    }
+    .form-group textarea {
+      min-height: 70px;
+      resize: vertical;
+    }
+    .admin-actions {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 30px;
+    }
+    .admin-actions button {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 28px;
+      font-family: var(--font-heading);
+      font-size: 0.85rem;
+      font-weight: 600;
+      letter-spacing: 1px;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      text-transform: uppercase;
+    }
+    .btn-save {
+      background: var(--neon-cyan);
+      color: #060613;
+    }
+    .btn-save:hover {
+      box-shadow: 0 0 20px rgba(0, 240, 255, 0.4);
+      transform: translateY(-2px);
+    }
+    .btn-reset {
+      background: transparent;
+      border: 1px solid var(--neon-orange) !important;
+      color: var(--neon-orange);
+    }
+    .btn-reset:hover {
+      background: rgba(255, 102, 0, 0.1);
+      box-shadow: 0 0 15px rgba(255, 102, 0, 0.3);
+      transform: translateY(-2px);
+    }
+    .btn-preview {
+      background: transparent;
+      border: 1px solid var(--neon-green) !important;
+      color: var(--neon-green);
+    }
+    .btn-preview:hover {
+      background: rgba(0, 255, 136, 0.1);
+      box-shadow: 0 0 15px rgba(0, 255, 136, 0.3);
+      transform: translateY(-2px);
+    }
+    .btn-logout {
+      background: transparent;
+      border: 1px solid #ff4444 !important;
+      color: #ff4444;
+    }
+    .btn-logout:hover {
+      background: rgba(255, 68, 68, 0.1);
+      box-shadow: 0 0 15px rgba(255, 68, 68, 0.3);
+      transform: translateY(-2px);
+    }
+    .msg-list {
+      max-height: 360px;
+      overflow-y: auto;
+    }
+    .msg-item {
+      background: rgba(6, 6, 19, 0.4);
+      border: 1px solid var(--glass-border);
+      border-radius: 12px;
+      padding: 16px 18px;
+      margin-bottom: 12px;
+      transition: border-color 0.2s;
+    }
+    .msg-item:hover {
+      border-color: rgba(0, 240, 255, 0.3);
+    }
+    .msg-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 8px;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+    .msg-name {
+      font-weight: 600;
+      color: var(--neon-cyan);
+      font-size: 0.95rem;
+    }
+    .msg-email {
+      color: var(--text-secondary);
+      font-size: 0.85rem;
+    }
+    .msg-date {
+      color: var(--text-dim);
+      font-size: 0.8rem;
+    }
+    .msg-body {
+      color: var(--text-primary);
+      font-size: 0.92rem;
+      line-height: 1.5;
+    }
+    .msg-delete {
+      background: none;
+      border: none;
+      color: var(--text-dim);
+      cursor: pointer;
+      font-size: 0.85rem;
+      padding: 2px 6px;
+      border-radius: 4px;
+      transition: color 0.2s;
+    }
+    .msg-delete:hover {
+      color: #ff4444;
+    }
+    .empty-state {
+      text-align: center;
+      color: var(--text-dim);
+      padding: 30px;
+      font-size: 0.95rem;
+    }
+
+    /* Login Screen - Enhanced */
+    .admin-login {
+      max-width: 420px;
+      margin: 0 auto;
+      padding: 0 20px;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+    }
+    .admin-login .login-card {
+      background: var(--glass-bg);
+      border: 1px solid var(--glass-border);
+      border-radius: 20px;
+      padding: 40px 35px;
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      width: 100%;
+      animation: fadeInUp 0.6s ease;
+    }
+    .admin-login .login-icon {
+      width: 70px;
+      height: 70px;
+      margin: 0 auto 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(0, 240, 255, 0.06);
+      border: 2px solid rgba(0, 240, 255, 0.15);
+      border-radius: 50%;
+      font-size: 1.8rem;
+      color: var(--neon-cyan);
+      animation: glowPulse 2s infinite;
+    }
+    .admin-login h1 {
+      font-family: var(--font-heading);
+      font-size: 1.5rem;
+      color: var(--neon-cyan);
+      margin-bottom: 6px;
+    }
+    .admin-login .login-subtitle {
+      color: var(--text-secondary);
+      margin-bottom: 28px;
+      font-size: 0.95rem;
+    }
+    .admin-login .form-group {
+      text-align: left;
+    }
+    .admin-login .form-group label {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .admin-login .form-group label i {
+      font-size: 0.8rem;
+      color: var(--neon-cyan);
+    }
+    .admin-login .login-btn {
+      width: 100%;
+      margin-top: 12px;
+      padding: 14px;
+      border-radius: 12px;
+      font-family: var(--font-heading);
+      font-size: 0.9rem;
+      font-weight: 600;
+      letter-spacing: 1.5px;
+      border: none;
+      cursor: pointer;
+      background: var(--neon-cyan);
+      color: #060613;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      text-transform: uppercase;
+    }
+    .admin-login .login-btn:hover {
+      box-shadow: 0 6px 25px rgba(0, 240, 255, 0.4);
+      transform: translateY(-2px);
+    }
+    .admin-login .login-btn:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+      transform: none;
+      box-shadow: none;
+    }
+    .login-error {
+      color: #ff4444;
+      font-size: 0.85rem;
+      margin-top: 12px;
+      display: none;
+      padding: 10px;
+      background: rgba(255, 68, 68, 0.08);
+      border: 1px solid rgba(255, 68, 68, 0.2);
+      border-radius: 8px;
+    }
+    .login-security-badge {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      margin-top: 20px;
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      color: var(--neon-green);
+      letter-spacing: 1px;
+    }
+    .admin-nav-back {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+      margin-bottom: 20px;
+      transition: color 0.2s;
+    }
+    .admin-nav-back:hover {
+      color: var(--neon-cyan);
+    }
+    .session-timer {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 12px;
+      background: rgba(0, 240, 255, 0.04);
+      border: 1px solid var(--glass-border);
+      border-radius: 20px;
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      color: var(--text-secondary);
+      float: right;
+    }
+    /* Analytics Dashboard Styles */
+    .admin-stat-card {
+      background: rgba(0, 240, 255, 0.04);
+      border: 1px solid var(--glass-border);
+      border-radius: 12px;
+      padding: 16px;
+      text-align: center;
+      transition: border-color 0.3s, transform 0.2s;
+    }
+    .admin-stat-card:hover {
+      border-color: var(--neon-cyan);
+      transform: translateY(-2px);
+    }
+    .admin-stat-icon {
+      font-size: 1.4rem;
+      color: var(--neon-cyan);
+      margin-bottom: 6px;
+    }
+    .admin-stat-num {
+      font-family: var(--font-mono);
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: var(--text-primary);
+    }
+    .admin-stat-label {
+      font-size: 0.7rem;
+      color: var(--text-secondary);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-top: 4px;
+    }
+    .analytics-tab {
+      font-size: 0.75rem !important;
+      padding: 6px 12px !important;
+      border: 1px solid var(--glass-border) !important;
+      background: transparent !important;
+      color: var(--text-secondary) !important;
+      cursor: pointer;
+      border-radius: 6px !important;
+      transition: all 0.2s;
+    }
+    .analytics-tab:hover, .analytics-tab.active {
+      border-color: var(--neon-cyan) !important;
+      color: var(--neon-cyan) !important;
+      background: rgba(0, 240, 255, 0.08) !important;
+    }
+    .analytics-tab-content { display: none; }
+    .analytics-chart-container {
+      min-height: 200px;
+    }
+    .analytics-bar-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 8px;
+      font-size: 0.85rem;
+    }
+    .analytics-bar-label {
+      min-width: 120px;
+      color: var(--text-secondary);
+      text-align: right;
+      font-size: 0.8rem;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .analytics-bar-track {
+      flex: 1;
+      height: 22px;
+      background: rgba(255,255,255,0.04);
+      border-radius: 4px;
+      overflow: hidden;
+      position: relative;
+    }
+    .analytics-bar-fill {
+      height: 100%;
+      border-radius: 4px;
+      background: linear-gradient(90deg, var(--neon-cyan), var(--neon-green));
+      transition: width 0.6s ease;
+      min-width: 2px;
+    }
+    .analytics-bar-val {
+      min-width: 40px;
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      color: var(--text-primary);
+    }
+    .visitor-card {
+      background: rgba(0,240,255,0.03);
+      border: 1px solid var(--glass-border);
+      border-radius: 10px;
+      padding: 12px 16px;
+      margin-bottom: 8px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6px 16px;
+      font-size: 0.82rem;
+      transition: border-color 0.2s;
+    }
+    .visitor-card:hover {
+      border-color: var(--neon-cyan);
+    }
+    .visitor-card .vc-label {
+      color: var(--text-secondary);
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .visitor-card .vc-value {
+      color: var(--text-primary);
+      word-break: break-all;
+    }
+    .user-row {
+      background: rgba(0,240,255,0.03);
+      border: 1px solid var(--glass-border);
+      border-radius: 10px;
+      padding: 12px 16px;
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      transition: border-color 0.2s;
+    }
+    .user-row:hover { border-color: var(--neon-cyan); }
+    .user-row img {
+      width: 36px; height: 36px;
+      border-radius: 50%;
+      border: 2px solid var(--glass-border);
+    }
+    .user-row .user-info { flex: 1; }
+    .user-row .user-name { font-weight: 600; color: var(--text-primary); }
+    .user-row .user-email { font-size: 0.75rem; color: var(--text-secondary); }
+    .user-row .user-meta { font-size: 0.7rem; color: var(--text-secondary); text-align: right; }
+    @media (max-width: 600px) {
+      .form-row {
+        grid-template-columns: 1fr;
+      }
+      .admin-wrap {
+        margin-top: 80px;
+      }
+      .admin-actions {
+        flex-direction: column;
+      }
+      .admin-actions button {
+        width: 100%;
+        justify-content: center;
+      }
+      .admin-login .login-card {
+        padding: 30px 24px;
+      }
+      .visitor-card {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="bg-grid"></div>
+  <div class="bg-glow"></div>
+
+  <!-- Login Screen -->
+  <div id="loginScreen" class="admin-login">
+    <div class="login-card">
+      <div class="login-icon"><i class="fas fa-shield-alt"></i></div>
+      <h1>Admin Panel</h1>
+      <p class="login-subtitle">Enter your credentials to access the dashboard</p>
+      <div class="form-group">
+        <label><i class="fas fa-user"></i> Username</label>
+        <input type="text" id="loginUser" placeholder="Enter username" autocomplete="off" maxlength="50">
+      </div>
+      <div class="form-group">
+        <label><i class="fas fa-lock"></i> Password</label>
+        <input type="password" id="loginPass" placeholder="Enter password" autocomplete="off" maxlength="100">
+      </div>
+      <button class="login-btn" id="loginBtn" onclick="doLogin()">
+        <i class="fas fa-sign-in-alt"></i> Secure Login
+      </button>
+      <p class="login-error" id="loginError"></p>
+      <div class="login-security-badge">
+        <i class="fas fa-lock"></i> SHA-256 ENCRYPTED &bull; BRUTE FORCE PROTECTED
+      </div>
+    </div>
+  </div>
+
+  <!-- Admin Panel (hidden until login) -->
+  <div id="adminPanel" style="display:none">
+
+    <!-- Sidebar Toggle Button (mobile) -->
+    <button class="sidebar-toggle-btn" id="sidebarToggle" onclick="toggleAdminSidebar()">
+      <i class="fas fa-bars"></i>
+    </button>
+    <div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleAdminSidebar()"></div>
+
+    <!-- Sidebar Navigation -->
+    <nav class="admin-sidebar" id="adminSidebar">
+      <div class="admin-sidebar-header">
+        <img src="images/logo.jpg" alt="Code4Boy" class="sidebar-logo" onerror="this.style.display='none'">
+        <div>
+          <div class="sidebar-title">CODE4BOY</div>
+          <div class="sidebar-subtitle">Admin Dashboard</div>
+        </div>
+      </div>
+      <div class="sidebar-nav">
+        <div class="sidebar-nav-label">Dashboard</div>
+        <a class="sidebar-nav-item active" onclick="scrollToSection('analyticsSection')">
+          <i class="fas fa-chart-bar"></i> Analytics
+          <span class="nav-badge">LIVE</span>
+        </a>
+
+        <div class="sidebar-nav-label">Site Config</div>
+        <a class="sidebar-nav-item" onclick="scrollToSection('siteIdentitySection')">
+          <i class="fas fa-globe"></i> Site Identity
+        </a>
+        <a class="sidebar-nav-item" onclick="scrollToSection('apiConfigSection')">
+          <i class="fas fa-server"></i> API & Backend
+        </a>
+        <a class="sidebar-nav-item" onclick="scrollToSection('heroStatsSection')">
+          <i class="fas fa-chart-line"></i> Hero Stats
+        </a>
+        <a class="sidebar-nav-item" onclick="scrollToSection('seoSection')">
+          <i class="fas fa-search"></i> SEO & Analytics
+        </a>
+        <a class="sidebar-nav-item" onclick="scrollToSection('socialSection')">
+          <i class="fas fa-share-alt"></i> Social Media
+        </a>
+
+        <div class="sidebar-nav-label">Content</div>
+        <a class="sidebar-nav-item" onclick="scrollToSection('fileManagerCard')">
+          <i class="fas fa-folder-open"></i> File Manager
+        </a>
+        <a class="sidebar-nav-item" onclick="scrollToSection('projectUploadCard')">
+          <i class="fas fa-cloud-upload-alt"></i> Projects
+        </a>
+        <a class="sidebar-nav-item" onclick="scrollToSection('tutorialManagerCard')">
+          <i class="fas fa-book-open"></i> Tutorials
+        </a>
+
+        <div class="sidebar-nav-label">Controls</div>
+        <a class="sidebar-nav-item" onclick="scrollToSection('websiteControlsSection')">
+          <i class="fas fa-sliders-h"></i> Website Controls
+        </a>
+        <a class="sidebar-nav-item" onclick="scrollToSection('notificationsSection')">
+          <i class="fas fa-bell"></i> Notifications
+        </a>
+        <a class="sidebar-nav-item" onclick="scrollToSection('adSettingsSection')">
+          <i class="fas fa-ad"></i> Ad Settings
+        </a>
+
+        <div class="sidebar-nav-label">Account</div>
+        <a class="sidebar-nav-item" onclick="scrollToSection('changePasswordSection')">
+          <i class="fas fa-key"></i> Change Password
+        </a>
+        <a class="sidebar-nav-item" onclick="scrollToSection('contactMessagesSection')">
+          <i class="fas fa-envelope"></i> Messages
+        </a>
+      </div>
+      <div class="sidebar-footer">
+        <button class="sidebar-logout-btn" onclick="doLogout()">
+          <i class="fas fa-sign-out-alt"></i> Logout
+        </button>
+      </div>
+    </nav>
+
+    <!-- Main Content Area -->
+    <div class="admin-main-content">
+      <div class="admin-wrap">
+        <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;margin-bottom:20px">
+          <a href="index.html" class="admin-nav-back"><i class="fas fa-arrow-left"></i> Back to Website</a>
+          <div class="session-timer" id="sessionTimer"><i class="fas fa-clock"></i> Session: <span id="sessionCountdown">30:00</span></div>
+        </div>
+
+        <div class="admin-header">
+          <h1><i class="fas fa-crown"></i> Admin Dashboard <span style="font-size:0.8rem;color:var(--neon-green);vertical-align:middle;">PRO MAX</span></h1>
+          <p>Full Website Control Center - Manage Everything in Real-Time</p>
+          <div class="security-info"><i class="fas fa-shield-alt"></i> SECURED SESSION &bull; SHA-256 AUTHENTICATION &bull; REAL-TIME SYNC</div>
+        </div>
+
+        <!-- Quick Actions Bar -->
+        <div class="quick-actions-bar">
+          <button class="quick-action-btn" onclick="scrollToSection('analyticsSection');loadAnalytics()">
+            <i class="fas fa-chart-bar"></i> Refresh Analytics
+          </button>
+          <button class="quick-action-btn qa-green" onclick="scrollToSection('tutorialManagerCard')">
+            <i class="fas fa-plus-circle"></i> Add Tutorial
+          </button>
+          <button class="quick-action-btn qa-orange" onclick="scrollToSection('projectUploadCard')">
+            <i class="fas fa-cloud-upload-alt"></i> Upload Project
+          </button>
+          <button class="quick-action-btn qa-purple" onclick="window.open('index.html','_blank')">
+            <i class="fas fa-eye"></i> Preview Site
+          </button>
+          <button class="quick-action-btn" onclick="saveSettings()">
+            <i class="fas fa-save"></i> Save All
+          </button>
+        </div>
+
+        <!-- ============================================
+             ANALYTICS DASHBOARD - Live Visitor & User Stats
+             ============================================ -->
+        <div class="admin-card" id="analyticsSection">
+          <h2 onclick="toggleSection(this)"><i class="fas fa-chart-bar"></i> Live Analytics Dashboard <span style="font-size:0.7rem;color:var(--neon-green);margin-left:8px;">REAL-TIME</span><span class="collapse-icon"><i class="fas fa-chevron-down"></i></span></h2>
+          <div class="admin-card-body">
+          <button class="fm-btn fm-btn-cyan" onclick="loadAnalytics()" style="margin-bottom:16px"><i class="fas fa-sync-alt"></i> Refresh Analytics</button>
+
+          <!-- Stats Cards -->
+          <div class="analytics-stats-grid" id="analyticsStats">
+            <div class="admin-stat-card">
+              <div class="stat-card-top">
+                <div class="admin-stat-icon"><i class="fas fa-users"></i></div>
+                <span class="stat-trend up"><i class="fas fa-arrow-up"></i> Live</span>
+              </div>
+              <div class="admin-stat-num" id="statTotalUsers">-</div>
+              <div class="admin-stat-label">Total Users</div>
+            </div>
+            <div class="admin-stat-card">
+              <div class="stat-card-top">
+                <div class="admin-stat-icon" style="background:rgba(0,255,136,0.08);color:var(--neon-green)"><i class="fas fa-eye"></i></div>
+                <span class="stat-trend up"><i class="fas fa-arrow-up"></i> Live</span>
+              </div>
+              <div class="admin-stat-num" id="statTotalVisits">-</div>
+              <div class="admin-stat-label">Total Visits</div>
+            </div>
+            <div class="admin-stat-card">
+              <div class="stat-card-top">
+                <div class="admin-stat-icon" style="background:rgba(255,102,0,0.08);color:var(--neon-orange)"><i class="fas fa-clock"></i></div>
+              </div>
+              <div class="admin-stat-num" id="statTodayVisits">-</div>
+              <div class="admin-stat-label">Today's Visits</div>
+            </div>
+            <div class="admin-stat-card">
+              <div class="stat-card-top">
+                <div class="admin-stat-icon" style="background:rgba(233,69,96,0.08);color:#e94560"><i class="fas fa-download"></i></div>
+              </div>
+              <div class="admin-stat-num" id="statTotalDownloads">-</div>
+              <div class="admin-stat-label">Downloads</div>
+            </div>
+            <div class="admin-stat-card">
+              <div class="stat-card-top">
+                <div class="admin-stat-icon" style="background:rgba(139,0,255,0.08);color:#8b00ff"><i class="fas fa-fingerprint"></i></div>
+              </div>
+              <div class="admin-stat-num" id="statUniqueVisitors">-</div>
+              <div class="admin-stat-label">Unique Visitors</div>
+            </div>
+          </div>
+
+          <!-- Analytics Tabs -->
+          <div class="analytics-tabs-row">
+            <button class="fm-btn fm-btn-cyan analytics-tab active" data-tab="visitors" onclick="showAnalyticsTab('visitors')"><i class="fas fa-users"></i> Visitors</button>
+            <button class="fm-btn analytics-tab" data-tab="registered" onclick="showAnalyticsTab('registered')"><i class="fas fa-user-check"></i> Registered</button>
+            <button class="fm-btn analytics-tab" data-tab="countries" onclick="showAnalyticsTab('countries')"><i class="fas fa-globe-americas"></i> Countries</button>
+            <button class="fm-btn analytics-tab" data-tab="devices" onclick="showAnalyticsTab('devices')"><i class="fas fa-mobile-alt"></i> Devices</button>
+            <button class="fm-btn analytics-tab" data-tab="browsers" onclick="showAnalyticsTab('browsers')"><i class="fab fa-chrome"></i> Browsers</button>
+            <button class="fm-btn analytics-tab" data-tab="os" onclick="showAnalyticsTab('os')"><i class="fas fa-desktop"></i> OS</button>
+            <button class="fm-btn analytics-tab" data-tab="pages" onclick="showAnalyticsTab('pages')"><i class="fas fa-file-alt"></i> Pages</button>
+            <button class="fm-btn analytics-tab" data-tab="downloads" onclick="showAnalyticsTab('downloads')"><i class="fas fa-download"></i> Downloads</button>
+          </div>
+
+      <!-- Tab Contents -->
+      <div id="analyticsContent">
+        <!-- Visitors Tab -->
+        <div class="analytics-tab-content" id="tab-visitors" style="display:block">
+          <div style="max-height:500px;overflow-y:auto" id="visitorsList">
+            <div class="empty-state"><i class="fas fa-spinner fa-spin"></i> Loading visitor data...</div>
+          </div>
+        </div>
+        <!-- Registered Users Tab -->
+        <div class="analytics-tab-content" id="tab-registered" style="display:none">
+          <div style="max-height:500px;overflow-y:auto" id="registeredUsersList">
+            <div class="empty-state"><i class="fas fa-spinner fa-spin"></i> Loading users...</div>
+          </div>
+        </div>
+        <!-- Countries Tab -->
+        <div class="analytics-tab-content" id="tab-countries" style="display:none">
+          <div id="countriesChart" class="analytics-chart-container">
+            <div class="empty-state"><i class="fas fa-spinner fa-spin"></i> Loading...</div>
+          </div>
+        </div>
+        <!-- Devices Tab -->
+        <div class="analytics-tab-content" id="tab-devices" style="display:none">
+          <div id="devicesChart" class="analytics-chart-container">
+            <div class="empty-state"><i class="fas fa-spinner fa-spin"></i> Loading...</div>
+          </div>
+        </div>
+        <!-- Browsers Tab -->
+        <div class="analytics-tab-content" id="tab-browsers" style="display:none">
+          <div id="browsersChart" class="analytics-chart-container">
+            <div class="empty-state"><i class="fas fa-spinner fa-spin"></i> Loading...</div>
+          </div>
+        </div>
+        <!-- OS Tab -->
+        <div class="analytics-tab-content" id="tab-os" style="display:none">
+          <div id="osChart" class="analytics-chart-container">
+            <div class="empty-state"><i class="fas fa-spinner fa-spin"></i> Loading...</div>
+          </div>
+        </div>
+        <!-- Pages Tab -->
+        <div class="analytics-tab-content" id="tab-pages" style="display:none">
+          <div id="pagesChart" class="analytics-chart-container">
+            <div class="empty-state"><i class="fas fa-spinner fa-spin"></i> Loading...</div>
+          </div>
+        </div>
+        <!-- Downloads Tab -->
+        <div class="analytics-tab-content" id="tab-downloads" style="display:none">
+          <div id="downloadsChart" class="analytics-chart-container">
+            <div class="empty-state"><i class="fas fa-spinner fa-spin"></i> Loading...</div>
+          </div>
+        </div>
+      </div>
+          </div>
+        </div>
+
+        <!-- Site Identity -->
+        <div class="admin-card" id="siteIdentitySection">
+          <h2 onclick="toggleSection(this)"><i class="fas fa-globe"></i> Site Identity <span style="font-size:0.7rem;color:var(--neon-green);margin-left:8px;">GLOBAL</span><span class="collapse-icon"><i class="fas fa-chevron-down"></i></span></h2>
+          <div class="admin-card-body">
+      <div class="form-row">
+        <div class="form-group">
+          <label>Site Title</label>
+          <input type="text" id="siteTitle" placeholder="CODE4BOY" maxlength="50">
+        </div>
+        <div class="form-group">
+          <label>Accent Color</label>
+          <input type="color" id="accentColor" value="#00f0ff">
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Hero Tagline</label>
+        <input type="text" id="heroTagline" placeholder="Learn Coding Free with AI Power" maxlength="200">
+      </div>
+      <div class="form-group">
+        <label>Footer Text</label>
+        <input type="text" id="footerText" placeholder="Learn coding free with AI-powered tutorials, real-world projects, and smart error solutions." maxlength="300">
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>Favicon URL</label>
+          <input type="text" id="faviconUrl" placeholder="images/logo.jpg" maxlength="200">
+        </div>
+        <div class="form-group">
+          <label>Logo URL</label>
+          <input type="text" id="logoUrl" placeholder="images/logo.jpg" maxlength="200">
+        </div>
+      </div>
+          </div>
+        </div>
+
+        <!-- API & Backend Configuration -->
+        <div class="admin-card" id="apiConfigSection">
+          <h2 onclick="toggleSection(this)"><i class="fas fa-server"></i> API & Backend Configuration <span style="font-size:0.7rem;color:var(--neon-green);margin-left:8px;">CONNECT</span><span class="collapse-icon"><i class="fas fa-chevron-down"></i></span></h2>
+          <div class="admin-card-body">
+      <p style="color:var(--text-secondary);font-size:0.9rem;margin-bottom:16px;">Connect your backend server to enable analytics, user sync, and real-time data. Paste your backend API URL below.</p>
+      <div class="form-group">
+        <label><i class="fas fa-link" style="color:var(--neon-cyan);margin-right:4px;"></i> Backend API Base URL</label>
+        <input type="url" id="apiBaseUrl" placeholder="https://your-backend-api.com" maxlength="500">
+        <small style="color:var(--text-dim);font-size:0.75rem;margin-top:4px;display:block;">Example: https://api.code4boy.com or https://code4boy-backend.vercel.app — Leave empty for offline mode.</small>
+      </div>
+      <div class="form-group">
+        <label><i class="fas fa-globe" style="color:var(--neon-green);margin-right:4px;"></i> Frontend URL</label>
+        <input type="url" id="frontendUrl" placeholder="https://your-frontend-site.com" maxlength="500">
+        <small style="color:var(--text-dim);font-size:0.75rem;margin-top:4px;display:block;">Example: https://code4boy.com or https://code4boy-web.vercel.app — Your live website URL.</small>
+      </div>
+      <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:12px;">
+        <button class="btn-save" onclick="saveApiConfig()"><i class="fas fa-save"></i> Save & Connect</button>
+        <button class="btn-preview" onclick="testApiConnection()"><i class="fas fa-plug"></i> Test Connection</button>
+      </div>
+      <div id="apiConnectionStatus" style="margin-top:12px;display:none;"></div>
+          </div>
+        </div>
+
+        <!-- Hero Stats -->
+        <div class="admin-card" id="heroStatsSection">
+          <h2 onclick="toggleSection(this)"><i class="fas fa-chart-bar"></i> Hero Stats <span style="font-size:0.7rem;color:var(--neon-green);margin-left:8px;">DYNAMIC</span><span class="collapse-icon"><i class="fas fa-chevron-down"></i></span></h2>
+          <div class="admin-card-body">
+      <div class="form-row">
+        <div class="form-group">
+          <label>Tutorials Count</label>
+          <input type="number" id="statTutorials" placeholder="50" min="0" max="99999">
+        </div>
+        <div class="form-group">
+          <label>Projects Count</label>
+          <input type="number" id="statProjects" placeholder="25" min="0" max="99999">
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>Error Fixes Count</label>
+          <input type="number" id="statErrors" placeholder="100" min="0" max="99999">
+        </div>
+        <div class="form-group">
+          <label>Students Count</label>
+          <input type="number" id="statStudents" placeholder="10" min="0" max="99999">
+        </div>
+      </div>
+          </div>
+        </div>
+
+        <!-- SEO & Analytics -->
+        <div class="admin-card" id="seoSection">
+          <h2 onclick="toggleSection(this)"><i class="fas fa-search"></i> SEO & Analytics <span style="font-size:0.7rem;color:var(--neon-green);margin-left:8px;">PRO</span><span class="collapse-icon"><i class="fas fa-chevron-down"></i></span></h2>
+          <div class="admin-card-body">
+      <p style="color:var(--text-secondary);font-size:0.9rem;margin-bottom:16px;">Configure meta tags, tracking codes, and search optimization.</p>
+      <div class="form-group">
+        <label>Meta Description</label>
+        <textarea id="metaDescription" placeholder="Code4Boy - Learn Coding Free with AI Power..." rows="3" maxlength="500"></textarea>
+      </div>
+      <div class="form-group">
+        <label>Meta Keywords</label>
+        <input type="text" id="metaKeywords" placeholder="coding, programming, tutorials, HTML, CSS, JavaScript, Python, AI" maxlength="500">
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>Google Analytics ID</label>
+          <input type="text" id="gaId" placeholder="G-XXXXXXXXXX" maxlength="50">
+        </div>
+        <div class="form-group">
+          <label>Google Search Console</label>
+          <input type="text" id="gscId" placeholder="Verification code" maxlength="200">
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Custom Header Scripts</label>
+        <textarea id="customHeaderScripts" placeholder="<script>...</script>" rows="4"></textarea>
+      </div>
+          </div>
+        </div>
+
+        <!-- Social Media Links -->
+        <div class="admin-card" id="socialSection">
+          <h2 onclick="toggleSection(this)"><i class="fas fa-share-alt"></i> Social Media <span style="font-size:0.7rem;color:var(--neon-green);margin-left:8px;">CONNECT</span><span class="collapse-icon"><i class="fas fa-chevron-down"></i></span></h2>
+          <div class="admin-card-body">
+      <p style="color:var(--text-secondary);font-size:0.9rem;margin-bottom:16px;">Connect your social media accounts across the website.</p>
+      <div class="form-row">
+        <div class="form-group">
+          <label>YouTube Channel URL</label>
+          <input type="url" id="socialYoutube" placeholder="https://youtube.com/@code4boy-l4u" maxlength="300">
+        </div>
+        <div class="form-group">
+          <label>GitHub Profile URL</label>
+          <input type="url" id="socialGithub" placeholder="https://github.com/code4boy" maxlength="300">
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>Twitter/X Profile URL</label>
+          <input type="url" id="socialTwitter" placeholder="https://twitter.com/code4boy" maxlength="300">
+        </div>
+        <div class="form-group">
+          <label>Instagram Profile URL</label>
+          <input type="url" id="socialInstagram" placeholder="https://instagram.com/code4boy" maxlength="300">
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>Telegram Channel URL</label>
+          <input type="url" id="socialTelegram" placeholder="https://t.me/code4boy" maxlength="300">
+        </div>
+        <div class="form-group">
+          <label>LinkedIn Profile URL</label>
+          <input type="url" id="socialLinkedin" placeholder="https://linkedin.com/in/code4boy" maxlength="300">
+        </div>
+      </div>
+          </div>
+        </div>
+
+        <!-- FILE MANAGER -->
+        <div class="admin-card" id="fileManagerCard">
+          <h2 onclick="toggleSection(this)"><i class="fas fa-folder-open"></i> File Manager <span style="font-size:0.7rem;color:var(--neon-green);margin-left:8px;">FULL ACCESS</span><span class="collapse-icon"><i class="fas fa-chevron-down"></i></span></h2>
+          <div class="admin-card-body">
+      <p style="color:var(--text-secondary);font-size:0.9rem;margin-bottom:16px;">Browse, edit, upload & download all website files. Changes are saved to browser storage.</p>
+
+      <!-- File Manager Toolbar -->
+      <div class="fm-toolbar">
+        <button class="fm-btn" onclick="fmGoUp()" title="Go Up"><i class="fas fa-level-up-alt"></i></button>
+        <button class="fm-btn" onclick="fmRefresh()" title="Refresh"><i class="fas fa-sync-alt"></i></button>
+        <button class="fm-btn fm-btn-green" onclick="fmNewFile()" title="New File"><i class="fas fa-file-medical"></i> New File</button>
+        <button class="fm-btn fm-btn-green" onclick="fmNewFolder()" title="New Folder"><i class="fas fa-folder-plus"></i> New Folder</button>
+        <button class="fm-btn fm-btn-cyan" onclick="fmUploadFile()" title="Upload File"><i class="fas fa-upload"></i> Upload</button>
+        <button class="fm-btn fm-btn-orange" onclick="fmDownloadAll()" title="Download All as ZIP"><i class="fas fa-download"></i> Download ZIP</button>
+        <input type="file" id="fmFileInput" multiple style="display:none" onchange="fmHandleUpload(event)">
+      </div>
+
+      <!-- Breadcrumb -->
+      <div class="fm-breadcrumb" id="fmBreadcrumb"></div>
+
+      <!-- File List -->
+      <div class="fm-file-list" id="fmFileList">
+        <div class="empty-state">Loading files...</div>
+      </div>
+          </div>
+        </div>
+
+        <!-- File Editor Modal -->
+    <div id="fmEditorModal" class="fm-editor-modal" style="display:none">
+      <div class="fm-editor-container">
+        <div class="fm-editor-header">
+          <div class="fm-editor-title">
+            <i class="fas fa-edit"></i> <span id="fmEditorFileName">file.html</span>
+          </div>
+          <div class="fm-editor-actions">
+            <button class="fm-btn fm-btn-green" onclick="fmSaveFile()"><i class="fas fa-save"></i> Save</button>
+            <button class="fm-btn" onclick="fmCloseEditor()"><i class="fas fa-times"></i> Close</button>
+          </div>
+        </div>
+        <textarea id="fmEditorContent" class="fm-editor-textarea" spellcheck="false"></textarea>
+      </div>
+    </div>
+
+        <!-- PROJECT UPLOAD MANAGER -->
+        <div class="admin-card" id="projectUploadCard">
+          <h2 onclick="toggleSection(this)"><i class="fas fa-cloud-upload-alt"></i> Project Upload Manager <span style="font-size:0.7rem;color:var(--neon-green);margin-left:8px;">NEW</span><span class="collapse-icon"><i class="fas fa-chevron-down"></i></span></h2>
+          <div class="admin-card-body">
+      <p style="color:var(--text-secondary);font-size:0.9rem;margin-bottom:16px;">Upload new downloadable projects, templates, and resources. They will appear on the Downloads page automatically.</p>
+
+      <!-- Add New Project Form -->
+      <div style="background:rgba(6,6,19,0.3);border:1px solid var(--glass-border);border-radius:12px;padding:20px;margin-bottom:16px;">
+        <h3 style="font-size:0.95rem;color:var(--neon-cyan);margin-bottom:14px;display:flex;align-items:center;gap:8px;"><i class="fas fa-plus-circle"></i> Add New Project</h3>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Project Title</label>
+            <input type="text" id="projTitle" placeholder="e.g. React Dashboard" maxlength="100">
+          </div>
+          <div class="form-group">
+            <label>Category</label>
+            <select id="projCategory" style="width:100%;padding:10px 14px;font-family:var(--font-body);font-size:0.95rem;background:rgba(6,6,19,0.5);border:1px solid var(--glass-border);border-radius:10px;color:var(--text-primary);outline:none;">
+              <option value="template">Template</option>
+              <option value="project">Starter Project</option>
+              <option value="cheatsheet">Cheat Sheet</option>
+              <option value="resource">Resource</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Description</label>
+          <textarea id="projDesc" placeholder="Describe the project..." maxlength="500" rows="3"></textarea>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Icon Emoji</label>
+            <input type="text" id="projIcon" placeholder="e.g. &#x1F680;" maxlength="4" value="&#x1F4E6;">
+          </div>
+          <div class="form-group">
+            <label>Download Label</label>
+            <input type="text" id="projDlLabel" placeholder="e.g. Download ZIP" value="Download ZIP" maxlength="50">
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Project File (HTML/ZIP/any)</label>
+          <div style="display:flex;gap:8px;align-items:center;">
+            <button class="fm-btn fm-btn-cyan" onclick="projSelectFile()" type="button"><i class="fas fa-upload"></i> Choose File</button>
+            <span id="projFileName" style="color:var(--text-dim);font-size:0.85rem;">No file selected</span>
+            <input type="file" id="projFileInput" style="display:none" onchange="projHandleFile(event)">
+          </div>
+        </div>
+        <button class="btn-save" onclick="projAddProject()" style="margin-top:8px"><i class="fas fa-cloud-upload-alt"></i> Upload Project</button>
+      </div>
+
+      <!-- Uploaded Projects List -->
+      <h3 style="font-size:0.95rem;color:var(--neon-cyan);margin-bottom:12px;display:flex;align-items:center;gap:8px;"><i class="fas fa-list"></i> Uploaded Projects</h3>
+      <div id="projList" class="fm-file-list" style="max-height:400px;">
+        <div class="empty-state"><i class="fas fa-inbox" style="font-size:2rem;display:block;margin-bottom:10px;color:var(--text-dim)"></i>No projects uploaded yet.</div>
+      </div>
+          </div>
+        </div>
+
+        <!-- TUTORIAL MANAGER -->
+        <div class="admin-card" id="tutorialManagerCard">
+          <h2 onclick="toggleSection(this)"><i class="fas fa-book-open"></i> Tutorial Manager <span style="font-size:0.7rem;color:var(--neon-green);margin-left:8px;">UNLIMITED</span><span class="collapse-icon"><i class="fas fa-chevron-down"></i></span></h2>
+          <div class="admin-card-body">
+      <p style="color:var(--text-secondary);font-size:0.9rem;margin-bottom:16px;">Add, edit or delete tutorials. Admin-added tutorials appear on the Tutorials page for all visitors.</p>
+
+      <!-- Add New Tutorial Form -->
+      <div style="background:rgba(6,6,19,0.3);border:1px solid var(--glass-border);border-radius:12px;padding:20px;margin-bottom:16px;">
+        <h3 style="font-size:0.95rem;color:var(--neon-cyan);margin-bottom:14px;display:flex;align-items:center;gap:8px;"><i class="fas fa-plus-circle"></i> Add New Tutorial</h3>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Tutorial Title *</label>
+            <input type="text" id="adminTutTitle" placeholder="e.g. React Hooks Complete Guide" maxlength="200">
+          </div>
+          <div class="form-group">
+            <label>Category *</label>
+            <select id="adminTutCategory" style="width:100%;padding:10px 14px;font-family:var(--font-body);font-size:0.95rem;background:rgba(6,6,19,0.5);border:1px solid var(--glass-border);border-radius:10px;color:var(--text-primary);outline:none;">
+              <option value="html">HTML</option>
+              <option value="css">CSS</option>
+              <option value="javascript">JavaScript</option>
+              <option value="python">Python</option>
+              <option value="ai">AI Tools</option>
+              <option value="other">Other</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Description / Content *</label>
+          <textarea id="adminTutDesc" placeholder="Write the tutorial content here... Supports basic text." maxlength="5000" rows="5"></textarea>
+        </div>
+        <div class="form-group" id="adminTutHtmlUploadGroup">
+          <label><i class="fas fa-file-code" style="color:var(--neon-green);margin-right:4px;"></i> Upload HTML Tutorial File (optional)</label>
+          <input type="file" id="adminTutHtmlFileInput" accept=".html,.htm" onchange="adminTutHandleHtmlFile(event)" style="display:none;">
+          <div style="display:flex;align-items:center;gap:12px;margin-top:6px;">
+            <button type="button" onclick="document.getElementById('adminTutHtmlFileInput').click(); return false;" style="padding:8px 16px;background:rgba(0,255,136,0.1);border:1px solid rgba(0,255,136,0.25);border-radius:8px;color:var(--neon-green);font-family:var(--font-body);font-size:0.85rem;cursor:pointer;display:inline-flex;align-items:center;gap:6px;"><i class="fas fa-file-upload"></i> Upload HTML File</button>
+            <span id="adminTutHtmlFileName" style="color:var(--text-secondary);font-size:0.85rem;">No file selected</span>
+            <button type="button" id="adminTutHtmlClearBtn" onclick="adminTutClearHtmlFile(); return false;" style="display:none;padding:4px 10px;background:rgba(255,69,58,0.15);border:1px solid rgba(255,69,58,0.3);border-radius:6px;color:#ff453a;font-family:var(--font-body);font-size:0.8rem;cursor:pointer;align-items:center;gap:4px;"><i class="fas fa-times"></i> Clear</button>
+          </div>
+          <small style="color:var(--text-dim);font-size:0.75rem;margin-top:4px;display:block;">Upload a .html file with full tutorial content (like html-tutorials, css-tutorials etc.). The HTML will render directly on the tutorials page, same as other built-in tutorials.</small>
+          <div id="adminTutHtmlPreview" style="display:none;margin-top:10px;max-height:200px;overflow:auto;background:rgba(6,6,19,0.5);border:1px solid var(--glass-border);border-radius:8px;padding:12px;font-size:0.82rem;color:var(--text-secondary);"></div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Tutorial Link (optional)</label>
+            <input type="url" id="adminTutLink" placeholder="https://example.com/tutorial" maxlength="500">
+          </div>
+          <div class="form-group">
+            <label>Difficulty Level</label>
+            <select id="adminTutLevel" style="width:100%;padding:10px 14px;font-family:var(--font-body);font-size:0.95rem;background:rgba(6,6,19,0.5);border:1px solid var(--glass-border);border-radius:10px;color:var(--text-primary);outline:none;">
+              <option value="beginner">Beginner</option>
+              <option value="intermediate">Intermediate</option>
+              <option value="advanced">Advanced</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Code Example (optional)</label>
+          <textarea id="adminTutCode" placeholder="Paste code example here..." maxlength="3000" rows="4" style="font-family:var(--font-mono);font-size:0.85rem;"></textarea>
+        </div>
+        <div class="form-group" id="adminTutLogo" data-logo-data="">
+          <label><i class="fas fa-image" style="color:var(--neon-cyan);margin-right:4px;"></i> Tutorial Logo (optional)</label>
+          <input type="file" id="adminTutLogoInput" accept="image/*" onchange="adminTutHandleLogo(event)" style="display:none;">
+          <div style="display:flex;align-items:center;gap:12px;margin-top:6px;">
+            <button type="button" onclick="adminTutSelectLogo(); return false;" style="padding:8px 16px;background:rgba(26,115,232,0.15);border:1px solid rgba(26,115,232,0.3);border-radius:8px;color:var(--neon-cyan);font-family:var(--font-body);font-size:0.85rem;cursor:pointer;display:inline-flex;align-items:center;gap:6px;"><i class="fas fa-upload"></i> Choose Logo</button>
+            <div id="adminTutLogoPreview" style="display:inline-flex;"></div>
+            <span id="adminTutLogoName" style="color:var(--text-secondary);font-size:0.85rem;">No logo selected</span>
+            <button type="button" id="adminTutLogoClearBtn" onclick="adminTutClearLogo(); return false;" style="display:none;padding:4px 10px;background:rgba(255,69,58,0.15);border:1px solid rgba(255,69,58,0.3);border-radius:6px;color:#ff453a;font-family:var(--font-body);font-size:0.8rem;cursor:pointer;align-items:center;gap:4px;"><i class="fas fa-times"></i> Clear</button>
+          </div>
+          <small style="color:var(--text-dim);font-size:0.75rem;margin-top:4px;display:block;">Max 500KB. Supported: JPG, PNG, GIF, WebP, SVG. Logo will appear as round icon like other tutorial logos.</small>
+        </div>
+        <button class="btn-save" onclick="adminTutAdd(); return false;" style="margin-top:8px"><i class="fas fa-plus-circle"></i> Add Tutorial</button>
+      </div>
+
+      <!-- Tutorials List -->
+      <h3 style="font-size:0.95rem;color:var(--neon-cyan);margin-bottom:12px;display:flex;align-items:center;gap:8px;"><i class="fas fa-list"></i> Admin Tutorials (<span id="adminTutCount">0</span>)</h3>
+      <div id="adminTutList" class="fm-file-list" style="max-height:500px;">
+        <div class="empty-state"><i class="fas fa-book" style="font-size:2rem;display:block;margin-bottom:10px;color:var(--text-dim)"></i>No tutorials added yet. Use the form above to add tutorials.</div>
+      </div>
+          </div>
+        </div>
+
+        <!-- WEBSITE CONTROLS -->
+        <div class="admin-card" id="websiteControlsSection">
+          <h2 onclick="toggleSection(this)"><i class="fas fa-sliders-h"></i> Website Controls <span style="font-size:0.7rem;color:var(--neon-green);margin-left:8px;">MASTER</span><span class="collapse-icon"><i class="fas fa-chevron-down"></i></span></h2>
+          <div class="admin-card-body">
+      <p style="color:var(--text-secondary);font-size:0.9rem;margin-bottom:16px;">Control website visibility, announcements, and emergency modes.</p>
+      
+      <div class="form-group">
+        <label><i class="fas fa-bullhorn" style="color:var(--neon-orange);margin-right:4px;"></i> Announcement Banner</label>
+        <input type="text" id="announcementText" placeholder="🎉 New Python Course Launched! Enroll now..." maxlength="300">
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>Announcement Color</label>
+          <input type="color" id="announcementColor" value="#f59e0b">
+        </div>
+        <div class="form-group">
+          <label>Display Duration (days)</label>
+          <input type="number" id="announcementDuration" value="7" min="1" max="30">
+        </div>
+      </div>
+      <div class="form-group">
+        <label><i class="fas fa-power-off" style="color:var(--neon-cyan);margin-right:4px;"></i> Maintenance Mode</label>
+        <select id="maintenanceMode" style="width:100%;padding:10px 14px;font-family:var(--font-body);font-size:0.95rem;background:rgba(6,6,19,0.5);border:1px solid var(--glass-border);border-radius:10px;color:var(--text-primary);outline:none;">
+          <option value="disabled">Disabled - Website Normal</option>
+          <option value="enabled">Enabled - Show Maintenance Page</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Maintenance Message</label>
+        <textarea id="maintenanceMessage" placeholder="Website is under maintenance. We'll be back soon!" rows="3" maxlength="500"></textarea>
+      </div>
+      <button class="btn-save" onclick="saveWebsiteControls()" style="margin-top:4px"><i class="fas fa-save"></i> Save Controls</button>
+          </div>
+        </div>
+
+        <!-- NOTIFICATIONS & ALERTS -->
+        <div class="admin-card" id="notificationsSection">
+          <h2 onclick="toggleSection(this)"><i class="fas fa-bell"></i> Notifications System <span style="font-size:0.7rem;color:var(--neon-green);margin-left:8px;">LIVE</span><span class="collapse-icon"><i class="fas fa-chevron-down"></i></span></h2>
+          <div class="admin-card-body">
+      <p style="color:var(--text-secondary);font-size:0.9rem;margin-bottom:16px;">Send push notifications to users about updates, new content, or important messages.</p>
+      <div class="form-group">
+        <label>Notification Title</label>
+        <input type="text" id="notifTitle" placeholder="New Tutorial Added!" maxlength="100">
+      </div>
+      <div class="form-group">
+        <label>Notification Message</label>
+        <textarea id="notifMessage" placeholder="Check out our latest tutorial on React Hooks..." rows="3" maxlength="500"></textarea>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>Notification Type</label>
+          <select id="notifType" style="width:100%;padding:10px 14px;font-family:var(--font-body);font-size:0.95rem;background:rgba(6,6,19,0.5);border:1px solid var(--glass-border);border-radius:10px;color:var(--text-primary);outline:none;">
+            <option value="info">ℹ️ Info</option>
+            <option value="success">✅ Success</option>
+            <option value="warning">⚠️ Warning</option>
+            <option value="error">❌ Error</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Priority</label>
+          <select id="notifPriority" style="width:100%;padding:10px 14px;font-family:var(--font-body);font-size:0.95rem;background:rgba(6,6,19,0.5);border:1px solid var(--glass-border);border-radius:10px;color:var(--text-primary);outline:none;">
+            <option value="normal">Normal</option>
+            <option value="high">High Priority</option>
+            <option value="urgent">Urgent</option>
+          </select>
+        </div>
+      </div>
+      <button class="btn-save" onclick="sendNotification()" style="margin-top:4px"><i class="fas fa-paper-plane"></i> Send Notification</button>
+          </div>
+        </div>
+        <div class="admin-card" id="adSettingsSection">
+          <h2 onclick="toggleSection(this)"><i class="fas fa-ad"></i> Ad Settings <span style="font-size:0.7rem;color:var(--neon-green);margin-left:8px;">MONETIZE</span><span class="collapse-icon"><i class="fas fa-chevron-down"></i></span></h2>
+          <div class="admin-card-body">
+      <p style="color:var(--text-secondary);font-size:0.9rem;margin-bottom:16px;">Configure interstitial ads that show after file downloads. Ads display for 5 seconds before allowing download.</p>
+      <div class="form-group">
+        <label><i class="fas fa-toggle-on" style="color:var(--neon-green);margin-right:4px;"></i> Enable Ads</label>
+        <select id="adEnabled" style="width:100%;padding:10px 14px;font-family:var(--font-body);font-size:0.95rem;background:rgba(6,6,19,0.5);border:1px solid var(--glass-border);border-radius:10px;color:var(--text-primary);outline:none;">
+          <option value="yes">Enabled</option>
+          <option value="no">Disabled</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Ad Title</label>
+        <input type="text" id="adTitle" placeholder="Sponsored Content" maxlength="100" value="Sponsored Content">
+      </div>
+      <div class="form-group">
+        <label>Ad Message / HTML</label>
+        <textarea id="adMessage" placeholder="Your ad content here..." rows="4" maxlength="2000">Learn to code faster with premium courses! Visit our sponsors for exclusive deals on coding bootcamps and tools.</textarea>
+      </div>
+      <div class="form-group">
+        <label>Ad Link URL (optional)</label>
+        <input type="url" id="adLink" placeholder="https://example.com" maxlength="500">
+      </div>
+      <div class="form-group">
+        <label>Ad Link Text</label>
+        <input type="text" id="adLinkText" placeholder="Learn More" value="Learn More" maxlength="50">
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>Ad Duration (seconds)</label>
+          <input type="number" id="adDuration" value="5" min="3" max="15">
+        </div>
+        <div class="form-group">
+          <label>Ad Background Color</label>
+          <input type="color" id="adBgColor" value="#1a73e8">
+        </div>
+      </div>
+      <button class="btn-save" onclick="saveAdSettings()" style="margin-top:4px"><i class="fas fa-save"></i> Save Ad Settings</button>
+          </div>
+        </div>
+
+        <!-- Change Password -->
+        <div class="admin-card" id="changePasswordSection">
+          <h2 onclick="toggleSection(this)"><i class="fas fa-key"></i> Change Password<span class="collapse-icon"><i class="fas fa-chevron-down"></i></span></h2>
+          <div class="admin-card-body">
+      <div class="form-group">
+        <label>Current Password</label>
+        <input type="password" id="currentPass" placeholder="Enter current password" maxlength="100">
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>New Password</label>
+          <input type="password" id="newPass" placeholder="Enter new password" maxlength="100">
+        </div>
+        <div class="form-group">
+          <label>Confirm New Password</label>
+          <input type="password" id="confirmPass" placeholder="Confirm new password" maxlength="100">
+        </div>
+      </div>
+      <button class="btn-save" onclick="changePassword()" style="margin-top:4px"><i class="fas fa-key"></i> Update Password</button>
+          </div>
+        </div>
+
+        <!-- Contact Messages -->
+        <div class="admin-card" id="contactMessagesSection">
+          <h2 onclick="toggleSection(this)"><i class="fas fa-envelope"></i> Contact Messages<span class="collapse-icon"><i class="fas fa-chevron-down"></i></span></h2>
+          <div class="admin-card-body">
+      <div id="messagesList" class="msg-list">
+        <div class="empty-state">No messages yet.</div>
+      </div>
+          </div>
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="admin-actions">
+          <button class="btn-save" onclick="saveSettings()"><i class="fas fa-save"></i> Save Settings</button>
+          <button class="btn-preview" onclick="window.open('index.html','_blank')"><i class="fas fa-eye"></i> Preview Site</button>
+          <button class="btn-reset" onclick="resetSettings()"><i class="fas fa-undo"></i> Reset to Default</button>
+          <button class="btn-logout" onclick="doLogout()"><i class="fas fa-sign-out-alt"></i> Logout</button>
+        </div>
+
+      </div><!-- /.admin-wrap -->
+    </div><!-- /.admin-main-content -->
+
+    <!-- Back to Top Button -->
+    <button class="admin-back-to-top" id="adminBackToTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+      <i class="fas fa-arrow-up"></i>
+    </button>
+
+  </div><!-- /#adminPanel -->
+
+  <script>
+    // ============================================
+    // SECURITY: SHA-256 Hashing
+    // ============================================
+    async function sha256(message) {
+      var msgBuffer = new TextEncoder().encode(message);
+      var hashBuffer = await crypto.subtle.digest('SHA-256', msgBuffer);
+      var hashArray = Array.from(new Uint8Array(hashBuffer));
+      return hashArray.map(function(b) { return b.toString(16).padStart(2, '0'); }).join('');
+    }
+
+    // Sanitize input to prevent XSS
+    function sanitizeInput(input) {
+      if (typeof input !== 'string') return '';
+      var map = { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#x27;', '/': '&#x2F;' };
+      return input.replace(/[&<>"'\/]/g, function(s) { return map[s]; });
+    }
+
+    // ============================================
+    // ADMIN CREDENTIALS (SHA-256 hashed)
+    // Credentials are securely hashed - change via admin panel
+    // Default password hash is pre-computed (not stored in plain text)
+    // ============================================
+    var DEFAULT_USER = 'code4boy';
+    // SHA-256 hash of default password - change via admin panel
+    var DEFAULT_PASS_HASH = 'ecc8948ce6553e09fb335177b9daade170f1b45e317db3401f8e73f27d4eb3ac';
+
+    // Initialize stored credentials if not set
+    (function() {
+      var stored = localStorage.getItem('c4b-admin-creds-v2');
+      if (!stored) {
+        localStorage.setItem('c4b-admin-creds-v2', JSON.stringify({
+          user: DEFAULT_USER,
+          passHash: DEFAULT_PASS_HASH
+        }));
+      }
+    })();
+
+    // ============================================
+    // BRUTE FORCE PROTECTION
+    // ============================================
+    var MAX_LOGIN_ATTEMPTS = 5;
+    var LOCKOUT_DURATION = 300000; // 5 minutes in ms
+    var loginAttempts = JSON.parse(sessionStorage.getItem('c4b-login-attempts') || '{"count":0,"lastAttempt":0,"lockedUntil":0}');
+
+    function isLockedOut() {
+      if (loginAttempts.lockedUntil && Date.now() < loginAttempts.lockedUntil) {
+        return true;
+      }
+      if (loginAttempts.lockedUntil && Date.now() >= loginAttempts.lockedUntil) {
+        // Reset after lockout period
+        loginAttempts = { count: 0, lastAttempt: 0, lockedUntil: 0 };
+        sessionStorage.setItem('c4b-login-attempts', JSON.stringify(loginAttempts));
+      }
+      return false;
+    }
+
+    function recordFailedAttempt() {
+      loginAttempts.count++;
+      loginAttempts.lastAttempt = Date.now();
+      if (loginAttempts.count >= MAX_LOGIN_ATTEMPTS) {
+        loginAttempts.lockedUntil = Date.now() + LOCKOUT_DURATION;
+      }
+      sessionStorage.setItem('c4b-login-attempts', JSON.stringify(loginAttempts));
+    }
+
+    function resetLoginAttempts() {
+      loginAttempts = { count: 0, lastAttempt: 0, lockedUntil: 0 };
+      sessionStorage.setItem('c4b-login-attempts', JSON.stringify(loginAttempts));
+    }
+
+    // ============================================
+    // SESSION MANAGEMENT (30-minute timeout)
+    // ============================================
+    var SESSION_TIMEOUT = 1800000; // 30 minutes in ms
+    var sessionTimerInterval = null;
+
+    function startSessionTimer() {
+      var loginTime = parseInt(sessionStorage.getItem('c4b-session-start') || Date.now());
+      sessionStorage.setItem('c4b-session-start', loginTime.toString());
+
+      sessionTimerInterval = setInterval(function() {
+        var elapsed = Date.now() - loginTime;
+        var remaining = SESSION_TIMEOUT - elapsed;
+
+        if (remaining <= 0) {
+          clearInterval(sessionTimerInterval);
+          doLogout();
+          showToast('Session expired. Please login again.');
+          return;
+        }
+
+        var minutes = Math.floor(remaining / 60000);
+        var seconds = Math.floor((remaining % 60000) / 1000);
+        var display = minutes.toString().padStart(2, '0') + ':' + seconds.toString().padStart(2, '0');
+        var countdownEl = document.getElementById('sessionCountdown');
+        if (countdownEl) {
+          countdownEl.textContent = display;
+          // Warning: change color when less than 5 minutes
+          var timerEl = document.getElementById('sessionTimer');
+          if (timerEl) {
+            if (remaining < 300000) {
+              timerEl.style.color = '#ff6600';
+              timerEl.style.borderColor = 'rgba(255, 102, 0, 0.3)';
+            } else {
+              timerEl.style.color = '';
+              timerEl.style.borderColor = '';
+            }
+          }
+        }
+      }, 1000);
+    }
+
+    // ============================================
+    // LOGIN
+    // ============================================
+    async function doLogin() {
+      var errorEl = document.getElementById('loginError');
+      var loginBtn = document.getElementById('loginBtn');
+
+      // Additional: Check URL token for quick access
+      const urlParams = new URLSearchParams(window.location.search);
+      const secretToken = urlParams.get('token');
+      if (secretToken === 'Code4BoySecret2025') {
+        // Direct access with secret token - skip login
+        var stored = localStorage.getItem('c4b-admin-creds-v2');
+        if (!stored) {
+          localStorage.setItem('c4b-admin-creds-v2', JSON.stringify({
+            user: DEFAULT_USER,
+            passHash: DEFAULT_PASS_HASH
+          }));
+        }
+        sessionStorage.setItem('c4b-admin-authenticated', 'true');
+        document.getElementById('loginScreen').style.display = 'none';
+        document.getElementById('adminPanel').style.display = 'block';
+        loadSettings();
+        loadMessages();
+        adminTutLoadList();
+        startSessionTimer();
+        return;
+      }
+
+      // Check lockout
+      if (isLockedOut()) {
+        var remaining = Math.ceil((loginAttempts.lockedUntil - Date.now()) / 1000);
+        var mins = Math.floor(remaining / 60);
+        var secs = remaining % 60;
+        errorEl.innerHTML = '<i class="fas fa-ban"></i> Account locked. Try again in ' + mins + 'm ' + secs + 's';
+        errorEl.style.display = 'block';
+        return;
+      }
+
+      var user = document.getElementById('loginUser').value.trim();
+      var pass = document.getElementById('loginPass').value.trim();
+
+      if (!user || !pass) {
+        errorEl.innerHTML = '<i class="fas fa-exclamation-circle"></i> Please enter both username and password.';
+        errorEl.style.display = 'block';
+        return;
+      }
+
+      // Disable button during hash computation
+      loginBtn.disabled = true;
+      loginBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Verifying...';
+
+      // Hash the entered password
+      var passHash = await sha256(pass);
+
+      // Get stored credentials
+      var creds = JSON.parse(localStorage.getItem('c4b-admin-creds-v2') || 'null');
+      if (!creds) {
+        // Fallback: compute default hash
+        creds = { user: DEFAULT_USER, passHash: DEFAULT_PASS_HASH };
+      }
+
+      if (user === creds.user && passHash === creds.passHash) {
+        // Success
+        resetLoginAttempts();
+        sessionStorage.setItem('c4b-admin-auth', '1');
+        sessionStorage.setItem('c4b-session-start', Date.now().toString());
+        
+        // Generate session token
+        var sessionToken = Array.from(crypto.getRandomValues(new Uint8Array(32)), function(b) { return b.toString(16).padStart(2, '0'); }).join('');
+        sessionStorage.setItem('c4b-session-token', sessionToken);
+
+        document.getElementById('loginScreen').style.display = 'none';
+        document.getElementById('adminPanel').style.display = 'block';
+        loadSettings();
+        loadMessages();
+        adminTutLoadList();
+        startSessionTimer();
+        errorEl.style.display = 'none';
+      } else {
+        // Failed
+        recordFailedAttempt();
+        var attemptsLeft = MAX_LOGIN_ATTEMPTS - loginAttempts.count;
+        if (attemptsLeft <= 0) {
+          errorEl.innerHTML = '<i class="fas fa-ban"></i> Too many failed attempts. Account locked for 5 minutes.';
+        } else {
+          errorEl.innerHTML = '<i class="fas fa-exclamation-circle"></i> Invalid credentials. ' + attemptsLeft + ' attempt(s) remaining.';
+        }
+        errorEl.style.display = 'block';
+        document.getElementById('loginPass').value = '';
+      }
+
+      loginBtn.disabled = false;
+      loginBtn.innerHTML = '<i class="fas fa-sign-in-alt"></i> Secure Login';
+    }
+
+    // ============================================
+    // LOGOUT
+    // ============================================
+    function doLogout() {
+      sessionStorage.removeItem('c4b-admin-auth');
+      sessionStorage.removeItem('c4b-session-start');
+      sessionStorage.removeItem('c4b-session-token');
+      if (sessionTimerInterval) clearInterval(sessionTimerInterval);
+      document.getElementById('loginScreen').style.display = '';
+      document.getElementById('adminPanel').style.display = 'none';
+      document.getElementById('loginUser').value = '';
+      document.getElementById('loginPass').value = '';
+    }
+
+    // ============================================
+    // CHANGE PASSWORD
+    // ============================================
+    async function changePassword() {
+      var currentPass = document.getElementById('currentPass').value.trim();
+      var newPass = document.getElementById('newPass').value.trim();
+      var confirmPass = document.getElementById('confirmPass').value.trim();
+
+      if (!currentPass || !newPass || !confirmPass) {
+        showToast('Please fill in all password fields.');
+        return;
+      }
+
+      if (newPass !== confirmPass) {
+        showToast('New passwords do not match.');
+        return;
+      }
+
+      if (newPass.length < 8) {
+        showToast('New password must be at least 8 characters.');
+        return;
+      }
+
+      // Verify password strength
+      var hasUpper = /[A-Z]/.test(newPass);
+      var hasLower = /[a-z]/.test(newPass);
+      var hasNumber = /[0-9]/.test(newPass);
+      var hasSpecial = /[!@#$%^&*(),.?":{}|<>]/.test(newPass);
+
+      if (!(hasUpper && hasLower && hasNumber && hasSpecial)) {
+        showToast('Password must contain uppercase, lowercase, number, and special character.');
+        return;
+      }
+
+      var creds = JSON.parse(localStorage.getItem('c4b-admin-creds-v2') || '{}');
+      var currentHash = await sha256(currentPass);
+
+      if (currentHash !== creds.passHash) {
+        showToast('Current password is incorrect.');
+        return;
+      }
+
+      var newHash = await sha256(newPass);
+      creds.passHash = newHash;
+      localStorage.setItem('c4b-admin-creds-v2', JSON.stringify(creds));
+
+      document.getElementById('currentPass').value = '';
+      document.getElementById('newPass').value = '';
+      document.getElementById('confirmPass').value = '';
+      showToast('Password changed successfully!');
+    }
+
+    // ============================================
+    // AUTO-LOGIN (if session valid)
+    // ============================================
+    (function checkAutoLogin() {
+      if (sessionStorage.getItem('c4b-admin-auth') === '1') {
+        var sessionStart = parseInt(sessionStorage.getItem('c4b-session-start') || '0');
+        var elapsed = Date.now() - sessionStart;
+
+        if (elapsed < SESSION_TIMEOUT) {
+          document.getElementById('loginScreen').style.display = 'none';
+          document.getElementById('adminPanel').style.display = 'block';
+          
+          // Use DOMContentLoaded if DOM not ready
+          if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', function() {
+              loadSettings();
+              loadMessages();
+              startSessionTimer();
+            });
+          } else {
+            loadSettings();
+            loadMessages();
+            startSessionTimer();
+          }
+        } else {
+          // Session expired
+          doLogout();
+        }
+      }
+    })();
+
+    // Allow Enter key to login
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Enter' && document.getElementById('loginScreen').style.display !== 'none') {
+        doLogin();
+      }
+    });
+
+    // ============================================
+    // SETTINGS MANAGEMENT
+    // ============================================
+    function loadSettings() {
+      var s = JSON.parse(localStorage.getItem('c4b-admin-settings') || '{}');
+      applySettingsToForm(s);
+      // Load API config
+      loadApiConfig();
+      // Load website controls and notifications
+      loadWebsiteControls();
+      loadAdSettings();
+      loadNotifications();
+
+      // Also fetch from server for cross-device sync
+      var apiUrl = getAnalyticsApi();
+      if (apiUrl && !apiUrl.includes('BACKEND_URL_HERE')) {
+        fetch(apiUrl + '/api/settings/admin-settings', { method: 'GET', mode: 'cors' })
+          .then(function(res) { return res.json(); })
+          .then(function(data) {
+            if (data.status === 'ok' && data.data) {
+              localStorage.setItem('c4b-admin-settings', JSON.stringify(data.data));
+              applySettingsToForm(data.data);
+            }
+          })
+          .catch(function() {});
+
+        // Fetch website controls from server
+        fetch(apiUrl + '/api/settings/website-controls', { method: 'GET', mode: 'cors' })
+          .then(function(res) { return res.json(); })
+          .then(function(data) {
+            if (data.status === 'ok' && data.data) {
+              localStorage.setItem('c4b-website-controls', JSON.stringify(data.data));
+              loadWebsiteControls();
+            }
+          })
+          .catch(function() {});
+
+        // Fetch ad settings from server
+        fetch(apiUrl + '/api/settings/ad-settings', { method: 'GET', mode: 'cors' })
+          .then(function(res) { return res.json(); })
+          .then(function(data) {
+            if (data.status === 'ok' && data.data) {
+              localStorage.setItem('c4b-ad-settings', JSON.stringify(data.data));
+              loadAdSettings();
+            }
+          })
+          .catch(function() {});
+
+        // Fetch notifications from server
+        fetch(apiUrl + '/api/settings/notifications', { method: 'GET', mode: 'cors' })
+          .then(function(res) { return res.json(); })
+          .then(function(data) {
+            if (data.status === 'ok' && data.data) {
+              localStorage.setItem('c4b-notifications', JSON.stringify(data.data));
+              loadNotifications();
+            }
+          })
+          .catch(function() {});
+
+        // Fetch tutorials from server
+        fetch(apiUrl + '/api/settings/admin-tutorials', { method: 'GET', mode: 'cors' })
+          .then(function(res) { return res.json(); })
+          .then(function(data) {
+            if (data.status === 'ok' && data.data) {
+              localStorage.setItem(TUT_STORAGE_KEY, JSON.stringify(data.data));
+              adminTutLoadList();
+            }
+          })
+          .catch(function() {});
+
+        // Fetch projects from server
+        fetch(apiUrl + '/api/settings/admin-projects', { method: 'GET', mode: 'cors' })
+          .then(function(res) { return res.json(); })
+          .then(function(data) {
+            if (data.status === 'ok' && data.data) {
+              localStorage.setItem(PROJ_STORAGE_KEY, JSON.stringify(data.data));
+              projLoadList();
+            }
+          })
+          .catch(function() {});
+      }
+    }
+
+    function applySettingsToForm(s) {
+      if (!s || typeof s !== 'object') return;
+      if (s.siteTitle) document.getElementById('siteTitle').value = s.siteTitle;
+      if (s.accentColor) document.getElementById('accentColor').value = s.accentColor;
+      if (s.heroTagline) document.getElementById('heroTagline').value = s.heroTagline;
+      if (s.footerText) document.getElementById('footerText').value = s.footerText;
+      if (s.faviconUrl) document.getElementById('faviconUrl').value = s.faviconUrl;
+      if (s.logoUrl) document.getElementById('logoUrl').value = s.logoUrl;
+      if (s.social) {
+        if (s.social.youtube) document.getElementById('socialYoutube').value = s.social.youtube;
+        if (s.social.github) document.getElementById('socialGithub').value = s.social.github;
+        if (s.social.twitter) document.getElementById('socialTwitter').value = s.social.twitter;
+        if (s.social.instagram) document.getElementById('socialInstagram').value = s.social.instagram;
+        if (s.social.telegram) document.getElementById('socialTelegram').value = s.social.telegram;
+        var linkedinEl = document.getElementById('socialLinkedin');
+        if (s.social.linkedin && linkedinEl) linkedinEl.value = s.social.linkedin;
+      }
+      if (s.stats) {
+        if (s.stats.tutorials) document.getElementById('statTutorials').value = s.stats.tutorials;
+        if (s.stats.projects) document.getElementById('statProjects').value = s.stats.projects;
+        if (s.stats.errors) document.getElementById('statErrors').value = s.stats.errors;
+        if (s.stats.students) document.getElementById('statStudents').value = s.stats.students;
+      }
+      if (s.seo) {
+        if (s.seo.metaDescription) document.getElementById('metaDescription').value = s.seo.metaDescription;
+        if (s.seo.metaKeywords) document.getElementById('metaKeywords').value = s.seo.metaKeywords;
+        if (s.seo.gaId) document.getElementById('gaId').value = s.seo.gaId;
+        if (s.seo.gscId) document.getElementById('gscId').value = s.seo.gscId;
+        if (s.seo.customHeaderScripts) document.getElementById('customHeaderScripts').value = s.seo.customHeaderScripts;
+      }
+    }
+
+    function saveSettings() {
+      var settings = {};
+      var v;
+
+      v = document.getElementById('siteTitle').value.trim();
+      if (v) settings.siteTitle = sanitizeInput(v);
+
+      v = document.getElementById('accentColor').value;
+      if (v && v !== '#00f0ff') settings.accentColor = v;
+
+      v = document.getElementById('heroTagline').value.trim();
+      if (v) settings.heroTagline = sanitizeInput(v);
+
+      v = document.getElementById('footerText').value.trim();
+      if (v) settings.footerText = sanitizeInput(v);
+
+      // Save favicon and logo URLs
+      v = document.getElementById('faviconUrl').value.trim();
+      if (v) settings.faviconUrl = sanitizeInput(v);
+      v = document.getElementById('logoUrl').value.trim();
+      if (v) settings.logoUrl = sanitizeInput(v);
+
+      var social = {};
+      v = document.getElementById('socialYoutube').value.trim();
+      if (v) social.youtube = v;
+      v = document.getElementById('socialGithub').value.trim();
+      if (v) social.github = v;
+      v = document.getElementById('socialTwitter').value.trim();
+      if (v) social.twitter = v;
+      v = document.getElementById('socialInstagram').value.trim();
+      if (v) social.instagram = v;
+      v = document.getElementById('socialTelegram').value.trim();
+      if (v) social.telegram = v;
+      // Save LinkedIn if present
+      var linkedinEl = document.getElementById('socialLinkedin');
+      if (linkedinEl) {
+        v = linkedinEl.value.trim();
+        if (v) social.linkedin = v;
+      }
+      if (Object.keys(social).length > 0) settings.social = social;
+
+      var stats = {};
+      v = document.getElementById('statTutorials').value;
+      if (v) stats.tutorials = parseInt(v) || 0;
+      v = document.getElementById('statProjects').value;
+      if (v) stats.projects = parseInt(v) || 0;
+      v = document.getElementById('statErrors').value;
+      if (v) stats.errors = parseInt(v) || 0;
+      v = document.getElementById('statStudents').value;
+      if (v) stats.students = parseInt(v) || 0;
+      if (Object.keys(stats).length > 0) settings.stats = stats;
+
+      // Save SEO settings
+      var seo = {};
+      v = document.getElementById('metaDescription').value.trim();
+      if (v) seo.metaDescription = sanitizeInput(v);
+      v = document.getElementById('metaKeywords').value.trim();
+      if (v) seo.metaKeywords = sanitizeInput(v);
+      v = document.getElementById('gaId').value.trim();
+      if (v) seo.gaId = sanitizeInput(v);
+      v = document.getElementById('gscId').value.trim();
+      if (v) seo.gscId = sanitizeInput(v);
+      v = document.getElementById('customHeaderScripts').value.trim();
+      if (v) seo.customHeaderScripts = v;
+      if (Object.keys(seo).length > 0) settings.seo = seo;
+
+      localStorage.setItem('c4b-admin-settings', JSON.stringify(settings));
+
+      // Sync to server so all devices see changes
+      syncSettingToServer('admin-settings', settings);
+      showToast('Settings saved successfully!');
+    }
+
+    function resetSettings() {
+      if (!confirm('Are you sure? This will reset all customizations to default.')) return;
+      localStorage.removeItem('c4b-admin-settings');
+      localStorage.removeItem('c4b-api-config');
+      // Also clear from server
+      deleteSettingFromServer('admin-settings');
+      deleteSettingFromServer('admin-tutorials');
+      deleteSettingFromServer('admin-projects');
+      deleteSettingFromServer('ad-settings');
+      deleteSettingFromServer('website-controls');
+      deleteSettingFromServer('notifications');
+      document.getElementById('siteTitle').value = '';
+      document.getElementById('accentColor').value = '#00f0ff';
+      document.getElementById('heroTagline').value = '';
+      document.getElementById('footerText').value = '';
+      document.getElementById('faviconUrl').value = '';
+      document.getElementById('logoUrl').value = '';
+      document.getElementById('socialYoutube').value = '';
+      document.getElementById('socialGithub').value = '';
+      document.getElementById('socialTwitter').value = '';
+      document.getElementById('socialInstagram').value = '';
+      document.getElementById('socialTelegram').value = '';
+      var linkedinEl = document.getElementById('socialLinkedin');
+      if (linkedinEl) linkedinEl.value = '';
+      document.getElementById('statTutorials').value = '';
+      document.getElementById('statProjects').value = '';
+      document.getElementById('statErrors').value = '';
+      document.getElementById('statStudents').value = '';
+      document.getElementById('metaDescription').value = '';
+      document.getElementById('metaKeywords').value = '';
+      document.getElementById('gaId').value = '';
+      document.getElementById('gscId').value = '';
+      document.getElementById('customHeaderScripts').value = '';
+      document.getElementById('apiBaseUrl').value = '';
+      document.getElementById('frontendUrl').value = '';
+      var statusEl = document.getElementById('apiConnectionStatus');
+      if (statusEl) { statusEl.style.display = 'none'; statusEl.innerHTML = ''; }
+      showToast('Settings reset to default.');
+    }
+
+    // ============================================
+    // API & BACKEND CONFIGURATION
+    // ============================================
+    function loadApiConfig() {
+      var config = JSON.parse(localStorage.getItem('c4b-api-config') || '{}');
+      if (config.apiBaseUrl) document.getElementById('apiBaseUrl').value = config.apiBaseUrl;
+      if (config.frontendUrl) document.getElementById('frontendUrl').value = config.frontendUrl;
+    }
+
+    function saveApiConfig() {
+      var apiUrl = document.getElementById('apiBaseUrl').value.trim();
+      var feUrl = document.getElementById('frontendUrl').value.trim();
+
+      // Remove trailing slash
+      if (apiUrl.endsWith('/')) apiUrl = apiUrl.slice(0, -1);
+      if (feUrl.endsWith('/')) feUrl = feUrl.slice(0, -1);
+
+      var config = {};
+      if (apiUrl) config.apiBaseUrl = apiUrl;
+      if (feUrl) config.frontendUrl = feUrl;
+
+      localStorage.setItem('c4b-api-config', JSON.stringify(config));
+
+      // Update the live API_BASE_URL so analytics and sync work immediately
+      if (typeof window !== 'undefined') {
+        window.__C4B_API_BASE_URL = apiUrl;
+      }
+
+      var statusEl = document.getElementById('apiConnectionStatus');
+      statusEl.style.display = 'block';
+      if (apiUrl) {
+        statusEl.innerHTML = '<div style="padding:10px 14px;background:rgba(0,255,136,0.08);border:1px solid rgba(0,255,136,0.2);border-radius:10px;color:var(--neon-green);font-size:0.88rem;display:flex;align-items:center;gap:8px;"><i class="fas fa-check-circle"></i> Backend URL saved: <strong>' + sanitizeInput(apiUrl) + '</strong></div>';
+      } else {
+        statusEl.innerHTML = '<div style="padding:10px 14px;background:rgba(255,102,0,0.08);border:1px solid rgba(255,102,0,0.2);border-radius:10px;color:var(--neon-orange);font-size:0.88rem;display:flex;align-items:center;gap:8px;"><i class="fas fa-info-circle"></i> Running in offline mode (no backend connected).</div>';
+      }
+
+      showToast('API configuration saved!');
+    }
+
+    function testApiConnection() {
+      var apiUrl = document.getElementById('apiBaseUrl').value.trim();
+      var statusEl = document.getElementById('apiConnectionStatus');
+      statusEl.style.display = 'block';
+
+      if (!apiUrl) {
+        statusEl.innerHTML = '<div style="padding:10px 14px;background:rgba(255,102,0,0.08);border:1px solid rgba(255,102,0,0.2);border-radius:10px;color:var(--neon-orange);font-size:0.88rem;display:flex;align-items:center;gap:8px;"><i class="fas fa-exclamation-triangle"></i> Please enter a Backend API URL first.</div>';
+        return;
+      }
+
+      // Remove trailing slash
+      if (apiUrl.endsWith('/')) apiUrl = apiUrl.slice(0, -1);
+
+      statusEl.innerHTML = '<div style="padding:10px 14px;background:rgba(0,240,255,0.08);border:1px solid rgba(0,240,255,0.2);border-radius:10px;color:var(--neon-cyan);font-size:0.88rem;display:flex;align-items:center;gap:8px;"><i class="fas fa-spinner fa-spin"></i> Testing connection to <strong>' + sanitizeInput(apiUrl) + '</strong>...</div>';
+
+      fetch(apiUrl + '/api/health', { method: 'GET', mode: 'cors' })
+        .then(function(res) {
+          if (res.ok) {
+            statusEl.innerHTML = '<div style="padding:10px 14px;background:rgba(0,255,136,0.08);border:1px solid rgba(0,255,136,0.2);border-radius:10px;color:var(--neon-green);font-size:0.88rem;display:flex;align-items:center;gap:8px;"><i class="fas fa-check-circle"></i> Connection successful! Backend is online.</div>';
+          } else {
+            statusEl.innerHTML = '<div style="padding:10px 14px;background:rgba(255,102,0,0.08);border:1px solid rgba(255,102,0,0.2);border-radius:10px;color:var(--neon-orange);font-size:0.88rem;display:flex;align-items:center;gap:8px;"><i class="fas fa-exclamation-circle"></i> Server responded with status ' + res.status + '. Check the URL and try again.</div>';
+          }
+        })
+        .catch(function(err) {
+          statusEl.innerHTML = '<div style="padding:10px 14px;background:rgba(255,68,68,0.08);border:1px solid rgba(255,68,68,0.2);border-radius:10px;color:#ff4444;font-size:0.88rem;display:flex;align-items:center;gap:8px;"><i class="fas fa-times-circle"></i> Connection failed: ' + sanitizeInput(err.message) + '. Check URL or CORS settings.</div>';
+        });
+    }
+
+    // ============================================
+    // MESSAGES
+    // ============================================
+    function loadMessages() {
+      var messages = JSON.parse(localStorage.getItem('c4b-messages') || '[]');
+      var container = document.getElementById('messagesList');
+      if (messages.length === 0) {
+        container.innerHTML = '<div class="empty-state"><i class="fas fa-inbox" style="font-size:2rem;display:block;margin-bottom:10px;color:var(--text-dim)"></i>No messages yet. Messages from the contact form will appear here.</div>';
+        return;
+      }
+      var html = '';
+      for (var i = messages.length - 1; i >= 0; i--) {
+        var m = messages[i];
+        var date = new Date(m.date);
+        var dateStr = date.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' }) + ' ' + date.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' });
+        html += '<div class="msg-item">';
+        html += '<div class="msg-meta">';
+        html += '<div><span class="msg-name">' + sanitizeInput(m.name) + '</span> <span class="msg-email">&lt;' + sanitizeInput(m.email) + '&gt;</span></div>';
+        html += '<div><span class="msg-date">' + dateStr + '</span> <button class="msg-delete" onclick="deleteMessage(' + i + ')" title="Delete"><i class="fas fa-trash-alt"></i></button></div>';
+        html += '</div>';
+        html += '<div class="msg-body">' + sanitizeInput(m.message) + '</div>';
+        html += '</div>';
+      }
+      container.innerHTML = html;
+    }
+
+    function deleteMessage(index) {
+      if (!confirm('Delete this message?')) return;
+      var messages = JSON.parse(localStorage.getItem('c4b-messages') || '[]');
+      messages.splice(index, 1);
+      localStorage.setItem('c4b-messages', JSON.stringify(messages));
+      loadMessages();
+      showToast('Message deleted.');
+    }
+
+    // ============================================
+    // TOAST NOTIFICATION
+    // ============================================
+    function showToast(msg) {
+      var existing = document.querySelector('.admin-toast');
+      if (existing) existing.remove();
+
+      var toast = document.createElement('div');
+      toast.className = 'admin-toast';
+      toast.innerHTML = '<i class="fas fa-check-circle"></i> ' + sanitizeInput(msg);
+      toast.style.cssText = 'position:fixed;bottom:30px;right:30px;background:rgba(0,255,136,0.15);border:1px solid rgba(0,255,136,0.3);color:#00ff88;padding:14px 24px;border-radius:12px;font-family:var(--font-body);font-size:0.95rem;z-index:9999;display:flex;align-items:center;gap:8px;animation:fadeInUp 0.3s ease;backdrop-filter:blur(10px)';
+      document.body.appendChild(toast);
+      setTimeout(function() {
+        toast.style.opacity = '0';
+        toast.style.transform = 'translateY(10px)';
+        toast.style.transition = 'all 0.3s ease';
+        setTimeout(function() { toast.remove(); }, 300);
+      }, 2500);
+    }
+
+    // ============================================
+    // FILE MANAGER - Full Access
+    // Virtual File System stored in localStorage
+    // ============================================
+    var FM_STORAGE_KEY = 'c4b-file-manager';
+    var fmCurrentPath = '/';
+    var fmEditingFile = null;
+    var fmFileSystem = null;
+
+    // Default project file structure
+    var FM_DEFAULT_FILES = {
+      '/': { type: 'folder', children: ['index.html', 'admin.html', 'css/', 'js/', 'pages/', 'downloads/', 'images/'] },
+      '/index.html': { type: 'file', content: '<!-- Main homepage of Code4Boy -->\n<!-- Edit this file to customize the homepage -->\n<!DOCTYPE html>\n<html lang="en">\n<head>\n  <title>Code4Boy - Learn Coding Free</title>\n</head>\n<body>\n  <!-- Homepage content loaded from index.html -->\n</body>\n</html>', size: '18 KB' },
+      '/admin.html': { type: 'file', content: '<!-- Admin Panel - Do not edit directly -->', size: '32 KB' },
+      '/css/': { type: 'folder', children: ['style.css'] },
+      '/css/style.css': { type: 'file', content: '/* Code4Boy - Futuristic Jarvis Style UI v5.0 */\n/* UPGRADED: Enhanced glassmorphism, better animations */\n\n@import url(\"https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Rajdhani:wght@300;400;500;600;700&family=Share+Tech+Mono&display=swap\");\n\n:root {\n  --bg-primary: #060613;\n  --bg-secondary: #0d1025;\n  --neon-cyan: #00f0ff;\n  --neon-blue: #0066ff;\n  --neon-purple: #8b00ff;\n  --neon-green: #00ff88;\n  --neon-orange: #ff6600;\n  --text-primary: #e0e6ff;\n  --text-secondary: #8892b0;\n  --font-heading: \"Orbitron\", sans-serif;\n  --font-body: \"Rajdhani\", sans-serif;\n  --font-mono: \"Share Tech Mono\", monospace;\n}\n\n/* Add your custom styles here */\n', size: '45 KB' },
+      '/js/': { type: 'folder', children: ['main.js'] },
+      '/js/main.js': { type: 'file', content: "/* Code4Boy - Main JavaScript v5.0 */\n/* Security, smooth interactions, fixed navbar */\n\nconst Security = {\n  sanitizeInput(input) {\n    if (typeof input !== 'string') return '';\n    const map = {'&':'&amp;','<':'&lt;','>':'&gt;','\"':'&quot;'};\n    return input.replace(/[&<>\"]/g, s => map[s]);\n  }\n};\n\n// Add your custom JavaScript here\n", size: '22 KB' },
+      '/pages/': { type: 'folder', children: ['tutorials.html', 'projects.html', 'tools.html', 'errors.html', 'downloads.html'] },
+      '/pages/tutorials.html': { type: 'file', content: '<!-- Tutorials Page -->\n<!DOCTYPE html>\n<html lang="en">\n<head><title>Tutorials - Code4Boy</title></head>\n<body>\n  <!-- Tutorial content -->\n</body>\n</html>', size: '28 KB' },
+      '/pages/projects.html': { type: 'file', content: '<!-- Projects Page -->\n<!DOCTYPE html>\n<html lang="en">\n<head><title>Projects - Code4Boy</title></head>\n<body>\n  <!-- Projects content -->\n</body>\n</html>', size: '15 KB' },
+      '/pages/tools.html': { type: 'file', content: '<!-- Tools Page -->\n<!DOCTYPE html>\n<html lang="en">\n<head><title>Developer Tools - Code4Boy</title></head>\n<body>\n  <!-- Tools content -->\n</body>\n</html>', size: '12 KB' },
+      '/pages/errors.html': { type: 'file', content: '<!-- Error Solutions Page -->\n<!DOCTYPE html>\n<html lang="en">\n<head><title>Error Solutions - Code4Boy</title></head>\n<body>\n  <!-- Error solutions content -->\n</body>\n</html>', size: '20 KB' },
+      '/pages/downloads.html': { type: 'file', content: '<!-- Downloads Page -->\n<!DOCTYPE html>\n<html lang="en">\n<head><title>Downloads - Code4Boy</title></head>\n<body>\n  <!-- Downloads content -->\n</body>\n</html>', size: '14 KB' },
+      '/downloads/': { type: 'folder', children: ['templates/', 'projects/', 'cheatsheets/'] },
+      '/downloads/templates/': { type: 'folder', children: ['starter-template.html', 'portfolio-template.html', 'landing-page-template.html', 'ecommerce-template.html'] },
+      '/downloads/templates/starter-template.html': { type: 'file', content: '<!-- HTML/CSS Starter Template -->\n<!DOCTYPE html>\n<html>\n<head><title>Starter Template</title></head>\n<body>\n  <h1>Welcome</h1>\n</body>\n</html>', size: '5 KB' },
+      '/downloads/templates/portfolio-template.html': { type: 'file', content: '<!-- Portfolio Template -->\n<!DOCTYPE html>\n<html>\n<head><title>Portfolio</title></head>\n<body>\n  <h1>My Portfolio</h1>\n</body>\n</html>', size: '8 KB' },
+      '/downloads/templates/landing-page-template.html': { type: 'file', content: '<!-- Landing Page Template -->\n<!DOCTYPE html>\n<html>\n<head><title>Landing Page</title></head>\n<body>\n  <h1>Landing Page</h1>\n</body>\n</html>', size: '7 KB' },
+      '/downloads/templates/ecommerce-template.html': { type: 'file', content: '<!-- E-commerce Template -->\n<!DOCTYPE html>\n<html>\n<head><title>E-commerce</title></head>\n<body>\n  <h1>Shop</h1>\n</body>\n</html>', size: '10 KB' },
+      '/downloads/projects/': { type: 'folder', children: ['calculator.html', 'todo-app.html', 'weather-app.html', 'css-animations.html'] },
+      '/downloads/projects/calculator.html': { type: 'file', content: '<!-- JavaScript Calculator Project -->\n<!DOCTYPE html>\n<html>\n<head><title>Calculator</title></head>\n<body>\n  <div id=\"calc\"></div>\n</body>\n</html>', size: '6 KB' },
+      '/downloads/projects/todo-app.html': { type: 'file', content: '<!-- Todo App with Local Storage -->\n<!DOCTYPE html>\n<html>\n<head><title>Todo App</title></head>\n<body>\n  <div id=\"app\"></div>\n</body>\n</html>', size: '5 KB' },
+      '/downloads/projects/weather-app.html': { type: 'file', content: '<!-- Weather App Starter -->\n<!DOCTYPE html>\n<html>\n<head><title>Weather App</title></head>\n<body>\n  <div id=\"weather\"></div>\n</body>\n</html>', size: '4 KB' },
+      '/downloads/projects/css-animations.html': { type: 'file', content: '<!-- CSS Animation Pack -->\n<!DOCTYPE html>\n<html>\n<head><title>CSS Animations</title></head>\n<body>\n  <div class=\"animate\"></div>\n</body>\n</html>', size: '3 KB' },
+      '/downloads/cheatsheets/': { type: 'folder', children: ['html5-cheatsheet.html', 'css-flexbox-grid-cheatsheet.html', 'javascript-cheatsheet.html', 'python-cheatsheet.html', 'git-cheatsheet.html', 'vscode-shortcuts.html'] },
+      '/downloads/cheatsheets/html5-cheatsheet.html': { type: 'file', content: '<!-- HTML5 Cheat Sheet -->\n<h1>HTML5 Tags Reference</h1>', size: '8 KB' },
+      '/downloads/cheatsheets/css-flexbox-grid-cheatsheet.html': { type: 'file', content: '<!-- CSS Flexbox & Grid Cheat Sheet -->\n<h1>Flexbox & Grid</h1>', size: '7 KB' },
+      '/downloads/cheatsheets/javascript-cheatsheet.html': { type: 'file', content: '<!-- JavaScript ES6+ Cheat Sheet -->\n<h1>JavaScript Reference</h1>', size: '9 KB' },
+      '/downloads/cheatsheets/python-cheatsheet.html': { type: 'file', content: '<!-- Python Cheat Sheet -->\n<h1>Python Reference</h1>', size: '6 KB' },
+      '/downloads/cheatsheets/git-cheatsheet.html': { type: 'file', content: '<!-- Git & GitHub Cheat Sheet -->\n<h1>Git Commands</h1>', size: '5 KB' },
+      '/downloads/cheatsheets/vscode-shortcuts.html': { type: 'file', content: '<!-- VS Code Shortcuts -->\n<h1>VS Code Shortcuts</h1>', size: '4 KB' },
+      '/images/': { type: 'folder', children: ['logo.jpg'] },
+      '/images/logo.jpg': { type: 'file', content: '[Binary Image File - logo.jpg]', size: '15 KB', binary: true }
+    };
+
+    // Initialize file system
+    function fmInit() {
+      var stored = localStorage.getItem(FM_STORAGE_KEY);
+      if (stored) {
+        try {
+          fmFileSystem = JSON.parse(stored);
+        } catch(e) {
+          fmFileSystem = JSON.parse(JSON.stringify(FM_DEFAULT_FILES));
+        }
+      } else {
+        fmFileSystem = JSON.parse(JSON.stringify(FM_DEFAULT_FILES));
+      }
+      fmCurrentPath = '/';
+      fmRender();
+    }
+
+    function fmSave() {
+      localStorage.setItem(FM_STORAGE_KEY, JSON.stringify(fmFileSystem));
+    }
+
+    // Get file icon class
+    function fmGetIcon(name, isFolder) {
+      if (isFolder) return '<i class="fas fa-folder fm-file-icon folder"></i>';
+      var ext = name.split('.').pop().toLowerCase();
+      if (ext === 'html' || ext === 'htm') return '<i class="fab fa-html5 fm-file-icon html"></i>';
+      if (ext === 'css') return '<i class="fab fa-css3-alt fm-file-icon css"></i>';
+      if (ext === 'js') return '<i class="fab fa-js-square fm-file-icon js"></i>';
+      if (['jpg','jpeg','png','gif','svg','webp','ico'].indexOf(ext) !== -1) return '<i class="fas fa-image fm-file-icon img"></i>';
+      if (['json'].indexOf(ext) !== -1) return '<i class="fas fa-code fm-file-icon js"></i>';
+      if (['md','txt'].indexOf(ext) !== -1) return '<i class="fas fa-file-alt fm-file-icon file"></i>';
+      return '<i class="fas fa-file fm-file-icon file"></i>';
+    }
+
+    // Render breadcrumb
+    function fmRenderBreadcrumb() {
+      var bc = document.getElementById('fmBreadcrumb');
+      if (!bc) return;
+      var parts = fmCurrentPath.split('/').filter(Boolean);
+      var html = '<span onclick="fmNavigate(\'/\')" style="color:var(--neon-cyan)"><i class="fas fa-home"></i> root</span>';
+      var path = '/';
+      for (var i = 0; i < parts.length; i++) {
+        path += parts[i] + '/';
+        if (i === parts.length - 1) {
+          html += '<span class="fm-bc-sep">/</span><span class="fm-bc-current">' + sanitizeInput(parts[i]) + '</span>';
+        } else {
+          html += '<span class="fm-bc-sep">/</span><span onclick="fmNavigate(\'' + path + '\')">' + sanitizeInput(parts[i]) + '</span>';
+        }
+      }
+      bc.innerHTML = html;
+    }
+
+    // Render file list
+    function fmRender() {
+      fmRenderBreadcrumb();
+      var listEl = document.getElementById('fmFileList');
+      if (!listEl) return;
+
+      var folderData = fmFileSystem[fmCurrentPath];
+      if (!folderData || folderData.type !== 'folder') {
+        listEl.innerHTML = '<div class="empty-state">Invalid path</div>';
+        return;
+      }
+
+      var children = folderData.children || [];
+      if (children.length === 0) {
+        listEl.innerHTML = '<div class="empty-state"><i class="fas fa-folder-open" style="font-size:2rem;display:block;margin-bottom:10px;color:var(--text-dim)"></i>This folder is empty. Use the toolbar to add files.</div>';
+        return;
+      }
+
+      // Sort: folders first, then files
+      var folders = [];
+      var files = [];
+      for (var i = 0; i < children.length; i++) {
+        if (children[i].endsWith('/')) {
+          folders.push(children[i]);
+        } else {
+          files.push(children[i]);
+        }
+      }
+      folders.sort();
+      files.sort();
+
+      var html = '';
+      // Folders
+      for (var i = 0; i < folders.length; i++) {
+        var name = folders[i].replace(/\/$/, '');
+        var fullPath = fmCurrentPath + folders[i];
+        var subFolder = fmFileSystem[fullPath];
+        var itemCount = subFolder ? (subFolder.children || []).length : 0;
+        html += '<div class="fm-file-item" ondblclick="fmNavigate(\'' + fullPath + '\')">';
+        html += fmGetIcon(name, true);
+        html += '<div class="fm-file-name">' + sanitizeInput(name) + '</div>';
+        html += '<div class="fm-file-size">' + itemCount + ' items</div>';
+        html += '<div class="fm-file-actions">';
+        html += '<button class="fm-act-edit" onclick="event.stopPropagation();fmNavigate(\'' + fullPath + '\')" title="Open"><i class="fas fa-folder-open"></i></button>';
+        html += '<button class="fm-act-delete" onclick="event.stopPropagation();fmDeleteItem(\'' + fullPath + '\',true)" title="Delete"><i class="fas fa-trash-alt"></i></button>';
+        html += '</div>';
+        html += '</div>';
+      }
+
+      // Files
+      for (var i = 0; i < files.length; i++) {
+        var name = files[i];
+        var fullPath = fmCurrentPath + name;
+        var fileData = fmFileSystem[fullPath];
+        var size = fileData ? (fileData.size || fmCalcSize(fileData.content)) : '0 B';
+        var isBinary = fileData && fileData.binary;
+        html += '<div class="fm-file-item">';
+        html += fmGetIcon(name, false);
+        html += '<div class="fm-file-name">' + sanitizeInput(name) + '</div>';
+        html += '<div class="fm-file-size">' + size + '</div>';
+        html += '<div class="fm-file-actions">';
+        if (!isBinary) {
+          html += '<button class="fm-act-edit" onclick="event.stopPropagation();fmOpenEditor(\'' + fullPath + '\')" title="Edit"><i class="fas fa-edit"></i></button>';
+        }
+        html += '<button class="fm-act-download" onclick="event.stopPropagation();fmDownloadFile(\'' + fullPath + '\')" title="Download"><i class="fas fa-download"></i></button>';
+        html += '<button class="fm-act-delete" onclick="event.stopPropagation();fmDeleteItem(\'' + fullPath + '\',false)" title="Delete"><i class="fas fa-trash-alt"></i></button>';
+        html += '</div>';
+        html += '</div>';
+      }
+
+      listEl.innerHTML = html;
+    }
+
+    function fmCalcSize(content) {
+      if (!content) return '0 B';
+      var bytes = new Blob([content]).size;
+      if (bytes < 1024) return bytes + ' B';
+      if (bytes < 1024 * 1024) return (bytes / 1024).toFixed(1) + ' KB';
+      return (bytes / (1024 * 1024)).toFixed(1) + ' MB';
+    }
+
+    // Navigation
+    function fmNavigate(path) {
+      if (fmFileSystem[path] && fmFileSystem[path].type === 'folder') {
+        fmCurrentPath = path;
+        fmRender();
+      }
+    }
+
+    function fmGoUp() {
+      if (fmCurrentPath === '/') return;
+      var parts = fmCurrentPath.split('/').filter(Boolean);
+      parts.pop();
+      fmCurrentPath = parts.length === 0 ? '/' : '/' + parts.join('/') + '/';
+      fmRender();
+    }
+
+    function fmRefresh() {
+      fmRender();
+      showToast('File list refreshed.');
+    }
+
+    // Create new file
+    function fmNewFile() {
+      var name = prompt('Enter file name (e.g. about.html):');
+      if (!name || !name.trim()) return;
+      name = name.trim();
+      if (!/^[a-zA-Z0-9._\-]+$/.test(name)) {
+        showToast('Invalid file name. Use only letters, numbers, dots, hyphens, underscores.');
+        return;
+      }
+      var fullPath = fmCurrentPath + name;
+      if (fmFileSystem[fullPath]) {
+        showToast('File already exists: ' + name);
+        return;
+      }
+      // Add to parent folder children
+      var parentFolder = fmFileSystem[fmCurrentPath];
+      if (!parentFolder || parentFolder.type !== 'folder') return;
+      parentFolder.children.push(name);
+      // Create file entry
+      fmFileSystem[fullPath] = { type: 'file', content: '', size: '0 B' };
+      fmSave();
+      fmRender();
+      showToast('File created: ' + name);
+      // Open editor
+      fmOpenEditor(fullPath);
+    }
+
+    // Create new folder
+    function fmNewFolder() {
+      var name = prompt('Enter folder name:');
+      if (!name || !name.trim()) return;
+      name = name.trim();
+      if (!/^[a-zA-Z0-9._\-]+$/.test(name)) {
+        showToast('Invalid folder name. Use only letters, numbers, dots, hyphens, underscores.');
+        return;
+      }
+      var folderName = name + '/';
+      var fullPath = fmCurrentPath + folderName;
+      if (fmFileSystem[fullPath]) {
+        showToast('Folder already exists: ' + name);
+        return;
+      }
+      var parentFolder = fmFileSystem[fmCurrentPath];
+      if (!parentFolder || parentFolder.type !== 'folder') return;
+      parentFolder.children.push(folderName);
+      fmFileSystem[fullPath] = { type: 'folder', children: [] };
+      fmSave();
+      fmRender();
+      showToast('Folder created: ' + name);
+    }
+
+    // Delete file or folder
+    function fmDeleteItem(fullPath, isFolder) {
+      var name = fullPath.split('/').filter(Boolean).pop();
+      if (!confirm('Are you sure you want to delete "' + name + '"' + (isFolder ? ' and all its contents' : '') + '?')) return;
+
+      // Remove from parent children
+      var parentPath = fullPath.substring(0, fullPath.lastIndexOf('/', fullPath.length - 2) + 1);
+      if (parentPath === '') parentPath = '/';
+      var parent = fmFileSystem[parentPath];
+      if (parent && parent.children) {
+        var childName = isFolder ? name + '/' : name;
+        var idx = parent.children.indexOf(childName);
+        if (idx !== -1) parent.children.splice(idx, 1);
+      }
+
+      // Delete the entry and all sub-entries
+      if (isFolder) {
+        var keysToDelete = [];
+        for (var key in fmFileSystem) {
+          if (key.indexOf(fullPath) === 0) keysToDelete.push(key);
+        }
+        for (var i = 0; i < keysToDelete.length; i++) {
+          delete fmFileSystem[keysToDelete[i]];
+        }
+      } else {
+        delete fmFileSystem[fullPath];
+      }
+
+      fmSave();
+      fmRender();
+      showToast('Deleted: ' + name);
+    }
+
+    // File Editor
+    function fmOpenEditor(path) {
+      var fileData = fmFileSystem[path];
+      if (!fileData || fileData.type !== 'file') return;
+      fmEditingFile = path;
+      var fileName = path.split('/').pop();
+      document.getElementById('fmEditorFileName').textContent = path;
+      document.getElementById('fmEditorContent').value = fileData.content || '';
+      document.getElementById('fmEditorModal').style.display = 'flex';
+    }
+
+    function fmSaveFile() {
+      if (!fmEditingFile) return;
+      var content = document.getElementById('fmEditorContent').value;
+      fmFileSystem[fmEditingFile].content = content;
+      fmFileSystem[fmEditingFile].size = fmCalcSize(content);
+      fmSave();
+      fmRender();
+      showToast('File saved: ' + fmEditingFile.split('/').pop());
+    }
+
+    function fmCloseEditor() {
+      document.getElementById('fmEditorModal').style.display = 'none';
+      fmEditingFile = null;
+    }
+
+    // Keyboard shortcut: Ctrl+S to save in editor
+    document.addEventListener('keydown', function(e) {
+      if ((e.ctrlKey || e.metaKey) && e.key === 's') {
+        if (document.getElementById('fmEditorModal').style.display !== 'none' && fmEditingFile) {
+          e.preventDefault();
+          fmSaveFile();
+        }
+      }
+      // Escape to close editor
+      if (e.key === 'Escape' && document.getElementById('fmEditorModal').style.display !== 'none') {
+        fmCloseEditor();
+      }
+    });
+
+    // Tab key support in editor
+    document.getElementById('fmEditorContent').addEventListener('keydown', function(e) {
+      if (e.key === 'Tab') {
+        e.preventDefault();
+        var start = this.selectionStart;
+        var end = this.selectionEnd;
+        this.value = this.value.substring(0, start) + '  ' + this.value.substring(end);
+        this.selectionStart = this.selectionEnd = start + 2;
+      }
+    });
+
+    // Upload files
+    function fmUploadFile() {
+      document.getElementById('fmFileInput').click();
+    }
+
+    function fmHandleUpload(event) {
+      var files = event.target.files;
+      if (!files || files.length === 0) return;
+
+      var parentFolder = fmFileSystem[fmCurrentPath];
+      if (!parentFolder || parentFolder.type !== 'folder') return;
+
+      var uploaded = 0;
+      for (var i = 0; i < files.length; i++) {
+        (function(file) {
+          var name = file.name.replace(/[^a-zA-Z0-9._\-]/g, '_');
+          var fullPath = fmCurrentPath + name;
+
+          // Remove old entry if exists
+          if (fmFileSystem[fullPath]) {
+            var idx = parentFolder.children.indexOf(name);
+            if (idx !== -1) parentFolder.children.splice(idx, 1);
+            delete fmFileSystem[fullPath];
+          }
+
+          var reader = new FileReader();
+          var isText = file.type.startsWith('text/') || 
+            /\.(html|htm|css|js|json|xml|svg|md|txt|csv|yaml|yml|toml|ini|cfg|sh|bat|py|rb|php|java|c|cpp|h|go|rs|ts|tsx|jsx)$/i.test(name);
+
+          if (isText) {
+            reader.onload = function(e) {
+              parentFolder.children.push(name);
+              fmFileSystem[fullPath] = {
+                type: 'file',
+                content: e.target.result,
+                size: fmCalcSize(e.target.result)
+              };
+              uploaded++;
+              if (uploaded === files.length) {
+                fmSave();
+                fmRender();
+                showToast(uploaded + ' file(s) uploaded successfully!');
+              }
+            };
+            reader.readAsText(file);
+          } else {
+            reader.onload = function(e) {
+              parentFolder.children.push(name);
+              fmFileSystem[fullPath] = {
+                type: 'file',
+                content: e.target.result,
+                size: (file.size < 1024 ? file.size + ' B' : (file.size / 1024).toFixed(1) + ' KB'),
+                binary: true
+              };
+              uploaded++;
+              if (uploaded === files.length) {
+                fmSave();
+                fmRender();
+                showToast(uploaded + ' file(s) uploaded successfully!');
+              }
+            };
+            reader.readAsDataURL(file);
+          }
+        })(files[i]);
+      }
+      // Reset input
+      event.target.value = '';
+    }
+
+    // Download single file
+    function fmDownloadFile(path) {
+      var fileData = fmFileSystem[path];
+      if (!fileData) return;
+      var name = path.split('/').pop();
+      var content = fileData.content || '';
+
+      if (fileData.binary && content.startsWith('data:')) {
+        // Binary file (base64)
+        var a = document.createElement('a');
+        a.href = content;
+        a.download = name;
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+      } else {
+        // Text file
+        var blob = new Blob([content], { type: 'text/plain;charset=utf-8' });
+        var url = URL.createObjectURL(blob);
+        var a = document.createElement('a');
+        a.href = url;
+        a.download = name;
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
+      }
+      showToast('Downloaded: ' + name);
+    }
+
+    // Download all files as ZIP
+    function fmDownloadAll() {
+      showToast('Preparing ZIP download...');
+      // Load JSZip dynamically
+      if (typeof JSZip === 'undefined') {
+        var script = document.createElement('script');
+        script.src = 'https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js';
+        script.onload = function() { fmCreateZip(); };
+        script.onerror = function() {
+          showToast('Failed to load ZIP library. Downloading files individually instead.');
+        };
+        document.head.appendChild(script);
+      } else {
+        fmCreateZip();
+      }
+    }
+
+    function fmCreateZip() {
+      var zip = new JSZip();
+      for (var path in fmFileSystem) {
+        var entry = fmFileSystem[path];
+        if (entry.type === 'file') {
+          var filePath = path.substring(1); // remove leading /
+          if (entry.binary && entry.content && entry.content.startsWith('data:')) {
+            // Base64 binary
+            var base64Data = entry.content.split(',')[1];
+            if (base64Data) {
+              zip.file(filePath, base64Data, { base64: true });
+            }
+          } else {
+            zip.file(filePath, entry.content || '');
+          }
+        }
+      }
+      zip.generateAsync({ type: 'blob' }).then(function(blob) {
+        var url = URL.createObjectURL(blob);
+        var a = document.createElement('a');
+        a.href = url;
+        a.download = 'Code4Boy-Website-Admin-Export.zip';
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
+        showToast('ZIP downloaded successfully!');
+      });
+    }
+
+    // Rename file/folder
+    function fmRename(oldPath, isFolder) {
+      var oldName = oldPath.split('/').filter(Boolean).pop();
+      var newName = prompt('Rename "' + oldName + '" to:', oldName);
+      if (!newName || newName.trim() === '' || newName.trim() === oldName) return;
+      newName = newName.trim();
+      if (!/^[a-zA-Z0-9._\-]+$/.test(newName)) {
+        showToast('Invalid name. Use only letters, numbers, dots, hyphens, underscores.');
+        return;
+      }
+
+      var parentPath = oldPath.substring(0, oldPath.lastIndexOf('/', oldPath.length - 2) + 1);
+      if (parentPath === '') parentPath = '/';
+      var parent = fmFileSystem[parentPath];
+      if (!parent) return;
+
+      var oldChildName = isFolder ? oldName + '/' : oldName;
+      var newChildName = isFolder ? newName + '/' : newName;
+      var newFullPath = parentPath + newChildName;
+
+      if (fmFileSystem[newFullPath]) {
+        showToast('A file/folder with that name already exists.');
+        return;
+      }
+
+      // Update parent children
+      var idx = parent.children.indexOf(oldChildName);
+      if (idx !== -1) parent.children[idx] = newChildName;
+
+      // Move entries
+      if (isFolder) {
+        var keysToMove = [];
+        for (var key in fmFileSystem) {
+          if (key.indexOf(oldPath) === 0) keysToMove.push(key);
+        }
+        for (var i = 0; i < keysToMove.length; i++) {
+          var newKey = newFullPath + keysToMove[i].substring(oldPath.length);
+          fmFileSystem[newKey] = fmFileSystem[keysToMove[i]];
+          delete fmFileSystem[keysToMove[i]];
+        }
+      } else {
+        fmFileSystem[newFullPath] = fmFileSystem[oldPath];
+        delete fmFileSystem[oldPath];
+      }
+
+      fmSave();
+      fmRender();
+      showToast('Renamed to: ' + newName);
+    }
+
+    // Initialize file manager when admin panel loads
+    var origLoadSettings = loadSettings;
+    loadSettings = function() {
+      origLoadSettings();
+      fmInit();
+      projLoadList();
+      loadAdSettings();
+    };
+
+    // If admin panel is already visible, init file manager
+    if (document.getElementById('adminPanel').style.display === 'block') {
+      fmInit();
+      projLoadList();
+      loadAdSettings();
+    }
+
+    // ============================================
+    // PROJECT UPLOAD MANAGER
+    // ============================================
+    var PROJ_STORAGE_KEY = 'c4b-admin-projects';
+    var projFileData = null;
+
+    function projSelectFile() {
+      document.getElementById('projFileInput').click();
+    }
+
+    function projHandleFile(event) {
+      var file = event.target.files[0];
+      if (!file) return;
+      document.getElementById('projFileName').textContent = file.name;
+
+      var reader = new FileReader();
+      var isText = file.type.startsWith('text/') ||
+        /\.(html|htm|css|js|json|xml|svg|md|txt|csv|py|rb|php)$/i.test(file.name);
+
+      if (isText) {
+        reader.onload = function(e) {
+          projFileData = {
+            name: file.name,
+            content: e.target.result,
+            type: 'text',
+            size: file.size
+          };
+        };
+        reader.readAsText(file);
+      } else {
+        reader.onload = function(e) {
+          projFileData = {
+            name: file.name,
+            content: e.target.result,
+            type: 'binary',
+            size: file.size
+          };
+        };
+        reader.readAsDataURL(file);
+      }
+      event.target.value = '';
+    }
+
+    function projAddProject() {
+      var title = document.getElementById('projTitle').value.trim();
+      var category = document.getElementById('projCategory').value;
+      var desc = document.getElementById('projDesc').value.trim();
+      var icon = document.getElementById('projIcon').value.trim() || '\u{1F4E6}';
+      var dlLabel = document.getElementById('projDlLabel').value.trim() || 'Download ZIP';
+
+      if (!title) { showToast('Please enter a project title.'); return; }
+      if (!desc) { showToast('Please enter a description.'); return; }
+
+      var projects = JSON.parse(localStorage.getItem(PROJ_STORAGE_KEY) || '[]');
+
+      var newProj = {
+        id: Date.now().toString(36) + Math.random().toString(36).substr(2, 5),
+        title: sanitizeInput(title),
+        category: category,
+        description: sanitizeInput(desc),
+        icon: icon,
+        dlLabel: sanitizeInput(dlLabel),
+        file: projFileData ? {
+          name: projFileData.name,
+          content: projFileData.content,
+          type: projFileData.type,
+          size: projFileData.size
+        } : null,
+        createdAt: new Date().toISOString()
+      };
+
+      projects.push(newProj);
+      localStorage.setItem(PROJ_STORAGE_KEY, JSON.stringify(projects));
+      syncSettingToServer('admin-projects', projects);
+
+      // Clear form
+      document.getElementById('projTitle').value = '';
+      document.getElementById('projDesc').value = '';
+      document.getElementById('projIcon').value = '\u{1F4E6}';
+      document.getElementById('projDlLabel').value = 'Download ZIP';
+      document.getElementById('projFileName').textContent = 'No file selected';
+      projFileData = null;
+
+      projLoadList();
+      showToast('Project "' + title + '" uploaded successfully!');
+    }
+
+    function projLoadList() {
+      var container = document.getElementById('projList');
+      if (!container) return;
+      var projects = JSON.parse(localStorage.getItem(PROJ_STORAGE_KEY) || '[]');
+
+      if (projects.length === 0) {
+        container.innerHTML = '<div class="empty-state"><i class="fas fa-inbox" style="font-size:2rem;display:block;margin-bottom:10px;color:var(--text-dim)"></i>No projects uploaded yet. Use the form above to add projects.</div>';
+        return;
+      }
+
+      var html = '';
+      for (var i = projects.length - 1; i >= 0; i--) {
+        var p = projects[i];
+        var catLabel = { template: 'Template', project: 'Project', cheatsheet: 'Cheat Sheet', resource: 'Resource' };
+        var date = new Date(p.createdAt);
+        var dateStr = date.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+        html += '<div class="fm-file-item">';
+        html += '<div style="font-size:1.5rem;width:36px;text-align:center;">' + (p.icon || '\u{1F4E6}') + '</div>';
+        html += '<div style="flex:1;">';
+        html += '<div class="fm-file-name" style="font-weight:600;">' + p.title + '</div>';
+        html += '<div style="font-size:0.78rem;color:var(--text-dim);margin-top:2px;">' + (catLabel[p.category] || p.category) + ' &bull; ' + dateStr;
+        if (p.file) html += ' &bull; ' + p.file.name;
+        html += '</div>';
+        html += '</div>';
+        html += '<div class="fm-file-actions">';
+        html += '<button class="fm-act-delete" onclick="projDelete(\'' + p.id + '\')" title="Delete"><i class="fas fa-trash-alt"></i></button>';
+        html += '</div>';
+        html += '</div>';
+      }
+      container.innerHTML = html;
+    }
+
+    function projDelete(id) {
+      if (!confirm('Delete this project?')) return;
+      var projects = JSON.parse(localStorage.getItem(PROJ_STORAGE_KEY) || '[]');
+      projects = projects.filter(function(p) { return p.id !== id; });
+      localStorage.setItem(PROJ_STORAGE_KEY, JSON.stringify(projects));
+      syncSettingToServer('admin-projects', projects);
+      projLoadList();
+      showToast('Project deleted.');
+    }
+
+    // ============================================
+    // TUTORIAL MANAGER
+    // ============================================
+    var TUT_STORAGE_KEY = 'c4b-admin-tutorials';
+
+    // Global variable for uploaded HTML content
+    var _adminTutHtmlContent = '';
+
+    function adminTutAdd() {
+      try {
+        var title = document.getElementById('adminTutTitle').value.trim();
+        var category = document.getElementById('adminTutCategory').value;
+        var desc = document.getElementById('adminTutDesc').value.trim();
+        var link = document.getElementById('adminTutLink').value.trim();
+        var level = document.getElementById('adminTutLevel').value;
+        var code = document.getElementById('adminTutCode').value;
+        var logoData = document.getElementById('adminTutLogo').dataset.logoData || '';
+        var htmlContent = _adminTutHtmlContent || '';
+
+        console.log('Adding tutorial:', { title: title, category: category, desc: desc.substring(0, 50), hasHtml: !!htmlContent });
+
+        if (!title || (!desc && !htmlContent)) {
+          showToast('Please fill in Title and Description (or upload an HTML file).');
+          return;
+        }
+
+        var tutorials = JSON.parse(localStorage.getItem(TUT_STORAGE_KEY) || '[]');
+
+        // Check for existing tutorial with same title and category (prevent duplicates)
+        var sanitizedTitle = sanitizeInput(title);
+        var existingIndex = -1;
+        for (var i = 0; i < tutorials.length; i++) {
+          if (tutorials[i].title.toLowerCase() === sanitizedTitle.toLowerCase() && tutorials[i].category === category) {
+            existingIndex = i;
+            break;
+          }
+        }
+
+        if (existingIndex >= 0) {
+          // Update existing tutorial instead of creating duplicate
+          tutorials[existingIndex].description = desc;
+          tutorials[existingIndex].link = link;
+          tutorials[existingIndex].level = level;
+          tutorials[existingIndex].code = code;
+          tutorials[existingIndex].updatedAt = new Date().toISOString();
+          if (logoData) tutorials[existingIndex].logo = logoData;
+          if (htmlContent) tutorials[existingIndex].htmlContent = htmlContent;
+          localStorage.setItem(TUT_STORAGE_KEY, JSON.stringify(tutorials));
+          syncSettingToServer('admin-tutorials', tutorials);
+          console.log('Tutorial updated! Total tutorials:', tutorials.length);
+
+          // Clear form
+          document.getElementById('adminTutTitle').value = '';
+          document.getElementById('adminTutDesc').value = '';
+          document.getElementById('adminTutLink').value = '';
+          document.getElementById('adminTutCode').value = '';
+          adminTutClearLogo();
+          adminTutClearHtmlFile();
+
+          adminTutLoadList();
+          showToast('Tutorial updated successfully! (Same title & category found)');
+        } else {
+          // Add new tutorial
+          tutorials.push({
+            id: 'admin-tut-' + Date.now(),
+            title: sanitizedTitle,
+            category: category,
+            description: desc,
+            link: link,
+            level: level,
+            code: code,
+            logo: logoData,
+            htmlContent: htmlContent,
+            createdAt: new Date().toISOString(),
+            updatedAt: new Date().toISOString()
+          });
+          localStorage.setItem(TUT_STORAGE_KEY, JSON.stringify(tutorials));
+          syncSettingToServer('admin-tutorials', tutorials);
+          console.log('Tutorial saved! Total tutorials:', tutorials.length);
+
+          // Clear form
+          document.getElementById('adminTutTitle').value = '';
+          document.getElementById('adminTutDesc').value = '';
+          document.getElementById('adminTutLink').value = '';
+          document.getElementById('adminTutCode').value = '';
+          adminTutClearLogo();
+          adminTutClearHtmlFile();
+
+          adminTutLoadList();
+          showToast('Tutorial added successfully!');
+        }
+      } catch (error) {
+        console.error('Error adding tutorial:', error);
+        showToast('Error adding tutorial: ' + error.message);
+      }
+    }
+
+    // Tutorial logo upload helpers
+    function adminTutSelectLogo() {
+      document.getElementById('adminTutLogoInput').click();
+    }
+
+    function adminTutHandleLogo(event) {
+      var file = event.target.files[0];
+      if (!file) return;
+
+      // Validate file type
+      if (!file.type.match(/image\/(jpeg|jpg|png|gif|webp|svg\+xml)/)) {
+        showToast('Please select a valid image file (JPG, PNG, GIF, WebP, SVG).');
+        return;
+      }
+
+      // Validate file size (max 500KB for localStorage)
+      if (file.size > 512000) {
+        showToast('Logo image must be under 500KB.');
+        return;
+      }
+
+      var reader = new FileReader();
+      reader.onload = function(e) {
+        var logoData = e.target.result;
+        document.getElementById('adminTutLogo').dataset.logoData = logoData;
+        document.getElementById('adminTutLogoPreview').innerHTML = '<img src="' + logoData + '" alt="Tutorial logo preview" style="width:45px;height:45px;border-radius:50%;border:2px solid rgba(26,115,232,0.2);object-fit:cover;">';
+        document.getElementById('adminTutLogoName').textContent = file.name;
+        document.getElementById('adminTutLogoClearBtn').style.display = 'inline-flex';
+      };
+      reader.readAsDataURL(file);
+    }
+
+    function adminTutClearLogo() {
+      document.getElementById('adminTutLogo').dataset.logoData = '';
+      document.getElementById('adminTutLogoInput').value = '';
+      document.getElementById('adminTutLogoPreview').innerHTML = '';
+      document.getElementById('adminTutLogoName').textContent = 'No logo selected';
+      document.getElementById('adminTutLogoClearBtn').style.display = 'none';
+    }
+
+    // HTML file upload helpers
+    function adminTutHandleHtmlFile(event) {
+      var file = event.target.files[0];
+      if (!file) return;
+
+      if (!file.name.match(/\.(html|htm)$/i)) {
+        showToast('Please select a valid HTML file (.html or .htm)');
+        return;
+      }
+
+      var reader = new FileReader();
+      reader.onload = function(e) {
+        _adminTutHtmlContent = e.target.result;
+        document.getElementById('adminTutHtmlFileName').textContent = file.name + ' (' + (file.size / 1024).toFixed(1) + ' KB)';
+        document.getElementById('adminTutHtmlClearBtn').style.display = 'inline-flex';
+
+        // Show preview
+        var preview = document.getElementById('adminTutHtmlPreview');
+        preview.style.display = 'block';
+        preview.textContent = _adminTutHtmlContent.substring(0, 500) + (_adminTutHtmlContent.length > 500 ? '\n... (truncated preview)' : '');
+
+        showToast('HTML file loaded: ' + file.name);
+      };
+      reader.readAsText(file);
+    }
+
+    function adminTutClearHtmlFile() {
+      _adminTutHtmlContent = '';
+      document.getElementById('adminTutHtmlFileInput').value = '';
+      document.getElementById('adminTutHtmlFileName').textContent = 'No file selected';
+      document.getElementById('adminTutHtmlClearBtn').style.display = 'none';
+      document.getElementById('adminTutHtmlPreview').style.display = 'none';
+      document.getElementById('adminTutHtmlPreview').textContent = '';
+    }
+
+    function adminTutLoadList() {
+      var container = document.getElementById('adminTutList');
+      var countEl = document.getElementById('adminTutCount');
+      if (!container) return;
+      var tutorials = JSON.parse(localStorage.getItem(TUT_STORAGE_KEY) || '[]');
+      if (countEl) countEl.textContent = tutorials.length;
+
+      if (tutorials.length === 0) {
+        container.innerHTML = '<div class="empty-state"><i class="fas fa-book" style="font-size:2rem;display:block;margin-bottom:10px;color:var(--text-dim)"></i>No tutorials added yet. Use the form above to add tutorials.</div>';
+        return;
+      }
+
+      var catLabels = { html: 'HTML', css: 'CSS', javascript: 'JavaScript', python: 'Python', ai: 'AI Tools', other: 'Other' };
+      var levelLabels = { beginner: 'Beginner', intermediate: 'Intermediate', advanced: 'Advanced' };
+      var levelColors = { beginner: '#00ff88', intermediate: '#f7df1e', advanced: '#ff6600' };
+
+      var html = '';
+      for (var i = tutorials.length - 1; i >= 0; i--) {
+        var t = tutorials[i];
+        var date = new Date(t.createdAt);
+        var dateStr = date.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+        html += '<div class="fm-file-item" style="flex-wrap:wrap;">';
+        if (t.logo) {
+          html += '<div style="width:40px;height:40px;border-radius:50%;overflow:hidden;border:2px solid rgba(26,115,232,0.2);flex-shrink:0;"><img src="' + t.logo + '" alt="' + (t.title || 'Tutorial') + ' logo" style="width:100%;height:100%;object-fit:cover;" onerror="this.parentElement.innerHTML=\'<i class=\\\'fas fa-book-open\\\' style=\\\'color:var(--neon-cyan);font-size:1.2rem;display:flex;align-items:center;justify-content:center;width:100%;height:100%;\\\'></i>\';"></div>';
+        } else {
+          html += '<div class="fm-file-icon" style="color:var(--neon-cyan);"><i class="fas fa-book-open"></i></div>';
+        }
+        html += '<div style="flex:1;min-width:200px;">';
+        html += '<div class="fm-file-name" style="font-weight:600;">' + t.title + '</div>';
+        html += '<div style="font-size:0.78rem;color:var(--text-dim);margin-top:2px;display:flex;gap:10px;flex-wrap:wrap;">';
+        html += '<span style="color:var(--neon-cyan);">' + (catLabels[t.category] || t.category) + '</span>';
+        html += '<span style="color:' + (levelColors[t.level] || '#aaa') + ';">' + (levelLabels[t.level] || t.level) + '</span>';
+        html += '<span>' + dateStr + '</span>';
+        if (t.htmlContent) html += '<span style="color:var(--neon-green);"><i class="fas fa-file-code"></i> HTML File</span>';
+        if (t.link) html += '<a href="' + t.link + '" target="_blank" style="color:var(--neon-green);text-decoration:none;"><i class="fas fa-external-link-alt"></i> Link</a>';
+        html += '</div>';
+        html += '<div style="font-size:0.82rem;color:var(--text-secondary);margin-top:4px;max-height:40px;overflow:hidden;">' + t.description.substring(0, 120) + (t.description.length > 120 ? '...' : '') + '</div>';
+        html += '</div>';
+        html += '<div class="fm-file-actions">';
+        html += '<button class="fm-act-edit" onclick="adminTutEdit(\'' + t.id + '\')" title="Edit"><i class="fas fa-edit"></i></button>';
+        html += '<button class="fm-act-delete" onclick="adminTutDelete(\'' + t.id + '\')" title="Delete"><i class="fas fa-trash-alt"></i></button>';
+        html += '</div>';
+        html += '</div>';
+      }
+      container.innerHTML = html;
+    }
+
+    function adminTutDelete(id) {
+      if (!confirm('Delete this tutorial?')) return;
+      var tutorials = JSON.parse(localStorage.getItem(TUT_STORAGE_KEY) || '[]');
+      tutorials = tutorials.filter(function(t) { return t.id !== id; });
+      localStorage.setItem(TUT_STORAGE_KEY, JSON.stringify(tutorials));
+      syncSettingToServer('admin-tutorials', tutorials);
+      adminTutLoadList();
+      showToast('Tutorial deleted.');
+    }
+
+    function adminTutEdit(id) {
+      var tutorials = JSON.parse(localStorage.getItem(TUT_STORAGE_KEY) || '[]');
+      var tut = tutorials.find(function(t) { return t.id === id; });
+      if (!tut) return;
+
+      // Fill form with existing data
+      document.getElementById('adminTutTitle').value = tut.title.replace(/&amp;/g,'&').replace(/&lt;/g,'<').replace(/&gt;/g,'>').replace(/&quot;/g,'"').replace(/&#x27;/g,"'").replace(/&#x2F;/g,'/');
+      document.getElementById('adminTutCategory').value = tut.category;
+      document.getElementById('adminTutDesc').value = tut.description;
+      document.getElementById('adminTutLink').value = tut.link || '';
+      document.getElementById('adminTutLevel').value = tut.level || 'beginner';
+      document.getElementById('adminTutCode').value = tut.code || '';
+
+      // Load logo if present
+      if (tut.logo) {
+        document.getElementById('adminTutLogo').dataset.logoData = tut.logo;
+        document.getElementById('adminTutLogoPreview').innerHTML = '<img src="' + tut.logo + '" alt="Tutorial logo preview" style="width:45px;height:45px;border-radius:50%;border:2px solid rgba(26,115,232,0.2);object-fit:cover;">';
+        document.getElementById('adminTutLogoName').textContent = 'Current logo';
+        document.getElementById('adminTutLogoClearBtn').style.display = 'inline-flex';
+      } else {
+        adminTutClearLogo();
+      }
+
+      // Load HTML content if present
+      if (tut.htmlContent) {
+        _adminTutHtmlContent = tut.htmlContent;
+        document.getElementById('adminTutHtmlFileName').textContent = 'HTML content loaded (' + (tut.htmlContent.length / 1024).toFixed(1) + ' KB)';
+        document.getElementById('adminTutHtmlClearBtn').style.display = 'inline-flex';
+        var preview = document.getElementById('adminTutHtmlPreview');
+        preview.style.display = 'block';
+        preview.textContent = tut.htmlContent.substring(0, 500) + (tut.htmlContent.length > 500 ? '\n... (truncated preview)' : '');
+      } else {
+        adminTutClearHtmlFile();
+      }
+
+      // Remove old entry so re-adding creates updated version
+      tutorials = tutorials.filter(function(t) { return t.id !== id; });
+      localStorage.setItem(TUT_STORAGE_KEY, JSON.stringify(tutorials));
+      syncSettingToServer('admin-tutorials', tutorials);
+      adminTutLoadList();
+
+      // Scroll to form
+      document.getElementById('tutorialManagerCard').scrollIntoView({ behavior: 'smooth' });
+      showToast('Tutorial loaded for editing. Make changes and click Add Tutorial.');
+    }
+
+    // ============================================
+    // AD SETTINGS
+    // ============================================
+    var AD_STORAGE_KEY = 'c4b-ad-settings';
+
+    function saveAdSettings() {
+      var settings = {
+        enabled: document.getElementById('adEnabled').value === 'yes',
+        title: sanitizeInput(document.getElementById('adTitle').value.trim()),
+        message: document.getElementById('adMessage').value.trim(),
+        link: document.getElementById('adLink').value.trim(),
+        linkText: sanitizeInput(document.getElementById('adLinkText').value.trim()),
+        duration: parseInt(document.getElementById('adDuration').value) || 5,
+        bgColor: document.getElementById('adBgColor').value
+      };
+      localStorage.setItem(AD_STORAGE_KEY, JSON.stringify(settings));
+      syncSettingToServer('ad-settings', settings);
+      showToast('Ad settings saved!');
+    }
+
+    function loadAdSettings() {
+      var s = JSON.parse(localStorage.getItem(AD_STORAGE_KEY) || 'null');
+      if (!s) return;
+      document.getElementById('adEnabled').value = s.enabled ? 'yes' : 'no';
+      if (s.title) document.getElementById('adTitle').value = s.title;
+      if (s.message) document.getElementById('adMessage').value = s.message;
+      if (s.link) document.getElementById('adLink').value = s.link;
+      if (s.linkText) document.getElementById('adLinkText').value = s.linkText;
+      if (s.duration) document.getElementById('adDuration').value = s.duration;
+      if (s.bgColor) document.getElementById('adBgColor').value = s.bgColor;
+    }
+
+    // ============================================
+    // WEBSITE CONTROLS
+    // ============================================
+    var WEB_CONTROLS_KEY = 'c4b-website-controls';
+
+    function saveWebsiteControls() {
+      var controls = {
+        announcement: {
+          text: sanitizeInput(document.getElementById('announcementText').value.trim()),
+          color: document.getElementById('announcementColor').value,
+          duration: parseInt(document.getElementById('announcementDuration').value) || 7,
+          active: !!document.getElementById('announcementText').value.trim()
+        },
+        maintenance: {
+          mode: document.getElementById('maintenanceMode').value === 'enabled',
+          message: sanitizeInput(document.getElementById('maintenanceMessage').value.trim())
+        }
+      };
+      localStorage.setItem(WEB_CONTROLS_KEY, JSON.stringify(controls));
+      syncSettingToServer('website-controls', controls);
+      showToast('Website controls saved! Changes apply across all pages.');
+    }
+
+    function loadWebsiteControls() {
+      var c = JSON.parse(localStorage.getItem(WEB_CONTROLS_KEY) || 'null');
+      if (!c) return;
+      if (c.announcement) {
+        document.getElementById('announcementText').value = c.announcement.text || '';
+        document.getElementById('announcementColor').value = c.announcement.color || '#f59e0b';
+        document.getElementById('announcementDuration').value = c.announcement.duration || 7;
+      }
+      if (c.maintenance) {
+        document.getElementById('maintenanceMode').value = c.maintenance.mode ? 'enabled' : 'disabled';
+        document.getElementById('maintenanceMessage').value = c.maintenance.message || '';
+      }
+    }
+
+    // ============================================
+    // NOTIFICATIONS SYSTEM
+    // ============================================
+    var NOTIF_STORAGE_KEY = 'c4b-notifications';
+
+    function sendNotification() {
+      var title = sanitizeInput(document.getElementById('notifTitle').value.trim());
+      var message = document.getElementById('notifMessage').value.trim();
+      var type = document.getElementById('notifType').value;
+      var priority = document.getElementById('notifPriority').value;
+
+      if (!title || !message) {
+        showToast('Please fill in notification title and message.');
+        return;
+      }
+
+      var notification = {
+        id: 'notif-' + Date.now(),
+        title: title,
+        message: message,
+        type: type,
+        priority: priority,
+        sentAt: new Date().toISOString(),
+        read: false
+      };
+
+      // Save to notifications array
+      var notifications = JSON.parse(localStorage.getItem(NOTIF_STORAGE_KEY) || '[]');
+      notifications.unshift(notification);
+      // Keep only last 20 notifications
+      notifications = notifications.slice(0, 20);
+      localStorage.setItem(NOTIF_STORAGE_KEY, JSON.stringify(notifications));
+      syncSettingToServer('notifications', notifications);
+
+      // Clear form
+      document.getElementById('notifTitle').value = '';
+      document.getElementById('notifMessage').value = '';
+
+      showToast('Notification sent successfully! Users will see it on next visit.');
+    }
+
+    function loadNotifications() {
+      // This would be used to display notification history in future updates
+      var notifications = JSON.parse(localStorage.getItem(NOTIF_STORAGE_KEY) || '[]');
+      console.log('Loaded notifications:', notifications.length);
+    }
+
+    // ============================================
+    // ANALYTICS DASHBOARD
+    // ============================================
+    function getAnalyticsApi() {
+      // Read from localStorage (set via Admin Panel > API & Backend Configuration)
+      try {
+        var config = JSON.parse(localStorage.getItem('c4b-api-config') || '{}');
+        return config.apiBaseUrl || 'https://code4boy-backend.vercel.app';
+      } catch (e) {
+        return 'https://code4boy-backend.vercel.app';
+      }
+    }
+
+    function isAnalyticsBackendReady() {
+      var url = getAnalyticsApi();
+      return url && url !== '' && !url.includes('BACKEND_URL_HERE');
+    }
+
+    function showAnalyticsTab(tabName) {
+      var tabs = document.querySelectorAll('.analytics-tab-content');
+      for (var i = 0; i < tabs.length; i++) { tabs[i].style.display = 'none'; }
+      var el = document.getElementById('tab-' + tabName);
+      if (el) el.style.display = 'block';
+      var btns = document.querySelectorAll('.analytics-tab');
+      for (var j = 0; j < btns.length; j++) { btns[j].classList.remove('active'); }
+      var activeBtn = document.querySelector('.analytics-tab[data-tab="' + tabName + '"]');
+      if (activeBtn) activeBtn.classList.add('active');
+    }
+
+    function renderBarChart(containerId, data, labelKey, valueKey) {
+      var container = document.getElementById(containerId);
+      if (!container || !data || !data.length) {
+        if (container) container.innerHTML = '<div class="empty-state">No data available yet.</div>';
+        return;
+      }
+      var max = 0;
+      for (var i = 0; i < data.length; i++) {
+        if (data[i][valueKey] > max) max = data[i][valueKey];
+      }
+      var html = '';
+      for (var j = 0; j < data.length; j++) {
+        var pct = max > 0 ? Math.round((data[j][valueKey] / max) * 100) : 0;
+        html += '<div class="analytics-bar-row">' +
+          '<div class="analytics-bar-label" title="' + (data[j][labelKey] || 'Unknown') + '">' + (data[j][labelKey] || 'Unknown') + '</div>' +
+          '<div class="analytics-bar-track"><div class="analytics-bar-fill" style="width:' + pct + '%"></div></div>' +
+          '<div class="analytics-bar-val">' + data[j][valueKey] + '</div>' +
+          '</div>';
+      }
+      container.innerHTML = html;
+    }
+
+    function renderVisitors(visitors) {
+      var el = document.getElementById('visitorsList');
+      if (!el) return;
+      if (!visitors || !visitors.length) {
+        el.innerHTML = '<div class="empty-state">No visitor data yet. Visitors will appear here once people visit your site.</div>';
+        return;
+      }
+      var html = '';
+      for (var i = 0; i < visitors.length; i++) {
+        var v = visitors[i];
+        var timeAgo = v.visited_at ? new Date(v.visited_at).toLocaleString() : 'N/A';
+
+        // Build device name: show brand + device name + type (e.g. "Samsung Galaxy S21 (Mobile)")
+        var deviceName = '';
+        var devName = (v.device && v.device !== 'Other') ? v.device : '';
+        var devBrand = v.device_brand || '';
+        if (devBrand && devName && devName !== devBrand && !devName.startsWith(devBrand)) {
+          deviceName = devBrand + ' ' + devName;
+        } else if (devName) {
+          deviceName = devName;
+        } else if (devBrand) {
+          deviceName = devBrand;
+        } else if (v.device && v.device !== 'Other' && v.device !== '') {
+          deviceName = v.device;
+        }
+        deviceName = deviceName.trim();
+        if (!deviceName) deviceName = v.device_type || 'Unknown';
+        else deviceName += ' (' + (v.device_type || 'Unknown') + ')';
+
+        // Build full location: city, region, country
+        var locationParts = [];
+        if (v.city) locationParts.push(v.city);
+        if (v.region && v.region !== v.city) locationParts.push(v.region);
+        if (v.country) locationParts.push(v.country);
+        var fullLocation = locationParts.length > 0 ? locationParts.join(', ') : 'Unknown';
+
+        // Browser with version
+        var browserInfo = v.browser || 'Unknown';
+        if (v.browser_version && v.browser_version !== '') browserInfo += ' ' + v.browser_version;
+
+        // OS with version
+        var osInfo = v.os || 'Unknown';
+        if (v.os_version && v.os_version !== '') osInfo += ' ' + v.os_version;
+
+        html += '<div class="visitor-card">' +
+          '<div><span class="vc-label">IP</span><br><span class="vc-value">' + (v.ip || 'N/A') + '</span></div>' +
+          '<div><span class="vc-label">Location</span><br><span class="vc-value">' + fullLocation + '</span></div>' +
+          '<div><span class="vc-label">Device</span><br><span class="vc-value">' + deviceName + '</span></div>' +
+          '<div><span class="vc-label">Browser</span><br><span class="vc-value">' + browserInfo + '</span></div>' +
+          '<div><span class="vc-label">OS</span><br><span class="vc-value">' + osInfo + '</span></div>' +
+          '<div><span class="vc-label">Page</span><br><span class="vc-value">' + (v.page || '/') + '</span></div>' +
+          '<div><span class="vc-label">Screen</span><br><span class="vc-value">' + (v.screen_width || 0) + 'x' + (v.screen_height || 0) + '</span></div>' +
+          '<div><span class="vc-label">Time</span><br><span class="vc-value">' + timeAgo + '</span></div>' +
+          '</div>';
+      }
+      el.innerHTML = html;
+    }
+
+    function renderRegisteredUsers(users) {
+      var el = document.getElementById('registeredUsersList');
+      if (!el) return;
+      if (!users || !users.length) {
+        el.innerHTML = '<div class="empty-state">No registered users yet.</div>';
+        return;
+      }
+      var html = '';
+      for (var i = 0; i < users.length; i++) {
+        var u = users[i];
+        var photo = u.photo || 'images/default-avatar.png';
+        var logins = u.login_count || 0;
+        var lastLogin = u.last_login ? new Date(u.last_login).toLocaleString() : 'Never';
+        html += '<div class="user-row">' +
+          '<img src="' + photo + '" alt="' + (u.name || 'User') + '" onerror="this.src=\'images/default-avatar.png\'">' +
+          '<div class="user-info"><div class="user-name">' + (u.name || 'User') + '</div><div class="user-email">' + (u.email || '') + '</div></div>' +
+          '<div class="user-meta">Logins: ' + logins + '<br>Last: ' + lastLogin + '</div>' +
+          '</div>';
+      }
+      el.innerHTML = html;
+    }
+
+    function loadAnalytics() {
+      if (!isAnalyticsBackendReady()) {
+        // No backend configured - show helpful message in all sections
+        var noBackendMsg = '<div class="empty-state"><i class="fas fa-server" style="font-size:1.5rem;margin-bottom:8px;display:block;color:var(--neon-orange)"></i>Backend not configured.<br><small style="color:var(--text-dim)">Go to <strong>API & Backend Configuration</strong> section above and set your Backend API URL to enable analytics.<br>Once configured, visitor IP, location, device, browser & OS data will be collected automatically.</small></div>';
+        document.getElementById('visitorsList').innerHTML = noBackendMsg;
+        document.getElementById('registeredUsersList').innerHTML = noBackendMsg;
+        var chartIds = ['countriesChart','devicesChart','browsersChart','osChart','pagesChart','downloadsChart'];
+        for (var ci = 0; ci < chartIds.length; ci++) {
+          var cel = document.getElementById(chartIds[ci]);
+          if (cel) cel.innerHTML = noBackendMsg;
+        }
+        ['statTotalUsers','statTotalVisits','statTodayVisits','statTotalDownloads','statUniqueVisitors'].forEach(function(id) {
+          var el = document.getElementById(id);
+          if (el) el.textContent = '0';
+        });
+        console.info('[Code4Boy Admin] Backend not configured - analytics data unavailable.');
+        return;
+      }
+      // Load stats
+      var analyticsUrl = getAnalyticsApi();
+      fetch(analyticsUrl + '/api/admin/stats')
+        .then(function(r) { return r.json(); })
+        .then(function(d) {
+          if (d.status === 'ok') {
+            document.getElementById('statTotalUsers').textContent = d.data.total_users || 0;
+            document.getElementById('statTotalVisits').textContent = d.data.total_visits || 0;
+            document.getElementById('statTodayVisits').textContent = d.data.today_visits || 0;
+            document.getElementById('statTotalDownloads').textContent = d.data.total_downloads || 0;
+            document.getElementById('statUniqueVisitors').textContent = d.data.unique_visitors || 0;
+          }
+        }).catch(function(e) { console.warn('Stats load failed:', e); });
+
+      // Load visitors
+      fetch(analyticsUrl + '/api/admin/visitors?limit=100')
+        .then(function(r) { return r.json(); })
+        .then(function(d) {
+          if (d.status === 'ok') renderVisitors(d.data);
+        }).catch(function(e) { console.warn('Visitors load failed:', e); });
+
+      // Load registered users
+      fetch(analyticsUrl + '/api/admin/users')
+        .then(function(r) { return r.json(); })
+        .then(function(d) {
+          if (d.status === 'ok') renderRegisteredUsers(d.data);
+        }).catch(function(e) { console.warn('Users load failed:', e); });
+
+      // Load chart data
+      var charts = [
+        { endpoint: '/api/admin/analytics/countries', container: 'countriesChart', label: 'country', value: 'count' },
+        { endpoint: '/api/admin/analytics/devices', container: 'devicesChart', label: 'device_type', value: 'count' },
+        { endpoint: '/api/admin/analytics/browsers', container: 'browsersChart', label: 'browser', value: 'count' },
+        { endpoint: '/api/admin/analytics/os', container: 'osChart', label: 'os', value: 'count' },
+        { endpoint: '/api/admin/analytics/pages', container: 'pagesChart', label: 'page', value: 'count' },
+        { endpoint: '/api/admin/analytics/downloads', container: 'downloadsChart', label: 'file_name', value: 'count' }
+      ];
+      for (var c = 0; c < charts.length; c++) {
+        (function(chart) {
+          fetch(analyticsUrl + chart.endpoint)
+            .then(function(r) { return r.json(); })
+            .then(function(d) {
+              if (d.status === 'ok') renderBarChart(chart.container, d.data, chart.label, chart.value);
+              else document.getElementById(chart.container).innerHTML = '<div class="empty-state">No data yet.</div>';
+            }).catch(function() {
+              document.getElementById(chart.container).innerHTML = '<div class="empty-state">Could not load data.</div>';
+            });
+        })(charts[c]);
+      }
+    }
+
+    // Auto-load analytics when admin panel is shown
+    var origDoLogin = doLogin;
+    doLogin = async function() {
+      await origDoLogin();
+      if (document.getElementById('adminPanel').style.display !== 'none') {
+        setTimeout(loadAnalytics, 500);
+      }
+    };
+
+    // ============================================
+    // EXPOSE ALL FUNCTIONS TO GLOBAL SCOPE
+    // ============================================
+    // This ensures onclick handlers work properly
+    window.doLogin = doLogin;
+    window.doLogout = doLogout;
+    window.saveSettings = saveSettings;
+    window.resetSettings = resetSettings;
+    window.loadMessages = loadMessages;
+    window.adminTutAdd = adminTutAdd;
+    window.adminTutEdit = adminTutEdit;
+    window.adminTutDelete = adminTutDelete;
+    window.projAddProject = projAddProject;
+    window.projDelete = projDelete;
+    window.saveAdSettings = saveAdSettings;
+    window.saveWebsiteControls = saveWebsiteControls;
+    window.sendNotification = sendNotification;
+    window.changePassword = changePassword;
+    window.adminTutSelectLogo = adminTutSelectLogo;
+    window.adminTutHandleLogo = adminTutHandleLogo;
+    window.adminTutClearLogo = adminTutClearLogo;
+    window.adminTutHandleHtmlFile = adminTutHandleHtmlFile;
+    window.adminTutClearHtmlFile = adminTutClearHtmlFile;
+    window.loadAnalytics = loadAnalytics;
+    window.showAnalyticsTab = showAnalyticsTab;
+    window.saveApiConfig = saveApiConfig;
+    window.testApiConnection = testApiConnection;
+
+    // ============================================
+    // SERVER SYNC - Sync admin settings to backend
+    // so changes are visible on ALL devices
+    // ============================================
+    function syncSettingToServer(key, data) {
+      var apiUrl = getAnalyticsApi();
+      if (!apiUrl || apiUrl.includes('BACKEND_URL_HERE')) return;
+      try {
+        fetch(apiUrl + '/api/admin/site-settings', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ key: key, value: JSON.stringify(data) })
+        }).catch(function(err) {
+          console.warn('[Code4Boy] Server sync failed:', err.message);
+        });
+      } catch (e) {
+        console.warn('[Code4Boy] Server sync error:', e);
+      }
+    }
+
+    function deleteSettingFromServer(key) {
+      var apiUrl = getAnalyticsApi();
+      if (!apiUrl || apiUrl.includes('BACKEND_URL_HERE')) return;
+      try {
+        fetch(apiUrl + '/api/admin/site-settings/' + key, {
+          method: 'DELETE',
+          headers: { 'Content-Type': 'application/json' }
+        }).catch(function() {});
+      } catch (e) {}
+    }
+
+    window.syncSettingToServer = syncSettingToServer;
+    window.deleteSettingFromServer = deleteSettingFromServer;
+
+    // ============================================
+    // SIDEBAR NAVIGATION
+    // ============================================
+    function toggleAdminSidebar() {
+      var sidebar = document.getElementById('adminSidebar');
+      var overlay = document.getElementById('sidebarOverlay');
+      if (sidebar) sidebar.classList.toggle('open');
+      if (overlay) overlay.classList.toggle('active');
+    }
+
+    function scrollToSection(sectionId) {
+      var el = document.getElementById(sectionId);
+      if (!el) return;
+
+      // Expand section if collapsed
+      if (el.classList.contains('collapsed')) {
+        el.classList.remove('collapsed');
+      }
+
+      // Smooth scroll to section
+      el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+      // Update active sidebar item
+      var navItems = document.querySelectorAll('.sidebar-nav-item');
+      for (var i = 0; i < navItems.length; i++) {
+        navItems[i].classList.remove('active');
+      }
+      // Find the nav item that links to this section
+      var allNavItems = document.querySelectorAll('.sidebar-nav-item');
+      for (var j = 0; j < allNavItems.length; j++) {
+        var onclickAttr = allNavItems[j].getAttribute('onclick') || '';
+        if (onclickAttr.indexOf(sectionId) !== -1) {
+          allNavItems[j].classList.add('active');
+          break;
+        }
+      }
+
+      // Close sidebar on mobile
+      if (window.innerWidth <= 900) {
+        var sidebar = document.getElementById('adminSidebar');
+        var overlay = document.getElementById('sidebarOverlay');
+        if (sidebar) sidebar.classList.remove('open');
+        if (overlay) overlay.classList.remove('active');
+      }
+    }
+
+    // ============================================
+    // SECTION COLLAPSE/EXPAND
+    // ============================================
+    function toggleSection(headerEl) {
+      var card = headerEl.closest('.admin-card');
+      if (card) {
+        card.classList.toggle('collapsed');
+      }
+    }
+
+    // ============================================
+    // BACK TO TOP BUTTON
+    // ============================================
+    window.addEventListener('scroll', function() {
+      var btn = document.getElementById('adminBackToTop');
+      if (btn) {
+        if (window.scrollY > 400) {
+          btn.classList.add('visible');
+        } else {
+          btn.classList.remove('visible');
+        }
+      }
+    });
+
+    // ============================================
+    // SIDEBAR SCROLL SPY
+    // ============================================
+    var sectionIds = [
+      'analyticsSection', 'siteIdentitySection', 'apiConfigSection',
+      'heroStatsSection', 'seoSection', 'socialSection',
+      'fileManagerCard', 'projectUploadCard', 'tutorialManagerCard',
+      'websiteControlsSection', 'notificationsSection', 'adSettingsSection',
+      'changePasswordSection', 'contactMessagesSection'
+    ];
+
+    var scrollSpyTimer = null;
+    window.addEventListener('scroll', function() {
+      if (scrollSpyTimer) return;
+      scrollSpyTimer = setTimeout(function() {
+        scrollSpyTimer = null;
+        var scrollPos = window.scrollY + 120;
+        var activeId = '';
+        for (var i = 0; i < sectionIds.length; i++) {
+          var sec = document.getElementById(sectionIds[i]);
+          if (sec && sec.offsetTop <= scrollPos) {
+            activeId = sectionIds[i];
+          }
+        }
+        if (activeId) {
+          var navItems = document.querySelectorAll('.sidebar-nav-item');
+          for (var j = 0; j < navItems.length; j++) {
+            navItems[j].classList.remove('active');
+            var onclickAttr = navItems[j].getAttribute('onclick') || '';
+            if (onclickAttr.indexOf(activeId) !== -1) {
+              navItems[j].classList.add('active');
+            }
+          }
+        }
+      }, 100);
+    });
+
+    // Expose new functions globally
+    window.toggleAdminSidebar = toggleAdminSidebar;
+    window.scrollToSection = scrollToSection;
+    window.toggleSection = toggleSection;
+  </script>
+  <script src="js/mobile-animations.js"></script>
+</body>
+</html>

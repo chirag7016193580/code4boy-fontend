@@ -1,0 +1,1094 @@
+/* ============================================
+   Code4Boy - Upgrade v2.0
+   Next-level design enhancements
+   Loads AFTER ui-update.css
+   ============================================ */
+
+/* ============================================
+   1. PAGE LOAD ANIMATION
+   ============================================ */
+@keyframes pageReveal {
+  from {
+    opacity: 0;
+    filter: blur(4px);
+  }
+  to {
+    opacity: 1;
+    filter: blur(0);
+  }
+}
+
+body {
+  animation: pageReveal 0.6s ease-out;
+}
+
+/* ============================================
+   2. ANNOUNCEMENT BANNER
+   ============================================ */
+.announcement-banner {
+  position: relative;
+  background: linear-gradient(90deg, #4285f4, #7b61ff, #34a853, #4285f4);
+  background-size: 300% 100%;
+  animation: bannerGradient 8s linear infinite;
+  color: #fff;
+  text-align: center;
+  padding: 10px 20px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  z-index: 1001;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  overflow: hidden;
+}
+
+.announcement-banner::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.15), transparent);
+  animation: bannerShine 4s ease-in-out infinite;
+}
+
+@keyframes bannerGradient {
+  0% { background-position: 0% 50%; }
+  100% { background-position: 300% 50%; }
+}
+
+@keyframes bannerShine {
+  0% { left: -100%; }
+  50%, 100% { left: 100%; }
+}
+
+.announcement-banner a {
+  color: #fff;
+  text-decoration: underline;
+  font-weight: 700;
+}
+
+.announcement-banner .close-banner {
+  position: absolute;
+  right: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(255,255,255,0.2);
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.7rem;
+  transition: background 0.2s;
+}
+
+.announcement-banner .close-banner:hover {
+  background: rgba(255,255,255,0.35);
+}
+
+/* Adjust navbar when banner is visible */
+.has-banner .navbar {
+  top: 38px;
+}
+
+.has-banner .hero {
+  padding-top: 140px;
+}
+
+/* ============================================
+   3. ENHANCED THEME TRANSITION
+   ============================================ */
+html {
+  transition: background-color 0.4s ease, color 0.4s ease;
+}
+
+html * {
+  transition: background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease, color 0.15s ease;
+}
+
+html .hero h1,
+html .hero h1 *,
+html .hero-badge,
+html .hero-desc,
+html .btn-primary,
+html .btn-secondary,
+html .neon-line {
+  transition: none;
+}
+
+/* ============================================
+   4. ENHANCED ACCESSIBILITY FOCUS STYLES
+   ============================================ */
+:focus-visible {
+  outline: 2px solid #4285f4 !important;
+  outline-offset: 3px !important;
+  border-radius: 4px;
+}
+
+.btn-primary:focus-visible,
+.btn-secondary:focus-visible {
+  outline: 2px solid #fff !important;
+  outline-offset: 3px !important;
+  box-shadow: 0 0 0 4px rgba(66, 133, 244, 0.4) !important;
+}
+
+.skip-to-content {
+  position: fixed;
+  top: -100%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #4285f4;
+  color: #fff;
+  padding: 12px 24px;
+  border-radius: 0 0 12px 12px;
+  z-index: 10000;
+  font-weight: 700;
+  font-size: 0.9rem;
+  transition: top 0.3s ease;
+  text-decoration: none;
+}
+
+.skip-to-content:focus {
+  top: 0;
+}
+
+/* ============================================
+   5. ANIMATED CODE SNIPPET IN HERO
+   ============================================ */
+.hero-code-preview {
+  position: relative;
+  background: rgba(10, 17, 40, 0.85);
+  border: 1px solid rgba(100, 150, 255, 0.12);
+  border-radius: 16px;
+  padding: 0;
+  overflow: hidden;
+  backdrop-filter: blur(16px);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  max-width: 420px;
+  margin: 30px auto 0;
+  font-family: 'JetBrains Mono', 'Fira Code', 'Consolas', monospace;
+  font-size: 0.82rem;
+  line-height: 1.7;
+}
+
+.hero-code-preview .code-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 16px;
+  background: rgba(255, 255, 255, 0.03);
+  border-bottom: 1px solid rgba(100, 150, 255, 0.08);
+}
+
+.hero-code-preview .code-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+
+.hero-code-preview .code-dot.red { background: #ff5f56; }
+.hero-code-preview .code-dot.yellow { background: #ffbd2e; }
+.hero-code-preview .code-dot.green { background: #27c93f; }
+
+.hero-code-preview .code-title {
+  margin-left: auto;
+  color: rgba(255, 255, 255, 0.4);
+  font-size: 0.72rem;
+  font-weight: 500;
+}
+
+.hero-code-preview .code-body {
+  padding: 16px 20px;
+  color: #c9d1d9;
+  white-space: pre;
+  overflow-x: auto;
+}
+
+.hero-code-preview .code-body .keyword { color: #ff79c6; }
+.hero-code-preview .code-body .function { color: #60a5fa; }
+.hero-code-preview .code-body .string { color: #a5d6a7; }
+.hero-code-preview .code-body .comment { color: #6a737d; font-style: italic; }
+.hero-code-preview .code-body .variable { color: #f9cb28; }
+.hero-code-preview .code-body .operator { color: #ff79c6; }
+.hero-code-preview .code-body .number { color: #bd93f9; }
+
+.hero-code-preview .code-cursor {
+  display: inline-block;
+  width: 2px;
+  height: 1.1em;
+  background: #4285f4;
+  animation: codeCursorBlink 1s step-end infinite;
+  vertical-align: text-bottom;
+  margin-left: 1px;
+}
+
+@keyframes codeCursorBlink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+/* Light theme code preview */
+[data-theme="light"] .hero-code-preview {
+  background: rgba(255, 255, 255, 0.9);
+  border-color: rgba(0, 0, 0, 0.1);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+}
+
+[data-theme="light"] .hero-code-preview .code-body {
+  color: #1f2937;
+}
+
+[data-theme="light"] .hero-code-preview .code-header {
+  background: rgba(0, 0, 0, 0.03);
+  border-bottom-color: rgba(0, 0, 0, 0.06);
+}
+
+[data-theme="light"] .hero-code-preview .code-title {
+  color: rgba(0, 0, 0, 0.4);
+}
+
+[data-theme="light"] .hero-code-preview .code-body .keyword { color: #d63384; }
+[data-theme="light"] .hero-code-preview .code-body .function { color: #0d6efd; }
+[data-theme="light"] .hero-code-preview .code-body .string { color: #198754; }
+[data-theme="light"] .hero-code-preview .code-body .comment { color: #6c757d; }
+[data-theme="light"] .hero-code-preview .code-body .variable { color: #b45309; }
+[data-theme="light"] .hero-code-preview .code-body .number { color: #7c3aed; }
+
+/* ============================================
+   6. ACHIEVEMENT BADGES (What's New)
+   ============================================ */
+.whats-new-section {
+  padding: 30px 0;
+}
+
+.whats-new-ticker {
+  display: flex;
+  gap: 16px;
+  overflow-x: auto;
+  padding: 16px 24px;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  scroll-behavior: smooth;
+}
+
+.whats-new-ticker::-webkit-scrollbar {
+  display: none;
+}
+
+.whats-new-item {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 14px 22px;
+  background: var(--dark-glass-bg, rgba(10, 17, 40, 0.75));
+  border: 1px solid var(--dark-glass-border, rgba(100, 150, 255, 0.1));
+  border-radius: 14px;
+  min-width: 300px;
+  scroll-snap-align: start;
+  transition: all 0.3s ease;
+  cursor: default;
+}
+
+.whats-new-item:hover {
+  border-color: rgba(96, 165, 250, 0.25);
+  box-shadow: 0 4px 16px rgba(66, 133, 244, 0.1);
+  transform: translateY(-2px);
+}
+
+.whats-new-icon {
+  width: 42px;
+  height: 42px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+  flex-shrink: 0;
+}
+
+.whats-new-icon.blue { background: rgba(66, 133, 244, 0.12); color: #60a5fa; }
+.whats-new-icon.green { background: rgba(52, 168, 83, 0.12); color: #34d399; }
+.whats-new-icon.purple { background: rgba(139, 92, 246, 0.12); color: #a78bfa; }
+.whats-new-icon.orange { background: rgba(251, 146, 60, 0.12); color: #fb923c; }
+
+.whats-new-text h4 {
+  font-size: 0.88rem;
+  font-weight: 700;
+  margin-bottom: 2px;
+  color: var(--dark-text-primary, #e8ecf4);
+}
+
+.whats-new-text p {
+  font-size: 0.76rem;
+  color: var(--dark-text-secondary, #8b95a8);
+  margin: 0;
+}
+
+.whats-new-badge {
+  font-size: 0.62rem;
+  font-weight: 700;
+  padding: 3px 8px;
+  border-radius: 6px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-left: auto;
+  flex-shrink: 0;
+}
+
+.whats-new-badge.new { background: rgba(52, 211, 153, 0.15); color: #34d399; }
+.whats-new-badge.update { background: rgba(96, 165, 250, 0.15); color: #60a5fa; }
+.whats-new-badge.hot { background: rgba(239, 68, 68, 0.15); color: #ef4444; }
+
+/* Light theme */
+[data-theme="light"] .whats-new-item {
+  background: rgba(255, 255, 255, 0.8);
+  border-color: rgba(0, 0, 0, 0.08);
+}
+
+[data-theme="light"] .whats-new-text h4 { color: #1f2937; }
+[data-theme="light"] .whats-new-text p { color: #6b7280; }
+
+/* ============================================
+   7. IMPROVED TESTIMONIALS
+   ============================================ */
+.testimonial-card {
+  position: relative;
+  overflow: hidden;
+}
+
+.testimonial-card::before {
+  content: '\201C';
+  position: absolute;
+  top: 12px;
+  left: 16px;
+  font-size: 4rem;
+  font-family: Georgia, serif;
+  color: rgba(66, 133, 244, 0.08);
+  line-height: 1;
+  pointer-events: none;
+}
+
+.testimonial-avatar {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #4285f4, #7b61ff);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-weight: 700;
+  font-size: 1.1rem;
+  flex-shrink: 0;
+}
+
+.testimonial-stars {
+  display: flex;
+  gap: 2px;
+  color: #fbbf24;
+  font-size: 0.8rem;
+  margin-bottom: 8px;
+}
+
+/* ============================================
+   8. NEWSLETTER SECTION UPGRADE
+   ============================================ */
+.newsletter-section {
+  position: relative;
+  overflow: hidden;
+}
+
+.newsletter-section::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  right: -30%;
+  width: 60%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(66, 133, 244, 0.06), transparent 60%);
+  pointer-events: none;
+}
+
+.newsletter-input-group {
+  position: relative;
+}
+
+.newsletter-input-group input:focus {
+  border-color: #4285f4 !important;
+  box-shadow: 0 0 0 3px rgba(66, 133, 244, 0.15) !important;
+}
+
+/* ============================================
+   9. ENHANCED SCROLL PROGRESS
+   ============================================ */
+.scroll-progress-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #4285f4, #7b61ff, #34a853);
+  z-index: 10001;
+  transition: width 0.1s linear;
+  box-shadow: 0 0 10px rgba(66, 133, 244, 0.5);
+}
+
+/* ============================================
+   10. CARD MICRO-INTERACTIONS
+   ============================================ */
+.card::after,
+.project-card::after,
+.tool-card::after,
+.download-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  background: radial-gradient(600px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(66, 133, 244, 0.06), transparent 40%);
+  pointer-events: none;
+}
+
+.card:hover::after,
+.project-card:hover::after,
+.tool-card:hover::after,
+.download-card:hover::after {
+  opacity: 1;
+}
+
+/* ============================================
+   11. PERFORMANCE - will-change hints
+   ============================================ */
+.card,
+.stat-card,
+.roadmap-card,
+.category-card,
+.tool-card,
+.download-card,
+.project-card,
+.why-card,
+.security-feature-card,
+.skill-tracker-card {
+  will-change: transform;
+  position: relative;
+}
+
+.reveal,
+.reveal-left,
+.reveal-right {
+  will-change: opacity, transform;
+}
+
+/* ============================================
+   12. IMPROVED BACK TO TOP BUTTON
+   ============================================ */
+.back-to-top {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  width: 48px;
+  height: 48px;
+  border-radius: 14px;
+  background: linear-gradient(135deg, #4285f4, #6366f1);
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(20px);
+  transition: all 0.3s cubic-bezier(0.2, 0, 0, 1);
+  z-index: 999;
+  box-shadow: 0 4px 20px rgba(66, 133, 244, 0.35);
+}
+
+.back-to-top.visible {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.back-to-top:hover {
+  transform: translateY(-4px) !important;
+  box-shadow: 0 8px 30px rgba(66, 133, 244, 0.5);
+}
+
+/* ============================================
+   13. ENHANCED LOADER
+   ============================================ */
+.loader {
+  transition: opacity 0.5s ease, visibility 0.5s ease;
+}
+
+.loader.hidden {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.loader-logo {
+  animation: loaderPulse 1.5s ease-in-out infinite;
+}
+
+@keyframes loaderPulse {
+  0%, 100% { transform: scale(1); opacity: 0.8; }
+  50% { transform: scale(1.08); opacity: 1; }
+}
+
+.loader-bar-fill {
+  animation: loaderFill 1.5s ease-in-out;
+}
+
+@keyframes loaderFill {
+  from { width: 0; }
+  to { width: 100%; }
+}
+
+/* ============================================
+   14. SMOOTH SECTION DIVIDERS
+   ============================================ */
+.section-divider {
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent 0%, rgba(66, 133, 244, 0.15) 30%, rgba(139, 92, 246, 0.15) 50%, rgba(52, 168, 83, 0.15) 70%, transparent 100%);
+  margin: 0;
+  border: none;
+}
+
+/* ============================================
+   15. FLOATING PARTICLES (subtle)
+   ============================================ */
+.hero-particles {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 0;
+}
+
+.hero-particle {
+  position: absolute;
+  border-radius: 50%;
+  opacity: 0;
+  animation: floatUp linear infinite;
+}
+
+@keyframes floatUp {
+  0% {
+    opacity: 0;
+    transform: translateY(100vh) scale(0);
+  }
+  10% {
+    opacity: 0.6;
+    transform: translateY(80vh) scale(1);
+  }
+  90% {
+    opacity: 0.3;
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-10vh) scale(0.5);
+  }
+}
+
+/* ============================================
+   16. KEYBOARD SHORTCUT HINTS
+   ============================================ */
+.kbd-hint {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.7rem;
+  color: var(--dark-text-dim, #5a6577);
+  margin-left: 8px;
+}
+
+.kbd {
+  display: inline-block;
+  padding: 2px 6px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+  font-family: monospace;
+  font-size: 0.65rem;
+  line-height: 1.3;
+}
+
+[data-theme="light"] .kbd {
+  background: rgba(0, 0, 0, 0.04);
+  border-color: rgba(0, 0, 0, 0.12);
+}
+
+/* ============================================
+   17. TECH STACK BADGES (new section)
+   ============================================ */
+.tech-stack-section {
+  text-align: center;
+  padding: 40px 24px;
+}
+
+.tech-stack-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.tech-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 18px;
+  border-radius: 10px;
+  background: var(--dark-glass-bg, rgba(10, 17, 40, 0.75));
+  border: 1px solid var(--dark-glass-border, rgba(100, 150, 255, 0.1));
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--dark-text-primary, #e8ecf4);
+  transition: all 0.3s ease;
+  cursor: default;
+}
+
+.tech-badge:hover {
+  transform: translateY(-3px);
+  border-color: rgba(96, 165, 250, 0.25);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+}
+
+.tech-badge i {
+  font-size: 1.1rem;
+}
+
+[data-theme="light"] .tech-badge {
+  background: rgba(255, 255, 255, 0.8);
+  border-color: rgba(0, 0, 0, 0.08);
+  color: #1f2937;
+}
+
+/* ============================================
+   18. IMPROVED COOKIE BANNER
+   ============================================ */
+.cookie-consent {
+  backdrop-filter: blur(20px) !important;
+  border-top: 1px solid rgba(100, 150, 255, 0.1) !important;
+}
+
+.cookie-accept {
+  background: linear-gradient(135deg, #4285f4, #6366f1) !important;
+  border: none !important;
+  padding: 10px 24px !important;
+  border-radius: 10px !important;
+  font-weight: 600 !important;
+  transition: all 0.3s ease !important;
+}
+
+.cookie-accept:hover {
+  transform: translateY(-2px) !important;
+  box-shadow: 0 4px 16px rgba(66, 133, 244, 0.4) !important;
+}
+
+.cookie-decline {
+  border-radius: 10px !important;
+  padding: 10px 24px !important;
+  font-weight: 600 !important;
+}
+
+/* ============================================
+   19. MOBILE ENHANCEMENTS for v2.0
+   ============================================ */
+@media (max-width: 768px) {
+  .announcement-banner {
+    font-size: 0.75rem;
+    padding: 8px 40px 8px 16px;
+  }
+
+  .has-banner .navbar {
+    top: 34px;
+  }
+
+  .hero-code-preview {
+    max-width: 100%;
+    font-size: 0.72rem;
+    margin: 20px 0 0;
+  }
+
+  .whats-new-ticker {
+    padding: 12px 16px;
+  }
+
+  .whats-new-item {
+    min-width: 260px;
+    padding: 12px 16px;
+  }
+
+  .tech-stack-row {
+    gap: 8px;
+  }
+
+  .tech-badge {
+    padding: 8px 14px;
+    font-size: 0.75rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-code-preview {
+    font-size: 0.68rem;
+    border-radius: 12px;
+  }
+
+  .whats-new-item {
+    min-width: 240px;
+  }
+}
+
+/* ============================================
+   20. ENHANCED PAGE HEADERS (Sub-pages)
+   ============================================ */
+
+/* Upgraded Page Header */
+.page-header {
+  position: relative;
+  overflow: hidden;
+}
+
+.page-header::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle at 30% 50%, rgba(66,133,244,0.08) 0%, transparent 50%),
+              radial-gradient(circle at 70% 50%, rgba(123,97,255,0.06) 0%, transparent 50%);
+  animation: headerGlow 8s ease-in-out infinite alternate;
+  pointer-events: none;
+}
+
+@keyframes headerGlow {
+  0% { transform: translate(0, 0) rotate(0deg); }
+  100% { transform: translate(20px, -10px) rotate(3deg); }
+}
+
+.page-header h1 {
+  position: relative;
+  animation: fadeSlideUp 0.6s ease-out;
+}
+
+.page-header p {
+  animation: fadeSlideUp 0.8s ease-out;
+}
+
+@keyframes fadeSlideUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Page Stats Row */
+.page-stats {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  margin-top: 24px;
+  flex-wrap: wrap;
+  animation: fadeSlideUp 1s ease-out;
+}
+
+.page-stat {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 20px;
+  background: var(--glass-bg, rgba(255,255,255,0.05));
+  border: 1px solid var(--glass-border, rgba(255,255,255,0.1));
+  border-radius: 12px;
+  backdrop-filter: blur(8px);
+  transition: all 0.3s ease;
+}
+
+.page-stat:hover {
+  border-color: rgba(66,133,244,0.4);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(66,133,244,0.15);
+}
+
+.page-stat-icon {
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  font-size: 1rem;
+}
+
+.page-stat-icon.blue { background: rgba(66,133,244,0.15); color: #4285f4; }
+.page-stat-icon.green { background: rgba(52,168,83,0.15); color: #34a853; }
+.page-stat-icon.purple { background: rgba(123,97,255,0.15); color: #7b61ff; }
+.page-stat-icon.orange { background: rgba(255,152,0,0.15); color: #ff9800; }
+.page-stat-icon.cyan { background: rgba(0,212,255,0.15); color: #00d4ff; }
+.page-stat-icon.red { background: rgba(234,67,53,0.15); color: #ea4335; }
+
+.page-stat-info {
+  text-align: left;
+}
+
+.page-stat-number {
+  font-family: var(--font-heading, 'Poppins', sans-serif);
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--text-primary, #fff);
+  line-height: 1;
+}
+
+.page-stat-label {
+  font-size: 0.75rem;
+  color: var(--text-secondary, #aaa);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* Page Feature Highlight Boxes */
+.page-features {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 16px;
+  max-width: 900px;
+  margin: 30px auto 0;
+  animation: fadeSlideUp 1.2s ease-out;
+}
+
+.page-feature {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 18px;
+  background: var(--glass-bg, rgba(255,255,255,0.05));
+  border: 1px solid var(--glass-border, rgba(255,255,255,0.1));
+  border-radius: 12px;
+  transition: all 0.3s ease;
+}
+
+.page-feature:hover {
+  border-color: rgba(0,212,255,0.3);
+  background: rgba(0,212,255,0.05);
+  transform: translateX(4px);
+}
+
+.page-feature i {
+  font-size: 1.1rem;
+  color: var(--neon-cyan, #00d4ff);
+  flex-shrink: 0;
+}
+
+.page-feature span {
+  font-size: 0.88rem;
+  color: var(--text-primary, #fff);
+  font-weight: 500;
+}
+
+/* Section Upgrade Badge */
+.section-upgrade-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 12px;
+  background: linear-gradient(135deg, rgba(66,133,244,0.15), rgba(123,97,255,0.15));
+  border: 1px solid rgba(66,133,244,0.2);
+  border-radius: 20px;
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: #4285f4;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 12px;
+}
+
+/* Page CTA Banner */
+.page-cta-banner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 24px 30px;
+  margin: 40px auto;
+  max-width: 900px;
+  background: linear-gradient(135deg, rgba(66,133,244,0.1), rgba(123,97,255,0.1));
+  border: 1px solid rgba(66,133,244,0.2);
+  border-radius: 16px;
+  flex-wrap: wrap;
+}
+
+.page-cta-banner h3 {
+  font-family: var(--font-heading, 'Poppins', sans-serif);
+  font-size: 1.1rem;
+  color: var(--text-primary, #fff);
+  margin: 0;
+}
+
+.page-cta-banner p {
+  font-size: 0.88rem;
+  color: var(--text-secondary, #aaa);
+  margin: 4px 0 0;
+}
+
+.page-cta-banner .btn-primary {
+  white-space: nowrap;
+}
+
+/* Enhanced Tool Cards */
+.tool-card {
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) !important;
+}
+
+.tool-card:hover {
+  transform: translateY(-6px) !important;
+  box-shadow: 0 12px 40px rgba(0,0,0,0.2) !important;
+}
+
+.tool-card .tool-icon {
+  transition: transform 0.3s ease;
+}
+
+.tool-card:hover .tool-icon {
+  transform: scale(1.15) rotate(5deg);
+}
+
+/* Enhanced Download Cards */
+.download-card {
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) !important;
+}
+
+.download-card:hover {
+  transform: translateY(-6px) !important;
+  box-shadow: 0 12px 40px rgba(0,0,0,0.2) !important;
+}
+
+.download-card .dl-icon {
+  transition: transform 0.3s ease;
+}
+
+.download-card:hover .dl-icon {
+  transform: scale(1.2);
+}
+
+/* Enhanced Error Cards */
+.error-card {
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) !important;
+}
+
+.error-card:hover {
+  transform: translateY(-4px) !important;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.15) !important;
+}
+
+/* Enhanced Project Cards */
+.project-card {
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) !important;
+}
+
+.project-card:hover {
+  transform: translateY(-6px) !important;
+  box-shadow: 0 12px 40px rgba(0,0,0,0.2) !important;
+}
+
+/* Section Divider for Sub-pages */
+.page-section-divider {
+  height: 1px;
+  max-width: 200px;
+  margin: 40px auto;
+  background: linear-gradient(90deg, transparent, rgba(66,133,244,0.4), rgba(123,97,255,0.4), transparent);
+}
+
+/* Quick Tips Box */
+.quick-tip-box {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  padding: 18px 22px;
+  margin: 20px 0;
+  background: linear-gradient(135deg, rgba(52,168,83,0.08), rgba(52,168,83,0.02));
+  border: 1px solid rgba(52,168,83,0.2);
+  border-left: 3px solid #34a853;
+  border-radius: 12px;
+}
+
+.quick-tip-box i {
+  color: #34a853;
+  font-size: 1.1rem;
+  margin-top: 2px;
+  flex-shrink: 0;
+}
+
+.quick-tip-box p {
+  margin: 0;
+  font-size: 0.9rem;
+  color: var(--text-primary, #fff);
+  line-height: 1.6;
+}
+
+/* Mobile Responsive for Page Upgrades */
+@media (max-width: 768px) {
+  .page-stats {
+    gap: 12px;
+  }
+
+  .page-stat {
+    padding: 8px 14px;
+    gap: 8px;
+  }
+
+  .page-stat-number {
+    font-size: 1rem;
+  }
+
+  .page-features {
+    grid-template-columns: 1fr;
+  }
+
+  .page-cta-banner {
+    flex-direction: column;
+    text-align: center;
+    padding: 20px;
+  }
+}
+
+/* ============================================
+   21. PRINT STYLES
+   ============================================ */
+@media print {
+  .navbar,
+  .back-to-top,
+  .chat-widget,
+  .playground-fab,
+  .cookie-consent,
+  .announcement-banner,
+  .scroll-progress-bar,
+  .loader {
+    display: none !important;
+  }
+
+  body {
+    background: #fff !important;
+    color: #000 !important;
+  }
+
+  .hero {
+    background: #f0f4ff !important;
+    min-height: auto !important;
+    padding: 40px !important;
+  }
+}

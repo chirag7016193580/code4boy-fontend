@@ -1,0 +1,755 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Code4Boy Tutorial - Step-by-step coding guide">
+  <meta name="keywords" content="coding tutorial, step by step guide, learn coding, code4boy tutorial">
+  <meta name="author" content="Code4Boy">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://code4boy.com/pages/tutorial-view.html">
+  <meta property="og:title" content="Coding Tutorial - Code4Boy">
+  <meta property="og:description" content="Step-by-step coding tutorial on Code4Boy.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://code4boy.com/pages/tutorial-view.html">
+  <meta property="og:image" content="https://code4boy.com/images/logo.jpg">
+  <meta property="og:site_name" content="Code4Boy">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Coding Tutorial - Code4Boy">
+  <meta name="twitter:description" content="Step-by-step coding tutorial on Code4Boy.">
+  <meta http-equiv="X-Content-Type-Options" content="nosniff">
+  <meta http-equiv="X-Frame-Options" content="SAMEORIGIN">
+  <meta http-equiv="X-XSS-Protection" content="1; mode=block">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net https://accounts.google.com https://apis.google.com https://*.googleapis.com; style-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net https://cdnjs.cloudflare.com https://fonts.googleapis.com https://accounts.google.com; font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com; img-src 'self' data: blob: https://*.googleusercontent.com https://*.google.com; frame-src https://www.youtube.com https://accounts.google.com https://*.google.com; connect-src 'self' http://localhost:8000 http://127.0.0.1:8000 https://code4boy-backend.vercel.app https://ipapi.co https://accounts.google.com https://*.googleapis.com https://wandbox.org;">
+  <title>Tutorial - Code4Boy</title>
+  <link rel="icon" type="image/jpeg" href="../images/logo.jpg">
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/upgrade.css">
+  <link rel="stylesheet" href="../css/professional.css">
+  <link rel="stylesheet" href="../css/dark-override.css">
+  <link rel="stylesheet" href="../css/auth.css">
+  <link rel="stylesheet" href="../css/mobile.css">
+  <link rel="stylesheet" href="../css/ui-update.css">
+  <link rel="stylesheet" href="../css/upgrade-v2.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <!-- Prism.js Syntax Highlighting -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism-tomorrow.min.css">
+  <link rel="stylesheet" href="../css/prism-custom.css">
+  <style>
+    .tut-view-wrap {
+      max-width: 860px;
+      margin: 100px auto 60px;
+      padding: 0 20px;
+    }
+    .tut-view-back {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--neon-cyan);
+      text-decoration: none;
+      font-size: 0.95rem;
+      font-weight: 600;
+      margin-bottom: 24px;
+      padding: 8px 16px;
+      border: 1px solid rgba(0,240,255,0.2);
+      border-radius: 10px;
+      transition: all 0.3s ease;
+    }
+    .tut-view-back:hover {
+      background: rgba(0,240,255,0.08);
+      box-shadow: 0 0 12px rgba(0,240,255,0.15);
+    }
+    .tut-view-card {
+      background: var(--glass-bg);
+      border: 1px solid var(--glass-border);
+      border-radius: 16px;
+      padding: 36px 40px;
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+    }
+    .tut-view-title {
+      font-family: var(--font-heading);
+      font-size: 2rem;
+      font-weight: 800;
+      color: var(--text-primary);
+      margin-bottom: 8px;
+      line-height: 1.3;
+    }
+    .tut-view-meta {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      flex-wrap: wrap;
+      margin-bottom: 24px;
+      padding-bottom: 20px;
+      border-bottom: 1px solid var(--glass-border);
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+    }
+    .tut-view-badge {
+      padding: 3px 10px;
+      border-radius: 6px;
+      font-size: 0.75rem;
+      font-weight: 600;
+    }
+    .tut-view-badge.beginner { background: rgba(0,255,136,0.15); color: #00ff88; }
+    .tut-view-badge.intermediate { background: rgba(247,223,30,0.15); color: #f7df1e; }
+    .tut-view-badge.advanced { background: rgba(255,102,0,0.15); color: #ff6600; }
+    .tut-view-cat {
+      padding: 3px 10px;
+      border-radius: 6px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      background: rgba(0,240,255,0.12);
+      color: var(--neon-cyan);
+    }
+    .tut-view-body {
+      line-height: 1.9;
+      color: var(--text-primary);
+      font-size: 1.08rem;
+    }
+    .tut-view-body p {
+      margin-bottom: 16px;
+    }
+    .tut-view-code-section {
+      margin-top: 32px;
+    }
+    .tut-view-code-section h3 {
+      color: var(--neon-cyan);
+      font-size: 1.3rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 14px;
+    }
+    .tut-view-link-box {
+      margin-top: 28px;
+      padding: 18px;
+      background: rgba(0,240,255,0.05);
+      border: 1px solid rgba(0,240,255,0.2);
+      border-radius: 12px;
+    }
+    .tut-view-link-box a {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--neon-cyan);
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 1.05rem;
+      transition: gap 0.2s;
+    }
+    .tut-view-link-box a:hover { gap: 14px; }
+    .tut-view-footer {
+      margin-top: 28px;
+      padding: 14px;
+      background: rgba(6,6,19,0.4);
+      border-radius: 8px;
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    .tut-view-share {
+      margin-top: 24px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    .tut-view-share span {
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+      font-weight: 600;
+    }
+    .tut-view-share a {
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
+      color: #fff;
+      text-decoration: none;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .tut-view-share a:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    }
+    .tut-view-not-found {
+      text-align: center;
+      padding: 60px 20px;
+    }
+    .tut-view-not-found i {
+      font-size: 4rem;
+      color: var(--text-dim);
+      margin-bottom: 20px;
+      display: block;
+    }
+    .tut-view-not-found h2 {
+      font-family: var(--font-heading);
+      font-size: 1.5rem;
+      color: var(--text-primary);
+      margin-bottom: 10px;
+    }
+    .tut-view-not-found p {
+      color: var(--text-secondary);
+      margin-bottom: 24px;
+    }
+    .tut-view-related {
+      margin-top: 40px;
+    }
+    .tut-view-related h3 {
+      font-family: var(--font-heading);
+      font-size: 1.2rem;
+      color: var(--neon-cyan);
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .tut-related-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 16px;
+    }
+    .tut-related-card {
+      background: var(--glass-bg);
+      border: 1px solid var(--glass-border);
+      border-radius: 12px;
+      padding: 18px;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      display: block;
+    }
+    .tut-related-card:hover {
+      border-color: rgba(0,240,255,0.3);
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-neon);
+    }
+    .tut-related-card h4 {
+      font-size: 1rem;
+      color: var(--text-primary);
+      margin-bottom: 6px;
+      font-weight: 600;
+    }
+    .tut-related-card p {
+      font-size: 0.82rem;
+      color: var(--text-secondary);
+      line-height: 1.5;
+      max-height: 42px;
+      overflow: hidden;
+    }
+    .tut-related-card .tut-related-meta {
+      margin-top: 10px;
+      font-size: 0.75rem;
+      color: var(--text-dim);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    @media (max-width: 600px) {
+      .tut-view-wrap { margin-top: 80px; }
+      .tut-view-card { padding: 24px 20px; }
+      .tut-view-title { font-size: 1.5rem; }
+    }
+
+    /* ACCORDION STYLE FOR TUTORIAL TOPICS */
+    .tut-accordion-item {
+      margin-bottom: 12px;
+      border-radius: 12px;
+      border: 1px solid var(--glass-border);
+      background: var(--glass-bg);
+      overflow: hidden;
+      transition: all 0.3s ease;
+    }
+    .tut-accordion-item:hover {
+      border-color: rgba(0,212,255,0.3);
+      box-shadow: 0 0 15px rgba(0,212,255,0.08);
+    }
+    .tut-accordion-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16px 22px;
+      cursor: pointer;
+      user-select: none;
+      transition: all 0.3s ease;
+      gap: 12px;
+    }
+    .tut-accordion-header:hover {
+      background: rgba(0,212,255,0.05);
+    }
+    .tut-accordion-header h2 {
+      margin: 0;
+      font-family: var(--font-heading);
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--text-primary);
+      flex: 1;
+    }
+    .tut-accordion-icon {
+      font-size: 0.85rem;
+      color: var(--neon-cyan);
+      transition: transform 0.3s ease;
+      flex-shrink: 0;
+      width: 28px;
+      height: 28px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      background: rgba(0,212,255,0.1);
+    }
+    .tut-accordion-item.active .tut-accordion-icon {
+      transform: rotate(180deg);
+    }
+    .tut-accordion-item.active .tut-accordion-header {
+      border-bottom: 1px solid var(--glass-border);
+      background: rgba(0,212,255,0.03);
+    }
+    .tut-accordion-body {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s ease;
+    }
+    .tut-accordion-body-inner {
+      padding: 20px 22px;
+    }
+    .tut-accordion-item.active .tut-accordion-body {
+      max-height: 5000px;
+    }
+    .tut-accordion-item.active {
+      border-color: rgba(0,212,255,0.25);
+      box-shadow: 0 4px 20px rgba(0,212,255,0.08);
+    }
+    .tut-topic-num {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 30px;
+      height: 30px;
+      border-radius: 8px;
+      background: var(--gradient-neon);
+      color: #fff;
+      font-size: 0.8rem;
+      font-weight: 700;
+      flex-shrink: 0;
+      margin-right: 4px;
+    }
+  </style>
+</head>
+<body>
+  <!-- Background -->
+  <div class="bg-grid"></div>
+  <div class="bg-glow"></div>
+  <div class="particles"></div>
+
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="../index.html" class="nav-logo">
+        <img src="../images/logo.jpg" alt="Code4Boy Logo">
+        <span>CODE4BOY</span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="../index.html"><i class="fas fa-home"></i> Home</a></li>
+        <li><a href="tutorials.html" class="active"><i class="fas fa-book"></i> Tutorials</a></li>
+        <li><a href="projects.html"><i class="fas fa-code"></i> Projects</a></li>
+        <li><a href="tools.html"><i class="fas fa-wrench"></i> Tools</a></li>
+        <li><a href="playground.html"><i class="fas fa-laptop-code"></i> Playground</a></li>
+        <li><a href="ai-teacher.html"><i class="fas fa-robot"></i> AI Teacher</a></li>
+        <li class="nav-more-dropdown">
+
+          <button class="nav-more-btn" aria-expanded="false" aria-haspopup="true"><i class="fas fa-ellipsis-h"></i> More</button>
+
+          <ul class="nav-more-menu">
+
+            <li><a href="errors.html"><i class="fas fa-bug"></i> Errors</a></li>
+
+            <li><a href="downloads.html"><i class="fas fa-download"></i> Downloads</a></li>
+
+            <li><a href="https://youtube.com/@code4boy-l4u" target="_blank" rel="noopener noreferrer"><i class="fab fa-youtube"></i> Videos</a></li>
+
+            <li><a href="../index.html#contact"><i class="fas fa-envelope"></i> Contact</a></li>
+
+          </ul>
+
+        </li>
+      </ul>
+      <div class="nav-right">
+        <button class="nav-search-btn" title="Search (Press /)"><i class="fas fa-search"></i></button>
+        <button class="theme-toggle"><i class="fas fa-sun"></i> <span>Light</span></button>
+        <div id="authBtnContainer" class="auth-btn-container"></div>
+        <div class="menu-toggle"><span></span><span></span><span></span></div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Search Modal -->
+  <div class="search-modal">
+    <button class="search-close"><i class="fas fa-times"></i></button>
+    <div class="search-modal-content">
+      <input type="text" class="search-modal-input" placeholder="Search tutorials, projects, tools...">
+      <div class="search-results"></div>
+    </div>
+  </div>
+
+  <!-- Tutorial View Content -->
+  <div class="tut-view-wrap" id="tutViewWrap">
+    <!-- Content loaded dynamically by JS -->
+    <div class="tut-view-not-found" id="tutLoading">
+      <i class="fas fa-spinner fa-spin"></i>
+      <h2>Loading Tutorial...</h2>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <div class="nav-logo" style="margin-bottom:20px">
+          <img src="../images/logo.jpg" alt="Code4Boy" style="width:45px;height:45px;border-radius:50%;border:2px solid rgba(26,115,232,0.2)">
+          <span style="font-family:var(--font-heading);font-size:1.2rem;font-weight:700;color:#1a73e8">CODE4BOY</span>
+        </div>
+        <p>Learn coding free with AI-powered tutorials, real-world projects, and smart error solutions.</p>
+        <div class="social-links">
+          <a href="https://youtube.com/@code4boy-l4u" target="_blank" class="social-link"><i class="fab fa-youtube"></i></a>
+          <a href="https://github.com/code4boy" target="_blank" class="social-link"><i class="fab fa-github"></i></a>
+          <a href="https://twitter.com/code4boy" target="_blank" class="social-link"><i class="fab fa-twitter"></i></a>
+          <a href="https://instagram.com/code4boy" target="_blank" class="social-link"><i class="fab fa-instagram"></i></a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h3>Quick Links</h3>
+        <ul class="footer-links">
+          <li><a href="../index.html"><i class="fas fa-chevron-right"></i> Home</a></li>
+          <li><a href="tutorials.html"><i class="fas fa-chevron-right"></i> Tutorials</a></li>
+          <li><a href="projects.html"><i class="fas fa-chevron-right"></i> Projects</a></li>
+          <li><a href="tools.html"><i class="fas fa-chevron-right"></i> Tools</a></li>
+          <li><a href="errors.html"><i class="fas fa-chevron-right"></i> Error Solutions</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h3>Contact Us</h3>
+        <form class="contact-form">
+          <input type="text" placeholder="Your Name" required>
+          <input type="email" placeholder="Your Email" required>
+          <textarea placeholder="Your Message" required></textarea>
+          <button type="submit" class="btn-primary"><i class="fas fa-paper-plane"></i> Send</button>
+        </form>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2025 Code4Boy. All Rights Reserved.</p>
+      <div class="footer-bottom-links">
+        <a href="privacy-policy.html">Privacy Policy</a>
+        <a href="terms-of-use.html">Terms of Use</a>
+        <a href="sitemap.html">Sitemap</a>
+      </div>
+    </div>
+  </footer>
+
+  <button class="back-to-top"><i class="fas fa-chevron-up"></i></button>
+  <script src="https://accounts.google.com/gsi/client" async defer></script>
+  <script src="../js/google-config.js"></script>
+  <script src="../js/server-sync.js"></script>
+  <script src="../js/auth.js"></script>
+  <script src="../js/main.js"></script>
+  <script src="../js/mobile-animations.js"></script>
+  <script src="../js/code-runner.js"></script>
+
+  <script>
+    (function() {
+      var TUT_KEY = 'c4b-admin-tutorials';
+      var wrap = document.getElementById('tutViewWrap');
+
+      // Get tutorial ID from URL
+      var params = new URLSearchParams(window.location.search);
+      var tutId = params.get('id');
+
+      function escapeHtml(text) {
+        if (!text) return '';
+        var map = { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#039;' };
+        return text.replace(/[&<>"']/g, function(m) { return map[m]; });
+      }
+
+      function formatDate(dateString) {
+        var date = new Date(dateString);
+        return date.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+      }
+
+      var catLabels = { html: 'HTML', css: 'CSS', javascript: 'JavaScript', python: 'Python', ai: 'AI Tools', other: 'Other' };
+      var levelLabels = { beginner: 'Beginner', intermediate: 'Intermediate', advanced: 'Advanced' };
+      var catIcons = { html: 'fab fa-html5', css: 'fab fa-css3-alt', javascript: 'fab fa-js-square', python: 'fab fa-python', ai: 'fas fa-robot', other: 'fas fa-folder-open' };
+
+      function loadTutorial() {
+        var tutorials = JSON.parse(localStorage.getItem(TUT_KEY) || '[]');
+
+        if (!tutId) {
+          showNotFound();
+          return;
+        }
+
+        var tut = null;
+        for (var i = 0; i < tutorials.length; i++) {
+          if (tutorials[i].id === tutId) {
+            tut = tutorials[i];
+            break;
+          }
+        }
+
+        if (!tut) {
+          showNotFound();
+          return;
+        }
+
+        // Update page title
+        document.title = tut.title + ' - Code4Boy Tutorial';
+
+        // Build tutorial view HTML
+        var html = '';
+
+        // Back button
+        html += '<a href="tutorials.html" class="tut-view-back"><i class="fas fa-arrow-left"></i> Back to Tutorials</a>';
+
+        // Tutorial card
+        html += '<div class="tut-view-card">';
+
+        // Logo + Title
+        if (tut.logo) {
+          html += '<div style="display:flex;align-items:center;gap:16px;margin-bottom:8px;">';
+          html += '<img src="' + tut.logo + '" alt="' + (tut.title || 'Tutorial') + ' logo" style="width:52px;height:52px;border-radius:50%;border:2px solid rgba(0,240,255,0.2);object-fit:cover;flex-shrink:0;" onerror="this.style.display=\'none\'">';
+          html += '<h1 class="tut-view-title" style="margin-bottom:0;">' + escapeHtml(tut.title) + '</h1>';
+          html += '</div>';
+        } else {
+          html += '<h1 class="tut-view-title">' + escapeHtml(tut.title) + '</h1>';
+        }
+
+        // Meta info
+        html += '<div class="tut-view-meta">';
+        html += '<span class="tut-view-cat"><i class="' + (catIcons[tut.category] || 'fas fa-folder-open') + '"></i> ' + (catLabels[tut.category] || tut.category) + '</span>';
+        if (tut.level) {
+          html += '<span class="tut-view-badge ' + tut.level + '">' + (levelLabels[tut.level] || tut.level) + '</span>';
+        }
+        html += '<span><i class="far fa-calendar-alt"></i> ' + formatDate(tut.createdAt) + '</span>';
+        html += '<span><i class="fas fa-user-edit"></i> Admin</span>';
+        html += '</div>';
+
+        // If HTML file was uploaded, render it directly (like built-in tutorials)
+        if (tut.htmlContent) {
+          html += '<div class="tut-view-body">';
+          html += tut.htmlContent;
+          html += '</div>';
+        } else {
+          // Body / Description
+          if (tut.description) {
+            html += '<div class="tut-view-body">';
+            var paragraphs = tut.description.split('\n');
+            for (var p = 0; p < paragraphs.length; p++) {
+              if (paragraphs[p].trim()) {
+                html += '<p>' + escapeHtml(paragraphs[p]) + '</p>';
+              }
+            }
+            html += '</div>';
+          }
+
+          // Code example
+          if (tut.code) {
+            html += '<div class="tut-view-code-section">';
+            html += '<h3><i class="fas fa-code"></i> Code Example</h3>';
+            html += '<div class="code-block">';
+            html += '<div class="code-header">';
+            html += '<span class="code-lang">' + (catLabels[tut.category] || 'Code') + '</span>';
+            html += '<button class="copy-btn" onclick="navigator.clipboard.writeText(this.parentElement.nextElementSibling.textContent);this.textContent=\'Copied!\';setTimeout(function(){document.querySelector(\'.tut-view-code-section .copy-btn\').textContent=\'Copy\';},2000)">Copy</button>';
+            html += '</div>';
+            html += '<pre><code>' + escapeHtml(tut.code) + '</code></pre>';
+            html += '</div>';
+            html += '</div>';
+          }
+
+          // External link
+          if (tut.link) {
+            html += '<div class="tut-view-link-box">';
+            html += '<a href="' + escapeHtml(tut.link) + '" target="_blank" rel="noopener noreferrer">';
+            html += '<i class="fas fa-external-link-alt"></i>';
+            html += '<span>View Full Tutorial Resource</span>';
+            html += '</a>';
+            html += '</div>';
+          }
+        }
+
+        // Footer info
+        html += '<div class="tut-view-footer">';
+        html += '<i class="fas fa-info-circle"></i>';
+        html += 'This tutorial was added by the admin. ';
+        if (tut.updatedAt && tut.updatedAt !== tut.createdAt) {
+          html += 'Last updated: ' + formatDate(tut.updatedAt);
+        }
+        html += '</div>';
+
+        // Share buttons
+        var shareUrl = encodeURIComponent(window.location.href);
+        var shareTitle = encodeURIComponent(tut.title + ' - Code4Boy Tutorial');
+        html += '<div class="tut-view-share">';
+        html += '<span><i class="fas fa-share-alt"></i> Share:</span>';
+        html += '<a href="https://wa.me/?text=' + shareTitle + '%20' + shareUrl + '" target="_blank" style="background:#25D366;" title="Share on WhatsApp"><i class="fab fa-whatsapp"></i></a>';
+        html += '<a href="https://t.me/share/url?url=' + shareUrl + '&text=' + shareTitle + '" target="_blank" style="background:#0088cc;" title="Share on Telegram"><i class="fab fa-telegram-plane"></i></a>';
+        html += '<a href="https://twitter.com/intent/tweet?text=' + shareTitle + '&url=' + shareUrl + '" target="_blank" style="background:#1DA1F2;" title="Share on Twitter"><i class="fab fa-twitter"></i></a>';
+        html += '<a href="https://www.facebook.com/sharer/sharer.php?u=' + shareUrl + '" target="_blank" style="background:#4267B2;" title="Share on Facebook"><i class="fab fa-facebook-f"></i></a>';
+        html += '</div>';
+
+        html += '</div>'; // end tut-view-card
+
+        // Related tutorials
+        var related = [];
+        for (var r = 0; r < tutorials.length; r++) {
+          if (tutorials[r].id !== tutId && tutorials[r].category === tut.category) {
+            related.push(tutorials[r]);
+          }
+        }
+        // If not enough from same category, add from other categories
+        if (related.length < 3) {
+          for (var r2 = 0; r2 < tutorials.length; r2++) {
+            if (tutorials[r2].id !== tutId && tutorials[r2].category !== tut.category) {
+              related.push(tutorials[r2]);
+              if (related.length >= 3) break;
+            }
+          }
+        }
+
+        if (related.length > 0) {
+          html += '<div class="tut-view-related">';
+          html += '<h3><i class="fas fa-th-large"></i> More Tutorials</h3>';
+          html += '<div class="tut-related-grid">';
+          var showCount = Math.min(related.length, 3);
+          for (var j = 0; j < showCount; j++) {
+            var rel = related[j];
+            html += '<a href="tutorial-view.html?id=' + encodeURIComponent(rel.id) + '" class="tut-related-card">';
+            html += '<h4>' + escapeHtml(rel.title) + '</h4>';
+            html += '<p>' + escapeHtml(rel.description ? rel.description.substring(0, 100) : '') + '</p>';
+            html += '<div class="tut-related-meta">';
+            html += '<span class="tut-view-cat" style="font-size:0.7rem;">' + (catLabels[rel.category] || rel.category) + '</span>';
+            if (rel.level) {
+              html += '<span class="tut-view-badge ' + rel.level + '" style="font-size:0.7rem;">' + (levelLabels[rel.level] || rel.level) + '</span>';
+            }
+            html += '</div>';
+            html += '</a>';
+          }
+          html += '</div>';
+          html += '</div>';
+        }
+
+        wrap.innerHTML = html;
+
+        // Apply accordion to admin-uploaded HTML content
+        if (tut.htmlContent) {
+          var viewBody = wrap.querySelector('.tut-view-body');
+          if (viewBody) {
+            setTimeout(function() {
+              var children = Array.from(viewBody.childNodes);
+              var topics = [];
+              var currentTopic = null;
+              children.forEach(function(node) {
+                if (node.nodeType === 1 && node.tagName === 'H2') {
+                  if (currentTopic) topics.push(currentTopic);
+                  currentTopic = { title: node.textContent, content: [] };
+                } else if (currentTopic) {
+                  currentTopic.content.push(node);
+                }
+              });
+              if (currentTopic) topics.push(currentTopic);
+              if (topics.length === 0) return;
+              viewBody.innerHTML = '';
+              topics.forEach(function(topic, idx) {
+                var item = document.createElement('div');
+                item.className = 'tut-accordion-item';
+                var titleText = topic.title;
+                var numMatch = titleText.match(/^(\d+)\.\s*(.*)/);
+                var num = numMatch ? numMatch[1] : (idx + 1);
+                var cleanTitle = numMatch ? numMatch[2] : titleText;
+                var header = document.createElement('div');
+                header.className = 'tut-accordion-header';
+                header.innerHTML = '<span class="tut-topic-num">' + num + '</span>' +
+                  '<h2>' + cleanTitle + '</h2>' +
+                  '<span class="tut-accordion-icon"><i class="fas fa-chevron-down"></i></span>';
+                var body = document.createElement('div');
+                body.className = 'tut-accordion-body';
+                var bodyInner = document.createElement('div');
+                bodyInner.className = 'tut-accordion-body-inner';
+                topic.content.forEach(function(node) { bodyInner.appendChild(node); });
+                body.appendChild(bodyInner);
+                item.appendChild(header);
+                item.appendChild(body);
+                viewBody.appendChild(item);
+                header.addEventListener('click', function() {
+                  var isActive = item.classList.contains('active');
+                  var siblings = viewBody.querySelectorAll('.tut-accordion-item');
+                  siblings.forEach(function(s) { s.classList.remove('active'); });
+                  if (!isActive) {
+                    item.classList.add('active');
+                    setTimeout(function() { item.scrollIntoView({ behavior: 'smooth', block: 'nearest' }); }, 100);
+                  }
+                });
+              });
+            }, 100);
+          }
+        }
+      }
+
+      function showNotFound() {
+        var html = '<a href="tutorials.html" class="tut-view-back"><i class="fas fa-arrow-left"></i> Back to Tutorials</a>';
+        html += '<div class="tut-view-card">';
+        html += '<div class="tut-view-not-found">';
+        html += '<i class="fas fa-search"></i>';
+        html += '<h2>Tutorial Not Found</h2>';
+        html += '<p>This tutorial may have been removed or the link is invalid.</p>';
+        html += '<a href="tutorials.html" class="tut-view-back" style="margin:0 auto;"><i class="fas fa-book"></i> Browse All Tutorials</a>';
+        html += '</div>';
+        html += '</div>';
+        wrap.innerHTML = html;
+      }
+
+      // Load the tutorial
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', loadTutorial);
+      } else {
+        loadTutorial();
+      }
+    })();
+  </script>
+  <!-- Prism.js Syntax Highlighting -->
+  <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/prism.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-python.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-java.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-c.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-cpp.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-csharp.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-markup-templating.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-php.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-go.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-rust.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-swift.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-kotlin.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-dart.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-r.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-matlab.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-perl.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-lua.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-haskell.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-bash.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-typescript.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-json.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-yaml.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-sql.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-jsx.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-tsx.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-scss.min.js"></script>
+  <script src="../js/prism-highlight.js"></script>
+  <script src="../js/miniplayer.js"></script>
+</body>
+</html>

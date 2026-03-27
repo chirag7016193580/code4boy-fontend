@@ -1,0 +1,2593 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Code4Boy AI Teacher - Your free AI coding assistant. Ask questions, get explanations, learn programming concepts in 20+ languages.">
+  <meta name="keywords" content="AI teacher, AI coding assistant, learn programming, code help, AI tutor, free AI, code4boy">
+  <meta name="author" content="Code4Boy">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://code4boy.com/pages/ai-teacher.html">
+  <meta property="og:title" content="AI Teacher - Code4Boy">
+  <meta property="og:description" content="Your free AI coding assistant. Ask questions, get explanations, and learn programming.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://code4boy.com/pages/ai-teacher.html">
+  <meta property="og:image" content="https://code4boy.com/images/logo.jpg">
+  <meta property="og:site_name" content="Code4Boy">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="AI Teacher - Code4Boy">
+  <meta name="twitter:description" content="Your free AI coding assistant. Ask questions, get explanations, and learn programming.">
+  <meta http-equiv="X-Content-Type-Options" content="nosniff">
+  <meta http-equiv="X-Frame-Options" content="SAMEORIGIN">
+  <meta http-equiv="X-XSS-Protection" content="1; mode=block">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://cdn.jsdelivr.net https://accounts.google.com https://apis.google.com https://*.googleapis.com https://cdnjs.cloudflare.com; style-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net https://cdnjs.cloudflare.com https://fonts.googleapis.com https://accounts.google.com; font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com; img-src 'self' data: blob: https://*.googleusercontent.com https://*.google.com; frame-src 'self' blob: https://www.youtube.com https://accounts.google.com https://*.google.com; connect-src 'self' http://localhost:8000 http://127.0.0.1:8000 https://code4boy-backend.vercel.app https://ipapi.co https://accounts.google.com https://*.googleapis.com https://wandbox.org;">
+  <title>AI Teacher - Code4Boy</title>
+  <link rel="icon" type="image/jpeg" href="../images/logo.jpg">
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/upgrade.css">
+  <link rel="stylesheet" href="../css/professional.css">
+  <link rel="stylesheet" href="../css/dark-override.css">
+  <link rel="stylesheet" href="../css/auth.css">
+  <link rel="stylesheet" href="../css/mobile.css">
+  <link rel="stylesheet" href="../css/ui-update.css">
+  <link rel="stylesheet" href="../css/upgrade-v2.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <!-- Prism.js Syntax Highlighting -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism-tomorrow.min.css">
+  <link rel="stylesheet" href="../css/prism-custom.css">
+  <style>
+    /* ============================================
+       AI TEACHER PAGE STYLES
+       ============================================ */
+
+    .ai-container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 20px 40px;
+    }
+
+    /* Chat Window */
+    .ai-chat-window {
+      background: var(--glass-bg);
+      border: 1px solid var(--glass-border);
+      border-radius: 20px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      height: calc(100vh - 280px);
+      min-height: 500px;
+      backdrop-filter: blur(20px);
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    }
+
+    /* Chat Header */
+    .ai-chat-header {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 18px 24px;
+      background: rgba(10, 10, 30, 0.6);
+      border-bottom: 1px solid var(--glass-border);
+    }
+
+    .ai-avatar {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #00d4ff, #8b5cf6);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.4rem;
+      color: #fff;
+      flex-shrink: 0;
+      box-shadow: 0 0 20px rgba(0, 212, 255, 0.3);
+      animation: aiPulse 3s ease-in-out infinite;
+    }
+
+    @keyframes aiPulse {
+      0%, 100% { box-shadow: 0 0 20px rgba(0, 212, 255, 0.3); }
+      50% { box-shadow: 0 0 30px rgba(139, 92, 246, 0.5); }
+    }
+
+    .ai-header-info h3 {
+      font-family: var(--font-heading);
+      font-size: 1.1rem;
+      color: var(--text-primary);
+      margin: 0;
+    }
+
+    .ai-header-info p {
+      font-size: 0.8rem;
+      color: var(--neon-green);
+      margin: 2px 0 0;
+    }
+
+    .ai-header-actions {
+      margin-left: auto;
+      display: flex;
+      gap: 8px;
+    }
+
+    .ai-header-actions button {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid var(--glass-border);
+      color: var(--text-secondary);
+      padding: 8px 14px;
+      border-radius: 10px;
+      cursor: pointer;
+      font-size: 0.82rem;
+      transition: all 0.2s;
+    }
+
+    .ai-header-actions button:hover {
+      background: rgba(0, 212, 255, 0.1);
+      color: var(--neon-cyan);
+      border-color: rgba(0, 212, 255, 0.3);
+    }
+
+    /* Messages Area */
+    .ai-messages {
+      flex: 1;
+      overflow-y: auto;
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      scroll-behavior: smooth;
+    }
+
+    .ai-messages::-webkit-scrollbar { width: 6px; }
+    .ai-messages::-webkit-scrollbar-track { background: transparent; }
+    .ai-messages::-webkit-scrollbar-thumb { background: rgba(139, 92, 246, 0.3); border-radius: 3px; }
+
+    /* Message Bubbles */
+    .ai-msg {
+      display: flex;
+      gap: 12px;
+      max-width: 85%;
+      animation: msgSlide 0.3s ease;
+    }
+
+    @keyframes msgSlide {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .ai-msg.bot { align-self: flex-start; }
+    .ai-msg.user { align-self: flex-end; flex-direction: row-reverse; }
+
+    .ai-msg-avatar {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      font-size: 0.9rem;
+    }
+
+    .ai-msg.bot .ai-msg-avatar {
+      background: linear-gradient(135deg, #00d4ff, #8b5cf6);
+      color: #fff;
+    }
+
+    .ai-msg.user .ai-msg-avatar {
+      background: linear-gradient(135deg, #10b981, #059669);
+      color: #fff;
+    }
+
+    .ai-msg-bubble {
+      padding: 14px 18px;
+      border-radius: 18px;
+      font-size: 0.92rem;
+      line-height: 1.65;
+      color: var(--text-primary);
+    }
+
+    .ai-msg.bot .ai-msg-bubble {
+      background: rgba(15, 15, 40, 0.7);
+      border: 1px solid var(--glass-border);
+      border-top-left-radius: 4px;
+    }
+
+    .ai-msg.user .ai-msg-bubble {
+      background: linear-gradient(135deg, rgba(0, 212, 255, 0.15), rgba(139, 92, 246, 0.15));
+      border: 1px solid rgba(0, 212, 255, 0.2);
+      border-top-right-radius: 4px;
+    }
+
+    .ai-msg-bubble code {
+      background: rgba(0, 0, 0, 0.4);
+      padding: 2px 7px;
+      border-radius: 5px;
+      font-family: var(--font-mono);
+      font-size: 0.85rem;
+      color: var(--neon-cyan);
+    }
+
+    .ai-msg-bubble pre {
+      background: rgba(0, 0, 0, 0.5);
+      border: 1px solid rgba(139, 92, 246, 0.2);
+      border-radius: 10px;
+      padding: 14px;
+      margin: 10px 0;
+      overflow-x: auto;
+      font-family: var(--font-mono);
+      font-size: 0.83rem;
+      line-height: 1.5;
+      color: #e2e8f0;
+    }
+
+    .ai-msg-bubble pre code {
+      background: none;
+      padding: 0;
+      color: #e2e8f0;
+    }
+
+    .ai-msg-bubble strong { color: var(--neon-cyan); }
+
+    .ai-msg-bubble ul, .ai-msg-bubble ol {
+      padding-left: 20px;
+      margin: 8px 0;
+    }
+
+    .ai-msg-bubble li { margin: 4px 0; }
+
+    /* Speak Button */
+    .ai-speak-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: rgba(0, 212, 255, 0.1);
+      border: 1px solid rgba(0, 212, 255, 0.25);
+      color: var(--neon-cyan);
+      cursor: pointer;
+      font-size: 0.8rem;
+      margin-top: 8px;
+      transition: all 0.25s ease;
+      float: right;
+    }
+
+    .ai-speak-btn:hover {
+      background: rgba(0, 212, 255, 0.25);
+      transform: scale(1.1);
+      box-shadow: 0 0 12px rgba(0, 212, 255, 0.3);
+    }
+
+    .ai-speak-btn.speaking {
+      background: rgba(239, 68, 68, 0.15);
+      border-color: rgba(239, 68, 68, 0.4);
+      color: #ef4444;
+      animation: speakPulse 1.5s ease infinite;
+    }
+
+    @keyframes speakPulse {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.3); }
+      50% { box-shadow: 0 0 12px 4px rgba(239, 68, 68, 0.15); }
+    }
+
+    /* Typing Indicator */
+    .ai-typing {
+      display: flex;
+      gap: 12px;
+      align-self: flex-start;
+      max-width: 85%;
+    }
+
+    .ai-typing-dots {
+      display: flex;
+      gap: 5px;
+      padding: 16px 22px;
+      background: rgba(15, 15, 40, 0.7);
+      border: 1px solid var(--glass-border);
+      border-radius: 18px;
+      border-top-left-radius: 4px;
+    }
+
+    .ai-typing-dots span {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--neon-cyan);
+      animation: typingDot 1.4s infinite;
+    }
+
+    .ai-typing-dots span:nth-child(2) { animation-delay: 0.2s; }
+    .ai-typing-dots span:nth-child(3) { animation-delay: 0.4s; }
+
+    @keyframes typingDot {
+      0%, 60%, 100% { opacity: 0.3; transform: scale(0.8); }
+      30% { opacity: 1; transform: scale(1.1); }
+    }
+
+    /* Input Area */
+    .ai-input-area {
+      padding: 18px 24px;
+      background: rgba(10, 10, 30, 0.6);
+      border-top: 1px solid var(--glass-border);
+      display: flex;
+      gap: 12px;
+      align-items: flex-end;
+    }
+
+    .ai-input-wrapper {
+      flex: 1;
+      position: relative;
+    }
+
+    .ai-input-wrapper textarea {
+      width: 100%;
+      min-height: 46px;
+      max-height: 140px;
+      padding: 12px 16px;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid var(--glass-border);
+      border-radius: 14px;
+      color: var(--text-primary);
+      font-family: var(--font-body);
+      font-size: 0.92rem;
+      resize: none;
+      outline: none;
+      transition: border-color 0.3s;
+      box-sizing: border-box;
+    }
+
+    .ai-input-wrapper textarea:focus {
+      border-color: var(--neon-cyan);
+      box-shadow: 0 0 0 3px rgba(0, 212, 255, 0.1);
+    }
+
+    .ai-input-wrapper textarea::placeholder { color: var(--text-secondary); opacity: 0.6; }
+
+    .ai-send-btn {
+      width: 46px;
+      height: 46px;
+      border-radius: 14px;
+      background: linear-gradient(135deg, #00d4ff, #8b5cf6);
+      border: none;
+      color: #fff;
+      font-size: 1.1rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s;
+      flex-shrink: 0;
+    }
+
+    .ai-send-btn:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 20px rgba(0, 212, 255, 0.4);
+    }
+
+    .ai-send-btn:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    /* Quick Topics */
+    .ai-quick-topics {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 20px;
+    }
+
+    .ai-topic-btn {
+      padding: 8px 16px;
+      border-radius: 20px;
+      border: 1px solid var(--glass-border);
+      background: var(--glass-bg);
+      color: var(--text-secondary);
+      font-size: 0.82rem;
+      cursor: pointer;
+      transition: all 0.2s;
+      white-space: nowrap;
+    }
+
+    .ai-topic-btn:hover {
+      background: rgba(0, 212, 255, 0.1);
+      border-color: var(--neon-cyan);
+      color: var(--neon-cyan);
+    }
+
+    .ai-topic-btn i { margin-right: 5px; }
+
+    /* Suggestion Chips inside messages */
+    .ai-suggestions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 12px;
+    }
+
+    .ai-suggestion-chip {
+      padding: 6px 14px;
+      border-radius: 16px;
+      border: 1px solid rgba(0, 212, 255, 0.2);
+      background: rgba(0, 212, 255, 0.06);
+      color: var(--neon-cyan);
+      font-size: 0.78rem;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .ai-suggestion-chip:hover {
+      background: rgba(0, 212, 255, 0.15);
+      border-color: var(--neon-cyan);
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .ai-chat-window {
+        height: calc(100vh - 240px);
+        min-height: 400px;
+        border-radius: 14px;
+      }
+
+      .ai-msg { max-width: 92%; }
+
+      .ai-chat-header { padding: 14px 16px; gap: 10px; }
+      .ai-avatar { width: 40px; height: 40px; font-size: 1.1rem; }
+      .ai-messages { padding: 16px; }
+      .ai-input-area { padding: 14px 16px; }
+
+      .ai-header-actions { display: none; }
+
+      .ai-quick-topics { gap: 6px; }
+      .ai-topic-btn { font-size: 0.75rem; padding: 6px 12px; }
+    }
+
+    @media (max-width: 480px) {
+      .ai-msg-bubble { padding: 10px 14px; font-size: 0.87rem; }
+      .ai-msg-bubble pre { padding: 10px; font-size: 0.78rem; }
+    }
+
+    /* ── AI Teacher Code Runner Styles ── */
+    .ai-code-block-wrap {
+      position: relative;
+      margin: 10px 0;
+    }
+
+    .ai-code-block-wrap pre {
+      margin: 0;
+    }
+
+    .ai-run-btn {
+      position: absolute;
+      top: 8px;
+      right: 8px;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      padding: 5px 14px;
+      border: 1px solid rgba(0,212,255,0.3);
+      border-radius: 8px;
+      background: rgba(0,212,255,0.1);
+      color: #00d4ff;
+      font-family: var(--font-body);
+      font-size: 0.75rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+      z-index: 2;
+    }
+
+    .ai-run-btn:hover {
+      background: rgba(0,212,255,0.2);
+      border-color: #00d4ff;
+      transform: translateY(-1px);
+    }
+
+    .ai-run-btn:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    .ai-code-output {
+      margin-top: 0;
+      padding: 12px 16px;
+      background: rgba(0,0,0,0.4);
+      border: 1px solid rgba(0,212,255,0.15);
+      border-top: none;
+      border-radius: 0 0 10px 10px;
+      font-family: var(--font-mono);
+      font-size: 0.82rem;
+      line-height: 1.6;
+      color: var(--text-secondary);
+      white-space: pre-wrap;
+      word-break: break-word;
+      max-height: 250px;
+      overflow-y: auto;
+    }
+
+    .ai-code-output .ai-out-label {
+      display: block;
+      font-size: 0.7rem;
+      font-weight: 600;
+      color: #10b981;
+      margin-bottom: 6px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .ai-code-output .ai-out-error {
+      color: #ef4444;
+    }
+
+    .ai-code-output .ai-out-loading {
+      color: #00d4ff;
+    }
+
+    .ai-error-suggest {
+      margin-top: 8px;
+      padding: 10px 14px;
+      background: rgba(245, 158, 11, 0.08);
+      border: 1px solid rgba(245, 158, 11, 0.2);
+      border-radius: 8px;
+    }
+
+    .ai-error-suggest .ai-suggest-title {
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: #f59e0b;
+      margin-bottom: 6px;
+    }
+
+    .ai-error-suggest .ai-suggest-item {
+      font-size: 0.76rem;
+      color: var(--text-secondary);
+      padding: 3px 0;
+      line-height: 1.5;
+    }
+
+    .ai-error-suggest .ai-suggest-item i {
+      color: #10b981;
+      margin-right: 6px;
+      font-size: 0.65rem;
+    }
+  </style>
+
+  <!-- Structured Data - JSON-LD -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "AI Teacher - Code4Boy",
+    "description": "Your free AI coding assistant. Ask questions, get explanations, and learn programming.",
+    "url": "https://code4boy.com/pages/ai-teacher.html",
+    "applicationCategory": "EducationalApplication",
+    "operatingSystem": "Web Browser",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+    "breadcrumb": {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://code4boy.com/" },
+        { "@type": "ListItem", "position": 2, "name": "AI Teacher", "item": "https://code4boy.com/pages/ai-teacher.html" }
+      ]
+    }
+  }
+  </script>
+</head>
+<body>
+
+  <div class="bg-grid"></div>
+  <div class="bg-glow"></div>
+  <div class="particles"></div>
+
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="../index.html" class="nav-logo">
+        <img src="../images/logo.jpg" alt="Code4Boy Logo">
+        <span>CODE4BOY</span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="../index.html"><i class="fas fa-home"></i> Home</a></li>
+        <li><a href="tutorials.html"><i class="fas fa-book"></i> Tutorials</a></li>
+        <li><a href="projects.html"><i class="fas fa-code"></i> Projects</a></li>
+        <li><a href="tools.html"><i class="fas fa-wrench"></i> Tools</a></li>
+        <li><a href="playground.html"><i class="fas fa-laptop-code"></i> Playground</a></li>
+        <li><a href="ai-teacher.html" class="active"><i class="fas fa-robot"></i> AI Teacher</a></li>
+        <li class="nav-more-dropdown">
+
+          <button class="nav-more-btn" aria-expanded="false" aria-haspopup="true"><i class="fas fa-ellipsis-h"></i> More</button>
+
+          <ul class="nav-more-menu">
+
+            <li><a href="errors.html"><i class="fas fa-bug"></i> Errors</a></li>
+
+            <li><a href="downloads.html"><i class="fas fa-download"></i> Downloads</a></li>
+
+            <li><a href="https://youtube.com/@code4boy-l4u" target="_blank" rel="noopener noreferrer"><i class="fab fa-youtube"></i> Videos</a></li>
+
+            <li><a href="../index.html#contact"><i class="fas fa-envelope"></i> Contact</a></li>
+
+          </ul>
+
+        </li>
+      </ul>
+      <div class="nav-right">
+        <button class="nav-search-btn" title="Search"><i class="fas fa-search"></i></button>
+        <button class="theme-toggle"><i class="fas fa-sun"></i> <span>Light</span></button>
+        <div id="authBtnContainer" class="auth-btn-container"></div>
+        <div class="menu-toggle"><span></span><span></span><span></span></div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Search Modal -->
+  <div class="search-modal">
+    <button class="search-close"><i class="fas fa-times"></i></button>
+    <div class="search-modal-content">
+      <input type="text" class="search-modal-input" placeholder="Search tutorials, projects, tools...">
+      <div class="search-results"></div>
+    </div>
+  </div>
+
+  <!-- Page Header -->
+  <div class="page-header">
+    <div class="breadcrumb">
+      <a href="../index.html">Home</a>
+      <span class="separator">/</span>
+      <span>AI Teacher</span>
+    </div>
+    <h1>AI <span class="gradient-text" style="background:var(--gradient-neon);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">Teacher</span></h1>
+    <p>Your free AI coding assistant - ask anything about programming!</p>
+    <div class="page-stats">
+      <div class="page-stat">
+        <div class="page-stat-icon blue"><i class="fas fa-robot"></i></div>
+        <div class="page-stat-info"><div class="page-stat-number">AI</div><div class="page-stat-label">Powered</div></div>
+      </div>
+      <div class="page-stat">
+        <div class="page-stat-icon green"><i class="fas fa-comments"></i></div>
+        <div class="page-stat-info"><div class="page-stat-number">Instant</div><div class="page-stat-label">Answers</div></div>
+      </div>
+      <div class="page-stat">
+        <div class="page-stat-icon purple"><i class="fas fa-infinity"></i></div>
+        <div class="page-stat-info"><div class="page-stat-number">Unlimited</div><div class="page-stat-label">Questions</div></div>
+      </div>
+      <div class="page-stat">
+        <div class="page-stat-icon cyan"><i class="fas fa-graduation-cap"></i></div>
+        <div class="page-stat-info"><div class="page-stat-number">All</div><div class="page-stat-label">Topics</div></div>
+      </div>
+    </div>
+    <div class="page-features">
+      <div class="page-feature"><i class="fas fa-bolt"></i><span>Instant Code Help</span></div>
+      <div class="page-feature"><i class="fas fa-language"></i><span>Multi-Language Support</span></div>
+      <div class="page-feature"><i class="fas fa-history"></i><span>Chat History Export</span></div>
+      <div class="page-feature"><i class="fas fa-lightbulb"></i><span>Quick Topic Starters</span></div>
+    </div>
+  </div>
+
+  <!-- Quick Topics -->
+  <div class="ai-container">
+    <div class="ai-quick-topics" id="aiQuickTopics">
+      <button class="ai-topic-btn" onclick="askTopic('What is HTML and how do I start?')"><i class="fab fa-html5"></i> HTML Basics</button>
+      <button class="ai-topic-btn" onclick="askTopic('Explain CSS Flexbox')"><i class="fab fa-css3-alt"></i> CSS Flexbox</button>
+      <button class="ai-topic-btn" onclick="askTopic('What are JavaScript functions?')"><i class="fab fa-js-square"></i> JS Functions</button>
+      <button class="ai-topic-btn" onclick="askTopic('Python for beginners - where to start?')"><i class="fab fa-python"></i> Python Start</button>
+      <button class="ai-topic-btn" onclick="askTopic('What is an API?')"><i class="fas fa-plug"></i> What is API</button>
+      <button class="ai-topic-btn" onclick="askTopic('Explain loops in programming')"><i class="fas fa-sync-alt"></i> Loops</button>
+      <button class="ai-topic-btn" onclick="askTopic('What is OOP?')"><i class="fas fa-cubes"></i> OOP Concepts</button>
+      <button class="ai-topic-btn" onclick="askTopic('How to debug code?')"><i class="fas fa-bug"></i> Debugging</button>
+      <button class="ai-topic-btn" onclick="askTopic('What is Git and GitHub?')"><i class="fab fa-git-alt"></i> Git Basics</button>
+      <button class="ai-topic-btn" onclick="askTopic('Compare Python vs JavaScript')"><i class="fas fa-balance-scale"></i> Python vs JS</button>
+    </div>
+
+    <!-- Chat Window -->
+    <div class="ai-chat-window">
+      <!-- Chat Header -->
+      <div class="ai-chat-header">
+        <div class="ai-avatar"><i class="fas fa-robot"></i></div>
+        <div class="ai-header-info">
+          <h3>Code4Boy AI Teacher</h3>
+          <p><i class="fas fa-circle" style="font-size:0.5rem;margin-right:4px"></i> Online - Ready to help</p>
+        </div>
+        <div class="ai-header-actions">
+          <button onclick="clearChat()" title="Clear chat"><i class="fas fa-trash-alt"></i> Clear</button>
+          <button onclick="exportChat()" title="Export chat"><i class="fas fa-download"></i> Export</button>
+        </div>
+      </div>
+
+      <!-- Messages -->
+      <div class="ai-messages" id="aiMessages">
+        <!-- Welcome message will be added by JS -->
+      </div>
+
+      <!-- Input Area -->
+      <div class="ai-input-area">
+        <div class="ai-input-wrapper">
+          <textarea id="aiInput" placeholder="Ask me anything about coding..." rows="1" onkeydown="handleInputKey(event)" oninput="autoResize(this)"></textarea>
+        </div>
+        <button class="ai-send-btn" id="aiSendBtn" onclick="sendMessage()" title="Send message">
+          <i class="fas fa-paper-plane"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <div class="nav-logo" style="margin-bottom:20px">
+          <img src="../images/logo.jpg" alt="Code4Boy" style="width:45px;height:45px;border-radius:50%;border:2px solid rgba(26,115,232,0.2)">
+          <span style="font-family:var(--font-heading);font-size:1.2rem;font-weight:700;color:#1a73e8">CODE4BOY</span>
+        </div>
+        <p>Learn coding free with AI-powered tutorials, real-world projects, and smart error solutions.</p>
+        <div class="social-links">
+          <a href="https://youtube.com/@code4boy-l4u" target="_blank" class="social-link"><i class="fab fa-youtube"></i></a>
+          <a href="https://github.com/code4boy" target="_blank" class="social-link"><i class="fab fa-github"></i></a>
+          <a href="https://twitter.com/code4boy" target="_blank" class="social-link"><i class="fab fa-twitter"></i></a>
+          <a href="https://instagram.com/code4boy" target="_blank" class="social-link"><i class="fab fa-instagram"></i></a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h3>Quick Links</h3>
+        <ul class="footer-links">
+          <li><a href="../index.html"><i class="fas fa-chevron-right"></i> Home</a></li>
+          <li><a href="tutorials.html"><i class="fas fa-chevron-right"></i> Tutorials</a></li>
+          <li><a href="projects.html"><i class="fas fa-chevron-right"></i> Projects</a></li>
+          <li><a href="tools.html"><i class="fas fa-chevron-right"></i> Tools</a></li>
+          <li><a href="playground.html"><i class="fas fa-chevron-right"></i> Playground</a></li>
+          <li><a href="errors.html"><i class="fas fa-chevron-right"></i> Error Solutions</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h3>Contact Us</h3>
+        <form class="contact-form">
+          <input type="text" placeholder="Your Name" required>
+          <input type="email" placeholder="Your Email" required>
+          <textarea placeholder="Your Message" required></textarea>
+          <button type="submit" class="btn-primary"><i class="fas fa-paper-plane"></i> Send</button>
+        </form>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 Code4Boy. All Rights Reserved.</p>
+      <div class="footer-bottom-links">
+        <a href="privacy-policy.html">Privacy Policy</a>
+        <a href="terms-of-use.html">Terms of Use</a>
+        <a href="sitemap.html">Sitemap</a>
+      </div>
+    </div>
+  </footer>
+
+  <button class="back-to-top"><i class="fas fa-chevron-up"></i></button>
+  <!-- Google Identity Services -->
+  <script src="https://accounts.google.com/gsi/client" async defer></script>
+  <script src="../js/google-config.js"></script>
+  <script src="../js/server-sync.js"></script>
+  <script src="../js/auth.js"></script>
+  <script src="../js/main.js"></script>
+  <script src="../js/mobile-animations.js"></script>
+
+  <script>
+  /* ============================================
+     CODE4BOY AI TEACHER - FREE, NO API NEEDED
+     Rule-based intelligent chatbot
+     ============================================ */
+
+  var chatHistory = [];
+  var isTyping = false;
+
+  // ============================================
+  // KNOWLEDGE BASE
+  // ============================================
+
+  var KB = {
+
+    // --- LANGUAGE INFO ---
+    languages: {
+      html: {
+        name: 'HTML',
+        full: 'HyperText Markup Language',
+        desc: 'HTML is the standard markup language for creating web pages. It describes the structure of a web page using elements (tags).',
+        use: 'Building web page structure, content organization, forms, tables, links, images, and semantic markup.',
+        hello: '<!DOCTYPE html>\n<html>\n<head>\n  <title>Hello World</title>\n</head>\n<body>\n  <h1>Hello, World!</h1>\n  <p>Welcome to Code4Boy!</p>\n</body>\n</html>',
+        concepts: ['Tags & Elements', 'Attributes', 'Forms', 'Tables', 'Semantic HTML', 'Links & Images', 'Lists', 'Div & Span', 'Head & Meta', 'HTML5 APIs'],
+        tips: 'Always use semantic tags like <header>, <nav>, <main>, <article>, <footer> instead of just <div>. This improves accessibility and SEO.',
+        resources: 'Check out our HTML tutorials at tutorials.html for step-by-step guides!'
+      },
+      css: {
+        name: 'CSS',
+        full: 'Cascading Style Sheets',
+        desc: 'CSS is a stylesheet language used to style and layout web pages. It controls colors, fonts, spacing, positioning, animations, and responsive design.',
+        use: 'Styling web pages, responsive design, animations, layouts (Flexbox, Grid), theming.',
+        hello: '/* Style a heading */\nh1 {\n  color: #00d4ff;\n  font-family: Arial, sans-serif;\n  text-align: center;\n  text-shadow: 0 0 10px rgba(0,212,255,0.5);\n}\n\n/* Responsive container */\n.container {\n  max-width: 1200px;\n  margin: 0 auto;\n  padding: 20px;\n}',
+        concepts: ['Selectors', 'Box Model', 'Flexbox', 'CSS Grid', 'Animations', 'Media Queries', 'Variables (Custom Properties)', 'Positioning', 'Transitions', 'Pseudo-classes'],
+        tips: 'Use CSS variables (custom properties) for consistent theming. Example: :root { --primary: #00d4ff; } then use var(--primary) anywhere.',
+        resources: 'Check out our CSS tutorials at tutorials.html for styling guides!'
+      },
+      javascript: {
+        name: 'JavaScript',
+        full: 'JavaScript (ECMAScript)',
+        desc: 'JavaScript is a versatile programming language that runs in browsers and on servers (Node.js). It makes web pages interactive and dynamic.',
+        use: 'Web interactivity, DOM manipulation, APIs, server-side (Node.js), mobile apps (React Native), desktop apps (Electron).',
+        hello: '// Hello World in JavaScript\nconsole.log("Hello, World!");\n\n// Variables\nlet name = "Code4Boy";\nconst year = 2025;\n\n// Function\nfunction greet(user) {\n  return `Welcome to ${user}!`;\n}\n\nconsole.log(greet(name));',
+        concepts: ['Variables (let, const, var)', 'Functions & Arrow Functions', 'DOM Manipulation', 'Events', 'Promises & Async/Await', 'Arrays & Objects', 'ES6+ Features', 'Closures', 'Prototypes & Classes', 'Modules'],
+        tips: 'Use const by default, let when you need to reassign. Avoid var. Use template literals (`Hello ${name}`) instead of string concatenation.',
+        resources: 'Check out our JavaScript tutorials at tutorials.html!'
+      },
+      python: {
+        name: 'Python',
+        full: 'Python',
+        desc: 'Python is a high-level, easy-to-read programming language known for its simple syntax. It is great for beginners and used in AI, data science, web development, automation, and more.',
+        use: 'AI/ML, data science, web development (Django, Flask), automation, scripting, scientific computing.',
+        hello: '# Hello World in Python\nprint("Hello, World!")\n\n# Variables\nname = "Code4Boy"\nyear = 2025\n\n# Function\ndef greet(user):\n    return f"Welcome to {user}!"\n\nprint(greet(name))',
+        concepts: ['Variables & Data Types', 'Functions', 'Lists, Tuples, Dicts', 'Loops (for, while)', 'Classes & OOP', 'File Handling', 'Modules & Packages', 'List Comprehensions', 'Exception Handling', 'Decorators'],
+        tips: 'Python uses indentation (spaces) instead of braces {}. Use 4 spaces per indent level. Use f-strings for formatting: f"Hello {name}".',
+        resources: 'Check out our Python tutorials at tutorials.html!'
+      },
+      java: {
+        name: 'Java',
+        full: 'Java',
+        desc: 'Java is a robust, object-oriented programming language used for enterprise applications, Android development, and large-scale systems. It follows "Write Once, Run Anywhere" principle.',
+        use: 'Android apps, enterprise software, web backends (Spring), desktop apps, big data.',
+        hello: 'public class HelloWorld {\n    public static void main(String[] args) {\n        System.out.println("Hello, World!");\n        \n        String name = "Code4Boy";\n        System.out.println("Welcome to " + name + "!");\n    }\n}',
+        concepts: ['Classes & Objects', 'Inheritance', 'Interfaces', 'Generics', 'Collections', 'Exception Handling', 'Multithreading', 'Streams API', 'Lambda Expressions', 'JVM & Memory'],
+        tips: 'Every Java program needs a class. The main method is the entry point: public static void main(String[] args). File name must match class name.',
+        resources: 'Check out our Java tutorials at tutorials.html!'
+      },
+      cpp: {
+        name: 'C++',
+        full: 'C++',
+        desc: 'C++ is a powerful, high-performance language used for system programming, game development, and performance-critical applications. It extends C with object-oriented features.',
+        use: 'Game engines, operating systems, embedded systems, competitive programming, performance-critical software.',
+        hello: '#include <iostream>\nusing namespace std;\n\nint main() {\n    cout << "Hello, World!" << endl;\n    \n    string name = "Code4Boy";\n    cout << "Welcome to " << name << "!" << endl;\n    \n    return 0;\n}',
+        concepts: ['Pointers & References', 'Classes & Objects', 'Templates', 'STL (Standard Template Library)', 'Memory Management', 'Inheritance & Polymorphism', 'Operator Overloading', 'Smart Pointers', 'Move Semantics', 'Namespaces'],
+        tips: 'Always include <iostream> for input/output. Use std::string instead of char arrays. Remember to return 0 from main().',
+        resources: 'Check out our C++ tutorials at tutorials.html!'
+      },
+      c: {
+        name: 'C',
+        full: 'C Programming Language',
+        desc: 'C is a foundational, low-level programming language. Most operating systems, databases, and embedded systems are written in C. Learning C helps you understand how computers work.',
+        use: 'Operating systems, embedded systems, compilers, databases, system programming.',
+        hello: '#include <stdio.h>\n\nint main() {\n    printf("Hello, World!\\n");\n    \n    char name[] = "Code4Boy";\n    printf("Welcome to %s!\\n", name);\n    \n    return 0;\n}',
+        concepts: ['Pointers', 'Arrays', 'Structs', 'Memory Allocation (malloc/free)', 'File I/O', 'Preprocessor Directives', 'Function Pointers', 'Bit Manipulation', 'Header Files', 'Linked Lists'],
+        tips: 'Always free memory you allocate with malloc(). Use printf for output with format specifiers: %d (int), %s (string), %f (float).'
+      },
+      typescript: {
+        name: 'TypeScript',
+        full: 'TypeScript',
+        desc: 'TypeScript is a superset of JavaScript that adds static typing. It helps catch errors at compile time and makes code more maintainable.',
+        use: 'Large-scale web apps, Angular, React with types, Node.js backends, any JavaScript project that needs type safety.',
+        hello: '// Hello World in TypeScript\nconst greeting: string = "Hello, World!";\nconsole.log(greeting);\n\n// Typed function\nfunction greet(name: string, age: number): string {\n  return `Hi ${name}, you are ${age} years old!`;\n}\n\nconsole.log(greet("Code4Boy", 1));',
+        concepts: ['Type Annotations', 'Interfaces', 'Generics', 'Enums', 'Union Types', 'Type Guards', 'Decorators', 'Modules', 'Utility Types', 'Type Inference'],
+        tips: 'Start by adding types to function parameters and return values. Use interfaces for object shapes. TypeScript compiles to JavaScript.'
+      },
+      rust: {
+        name: 'Rust',
+        full: 'Rust',
+        desc: 'Rust is a systems programming language focused on safety, speed, and concurrency. It prevents memory errors at compile time without a garbage collector.',
+        use: 'Systems programming, WebAssembly, CLI tools, game engines, operating systems, blockchain.',
+        hello: 'fn main() {\n    println!("Hello, World!");\n    \n    let name = "Code4Boy";\n    println!("Welcome to {}!", name);\n}',
+        concepts: ['Ownership & Borrowing', 'Lifetimes', 'Pattern Matching', 'Traits', 'Enums & Structs', 'Error Handling (Result/Option)', 'Cargo Package Manager', 'Concurrency', 'Macros', 'Generics'],
+        tips: 'Rust has a unique ownership system. Each value has one owner. When the owner goes out of scope, the value is dropped. Use & for borrowing.'
+      },
+      go: {
+        name: 'Go',
+        full: 'Go (Golang)',
+        desc: 'Go is a simple, fast, compiled language created by Google. It is great for building scalable web services, cloud tools, and concurrent programs.',
+        use: 'Cloud services, microservices, DevOps tools (Docker, Kubernetes), web servers, CLI tools.',
+        hello: 'package main\n\nimport "fmt"\n\nfunc main() {\n    fmt.Println("Hello, World!")\n    \n    name := "Code4Boy"\n    fmt.Printf("Welcome to %s!\\n", name)\n}',
+        concepts: ['Goroutines & Channels', 'Interfaces', 'Structs', 'Packages', 'Error Handling', 'Slices & Maps', 'Pointers', 'Defer/Panic/Recover', 'Testing', 'Modules'],
+        tips: 'Go uses := for short variable declaration. Go has no classes - use structs with methods. Goroutines make concurrent programming easy.'
+      },
+      php: {
+        name: 'PHP',
+        full: 'PHP: Hypertext Preprocessor',
+        desc: 'PHP is a server-side scripting language designed for web development. It powers WordPress, Facebook (originally), and millions of websites.',
+        use: 'Web development, server-side scripting, CMS (WordPress, Drupal), e-commerce, REST APIs.',
+        hello: '<?php\n// Hello World in PHP\necho "Hello, World!\\n";\n\n$name = "Code4Boy";\necho "Welcome to $name!\\n";\n\n// Function\nfunction greet($user) {\n    return "Hi, $user!";\n}\n\necho greet($name);\n?>',
+        concepts: ['Variables ($)', 'Arrays', 'Functions', 'Classes & OOP', 'PDO (Database)', 'Sessions & Cookies', 'Form Handling', 'File Handling', 'Composer', 'Laravel/Symfony'],
+        tips: 'PHP variables start with $. Use PDO for database queries (prevents SQL injection). Learn a framework like Laravel for modern PHP development.'
+      },
+      kotlin: {
+        name: 'Kotlin',
+        full: 'Kotlin',
+        desc: 'Kotlin is a modern programming language that runs on the JVM. It is the preferred language for Android development and is fully interoperable with Java.',
+        use: 'Android development, server-side (Ktor, Spring), multiplatform apps, scripting.',
+        hello: 'fun main() {\n    println("Hello, World!")\n    \n    val name = "Code4Boy"\n    println("Welcome to $name!")\n}',
+        concepts: ['Null Safety', 'Data Classes', 'Extension Functions', 'Coroutines', 'Sealed Classes', 'Lambda Functions', 'Collections', 'Companion Objects', 'Scope Functions', 'Delegation'],
+        tips: 'Kotlin has null safety built-in. Use val for immutable and var for mutable variables. String templates: "Hello $name" or "Result: ${1+2}".'
+      },
+      swift: {
+        name: 'Swift',
+        full: 'Swift',
+        desc: 'Swift is Apple\'s modern programming language for iOS, macOS, watchOS, and tvOS development. It is safe, fast, and expressive.',
+        use: 'iOS apps, macOS apps, watchOS, tvOS, server-side Swift (Vapor).',
+        hello: 'import Foundation\n\nprint("Hello, World!")\n\nlet name = "Code4Boy"\nprint("Welcome to \\(name)!")',
+        concepts: ['Optionals', 'Protocols', 'Closures', 'Structs vs Classes', 'Enums with Associated Values', 'Error Handling', 'Generics', 'SwiftUI', 'Property Wrappers', 'Concurrency (async/await)'],
+        tips: 'Use let for constants and var for variables. Optionals (?) handle nil values safely. SwiftUI is the modern way to build Apple UIs.'
+      },
+      csharp: {
+        name: 'C#',
+        full: 'C# (C-Sharp)',
+        desc: 'C# is a versatile, object-oriented language by Microsoft. It is used for Windows apps, game development (Unity), web development (.NET), and enterprise software.',
+        use: 'Game development (Unity), Windows apps, web development (ASP.NET), enterprise software, cloud services.',
+        hello: 'using System;\n\nclass Program {\n    static void Main() {\n        Console.WriteLine("Hello, World!");\n        \n        string name = "Code4Boy";\n        Console.WriteLine($"Welcome to {name}!");\n    }\n}',
+        concepts: ['Classes & Inheritance', 'Interfaces', 'LINQ', 'Async/Await', 'Delegates & Events', 'Generics', 'Properties', 'Nullable Types', 'Exception Handling', 'Entity Framework'],
+        tips: 'C# uses $ for string interpolation: $"Hello {name}". LINQ is powerful for querying collections. Use async/await for asynchronous operations.'
+      },
+      dart: {
+        name: 'Dart',
+        full: 'Dart',
+        desc: 'Dart is a client-optimized language by Google, primarily used with Flutter for building beautiful, cross-platform mobile, web, and desktop apps from a single codebase.',
+        use: 'Flutter mobile apps, web apps, cross-platform development.',
+        hello: 'void main() {\n  print("Hello, World!");\n  \n  String name = "Code4Boy";\n  print("Welcome to $name!");\n}',
+        concepts: ['Null Safety', 'Futures & Async/Await', 'Streams', 'Classes & Mixins', 'Generics', 'Collections', 'Extension Methods', 'Isolates', 'Flutter Widgets', 'State Management'],
+        tips: 'Dart has sound null safety. Use ? for nullable types. Flutter uses Dart - learn Dart first, then Flutter for mobile app development.'
+      },
+      bash: {
+        name: 'Bash',
+        full: 'Bourne Again Shell',
+        desc: 'Bash is a command-line shell and scripting language used in Linux/macOS. It is essential for system administration, automation, and DevOps.',
+        use: 'System administration, automation scripts, CI/CD pipelines, DevOps, file processing.',
+        hello: '#!/bin/bash\n# Hello World in Bash\necho "Hello, World!"\n\nNAME="Code4Boy"\necho "Welcome to $NAME!"',
+        concepts: ['Variables', 'Conditionals (if/else)', 'Loops (for, while)', 'Functions', 'Pipes & Redirection', 'Regular Expressions', 'File Operations', 'Process Management', 'Arrays', 'Error Handling'],
+        tips: 'No spaces around = in variable assignment: NAME="value". Use $VAR or ${VAR} to access variables. Always quote variables: "$VAR".'
+      },
+      r: {
+        name: 'R',
+        full: 'R Programming Language',
+        desc: 'R is a language for statistical computing and data visualization. It is widely used by data scientists and statisticians.',
+        use: 'Data analysis, statistical modeling, data visualization, machine learning, bioinformatics.',
+        hello: '# Hello World in R\nprint("Hello, World!")\n\nname <- "Code4Boy"\ncat("Welcome to", name, "!\\n")',
+        concepts: ['Vectors & Matrices', 'Data Frames', 'ggplot2 Visualization', 'dplyr Data Manipulation', 'Statistical Functions', 'R Markdown', 'Packages', 'Apply Functions', 'Factors', 'Tidyverse'],
+        tips: 'Use <- for assignment (standard in R). Vectors are the basic data structure. Install packages with install.packages("name").'
+      },
+      lua: {
+        name: 'Lua',
+        full: 'Lua',
+        desc: 'Lua is a lightweight, embeddable scripting language. It is popular in game development (Roblox, World of Warcraft) and embedded systems.',
+        use: 'Game scripting (Roblox, Love2D), embedded systems, configuration, Nginx scripting.',
+        hello: '-- Hello World in Lua\nprint("Hello, World!")\n\nlocal name = "Code4Boy"\nprint("Welcome to " .. name .. "!")',
+        concepts: ['Tables (Arrays & Dicts)', 'Functions', 'Metatables', 'Coroutines', 'Modules', 'String Manipulation', 'File I/O', 'Error Handling', 'Iterators', 'Garbage Collection'],
+        tips: 'Lua uses .. for string concatenation. Tables are the only data structure (work as arrays and dictionaries). Arrays start at index 1, not 0!'
+      },
+      perl: {
+        name: 'Perl',
+        full: 'Perl',
+        desc: 'Perl is a powerful text-processing language known for its regular expression support. It is used in system administration, web development, and bioinformatics.',
+        use: 'Text processing, system administration, CGI scripting, bioinformatics, network programming.',
+        hello: '#!/usr/bin/perl\nuse strict;\nuse warnings;\n\nprint "Hello, World!\\n";\n\nmy $name = "Code4Boy";\nprint "Welcome to $name!\\n";',
+        concepts: ['Regular Expressions', 'Scalars, Arrays, Hashes', 'References', 'Modules (CPAN)', 'File Handling', 'Subroutines', 'Context (Scalar/List)', 'OOP', 'Pattern Matching', 'One-liners'],
+        tips: 'Use strict and warnings at the top of every script. $scalar, @array, %hash are the three variable types. Perl excels at regex.'
+      },
+      haskell: {
+        name: 'Haskell',
+        full: 'Haskell',
+        desc: 'Haskell is a purely functional programming language with strong static typing. It emphasizes immutability and mathematical function composition.',
+        use: 'Academic research, financial systems, compiler development, formal verification, functional programming education.',
+        hello: '-- Hello World in Haskell\nmain :: IO ()\nmain = do\n  putStrLn "Hello, World!"\n  let name = "Code4Boy"\n  putStrLn ("Welcome to " ++ name ++ "!")',
+        concepts: ['Pure Functions', 'Pattern Matching', 'Type Classes', 'Monads', 'Algebraic Data Types', 'Higher-Order Functions', 'Lazy Evaluation', 'Type Inference', 'Guards', 'List Comprehensions'],
+        tips: 'Everything in Haskell is immutable. Functions are first-class citizens. Learn map, filter, fold first - they replace most loops.'
+      },
+      matlab: {
+        name: 'MATLAB',
+        full: 'MATLAB / Octave',
+        desc: 'MATLAB is a numerical computing environment used for engineering, science, and mathematics. GNU Octave is a free, compatible alternative.',
+        use: 'Engineering simulation, signal processing, control systems, numerical analysis, data visualization.',
+        hello: '% Hello World in MATLAB/Octave\ndisp("Hello, World!")\n\nname = "Code4Boy";\nfprintf("Welcome to %s!\\n", name)',
+        concepts: ['Matrices & Vectors', 'Plotting', 'Functions', 'Toolboxes', 'Simulink', 'Signal Processing', 'Control Systems', 'Image Processing', 'Optimization', 'Statistics'],
+        tips: 'MATLAB is matrix-based - operations work on entire matrices at once. Use .* for element-wise multiplication and * for matrix multiplication.'
+      },
+      nodejs: {
+        name: 'Node.js',
+        full: 'Node.js',
+        desc: 'Node.js is a JavaScript runtime that lets you run JavaScript on the server. It uses an event-driven, non-blocking I/O model that makes it efficient for web servers.',
+        use: 'Web servers, REST APIs, real-time apps (chat, streaming), microservices, CLI tools.',
+        hello: '// Hello World in Node.js\nconsole.log("Hello, World!");\n\nconst http = require("http");\n\nconst server = http.createServer((req, res) => {\n  res.writeHead(200, {"Content-Type": "text/plain"});\n  res.end("Hello from Code4Boy!");\n});\n\n// server.listen(3000);',
+        concepts: ['Event Loop', 'Modules (require/import)', 'Express.js', 'Streams', 'File System (fs)', 'npm Packages', 'REST APIs', 'Middleware', 'Async/Await', 'WebSockets'],
+        tips: 'Use Express.js for web servers. npm is the package manager. Use async/await for clean asynchronous code. Never block the event loop!'
+      }
+    },
+
+    // --- PROGRAMMING CONCEPTS ---
+    concepts: {
+      variable: {
+        title: 'Variables',
+        explain: 'A **variable** is a named container that stores a value in memory. Think of it like a labeled box where you put data.\n\nDifferent languages declare variables differently:',
+        examples: {
+          'JavaScript': 'let name = "Code4Boy";\nconst age = 1;\nvar old = "avoid this";',
+          'Python': 'name = "Code4Boy"\nage = 1',
+          'Java': 'String name = "Code4Boy";\nint age = 1;',
+          'C++': 'string name = "Code4Boy";\nint age = 1;'
+        }
+      },
+      loop: {
+        title: 'Loops',
+        explain: '**Loops** let you repeat a block of code multiple times. The main types are:\n\n- **for loop**: When you know how many times to repeat\n- **while loop**: When you repeat until a condition is false\n- **for-each/for-in**: When you iterate over a collection',
+        examples: {
+          'JavaScript': '// For loop\nfor (let i = 0; i < 5; i++) {\n  console.log(i);\n}\n\n// While loop\nlet count = 0;\nwhile (count < 5) {\n  console.log(count);\n  count++;\n}\n\n// For-of\nfor (const item of ["a","b","c"]) {\n  console.log(item);\n}',
+          'Python': '# For loop\nfor i in range(5):\n    print(i)\n\n# While loop\ncount = 0\nwhile count < 5:\n    print(count)\n    count += 1\n\n# For-each\nfor item in ["a","b","c"]:\n    print(item)'
+        }
+      },
+      function: {
+        title: 'Functions',
+        explain: '**Functions** are reusable blocks of code that perform a specific task. They can take inputs (parameters) and return outputs.\n\nBenefits:\n- Code reusability\n- Organization\n- Easier debugging\n- Abstraction',
+        examples: {
+          'JavaScript': '// Function declaration\nfunction add(a, b) {\n  return a + b;\n}\n\n// Arrow function\nconst multiply = (a, b) => a * b;\n\nconsole.log(add(3, 5));       // 8\nconsole.log(multiply(4, 3));  // 12',
+          'Python': 'def add(a, b):\n    return a + b\n\n# Lambda function\nmultiply = lambda a, b: a * b\n\nprint(add(3, 5))       # 8\nprint(multiply(4, 3))  # 12'
+        }
+      },
+      oop: {
+        title: 'Object-Oriented Programming (OOP)',
+        explain: '**OOP** is a programming paradigm based on the concept of "objects" which contain data (properties) and code (methods).\n\n**4 Pillars of OOP:**\n1. **Encapsulation**: Bundling data and methods together\n2. **Inheritance**: Creating new classes from existing ones\n3. **Polymorphism**: Same interface, different implementations\n4. **Abstraction**: Hiding complex details, showing only necessary features',
+        examples: {
+          'JavaScript': 'class Animal {\n  constructor(name) {\n    this.name = name;\n  }\n  speak() {\n    return `${this.name} makes a sound`;\n  }\n}\n\nclass Dog extends Animal {\n  speak() {\n    return `${this.name} barks!`;\n  }\n}\n\nconst dog = new Dog("Buddy");\nconsole.log(dog.speak());',
+          'Python': 'class Animal:\n    def __init__(self, name):\n        self.name = name\n    \n    def speak(self):\n        return f"{self.name} makes a sound"\n\nclass Dog(Animal):\n    def speak(self):\n        return f"{self.name} barks!"\n\ndog = Dog("Buddy")\nprint(dog.speak())'
+        }
+      },
+      array: {
+        title: 'Arrays / Lists',
+        explain: '**Arrays** (called Lists in Python) are ordered collections of items. They let you store multiple values in a single variable.\n\nCommon operations:\n- Add/remove items\n- Access by index (starts at 0)\n- Sort, filter, map\n- Find length/size',
+        examples: {
+          'JavaScript': 'let fruits = ["apple", "banana", "cherry"];\n\nfruits.push("date");        // Add to end\nfruits.pop();               // Remove from end\nconsole.log(fruits[0]);     // "apple"\nconsole.log(fruits.length); // 3\n\n// Map & Filter\nlet upper = fruits.map(f => f.toUpperCase());\nlet long = fruits.filter(f => f.length > 5);',
+          'Python': 'fruits = ["apple", "banana", "cherry"]\n\nfruits.append("date")       # Add to end\nfruits.pop()                # Remove from end\nprint(fruits[0])            # "apple"\nprint(len(fruits))          # 3\n\n# List comprehension\nupper = [f.upper() for f in fruits]\nlong = [f for f in fruits if len(f) > 5]'
+        }
+      },
+      api: {
+        title: 'APIs (Application Programming Interface)',
+        explain: '**API** stands for Application Programming Interface. It is a set of rules that allows different software applications to communicate with each other.\n\nThink of it like a waiter in a restaurant:\n- You (client) give your order (request)\n- The waiter (API) takes it to the kitchen (server)\n- The waiter brings back your food (response)\n\n**Types:**\n- **REST API**: Uses HTTP methods (GET, POST, PUT, DELETE)\n- **GraphQL**: Query exactly the data you need\n- **WebSocket**: Real-time, two-way communication',
+        examples: {
+          'JavaScript': '// Fetch API (GET request)\nfetch("https://api.example.com/users")\n  .then(res => res.json())\n  .then(data => console.log(data))\n  .catch(err => console.error(err));\n\n// Async/Await\nasync function getUsers() {\n  const res = await fetch("/api/users");\n  const data = await res.json();\n  return data;\n}',
+          'Python': 'import requests\n\n# GET request\nresponse = requests.get("https://api.example.com/users")\ndata = response.json()\nprint(data)\n\n# POST request\nresponse = requests.post("/api/users", json={\n    "name": "Code4Boy",\n    "email": "hello@code4boy.com"\n})'
+        }
+      },
+      git: {
+        title: 'Git & GitHub',
+        explain: '**Git** is a version control system that tracks changes to your code. **GitHub** is a platform that hosts Git repositories online.\n\n**Key concepts:**\n- **Repository (repo)**: A folder tracked by Git\n- **Commit**: A snapshot of your changes\n- **Branch**: A parallel version of your code\n- **Merge**: Combining branches\n- **Pull Request (PR)**: Requesting to merge changes',
+        examples: {
+          'Bash': '# Initialize a new repo\ngit init\n\n# Stage and commit\ngit add .\ngit commit -m "Initial commit"\n\n# Create a branch\ngit checkout -b feature/new-feature\n\n# Push to GitHub\ngit remote add origin https://github.com/user/repo.git\ngit push -u origin main\n\n# Pull latest changes\ngit pull origin main'
+        }
+      },
+      debugging: {
+        title: 'Debugging',
+        explain: '**Debugging** is the process of finding and fixing errors (bugs) in your code.\n\n**Steps to debug:**\n1. **Read the error message** carefully\n2. **Identify the line** where the error occurs\n3. **Use console.log/print** to check variable values\n4. **Use a debugger** (browser DevTools, VS Code debugger)\n5. **Check your logic** step by step\n6. **Search online** (Stack Overflow, Google)\n\n**Common error types:**\n- **Syntax Error**: Typo or missing bracket/semicolon\n- **Runtime Error**: Code crashes while running\n- **Logic Error**: Code runs but gives wrong result',
+        examples: {
+          'JavaScript': '// Debugging with console.log\nfunction calculateTotal(items) {\n  console.log("Items:", items);  // Check input\n  \n  let total = 0;\n  for (let item of items) {\n    console.log("Processing:", item);  // Check each step\n    total += item.price;\n  }\n  \n  console.log("Total:", total);  // Check output\n  return total;\n}\n\n// Use try-catch for error handling\ntry {\n  let result = riskyOperation();\n} catch (error) {\n  console.error("Error:", error.message);\n}'
+        }
+      },
+      flexbox: {
+        title: 'CSS Flexbox',
+        explain: '**Flexbox** is a CSS layout model that makes it easy to arrange items in a row or column, with powerful alignment and distribution options.\n\n**Key properties:**\n- **display: flex** - Activates flexbox on a container\n- **flex-direction**: row | column | row-reverse | column-reverse\n- **justify-content**: Alignment along main axis\n- **align-items**: Alignment along cross axis\n- **gap**: Space between items\n- **flex-wrap**: Allow items to wrap to next line',
+        examples: {
+          'CSS': '/* Center items horizontally and vertically */\n.container {\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  height: 100vh;\n}\n\n/* Navigation bar */\n.navbar {\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n  padding: 10px 20px;\n}\n\n/* Card grid with wrapping */\n.card-grid {\n  display: flex;\n  flex-wrap: wrap;\n  gap: 20px;\n}\n\n.card {\n  flex: 1 1 300px; /* grow, shrink, basis */\n}'
+        }
+      },
+      grid: {
+        title: 'CSS Grid',
+        explain: '**CSS Grid** is a two-dimensional layout system for creating complex web layouts with rows and columns.\n\n**Key properties:**\n- **display: grid** - Activates grid on a container\n- **grid-template-columns**: Define column sizes\n- **grid-template-rows**: Define row sizes\n- **gap**: Space between grid items\n- **grid-column/grid-row**: Span items across cells',
+        examples: {
+          'CSS': '/* Basic 3-column grid */\n.grid {\n  display: grid;\n  grid-template-columns: repeat(3, 1fr);\n  gap: 20px;\n}\n\n/* Responsive grid */\n.responsive-grid {\n  display: grid;\n  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));\n  gap: 20px;\n}\n\n/* Page layout */\n.page {\n  display: grid;\n  grid-template-areas:\n    "header header"\n    "sidebar main"\n    "footer footer";\n  grid-template-columns: 250px 1fr;\n}'
+        }
+      },
+      asyncawait: {
+        title: 'Async/Await & Promises',
+        explain: '**Asynchronous programming** lets your code do other things while waiting for slow operations (like network requests, file reading).\n\n- **Promise**: An object representing a future value\n- **async**: Makes a function return a Promise\n- **await**: Pauses execution until a Promise resolves\n\nWithout async, your program would freeze while waiting!',
+        examples: {
+          'JavaScript': '// Promise\nfunction fetchData() {\n  return new Promise((resolve, reject) => {\n    setTimeout(() => {\n      resolve("Data loaded!");\n    }, 2000);\n  });\n}\n\n// Async/Await\nasync function loadData() {\n  try {\n    console.log("Loading...");\n    const data = await fetchData();\n    console.log(data);  // "Data loaded!"\n  } catch (error) {\n    console.error("Failed:", error);\n  }\n}\n\nloadData();',
+          'Python': 'import asyncio\n\nasync def fetch_data():\n    await asyncio.sleep(2)\n    return "Data loaded!"\n\nasync def main():\n    print("Loading...")\n    data = await fetch_data()\n    print(data)\n\nasyncio.run(main())'
+        }
+      }
+    },
+
+    // --- COMPARISONS ---
+    comparisons: {
+      'python_javascript': 'Python and JavaScript are both beginner-friendly but differ in key ways:\n\n| Feature | Python | JavaScript |\n|---------|--------|------------|\n| Syntax | Indentation-based, clean | Curly braces, semicolons |\n| Typing | Dynamic | Dynamic |\n| Use Case | AI/ML, Data Science, Backend | Web Frontend, Full-stack |\n| Speed | Slower | Faster (V8 engine) |\n| Learning | Easiest to start | Easy, but more quirks |\n| Package Manager | pip | npm |\n\n**Choose Python** if you want to learn AI/ML or data science.\n**Choose JavaScript** if you want to build websites and web apps.',
+      'java_kotlin': 'Kotlin is a modern alternative to Java:\n\n| Feature | Java | Kotlin |\n|---------|------|--------|\n| Null Safety | No (NullPointerException) | Built-in null safety |\n| Verbosity | More verbose | Concise syntax |\n| Android | Supported | Preferred by Google |\n| Data Classes | Lots of boilerplate | One-line data classes |\n| Coroutines | Threads | Built-in coroutines |\n\n**Kotlin is recommended** for new Android projects. Java knowledge helps understand Kotlin.',
+      'rust_cpp': 'Rust vs C++:\n\n| Feature | Rust | C++ |\n|---------|------|-----|\n| Memory Safety | Guaranteed at compile time | Manual management |\n| Speed | Comparable | Slightly faster in some cases |\n| Learning Curve | Steeper initially | Complex but familiar |\n| Package Manager | Cargo (excellent) | Various (CMake, etc.) |\n| Concurrency | Safe by design | Error-prone |\n\n**Choose Rust** for new systems projects. **Choose C++** if working with existing C++ codebases.',
+      'react_angular_vue': 'Popular JavaScript frameworks:\n\n| Feature | React | Angular | Vue |\n|---------|-------|---------|-----|\n| Type | Library | Framework | Framework |\n| Language | JSX | TypeScript | JavaScript/TS |\n| Learning | Moderate | Steep | Easiest |\n| Size | Small | Large | Small |\n| Company | Meta | Google | Community |\n\n**React**: Most popular, huge ecosystem.\n**Angular**: Enterprise-grade, all-in-one.\n**Vue**: Easiest to learn, growing fast.'
+    },
+
+    // --- ERROR HELP ---
+    errors: {
+      'syntaxerror': 'A **SyntaxError** means your code has a typo or incorrect structure.\n\n**Common causes:**\n- Missing closing bracket ) ] }\n- Missing quotes around strings\n- Misspelled keyword\n- Extra or missing comma\n- Incorrect indentation (Python)\n\n**Fix:** Check the line number in the error message. Look for typos or missing punctuation.',
+      'referenceerror': 'A **ReferenceError** means you are using a variable that does not exist.\n\n**Common causes:**\n- Variable not declared (typo in name)\n- Variable used before declaration\n- Variable out of scope\n- Using a function that does not exist\n\n**Fix:** Check spelling of variable/function names. Make sure they are declared before use.',
+      'typeerror': 'A **TypeError** means you are using a value in the wrong way.\n\n**Common causes:**\n- Calling something that is not a function\n- Accessing property of undefined/null\n- Wrong argument types\n- Using a method on the wrong data type\n\n**Fix:** Check the type of your variables with typeof (JS) or type() (Python). Make sure you are using the right method for the data type.',
+      'nullpointerexception': 'A **NullPointerException** (Java) or accessing null/undefined means you are trying to use an object that does not exist.\n\n**Common causes:**\n- Object not initialized\n- Function returned null unexpectedly\n- Array index out of bounds\n\n**Fix:** Always check for null before using an object. Use optional chaining (?.) in JavaScript.',
+      'indentationerror': 'An **IndentationError** (Python) means your code has inconsistent spacing.\n\n**Fix:**\n- Use 4 spaces per indent level (not tabs)\n- Make sure all lines in a block have the same indentation\n- Do not mix tabs and spaces\n\n**Example:**\n```python\nif True:\n    print("correct")    # 4 spaces\n    print("also correct") # 4 spaces\n```',
+      'modulenotfounderror': 'A **ModuleNotFoundError** means Python cannot find a package you are trying to import.\n\n**Fix:**\n1. Install the package: `pip install package_name`\n2. Check spelling of the import\n3. Make sure you are using the right Python environment\n4. For virtual environments: `source venv/bin/activate`',
+      'cors': 'A **CORS error** means your browser is blocking a request to a different domain.\n\n**CORS** (Cross-Origin Resource Sharing) is a security feature.\n\n**Fix (for your own API):**\n- Add CORS headers on the server\n- In Express.js: `app.use(cors())`\n- In Django: use django-cors-headers\n- In Flask: use flask-cors'
+    },
+
+    // --- CAREER & ROADMAP ---
+    roadmaps: {
+      'web': '**Web Development Roadmap:**\n\n1. **HTML & CSS** (2-4 weeks)\n   - HTML tags, forms, semantic HTML\n   - CSS selectors, Flexbox, Grid, responsive design\n\n2. **JavaScript** (4-8 weeks)\n   - Variables, functions, DOM manipulation\n   - ES6+, async/await, fetch API\n\n3. **Frontend Framework** (4-6 weeks)\n   - React, Vue, or Angular\n   - Component-based architecture\n\n4. **Backend** (4-8 weeks)\n   - Node.js + Express OR Python + Django/Flask\n   - REST APIs, databases (MongoDB/PostgreSQL)\n\n5. **DevOps & Deployment** (2-4 weeks)\n   - Git & GitHub\n   - Hosting (Vercel, Netlify, AWS)\n   - CI/CD basics',
+      'android': '**Android Development Roadmap:**\n\n1. **Kotlin Basics** (3-4 weeks)\n   - Syntax, OOP, null safety, coroutines\n\n2. **Android Fundamentals** (4-6 weeks)\n   - Activities, Fragments, Layouts\n   - RecyclerView, Navigation\n\n3. **Jetpack Compose** (4-6 weeks)\n   - Modern UI toolkit\n   - State management, theming\n\n4. **Data & Networking** (3-4 weeks)\n   - Room database, Retrofit\n   - MVVM architecture\n\n5. **Publish** (1-2 weeks)\n   - Google Play Store submission\n   - App optimization',
+      'datascience': '**Data Science Roadmap:**\n\n1. **Python Basics** (3-4 weeks)\n   - Variables, functions, loops, OOP\n\n2. **Data Analysis** (4-6 weeks)\n   - NumPy, Pandas, data cleaning\n   - Matplotlib, Seaborn visualization\n\n3. **Statistics & Math** (4-6 weeks)\n   - Probability, distributions\n   - Linear algebra basics\n\n4. **Machine Learning** (6-8 weeks)\n   - Scikit-learn, supervised/unsupervised learning\n   - Model evaluation, feature engineering\n\n5. **Deep Learning** (4-6 weeks)\n   - TensorFlow or PyTorch\n   - Neural networks, CNNs, RNNs',
+      'gamedev': '**Game Development Roadmap:**\n\n1. **Choose an Engine:**\n   - **Unity** (C#) - Most popular, great for 2D/3D\n   - **Unreal Engine** (C++) - AAA quality, Blueprints\n   - **Godot** (GDScript) - Free, open-source, lightweight\n\n2. **Learn the Language** (3-4 weeks)\n   - C# for Unity, C++ for Unreal\n\n3. **Game Engine Basics** (4-6 weeks)\n   - Scene management, physics\n   - Input handling, UI\n\n4. **Game Design** (ongoing)\n   - Game mechanics, level design\n   - Player experience, balancing\n\n5. **Build & Publish** (2-4 weeks)\n   - Steam, itch.io, mobile stores'
+    }
+  };
+
+  // ============================================
+  // MESSAGE PROCESSING ENGINE
+  // ============================================
+
+  function processMessage(input) {
+    var q = input.toLowerCase().trim();
+    var response = '';
+
+    // --- GREETINGS ---
+    if (/^(hi|hello|hey|hola|namaste|assalam|salam|hii+|yo|sup|whats up)[\s!.?]*$/i.test(q)) {
+      return pickRandom([
+        "Hello! I'm your Code4Boy AI Teacher. How can I help you learn coding today? You can ask me about any programming language, concept, or error!",
+        "Hey there! Welcome to Code4Boy AI Teacher. Ask me anything about programming - from HTML to Python to C++ and beyond!",
+        "Hi! I'm here to help you learn coding. What would you like to learn about today? Try asking about a language, concept, or error you're facing!"
+      ]) + getSuggestions(['What languages can you teach?', 'Python for beginners', 'What is HTML?', 'Web development roadmap']);
+    }
+
+    // --- ABOUT / WHO ARE YOU ---
+    if (/who are you|what are you|about you|your name|tumhara naam|kon ho|kaun ho/i.test(q)) {
+      return "I'm **Code4Boy AI Teacher** - your free, offline coding assistant! I can help you with:\n\n" +
+        "- **Learn 22+ programming languages** (HTML, CSS, JS, Python, Java, C++, and more)\n" +
+        "- **Understand concepts** (loops, functions, OOP, APIs, Git)\n" +
+        "- **Debug errors** (SyntaxError, TypeError, CORS, etc.)\n" +
+        "- **Career roadmaps** (Web Dev, Android, Data Science, Game Dev)\n" +
+        "- **Code examples** in any language\n" +
+        "- **Compare languages** and frameworks\n\n" +
+        "I work completely **offline and free** - no API key needed! Just ask me anything." +
+        getSuggestions(['Teach me Python', 'Web Dev roadmap', 'What is OOP?', 'Compare Python vs JS']);
+    }
+
+    // --- WHAT CAN YOU DO / HELP ---
+    if (/what can you|help me|kya kar sakte|madad|how to use|features/i.test(q)) {
+      return "Here's what I can help you with:\n\n" +
+        "**1. Learn Languages** - Ask: *\"Teach me Python\"* or *\"What is JavaScript?\"*\n" +
+        "**2. Code Examples** - Ask: *\"Hello World in Java\"* or *\"Show me a loop in C++\"*\n" +
+        "**3. Concepts** - Ask: *\"What is OOP?\"* or *\"Explain async/await\"*\n" +
+        "**4. Debug Errors** - Ask: *\"What is SyntaxError?\"* or *\"How to fix TypeError\"*\n" +
+        "**5. Compare** - Ask: *\"Python vs JavaScript\"* or *\"React vs Vue\"*\n" +
+        "**6. Career Roadmaps** - Ask: *\"Web dev roadmap\"* or *\"How to become Android developer?\"*\n" +
+        "**7. Tips & Best Practices** - Ask: *\"Tips for CSS\"* or *\"Best practices for Python\"*\n\n" +
+        "Just type your question naturally - I'll understand!" +
+        getSuggestions(['Teach me HTML', 'What are loops?', 'Fix SyntaxError', 'Game dev roadmap']);
+    }
+
+    // --- LANGUAGE QUERIES ---
+    var langMatch = detectLanguage(q);
+    if (langMatch) {
+      var lang = KB.languages[langMatch];
+
+      // "What is X" / "Explain X" / "Teach me X"
+      if (/what is|explain|tell me about|teach me|sikhao|batao|kya hai|kya hota|learn|start|basics|introduction|intro/i.test(q)) {
+        return "## " + lang.name + " (" + lang.full + ")\n\n" +
+          lang.desc + "\n\n" +
+          "**Used for:** " + lang.use + "\n\n" +
+          "**Key concepts to learn:**\n" + lang.concepts.map(function(c) { return "- " + c; }).join('\n') + "\n\n" +
+          "**Hello World:**\n<pre><code>" + escapeHtml(lang.hello) + "</code></pre>\n\n" +
+          (lang.tips ? "**Pro tip:** " + lang.tips + "\n\n" : "") +
+          (lang.resources ? lang.resources : "") +
+          getSuggestions([lang.name + ' code example', lang.name + ' tips', 'Compare ' + lang.name, lang.name + ' loop example']);
+      }
+
+      // "Hello world in X" / "Code example"
+      if (/hello world|example|code|show me|dikhao|sample|demo/i.test(q)) {
+        return "Here's a **Hello World** example in " + lang.name + ":\n\n<pre><code>" + escapeHtml(lang.hello) + "</code></pre>\n\n" +
+          "You can try this code in our **Playground**! Go to <a href='playground.html' style='color:var(--neon-cyan)'>Code Playground</a> and select " + lang.name + "." +
+          getSuggestions(['More ' + lang.name + ' examples', lang.name + ' concepts', lang.name + ' tips']);
+      }
+
+      // "Tips for X"
+      if (/tips?|best practice|advice|tricks|suggestion/i.test(q)) {
+        return "## " + lang.name + " Tips & Best Practices\n\n" +
+          (lang.tips ? lang.tips + "\n\n" : "") +
+          "**Key concepts to master:**\n" + lang.concepts.slice(0, 5).map(function(c) { return "- " + c; }).join('\n') + "\n\n" +
+          "**Practice:** Use our <a href='playground.html' style='color:var(--neon-cyan)'>Code Playground</a> to write and run " + lang.name + " code!" +
+          getSuggestions([lang.name + ' hello world', lang.name + ' loop', 'Compare ' + lang.name]);
+      }
+
+      // "Loop in X" / "Function in X"
+      if (/loop|for loop|while loop|iterate|repeat/i.test(q)) {
+        return getConceptForLang('loop', lang.name);
+      }
+      if (/function|method|def |subroutine/i.test(q)) {
+        return getConceptForLang('function', lang.name);
+      }
+
+      // General language query
+      return "## " + lang.name + "\n\n" + lang.desc + "\n\n" +
+        "**Hello World:**\n<pre><code>" + escapeHtml(lang.hello) + "</code></pre>\n\n" +
+        "What would you like to know more about " + lang.name + "?" +
+        getSuggestions([lang.name + ' concepts', lang.name + ' tips', lang.name + ' example', 'Compare ' + lang.name]);
+    }
+
+    // --- CONCEPT QUERIES ---
+    if (/\bvariable|var |let |const |declare/i.test(q) && !/css var/i.test(q)) {
+      return formatConcept(KB.concepts.variable);
+    }
+    if (/\bloop|for loop|while loop|iterate|dowhile|do while|repeat|foreach|for each/i.test(q)) {
+      return formatConcept(KB.concepts.loop);
+    }
+    if (/\bfunction|method|def |subroutine|arrow function|callback|lambda/i.test(q)) {
+      return formatConcept(KB.concepts.function);
+    }
+    if (/\boop|object.oriented|encapsulation|inheritance|polymorphism|abstraction|class and object/i.test(q)) {
+      return formatConcept(KB.concepts.oop);
+    }
+    if (/\barray|list |lists |collection|vector/i.test(q) && !/wish list|todo list/i.test(q)) {
+      return formatConcept(KB.concepts.array);
+    }
+    if (/\bapi\b|rest api|graphql|endpoint|fetch data|http request/i.test(q)) {
+      return formatConcept(KB.concepts.api);
+    }
+    if (/\bgit\b|github|version control|commit|branch|merge|pull request|clone|push/i.test(q)) {
+      return formatConcept(KB.concepts.git);
+    }
+    if (/\bdebug|debugging|find bug|fix bug|troubleshoot|error fix/i.test(q)) {
+      return formatConcept(KB.concepts.debugging);
+    }
+    if (/\bflexbox|flex box|display flex|justify.content|align.items/i.test(q)) {
+      return formatConcept(KB.concepts.flexbox);
+    }
+    if (/\bcss grid|grid.template|display grid|grid layout/i.test(q)) {
+      return formatConcept(KB.concepts.grid);
+    }
+    if (/\basync|await|promise|asynchronous|callback hell|then\(\)/i.test(q)) {
+      return formatConcept(KB.concepts.asyncawait);
+    }
+
+    // --- COMPARISONS ---
+    if (/python\s*(vs|versus|or|compare|aur|ya)\s*(javascript|js)|javascript\s*(vs|versus|or|compare|aur|ya)\s*python/i.test(q)) {
+      return KB.comparisons.python_javascript + getSuggestions(['Learn Python', 'Learn JavaScript', 'Web dev roadmap']);
+    }
+    if (/java\s*(vs|versus|or|compare|aur|ya)\s*kotlin|kotlin\s*(vs|versus|or|compare|aur|ya)\s*java/i.test(q)) {
+      return KB.comparisons.java_kotlin + getSuggestions(['Learn Kotlin', 'Learn Java', 'Android roadmap']);
+    }
+    if (/rust\s*(vs|versus|or|compare|aur|ya)\s*(c\+\+|cpp)|c\+\+\s*(vs|versus|or|compare|aur|ya)\s*rust/i.test(q)) {
+      return KB.comparisons.rust_cpp + getSuggestions(['Learn Rust', 'Learn C++', 'Systems programming']);
+    }
+    if (/react\s*(vs|versus|or|compare|aur|ya)\s*(angular|vue)|angular\s*(vs|versus|or|compare|aur|ya)\s*(react|vue)|vue\s*(vs|versus|or|compare|aur|ya)\s*(react|angular)/i.test(q)) {
+      return KB.comparisons.react_angular_vue + getSuggestions(['Learn JavaScript', 'Web dev roadmap']);
+    }
+
+    // --- ERROR HELP ---
+    if (/syntaxerror|syntax error|unexpected token|missing bracket|parse error/i.test(q)) {
+      return KB.errors.syntaxerror + getSuggestions(['What is TypeError?', 'How to debug code?', 'Common JS errors']);
+    }
+    if (/referenceerror|reference error|is not defined|not declared/i.test(q)) {
+      return KB.errors.referenceerror + getSuggestions(['What is TypeError?', 'How to debug?']);
+    }
+    if (/typeerror|type error|is not a function|cannot read prop|undefined is not/i.test(q)) {
+      return KB.errors.typeerror + getSuggestions(['What is ReferenceError?', 'How to debug?']);
+    }
+    if (/nullpointer|null pointer|nullreferenceexception|cannot read.*null|undefined/i.test(q) && /error|exception|fix|solve/i.test(q)) {
+      return KB.errors.nullpointerexception + getSuggestions(['Debug tips', 'Common errors']);
+    }
+    if (/indentation\s*error|indentationerror|unexpected indent|tab.*space/i.test(q)) {
+      return KB.errors.indentationerror + getSuggestions(['Python tips', 'Debug tips']);
+    }
+    if (/modulenotfound|module not found|no module named|import error|importerror/i.test(q)) {
+      return KB.errors.modulenotfounderror + getSuggestions(['Python tips', 'pip install']);
+    }
+    if (/cors|cross.origin|access.control.allow|blocked by cors/i.test(q)) {
+      return KB.errors.cors + getSuggestions(['What is API?', 'JavaScript fetch']);
+    }
+
+    // --- ROADMAPS ---
+    if (/web\s*(dev|development)\s*(roadmap|path|career|learn|kaise|how)/i.test(q) || /how.*become.*web\s*dev|frontend.*roadmap|backend.*roadmap|full.?stack.*roadmap/i.test(q)) {
+      return KB.roadmaps.web + getSuggestions(['Learn HTML', 'Learn JavaScript', 'What is React?']);
+    }
+    if (/android\s*(dev|development)\s*(roadmap|path|career|learn|kaise|how)|how.*become.*android|mobile.*dev.*roadmap/i.test(q)) {
+      return KB.roadmaps.android + getSuggestions(['Learn Kotlin', 'Learn Java', 'What is Dart?']);
+    }
+    if (/data\s*scien|machine\s*learn|ml\s*roadmap|ai\s*roadmap|artificial\s*intelligence.*learn/i.test(q)) {
+      return KB.roadmaps.datascience + getSuggestions(['Learn Python', 'What is API?', 'Python tips']);
+    }
+    if (/game\s*dev|game\s*development|unity|unreal|godot|game.*roadmap/i.test(q)) {
+      return KB.roadmaps.gamedev + getSuggestions(['Learn C#', 'Learn C++', 'What is OOP?']);
+    }
+
+    // --- WHAT LANGUAGE TO LEARN ---
+    if (/which.*language|what.*language.*learn|best.*language|first.*language|kaunsi.*language|konsi.*language|start.*coding|start.*programming/i.test(q)) {
+      return "Great question! The best first language depends on your goal:\n\n" +
+        "**Want to build websites?** Start with **HTML + CSS + JavaScript**\n" +
+        "**Want to learn AI/ML?** Start with **Python**\n" +
+        "**Want to make Android apps?** Start with **Kotlin** (or Java)\n" +
+        "**Want to make iOS apps?** Start with **Swift**\n" +
+        "**Want to make games?** Start with **C#** (Unity) or **C++** (Unreal)\n" +
+        "**Want a versatile language?** Start with **Python** or **JavaScript**\n\n" +
+        "For absolute beginners, I recommend **Python** (easiest syntax) or **JavaScript** (most versatile for web)." +
+        getSuggestions(['Learn Python', 'Learn JavaScript', 'Web dev roadmap', 'What is HTML?']);
+    }
+
+    // --- LIST ALL LANGUAGES ---
+    if (/all.*language|list.*language|supported.*language|how many.*language|kitni.*language|languages.*teach/i.test(q)) {
+      var langList = Object.keys(KB.languages).map(function(k) {
+        return "- **" + KB.languages[k].name + "** - " + KB.languages[k].use.split(',')[0];
+      }).join('\n');
+      return "I can teach you **" + Object.keys(KB.languages).length + " programming languages:**\n\n" + langList + "\n\n" +
+        "Ask me about any language to get started! You can also practice in our <a href='playground.html' style='color:var(--neon-cyan)'>Code Playground</a>." +
+        getSuggestions(['Learn Python', 'Learn JavaScript', 'Which language to learn first?']);
+    }
+
+    // --- THANK YOU ---
+    if (/thank|thanks|shukriya|dhanyawad|thnx|thx|gracias/i.test(q)) {
+      return pickRandom([
+        "You're welcome! Happy to help. Keep learning and coding! If you have more questions, just ask.",
+        "Glad I could help! Remember, the best way to learn coding is by practicing. Try our Playground!",
+        "Anytime! Keep up the great work with your coding journey. I'm here whenever you need help."
+      ]);
+    }
+
+    // --- PLAYGROUND ---
+    if (/playground|code editor|run code|execute code|practice code/i.test(q)) {
+      return "You can practice coding in our **Code Playground**! It supports 22+ languages with live code execution.\n\n" +
+        "Go to <a href='playground.html' style='color:var(--neon-cyan)'>Code Playground</a> to write, run, and download code in any language.\n\n" +
+        "Features:\n- Write code in HTML, CSS, JavaScript, Python, Java, C++, and 16 more languages\n- Run code directly in your browser\n- Live preview for web languages\n- Download your code files\n- Example code snippets for every language" +
+        getSuggestions(['What languages are supported?', 'Hello World in Python', 'Learn JavaScript']);
+    }
+
+    // --- HINDI/HINGLISH SUPPORT ---
+    if (/coding kya hai|programming kya hai|kaise sikhe|kaise seekhe|shuru.*kaise|kahan se shuru/i.test(q)) {
+      return "**Coding (Programming)** ka matlab hai computer ko instructions dena, taaki wo kaam kare jo aap chahte ho.\n\n" +
+        "**Shuru kaise karein:**\n1. **HTML + CSS** seekho - ye websites banane ke liye hai\n2. **JavaScript** seekho - ye websites ko interactive banata hai\n3. **Python** seekho - ye sabse aasan language hai\n\n" +
+        "Code4Boy par sab **free** hai! Tutorials section mein step-by-step guides hain.\n\n" +
+        "Practice ke liye <a href='playground.html' style='color:var(--neon-cyan)'>Playground</a> use karo!" +
+        getSuggestions(['What is HTML?', 'Learn Python', 'Web dev roadmap']);
+    }
+
+    // --- FRAMEWORKS ---
+    if (/\breact\b|reactjs|react\.js/i.test(q) && !/react.*vs/i.test(q)) {
+      return "**React** is a JavaScript library (by Meta/Facebook) for building user interfaces.\n\n" +
+        "**Key concepts:**\n- Components (functional)\n- JSX (HTML-like syntax in JS)\n- State & Props\n- Hooks (useState, useEffect)\n- Virtual DOM\n- React Router (navigation)\n\n" +
+        "**To learn React, first learn:** HTML, CSS, and JavaScript (especially ES6+).\n\n" +
+        "<pre><code>// Simple React Component\nfunction Welcome({ name }) {\n  return <h1>Hello, {name}!</h1>;\n}\n\nexport default Welcome;</code></pre>" +
+        getSuggestions(['Learn JavaScript', 'Compare React vs Vue', 'Web dev roadmap']);
+    }
+    if (/\bangular\b|angularjs/i.test(q) && !/angular.*vs/i.test(q)) {
+      return "**Angular** is a TypeScript-based web framework by Google.\n\n" +
+        "**Key concepts:**\n- Components & Templates\n- Services & Dependency Injection\n- RxJS Observables\n- Routing\n- Forms (Template-driven & Reactive)\n- Modules\n\n" +
+        "**To learn Angular, first learn:** HTML, CSS, JavaScript, and TypeScript." +
+        getSuggestions(['Learn TypeScript', 'Compare React vs Angular', 'Web dev roadmap']);
+    }
+    if (/\bvue\b|vuejs|vue\.js/i.test(q) && !/vue.*vs/i.test(q)) {
+      return "**Vue.js** is a progressive JavaScript framework for building UIs.\n\n" +
+        "**Key concepts:**\n- Single File Components (.vue)\n- Reactive Data Binding\n- Directives (v-if, v-for, v-model)\n- Composition API\n- Vue Router\n- Vuex/Pinia (state management)\n\n" +
+        "**Vue is the easiest** frontend framework to learn. Great for beginners!" +
+        getSuggestions(['Learn JavaScript', 'Compare React vs Vue', 'Web dev roadmap']);
+    }
+    if (/\bflutter\b/i.test(q)) {
+      return "**Flutter** is Google's UI toolkit for building cross-platform apps (mobile, web, desktop) from a single codebase using **Dart**.\n\n" +
+        "**Key concepts:**\n- Widgets (everything is a widget)\n- State Management\n- Hot Reload\n- Material Design & Cupertino widgets\n- Navigation\n- Async programming\n\n" +
+        "**To learn Flutter, first learn Dart.** Then explore Flutter's widget system." +
+        getSuggestions(['Learn Dart', 'Android roadmap', 'What is Kotlin?']);
+    }
+    if (/\bdjango\b|flask\b/i.test(q)) {
+      return "**Django** and **Flask** are Python web frameworks:\n\n" +
+        "**Django** - Full-featured, batteries-included framework\n- Admin panel, ORM, auth built-in\n- Great for large applications\n\n" +
+        "**Flask** - Lightweight, micro framework\n- Minimalist, flexible\n- Great for small apps and APIs\n\n" +
+        "**Choose Django** for large projects. **Choose Flask** for small APIs and learning." +
+        getSuggestions(['Learn Python', 'What is API?', 'Web dev roadmap']);
+    }
+
+    // --- DATABASE ---
+    if (/\bdatabase\b|sql\b|mysql|mongodb|postgres|sqlite|nosql/i.test(q)) {
+      return "**Databases** store and organize data for applications.\n\n" +
+        "**Types:**\n" +
+        "- **SQL (Relational):** MySQL, PostgreSQL, SQLite\n  - Tables with rows and columns\n  - Structured data, relationships\n  - Uses SQL query language\n\n" +
+        "- **NoSQL:** MongoDB, Redis, Firebase\n  - Flexible document/key-value storage\n  - Great for unstructured data\n  - Scales horizontally\n\n" +
+        "**For beginners:** Start with SQLite (simple, file-based) or MongoDB (easy JSON-like storage)." +
+        getSuggestions(['What is API?', 'Learn Python', 'Backend roadmap']);
+    }
+
+    // --- ENHANCED GENERAL KNOWLEDGE FALLBACK ---
+    // Try to give a helpful answer for ANY coding-related question
+
+    // Software engineering / design patterns
+    if (/design pattern|singleton|factory|observer|mvc|mvvm|solid|dry|kiss|yagni|clean code|architecture/i.test(q)) {
+      return "**Software Design Patterns & Principles**\n\n" +
+        "Great question! Here are key concepts every developer should know:\n\n" +
+        "**SOLID Principles:**\n- **S**ingle Responsibility - One class, one job\n- **O**pen/Closed - Open for extension, closed for modification\n- **L**iskov Substitution - Subtypes must be substitutable\n- **I**nterface Segregation - Many specific interfaces > one general\n- **D**ependency Inversion - Depend on abstractions, not concretions\n\n" +
+        "**Common Design Patterns:**\n- **Singleton** - Only one instance of a class\n- **Factory** - Create objects without specifying exact class\n- **Observer** - Notify multiple objects of state changes\n- **MVC** - Model-View-Controller architecture\n\n" +
+        "**Best Practices:** DRY (Don't Repeat Yourself), KISS (Keep It Simple), YAGNI (You Aren't Gonna Need It)" +
+        getSuggestions(['What is OOP?', 'Learn JavaScript', 'Web dev roadmap']);
+    }
+
+    // Testing / TDD
+    if (/\btest|testing|tdd|unit test|jest|pytest|mocha|selenium|cypress|qa\b/i.test(q)) {
+      return "**Software Testing**\n\n" +
+        "Testing ensures your code works correctly. Here are the main types:\n\n" +
+        "**Types of Testing:**\n- **Unit Testing** - Test individual functions/methods\n- **Integration Testing** - Test how components work together\n- **E2E Testing** - Test the entire application flow\n- **TDD** - Write tests BEFORE writing code\n\n" +
+        "**Popular Testing Frameworks:**\n- **JavaScript**: Jest, Mocha, Cypress, Playwright\n- **Python**: pytest, unittest\n- **Java**: JUnit, TestNG\n- **C#**: NUnit, xUnit\n\n" +
+        "**Example (Jest):**\n<pre><code>test('adds 1 + 2 to equal 3', () => {\n  expect(add(1, 2)).toBe(3);\n});</code></pre>" +
+        getSuggestions(['Learn JavaScript', 'What is API?', 'Debugging tips']);
+    }
+
+    // DevOps / Docker / CI/CD
+    if (/docker|container|kubernetes|k8s|devops|ci.?cd|deploy|hosting|server|cloud|aws|azure|gcp|heroku|vercel|netlify/i.test(q)) {
+      return "**DevOps & Deployment**\n\n" +
+        "DevOps bridges development and operations. Key concepts:\n\n" +
+        "**Containerization:**\n- **Docker** - Package apps with all dependencies into containers\n- **Kubernetes** - Orchestrate and manage multiple containers\n\n" +
+        "**CI/CD (Continuous Integration/Deployment):**\n- Automatically test and deploy code on every push\n- Tools: GitHub Actions, Jenkins, GitLab CI, CircleCI\n\n" +
+        "**Hosting Platforms:**\n- **Static Sites**: Vercel, Netlify, GitHub Pages (free!)\n- **Backend**: AWS, Google Cloud, Azure, Heroku, Railway\n- **Databases**: MongoDB Atlas, PlanetScale, Supabase\n\n" +
+        "For beginners, start with **Vercel** (frontend) or **Railway** (backend) - both have free tiers!" +
+        getSuggestions(['Web dev roadmap', 'What is API?', 'Learn Git']);
+    }
+
+    // Security
+    if (/security|hack|encrypt|password|auth|authentication|authorization|oauth|jwt|token|xss|sql injection|csrf|https|ssl/i.test(q)) {
+      return "**Web Security Basics**\n\n" +
+        "Security is crucial for every developer! Key concepts:\n\n" +
+        "**Common Vulnerabilities:**\n- **XSS** (Cross-Site Scripting) - Injecting malicious scripts\n- **SQL Injection** - Manipulating database queries\n- **CSRF** - Forging requests from other sites\n\n" +
+        "**Authentication & Authorization:**\n- **JWT** (JSON Web Tokens) - Stateless auth tokens\n- **OAuth** - Login with Google/GitHub/etc.\n- **bcrypt** - Hash passwords before storing\n\n" +
+        "**Best Practices:**\n- Never store passwords in plain text\n- Always use HTTPS\n- Validate all user input\n- Use parameterized queries (prevent SQL injection)\n- Keep dependencies updated" +
+        getSuggestions(['What is API?', 'Learn JavaScript', 'Web dev roadmap']);
+    }
+
+    // Data structures
+    if (/data structure|linked list|tree|graph|stack|queue|heap|hash map|hash table|binary search|algorithm|sorting|big o|complexity/i.test(q)) {
+      return "**Data Structures & Algorithms**\n\n" +
+        "Essential knowledge for every programmer:\n\n" +
+        "**Core Data Structures:**\n- **Array/List** - Ordered collection, O(1) access by index\n- **Stack** - LIFO (Last In, First Out) - like a pile of plates\n- **Queue** - FIFO (First In, First Out) - like a line at a store\n- **Linked List** - Nodes connected by pointers\n- **Hash Map** - Key-value pairs, O(1) average lookup\n- **Tree** - Hierarchical structure (Binary Tree, BST)\n- **Graph** - Nodes connected by edges\n\n" +
+        "**Common Algorithms:**\n- **Sorting**: Bubble Sort, Merge Sort, Quick Sort\n- **Searching**: Linear Search, Binary Search\n- **Big O**: O(1) < O(log n) < O(n) < O(n log n) < O(n²)\n\n" +
+        "Start with arrays, then learn stacks/queues, then trees!" +
+        getSuggestions(['What are arrays?', 'Learn Python', 'Start a quiz']);
+    }
+
+    // Networking / HTTP
+    if (/http|tcp|ip|dns|url|uri|request|response|status code|404|500|200|get request|post request|put request|delete request|websocket|socket/i.test(q) && !/cors/i.test(q)) {
+      return "**Networking & HTTP Basics**\n\n" +
+        "Understanding how the web works:\n\n" +
+        "**HTTP Methods:**\n- **GET** - Retrieve data\n- **POST** - Send/create data\n- **PUT** - Update data\n- **DELETE** - Remove data\n\n" +
+        "**Status Codes:**\n- **200** - OK (success)\n- **201** - Created\n- **301** - Moved Permanently (redirect)\n- **400** - Bad Request\n- **401** - Unauthorized\n- **404** - Not Found\n- **500** - Internal Server Error\n\n" +
+        "**How the Web Works:**\n1. You type a URL in your browser\n2. DNS converts the domain to an IP address\n3. Browser sends an HTTP request to the server\n4. Server processes the request and sends back a response\n5. Browser renders the HTML/CSS/JS" +
+        getSuggestions(['What is API?', 'Learn JavaScript', 'Web dev roadmap']);
+    }
+
+    // Regex
+    if (/regex|regular expression|pattern match|regexp/i.test(q)) {
+      return "**Regular Expressions (Regex)**\n\n" +
+        "Regex is a powerful tool for pattern matching in text:\n\n" +
+        "**Common Patterns:**\n- `\\d` - Any digit (0-9)\n- `\\w` - Any word character (a-z, A-Z, 0-9, _)\n- `\\s` - Any whitespace\n- `.` - Any character\n- `*` - Zero or more\n- `+` - One or more\n- `?` - Zero or one\n- `^` - Start of string\n- `$` - End of string\n\n" +
+        "**Examples:**\n<pre><code>// JavaScript\nlet email = /^[\\w.-]+@[\\w.-]+\\.\\w{2,}$/;\nconsole.log(email.test('user@example.com')); // true\n\nlet phone = /^\\d{3}-\\d{3}-\\d{4}$/;\nconsole.log(phone.test('123-456-7890')); // true</code></pre>" +
+        getSuggestions(['Learn JavaScript', 'Learn Python', 'What are strings?']);
+    }
+
+    // Linux / Command Line
+    if (/linux|terminal|command line|cli|bash command|shell command|mkdir|chmod|sudo|apt|brew|npm install|pip install|yarn/i.test(q) && !/loop|function/i.test(q)) {
+      return "**Command Line / Terminal Basics**\n\n" +
+        "Essential commands every developer should know:\n\n" +
+        "**File Operations:**\n- `ls` / `dir` - List files\n- `cd folder` - Change directory\n- `mkdir name` - Create directory\n- `touch file` / `echo > file` - Create file\n- `cp` - Copy, `mv` - Move, `rm` - Remove\n\n" +
+        "**Package Managers:**\n- `npm install package` - Node.js packages\n- `pip install package` - Python packages\n- `apt install package` - Ubuntu/Debian\n- `brew install package` - macOS\n\n" +
+        "**Useful Commands:**\n- `pwd` - Show current directory\n- `cat file` - Show file contents\n- `grep 'text' file` - Search in files\n- `chmod` - Change file permissions\n- `sudo` - Run as administrator" +
+        getSuggestions(['Learn Bash', 'Git basics', 'Web dev roadmap']);
+    }
+
+    // Interview / Job
+    if (/interview|job|hire|resume|portfolio|freelance|salary|career|intern|junior|senior|full.?stack|front.?end|back.?end/i.test(q)) {
+      return "**Programming Career & Interview Tips**\n\n" +
+        "Here's how to get started in tech:\n\n" +
+        "**Build Your Portfolio:**\n- Create 3-5 projects showcasing different skills\n- Host them on GitHub and deploy live demos\n- Include a personal portfolio website\n\n" +
+        "**Interview Preparation:**\n- Practice data structures & algorithms (LeetCode, HackerRank)\n- Study system design basics\n- Build projects that solve real problems\n- Contribute to open source\n\n" +
+        "**Career Paths:**\n- **Frontend**: HTML, CSS, JS, React/Vue → UI/UX focused\n- **Backend**: Node.js/Python/Java, Databases, APIs → Server logic\n- **Full Stack**: Both frontend and backend\n- **Mobile**: Swift (iOS), Kotlin (Android), Flutter (cross-platform)\n- **Data Science**: Python, SQL, ML, Statistics\n\n" +
+        "Start building projects and contributing to open source - that matters more than certificates!" +
+        getSuggestions(['Web dev roadmap', 'Learn Python', 'Learn JavaScript', 'What is Git?']);
+    }
+
+    // Math / numbers
+    if (/fibonacci|prime number|factorial|binary|hexadecimal|decimal|octal|convert.*number|number system|math|calculate|calculator/i.test(q)) {
+      return "**Programming & Mathematics**\n\n" +
+        "Here are useful math concepts for programming:\n\n" +
+        "**Number Systems:**\n- **Binary** (base 2): 0, 1 → Computers use this\n- **Decimal** (base 10): 0-9 → Human counting\n- **Hexadecimal** (base 16): 0-F → Colors in CSS (#FF0000)\n\n" +
+        "**Common Math in Code:**\n<pre><code># Python Examples\n\n# Fibonacci\ndef fibonacci(n):\n    a, b = 0, 1\n    for _ in range(n):\n        print(a, end=' ')\n        a, b = b, a + b\n\nfibonacci(10)  # 0 1 1 2 3 5 8 13 21 34\n\n# Check Prime\ndef is_prime(n):\n    if n < 2: return False\n    for i in range(2, int(n**0.5) + 1):\n        if n % i == 0: return False\n    return True\n\nprint(is_prime(17))  # True</code></pre>" +
+        getSuggestions(['Learn Python', 'Data structures', 'Start a quiz']);
+    }
+
+    // Catch any remaining coding-related keywords
+    if (/code|program|develop|software|app|website|web|build|create|make|learn|how to|what is|explain|tutorial/i.test(q)) {
+      // Provide a helpful general coding response
+      var generalTopics = [
+        { check: /website|web page|html page/i, resp: "To build a website, you need 3 core technologies:\n\n1. **HTML** - Structure (the skeleton)\n2. **CSS** - Styling (the appearance)\n3. **JavaScript** - Interactivity (the behavior)\n\nStart with HTML, then learn CSS, then JavaScript!", suggests: ['Learn HTML', 'Learn CSS', 'Learn JavaScript', 'Web dev roadmap'] },
+        { check: /app|mobile app|android app|ios app/i, resp: "To build mobile apps, you have several options:\n\n- **Android**: Learn **Kotlin** (or Java)\n- **iOS**: Learn **Swift**\n- **Cross-platform**: Learn **Flutter** (Dart) or **React Native** (JavaScript)\n\nFlutter and React Native let you write once and deploy on both platforms!", suggests: ['Learn Kotlin', 'Learn Swift', 'Learn Dart', 'Android roadmap'] },
+        { check: /game/i, resp: "Game development is exciting! Here are the main paths:\n\n- **Unity** (C#) - Most popular, great for 2D and 3D games\n- **Unreal Engine** (C++) - AAA quality graphics\n- **Godot** (GDScript) - Free, open-source, lightweight\n- **Web Games**: JavaScript + Canvas/Phaser.js\n\nFor beginners, start with **Unity + C#** or **Godot**!", suggests: ['Learn C#', 'Learn C++', 'Game dev roadmap'] },
+        { check: /ai|machine learning|deep learning|neural network|chatbot|gpt/i, resp: "**Artificial Intelligence & Machine Learning**\n\nTo get into AI/ML:\n\n1. **Learn Python** - The #1 language for AI\n2. **Learn Math** - Linear algebra, statistics, probability\n3. **Libraries**: NumPy, Pandas, Scikit-learn, TensorFlow, PyTorch\n\n**ML Types:**\n- Supervised Learning (classification, regression)\n- Unsupervised Learning (clustering, dimensionality reduction)\n- Deep Learning (neural networks, CNNs, RNNs)\n- Reinforcement Learning (agents, rewards)\n\nStart with Python and Scikit-learn for basics!", suggests: ['Learn Python', 'Data science roadmap', 'What is API?'] },
+        { check: /blockchain|crypto|web3|smart contract|solidity/i, resp: "**Blockchain & Web3 Development**\n\nBlockchain is a decentralized, immutable ledger technology.\n\n**To learn Web3:**\n1. Master **JavaScript** and **Solidity**\n2. Learn about **Ethereum** and smart contracts\n3. Use **Hardhat** or **Truffle** for development\n4. Connect frontend with **ethers.js** or **web3.js**\n\nStart with JavaScript basics, then learn Solidity for smart contracts.", suggests: ['Learn JavaScript', 'What is API?', 'Web dev roadmap'] }
+      ];
+
+      for (var i = 0; i < generalTopics.length; i++) {
+        if (generalTopics[i].check.test(q)) {
+          return generalTopics[i].resp + getSuggestions(generalTopics[i].suggests);
+        }
+      }
+    }
+
+    // Ultimate fallback - still be helpful
+    return "That's an interesting question! While I may not have a specific answer for that, I'm great at helping with programming topics.\n\n" +
+      "**Here's what I can help with:**\n" +
+      "- **\"Teach me Python\"** - Learn any of 22+ languages\n" +
+      "- **\"What is OOP?\"** - Understand coding concepts\n" +
+      "- **\"Hello World in Java\"** - Get code examples\n" +
+      "- **\"Fix SyntaxError\"** - Debug help\n" +
+      "- **\"Python vs JavaScript\"** - Compare languages\n" +
+      "- **\"Web dev roadmap\"** - Career guidance\n" +
+      "- **\"Start a quiz\"** - Test your knowledge\n" +
+      "- **\"Give me a challenge\"** - Practice coding\n\n" +
+      "Try asking about a specific programming topic and I'll do my best to help!" +
+      getSuggestions(['List all languages', 'What is Python?', 'Web dev roadmap', 'Start a quiz', 'Give me a challenge']);
+  }
+
+  // ============================================
+  // HELPER FUNCTIONS
+  // ============================================
+
+  function detectLanguage(q) {
+    var langKeywords = {
+      'html': /\bhtml\b|html5/i,
+      'css': /\bcss\b|css3|stylesheet|style\s*sheet/i,
+      'javascript': /\bjavascript\b|\bjs\b(?!\s*on)/i,
+      'typescript': /\btypescript\b|\bts\b/i,
+      'python': /\bpython\b|\bpy\b/i,
+      'java': /\bjava\b(?!script)/i,
+      'cpp': /\bc\+\+\b|\bcpp\b/i,
+      'c': /\bc lang|\bc programming|\bc language|\bclang\b/i,
+      'rust': /\brust\b/i,
+      'go': /\bgo\b|\bgolang\b/i,
+      'php': /\bphp\b/i,
+      'kotlin': /\bkotlin\b/i,
+      'swift': /\bswift\b/i,
+      'csharp': /\bc#\b|\bcsharp\b|\bc sharp\b/i,
+      'dart': /\bdart\b/i,
+      'bash': /\bbash\b|\bshell\b/i,
+      'r': /\br language|\br programming|\brlang\b/i,
+      'lua': /\blua\b/i,
+      'perl': /\bperl\b/i,
+      'haskell': /\bhaskell\b/i,
+      'matlab': /\bmatlab\b|\boctave\b/i,
+      'nodejs': /\bnode\.?js\b|\bnodejs\b/i
+    };
+
+    for (var key in langKeywords) {
+      if (langKeywords[key].test(q)) return key;
+    }
+    return null;
+  }
+
+  function formatConcept(concept) {
+    var resp = "## " + concept.title + "\n\n" + concept.explain + "\n\n";
+    for (var lang in concept.examples) {
+      resp += "**" + lang + ":**\n<pre><code>" + escapeHtml(concept.examples[lang]) + "</code></pre>\n\n";
+    }
+    resp += "Try it in our <a href='playground.html' style='color:var(--neon-cyan)'>Code Playground</a>!";
+    return resp;
+  }
+
+  function getConceptForLang(conceptKey, langName) {
+    var concept = KB.concepts[conceptKey];
+    if (!concept) return '';
+    var resp = "## " + concept.title + " in " + langName + "\n\n" + concept.explain + "\n\n";
+    for (var lang in concept.examples) {
+      resp += "**" + lang + ":**\n<pre><code>" + escapeHtml(concept.examples[lang]) + "</code></pre>\n\n";
+    }
+    return resp;
+  }
+
+  function getSuggestions(suggestions) {
+    return '\n<div class="ai-suggestions">' +
+      suggestions.map(function(s) {
+        return '<span class="ai-suggestion-chip" onclick="askTopic(\'' + s.replace(/'/g, "\\'") + '\')">' + s + '</span>';
+      }).join('') + '</div>';
+  }
+
+  function pickRandom(arr) {
+    return arr[Math.floor(Math.random() * arr.length)];
+  }
+
+  function escapeHtml(text) {
+    var div = document.createElement('div');
+    div.textContent = text;
+    return div.innerHTML;
+  }
+
+  // ============================================
+  // CHAT UI FUNCTIONS
+  // ============================================
+
+  // ============================================
+  // NEXT-LEVEL TEXT-TO-SPEECH ENGINE
+  // Human-like voice with natural pauses,
+  // sentence-by-sentence delivery, premium voices
+  // ============================================
+  var TTS = {
+    speaking: false,
+    currentBtn: null,
+    bestVoice: null,
+
+    // Premium voice priority (most human-like first)
+    voicePriority: [
+      'Microsoft Aria Online', 'Microsoft Jenny Online', 'Microsoft Guy Online',
+      'Microsoft Ana Online', 'Microsoft Steffan Online',
+      'Microsoft Aria', 'Microsoft Jenny', 'Microsoft Zira',
+      'Google UK English Female', 'Google UK English Male', 'Google US English',
+      'Samantha', 'Karen', 'Daniel', 'Moira', 'Tessa',
+      'Alex', 'Victoria', 'Allison', 'Ava', 'Susan',
+      'Fiona', 'Veena'
+    ],
+
+    findBestVoice: function() {
+      var voices = window.speechSynthesis.getVoices();
+      if (!voices.length) return null;
+      for (var i = 0; i < TTS.voicePriority.length; i++) {
+        var match = voices.find(function(v) { return v.name.indexOf(TTS.voicePriority[i]) >= 0; });
+        if (match) return match;
+      }
+      var premium = voices.find(function(v) {
+        return (v.name.indexOf('Online') >= 0 || v.name.indexOf('Natural') >= 0 || v.name.indexOf('Neural') >= 0) && v.lang.indexOf('en') >= 0;
+      });
+      if (premium) return premium;
+      return voices.find(function(v) { return v.lang.indexOf('en') >= 0; }) || voices[0];
+    },
+
+    cleanForSpeech: function(text) {
+      return text
+        .replace(/<pre[\s\S]*?<\/pre>/gi, '. ')
+        .replace(/<code>(.*?)<\/code>/gi, '$1')
+        .replace(/<[^>]+>/g, '')
+        .replace(/\*\*(.*?)\*\*/g, '$1')
+        .replace(/\*(.*?)\*/g, '$1')
+        .replace(/`([^`]+)`/g, '$1')
+        .replace(/#{1,3}\s/g, '')
+        .replace(/---/g, '. ')
+        .replace(/\|/g, ' ')
+        .replace(/console\.log/g, 'console dot log')
+        .replace(/\.js\b/g, ' dot JS')
+        .replace(/\.py\b/g, ' dot PY')
+        .replace(/\.html\b/g, ' dot HTML')
+        .replace(/\.css\b/g, ' dot CSS')
+        .replace(/=>/g, ' arrow ')
+        .replace(/!=/g, ' not equal to ')
+        .replace(/===/g, ' strictly equals ')
+        .replace(/==/g, ' equals ')
+        .replace(/\(\)/g, '')
+        .replace(/[{}[\]]/g, ' ')
+        .replace(/\n+/g, '. ')
+        .replace(/\s+/g, ' ')
+        .replace(/\.+/g, '.')
+        .replace(/\.\s*\./g, '.')
+        .trim();
+    },
+
+    speak: function(text, btn) {
+      // Stop if already speaking
+      if (window.speechSynthesis.speaking) {
+        window.speechSynthesis.cancel();
+        if (TTS.currentBtn) {
+          TTS.currentBtn.innerHTML = '<i class="fas fa-volume-up"></i>';
+          TTS.currentBtn.title = 'Listen';
+          TTS.currentBtn.classList.remove('speaking');
+        }
+        if (TTS.currentBtn === btn) {
+          TTS.currentBtn = null;
+          TTS.speaking = false;
+          return;
+        }
+      }
+
+      if (!TTS.bestVoice) TTS.bestVoice = TTS.findBestVoice();
+
+      var clean = TTS.cleanForSpeech(text);
+      if (!clean) return;
+
+      var utterance = new SpeechSynthesisUtterance(clean);
+      if (TTS.bestVoice) utterance.voice = TTS.bestVoice;
+      utterance.lang = 'en-US';
+      utterance.rate = 1.15;
+      utterance.pitch = 1.02;
+      utterance.volume = 1.0;
+
+      if (btn) {
+        btn.innerHTML = '<i class="fas fa-stop"></i>';
+        btn.title = 'Stop';
+        btn.classList.add('speaking');
+        TTS.currentBtn = btn;
+      }
+
+      utterance.onend = utterance.onerror = function() {
+        if (TTS.currentBtn) {
+          TTS.currentBtn.innerHTML = '<i class="fas fa-volume-up"></i>';
+          TTS.currentBtn.title = 'Listen';
+          TTS.currentBtn.classList.remove('speaking');
+        }
+        TTS.currentBtn = null;
+        TTS.speaking = false;
+      };
+
+      TTS.speaking = true;
+      window.speechSynthesis.speak(utterance);
+    }
+  };
+
+  // Load and cache voices
+  if (window.speechSynthesis) {
+    window.speechSynthesis.getVoices();
+    window.speechSynthesis.onvoiceschanged = function() { TTS.bestVoice = TTS.findBestVoice(); };
+    setTimeout(function() { TTS.bestVoice = TTS.findBestVoice(); }, 100);
+  }
+
+  function addMessage(text, type) {
+    var messagesDiv = document.getElementById('aiMessages');
+    var msg = document.createElement('div');
+    msg.className = 'ai-msg ' + type;
+
+    var avatar = document.createElement('div');
+    avatar.className = 'ai-msg-avatar';
+    avatar.innerHTML = type === 'bot' ? '<i class="fas fa-robot"></i>' : '<i class="fas fa-user"></i>';
+
+    var bubble = document.createElement('div');
+    bubble.className = 'ai-msg-bubble';
+    bubble.innerHTML = formatMarkdown(text);
+
+    // Add speak button to bot messages
+    if (type === 'bot' && window.speechSynthesis) {
+      var speakBtn = document.createElement('button');
+      speakBtn.className = 'ai-speak-btn';
+      speakBtn.innerHTML = '<i class="fas fa-volume-up"></i>';
+      speakBtn.title = 'Listen';
+      speakBtn.onclick = function() { TTS.speak(text, speakBtn); };
+      bubble.appendChild(speakBtn);
+    }
+
+    msg.appendChild(avatar);
+    msg.appendChild(bubble);
+    messagesDiv.appendChild(msg);
+    messagesDiv.scrollTop = messagesDiv.scrollHeight;
+
+    chatHistory.push({ type: type, text: text });
+    saveChatHistory();
+  }
+
+  function showTyping() {
+    var messagesDiv = document.getElementById('aiMessages');
+    var typing = document.createElement('div');
+    typing.className = 'ai-typing';
+    typing.id = 'aiTypingIndicator';
+
+    var avatar = document.createElement('div');
+    avatar.className = 'ai-msg-avatar';
+    avatar.style.background = 'linear-gradient(135deg, #00d4ff, #8b5cf6)';
+    avatar.style.color = '#fff';
+    avatar.innerHTML = '<i class="fas fa-robot"></i>';
+
+    var dots = document.createElement('div');
+    dots.className = 'ai-typing-dots';
+    dots.innerHTML = '<span></span><span></span><span></span>';
+
+    typing.appendChild(avatar);
+    typing.appendChild(dots);
+    messagesDiv.appendChild(typing);
+    messagesDiv.scrollTop = messagesDiv.scrollHeight;
+  }
+
+  function hideTyping() {
+    var indicator = document.getElementById('aiTypingIndicator');
+    if (indicator) indicator.remove();
+  }
+
+  function formatMarkdown(text) {
+    // Simple markdown formatting
+    text = text.replace(/## (.*?)(\n|$)/g, '<strong style="font-size:1.05rem;display:block;margin:8px 0 4px">$1</strong>');
+    text = text.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+    text = text.replace(/\*(.*?)\*/g, '<em>$1</em>');
+    text = text.replace(/`([^`]+)`/g, '<code>$1</code>');
+    text = text.replace(/\n- /g, '\n<br>- ');
+    text = text.replace(/\n(\d+)\. /g, '\n<br>$1. ');
+    text = text.replace(/\n\n/g, '<br><br>');
+    text = text.replace(/\n/g, '<br>');
+    text = text.replace(/\| /g, '| ');
+    return text;
+  }
+
+  function sendMessage() {
+    var input = document.getElementById('aiInput');
+    var text = input.value.trim();
+    if (!text || isTyping) return;
+
+    addMessage(text, 'user');
+    input.value = '';
+    input.style.height = '46px';
+    isTyping = true;
+
+    showTyping();
+
+    // Fast response time (200-600ms) - always under 5 seconds
+    var delay = 200 + Math.random() * 400;
+    setTimeout(function() {
+      hideTyping();
+      var response = processMessage(text);
+      addMessage(response, 'bot');
+      isTyping = false;
+    }, delay);
+  }
+
+  function askTopic(topic) {
+    document.getElementById('aiInput').value = topic;
+    sendMessage();
+  }
+
+  function handleInputKey(e) {
+    if (e.key === 'Enter' && !e.shiftKey) {
+      e.preventDefault();
+      sendMessage();
+    }
+  }
+
+  function autoResize(el) {
+    el.style.height = '46px';
+    el.style.height = Math.min(el.scrollHeight, 140) + 'px';
+  }
+
+  function clearChat() {
+    if (confirm('Clear all chat messages?')) {
+      document.getElementById('aiMessages').innerHTML = '';
+      chatHistory = [];
+      localStorage.removeItem('c4b_ai_chat');
+      showWelcomeMessage();
+    }
+  }
+
+  function exportChat() {
+    var text = chatHistory.map(function(m) {
+      return (m.type === 'user' ? 'You' : 'AI Teacher') + ':\n' + m.text.replace(/<[^>]+>/g, '') + '\n';
+    }).join('\n---\n\n');
+
+    var blob = new Blob([text], { type: 'text/plain' });
+    var a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = 'code4boy-ai-chat.txt';
+    a.click();
+  }
+
+  // --- PERSISTENCE ---
+  function saveChatHistory() {
+    try {
+      var toSave = chatHistory.slice(-50); // Keep last 50 messages
+      localStorage.setItem('c4b_ai_chat', JSON.stringify(toSave));
+    } catch(e) {}
+  }
+
+  function loadChatHistory() {
+    try {
+      var saved = localStorage.getItem('c4b_ai_chat');
+      if (saved) {
+        var msgs = JSON.parse(saved);
+        if (msgs && msgs.length > 0) {
+          chatHistory = msgs;
+          var messagesDiv = document.getElementById('aiMessages');
+          msgs.forEach(function(m) {
+            var msg = document.createElement('div');
+            msg.className = 'ai-msg ' + m.type;
+
+            var avatar = document.createElement('div');
+            avatar.className = 'ai-msg-avatar';
+            avatar.innerHTML = m.type === 'bot' ? '<i class="fas fa-robot"></i>' : '<i class="fas fa-user"></i>';
+
+            var bubble = document.createElement('div');
+            bubble.className = 'ai-msg-bubble';
+            bubble.innerHTML = formatMarkdown(m.text);
+
+            msg.appendChild(avatar);
+            msg.appendChild(bubble);
+            messagesDiv.appendChild(msg);
+          });
+          messagesDiv.scrollTop = messagesDiv.scrollHeight;
+          return true;
+        }
+      }
+    } catch(e) {}
+    return false;
+  }
+
+  function showWelcomeMessage() {
+    var welcome = "Welcome to **Code4Boy AI Teacher**! I'm your free coding assistant - no API key needed, works completely offline!\n\n" +
+      "I can help you with:\n" +
+      "- **Learn 22+ programming languages** with examples\n" +
+      "- **Understand concepts** like loops, functions, OOP, APIs\n" +
+      "- **Debug errors** and fix common mistakes\n" +
+      "- **Career roadmaps** for Web Dev, Android, Data Science\n" +
+      "- **Compare languages** and frameworks\n\n" +
+      "Just type your question below or click a quick topic above!" +
+      getSuggestions(['What languages can you teach?', 'Learn Python', 'Web dev roadmap', 'What is OOP?']);
+    addMessage(welcome, 'bot');
+  }
+
+  // ============================================
+  // AUTONOMOUS THINKING ENGINE
+  // The AI teacher thinks on its own - proactive tips,
+  // follow-ups, quizzes, daily challenges, idle suggestions
+  // ============================================
+
+  var AIBrain = {
+    // Track what the user has learned
+    learnedTopics: [],
+    conversationContext: [],
+    lastActivityTime: Date.now(),
+    idleTimerRef: null,
+    autoThinkTimerRef: null,
+    quizActive: false,
+    quizAnswer: null,
+    thinkingCount: 0,
+    maxAutoThinks: 3, // max auto messages before user interacts
+
+    // Daily tips pool
+    dailyTips: [
+      { tip: "Did you know? You can use `console.table()` in JavaScript to display arrays and objects as a nice table in the browser console!", category: 'javascript' },
+      { tip: "Pro tip: In Python, you can swap two variables in one line: `a, b = b, a` - no temp variable needed!", category: 'python' },
+      { tip: "CSS trick: Use `clamp()` for responsive font sizes without media queries! Example: `font-size: clamp(1rem, 2.5vw, 2rem);`", category: 'css' },
+      { tip: "HTML tip: Always add `loading='lazy'` to images below the fold. It improves page load speed significantly!", category: 'html' },
+      { tip: "Git tip: Use `git stash` to temporarily save your changes when you need to switch branches quickly!", category: 'git' },
+      { tip: "JavaScript: Use optional chaining `?.` to safely access nested properties: `user?.address?.city` instead of checking each level!", category: 'javascript' },
+      { tip: "Python tip: Use list comprehensions for cleaner code: `squares = [x**2 for x in range(10)]` instead of a loop!", category: 'python' },
+      { tip: "CSS tip: `gap` property works with both Flexbox and Grid! No more margin hacks for spacing between items.", category: 'css' },
+      { tip: "Debugging tip: Rubber duck debugging - explain your code line by line to a rubber duck (or anyone). You'll often find the bug yourself!", category: 'debugging' },
+      { tip: "HTML5: Use `<details>` and `<summary>` tags to create collapsible sections without any JavaScript!", category: 'html' },
+      { tip: "JavaScript: `structuredClone()` is the modern way to deep clone objects - no more `JSON.parse(JSON.stringify())`!", category: 'javascript' },
+      { tip: "Python: f-strings can contain expressions! `f'Result: {2 + 3}'` outputs `Result: 5`", category: 'python' },
+      { tip: "CSS: Use `scroll-snap-type` and `scroll-snap-align` to create smooth scroll snapping without JS!", category: 'css' },
+      { tip: "Git: Write meaningful commit messages! Bad: 'fixed stuff'. Good: 'Fix login form validation for empty email field'", category: 'git' },
+      { tip: "TypeScript tip: Use `as const` to create readonly tuple types: `const colors = ['red', 'blue'] as const;`", category: 'typescript' },
+      { tip: "Node.js: Use `process.env.NODE_ENV` to differentiate between development and production environments!", category: 'nodejs' },
+      { tip: "React tip: Keep components small and focused - if a component does too much, split it into smaller ones!", category: 'react' },
+      { tip: "Security tip: Never store passwords in plain text! Always use hashing (bcrypt) before storing in a database.", category: 'security' }
+    ],
+
+    // Coding challenges
+    challenges: [
+      { q: "Can you write a function that reverses a string without using the built-in reverse method?", lang: 'javascript', difficulty: 'Easy' },
+      { q: "Try writing a function that checks if a number is prime!", lang: 'python', difficulty: 'Easy' },
+      { q: "Challenge: Create a function that counts the vowels in a given string.", lang: 'javascript', difficulty: 'Easy' },
+      { q: "Challenge: Write a FizzBuzz program - print 'Fizz' for multiples of 3, 'Buzz' for 5, 'FizzBuzz' for both!", lang: 'python', difficulty: 'Easy' },
+      { q: "Can you write a function that finds the largest number in an array without using Math.max?", lang: 'javascript', difficulty: 'Medium' },
+      { q: "Challenge: Write a function to check if a string is a palindrome (reads same forwards and backwards).", lang: 'python', difficulty: 'Easy' },
+      { q: "Try creating a simple calculator function that takes two numbers and an operator (+, -, *, /) and returns the result!", lang: 'javascript', difficulty: 'Easy' },
+      { q: "Challenge: Write a function that generates the Fibonacci sequence up to n numbers.", lang: 'python', difficulty: 'Medium' }
+    ],
+
+    // Quiz questions
+    quizzes: [
+      { q: "What does HTML stand for?", options: ['Hyper Text Markup Language', 'High Tech Modern Language', 'Hyper Transfer Markup Logic', 'Home Tool Markup Language'], answer: 0, topic: 'html' },
+      { q: "Which CSS property is used to change text color?", options: ['font-color', 'text-color', 'color', 'text-style'], answer: 2, topic: 'css' },
+      { q: "What is the correct way to declare a variable in JavaScript (ES6)?", options: ['variable x = 5', 'v x = 5', 'let x = 5', 'int x = 5'], answer: 2, topic: 'javascript' },
+      { q: "Which Python keyword is used to define a function?", options: ['function', 'func', 'def', 'define'], answer: 2, topic: 'python' },
+      { q: "What does CSS stand for?", options: ['Computer Style Sheets', 'Cascading Style Sheets', 'Creative Style System', 'Colorful Style Sheets'], answer: 1, topic: 'css' },
+      { q: "Which HTML tag is used for the largest heading?", options: ['<heading>', '<h6>', '<head>', '<h1>'], answer: 3, topic: 'html' },
+      { q: "What symbol is used for single-line comments in JavaScript?", options: ['#', '//', '/* */', '--'], answer: 1, topic: 'javascript' },
+      { q: "Which data type is NOT in Python?", options: ['int', 'str', 'char', 'float'], answer: 2, topic: 'python' },
+      { q: "What does API stand for?", options: ['Application Programming Interface', 'Applied Program Integration', 'Advanced Protocol Interface', 'Application Process Integration'], answer: 0, topic: 'api' },
+      { q: "Which command initializes a new Git repository?", options: ['git start', 'git create', 'git init', 'git new'], answer: 2, topic: 'git' },
+      { q: "In CSS Flexbox, which property aligns items on the main axis?", options: ['align-items', 'justify-content', 'flex-align', 'text-align'], answer: 1, topic: 'css' },
+      { q: "What is the output of `typeof null` in JavaScript?", options: ['"null"', '"undefined"', '"object"', '"boolean"'], answer: 2, topic: 'javascript' }
+    ],
+
+    // Initialize the brain
+    init: function() {
+      this.loadLearningProgress();
+      this.startIdleTimer();
+      this.scheduleAutoThink();
+    },
+
+    // Save/Load learning progress
+    saveLearningProgress: function() {
+      try {
+        localStorage.setItem('c4b_ai_learned', JSON.stringify({
+          topics: this.learnedTopics,
+          context: this.conversationContext.slice(-10)
+        }));
+      } catch(e) {}
+    },
+
+    loadLearningProgress: function() {
+      try {
+        var saved = localStorage.getItem('c4b_ai_learned');
+        if (saved) {
+          var data = JSON.parse(saved);
+          this.learnedTopics = data.topics || [];
+          this.conversationContext = data.context || [];
+        }
+      } catch(e) {}
+    },
+
+    // Track what user is learning
+    trackTopic: function(userMessage) {
+      var q = userMessage.toLowerCase();
+      this.lastActivityTime = Date.now();
+      this.thinkingCount = 0; // Reset auto-think counter on user interaction
+
+      // Detect topics from user messages
+      var topicMap = {
+        'html': /\bhtml\b/i, 'css': /\bcss\b|flexbox|grid|style/i,
+        'javascript': /\bjavascript\b|\bjs\b/i, 'python': /\bpython\b/i,
+        'java': /\bjava\b(?!script)/i, 'react': /\breact\b/i,
+        'git': /\bgit\b/i, 'api': /\bapi\b/i, 'oop': /\boop\b|object.oriented/i,
+        'debugging': /\bdebug/i, 'loops': /\bloop/i, 'functions': /\bfunction/i,
+        'typescript': /\btypescript\b/i, 'nodejs': /\bnode/i,
+        'database': /\bdatabase\b|\bsql\b/i, 'cpp': /\bc\+\+\b|\bcpp\b/i
+      };
+
+      for (var topic in topicMap) {
+        if (topicMap[topic].test(q) && this.learnedTopics.indexOf(topic) === -1) {
+          this.learnedTopics.push(topic);
+        }
+      }
+
+      this.conversationContext.push(q);
+      if (this.conversationContext.length > 20) {
+        this.conversationContext = this.conversationContext.slice(-10);
+      }
+
+      this.saveLearningProgress();
+      this.resetIdleTimer();
+    },
+
+    // Get a smart follow-up based on context
+    getSmartFollowUp: function() {
+      var lastCtx = this.conversationContext[this.conversationContext.length - 1] || '';
+      var followUps = [];
+
+      if (/html/i.test(lastCtx)) {
+        followUps = [
+          "Now that you know HTML basics, would you like to learn **CSS** to make it look beautiful?",
+          "Want to learn about **HTML Forms** to collect user data?",
+          "Shall I show you how to make your HTML page **responsive** for mobile devices?"
+        ];
+      } else if (/css/i.test(lastCtx)) {
+        followUps = [
+          "Great progress with CSS! Want to learn **Flexbox** or **Grid** for modern layouts?",
+          "Shall I teach you **CSS animations** to add cool effects?",
+          "Ready to learn **JavaScript** to add interactivity to your styled pages?"
+        ];
+      } else if (/javascript|js/i.test(lastCtx)) {
+        followUps = [
+          "You're learning JavaScript! Want to explore **DOM manipulation** to change web pages dynamically?",
+          "Shall I teach you about **async/await** for handling API calls?",
+          "Would you like to try a **JavaScript coding challenge** to practice?"
+        ];
+      } else if (/python/i.test(lastCtx)) {
+        followUps = [
+          "Python is amazing! Want to learn about **list comprehensions** for cleaner code?",
+          "Shall I show you how to build a simple **web app with Flask**?",
+          "Want to explore **Python for data science** with libraries like NumPy and Pandas?"
+        ];
+      } else if (/loop|function|variable|oop|array/i.test(lastCtx)) {
+        followUps = [
+          "Understanding concepts is key! Want me to give you a **coding quiz** to test your knowledge?",
+          "Shall I show you a **real-world example** of how this concept is used in projects?",
+          "Want to practice this concept in our **Code Playground**?"
+        ];
+      }
+
+      if (followUps.length > 0) {
+        return pickRandom(followUps);
+      }
+      return null;
+    },
+
+    // Generate proactive suggestion based on learning progress
+    getProactiveSuggestion: function() {
+      var learned = this.learnedTopics;
+
+      // Suggest next logical topic
+      if (learned.indexOf('html') >= 0 && learned.indexOf('css') < 0) {
+        return "I noticed you've been learning HTML. The natural next step is **CSS** - it'll make your web pages look amazing! Want me to teach you CSS basics?";
+      }
+      if (learned.indexOf('css') >= 0 && learned.indexOf('javascript') < 0) {
+        return "You've got HTML and CSS down! Now it's time to learn **JavaScript** to make your websites interactive. Ready to start?";
+      }
+      if (learned.indexOf('javascript') >= 0 && learned.indexOf('react') < 0 && learned.indexOf('api') < 0) {
+        return "You know JavaScript! Two great next steps:\n- Learn **React** for building modern web apps\n- Learn about **APIs** to fetch real data\n\nWhich interests you more?";
+      }
+      if (learned.indexOf('python') >= 0 && learned.indexOf('database') < 0) {
+        return "Since you know Python, learning **databases (SQL)** would be super valuable! You'll be able to build full applications that store and retrieve data.";
+      }
+
+      // Default - suggest something new
+      if (learned.length === 0) {
+        return "I see you're just getting started! Would you like me to recommend a **learning path** based on what you want to build? Tell me your goal - websites, apps, games, or AI?";
+      }
+
+      return null;
+    },
+
+    // Idle timer - suggest something when user is inactive
+    startIdleTimer: function() {
+      var self = this;
+      this.idleTimerRef = setInterval(function() {
+        var idleTime = Date.now() - self.lastActivityTime;
+
+        // After 45 seconds of idle, suggest something
+        if (idleTime > 45000 && !isTyping && self.thinkingCount < self.maxAutoThinks) {
+          self.thinkingCount++;
+          self.lastActivityTime = Date.now(); // Reset so we don't spam
+
+          var messages = [
+            function() {
+              var tip = self.getRandomDailyTip();
+              return "**Thought of the moment:**\n\n" + tip.tip +
+                getSuggestions(['Tell me more about ' + tip.category, 'Give me a challenge', 'Start a quiz']);
+            },
+            function() {
+              var challenge = pickRandom(self.challenges);
+              return "**I have a coding challenge for you!** (" + challenge.difficulty + ")\n\n" + challenge.q +
+                "\n\nTry it in our <a href='playground.html' style='color:var(--neon-cyan)'>Playground</a>! When you're done, tell me your approach." +
+                getSuggestions(['Show me the solution', 'Give me a hint', 'Different challenge']);
+            },
+            function() {
+              var suggestion = self.getProactiveSuggestion();
+              if (suggestion) return suggestion;
+              return "**Still here?** Let me suggest something! " + pickRandom([
+                "How about we explore a new programming language today?",
+                "Want to try a quick coding quiz to test your skills?",
+                "Shall I share a cool coding tip with you?"
+              ]) + getSuggestions(['Start a quiz', 'Random tip', 'Teach me something new']);
+            }
+          ];
+
+          var msgFn = pickRandom(messages);
+          var msgText = msgFn();
+
+          showTyping();
+          setTimeout(function() {
+            hideTyping();
+            addMessage(msgText, 'bot');
+          }, 1500);
+        }
+      }, 15000); // Check every 15 seconds
+    },
+
+    resetIdleTimer: function() {
+      this.lastActivityTime = Date.now();
+    },
+
+    // Schedule periodic auto-thinking (smart suggestions during conversation)
+    scheduleAutoThink: function() {
+      // This is handled by the idle timer now
+    },
+
+    // Get random daily tip not yet shown
+    getRandomDailyTip: function() {
+      var shownTips = [];
+      try {
+        shownTips = JSON.parse(localStorage.getItem('c4b_shown_tips') || '[]');
+      } catch(e) {}
+
+      var available = this.dailyTips.filter(function(t, i) {
+        return shownTips.indexOf(i) === -1;
+      });
+
+      if (available.length === 0) {
+        // Reset shown tips
+        localStorage.setItem('c4b_shown_tips', '[]');
+        available = this.dailyTips;
+      }
+
+      var idx = this.dailyTips.indexOf(pickRandom(available));
+      shownTips.push(idx);
+      try {
+        localStorage.setItem('c4b_shown_tips', JSON.stringify(shownTips));
+      } catch(e) {}
+
+      return this.dailyTips[idx];
+    },
+
+    // Start a quiz
+    startQuiz: function() {
+      this.quizActive = true;
+      var quiz = pickRandom(this.quizzes);
+      this.quizAnswer = quiz.answer;
+      this.currentQuizTopic = quiz.topic;
+
+      var msg = "**Quiz Time!**\n\n" + quiz.q + "\n\n";
+      quiz.options.forEach(function(opt, i) {
+        msg += "**" + (i + 1) + ".** " + opt + "\n";
+      });
+      msg += "\nType the **number** (1-4) of your answer!";
+
+      return msg;
+    },
+
+    // Check quiz answer
+    checkQuizAnswer: function(input) {
+      var answer = parseInt(input.trim()) - 1;
+      this.quizActive = false;
+
+      if (answer === this.quizAnswer) {
+        if (this.currentQuizTopic && this.learnedTopics.indexOf(this.currentQuizTopic) === -1) {
+          this.learnedTopics.push(this.currentQuizTopic);
+          this.saveLearningProgress();
+        }
+        return "**Correct!** Excellent work! You really know your stuff.\n\n" +
+          "You've now explored **" + this.learnedTopics.length + " topics** in total. Keep it up!" +
+          getSuggestions(['Another quiz', 'Give me a challenge', 'Teach me something new']);
+      } else {
+        var correctOption = this.quizAnswer + 1;
+        return "**Not quite!** The correct answer was **Option " + correctOption + "**.\n\n" +
+          "Don't worry - making mistakes is part of learning! Want to learn more about this topic?" +
+          getSuggestions(['Explain the answer', 'Another quiz', 'Learn ' + (this.currentQuizTopic || 'more')]);
+      }
+    },
+
+    // Generate a smart response that shows the AI is "thinking"
+    getThinkingResponse: function(userInput) {
+      var q = userInput.toLowerCase().trim();
+
+      // Handle quiz answers
+      if (this.quizActive && /^[1-4]$/.test(q.trim())) {
+        return this.checkQuizAnswer(q);
+      }
+
+      // Handle quiz request
+      if (/quiz|test me|test my|check my knowledge/i.test(q)) {
+        return this.startQuiz();
+      }
+
+      // Handle challenge request
+      if (/challenge|practice|exercise/i.test(q)) {
+        var challenge = pickRandom(this.challenges);
+        return "**Coding Challenge** (" + challenge.difficulty + ")\n\n" + challenge.q +
+          "\n\nTry it in our <a href='playground.html' style='color:var(--neon-cyan)'>Playground</a>!" +
+          getSuggestions(['Show solution', 'Hint please', 'Different challenge']);
+      }
+
+      // Handle tip request
+      if (/random tip|give.*tip|tip of|daily tip|show.*tip/i.test(q)) {
+        var tip = this.getRandomDailyTip();
+        return "**Here's a tip for you:**\n\n" + tip.tip +
+          getSuggestions(['More tips', 'Learn ' + tip.category, 'Start a quiz']);
+      }
+
+      // Handle "teach me something new"
+      if (/teach.*something new|something new|learn.*new|surprise me/i.test(q)) {
+        var suggestion = this.getProactiveSuggestion();
+        if (suggestion) return suggestion;
+
+        var randomLang = pickRandom(Object.keys(KB.languages));
+        var lang = KB.languages[randomLang];
+        return "Let me introduce you to **" + lang.name + "**!\n\n" +
+          lang.desc + "\n\n**Hello World:**\n<pre><code>" + escapeHtml(lang.hello) + "</code></pre>\n\n" +
+          "Want to learn more about " + lang.name + "?" +
+          getSuggestions([lang.name + ' concepts', lang.name + ' tips', 'Different language']);
+      }
+
+      // Handle solution/hint requests for challenges
+      if (/show.*solution|solution please|answer/i.test(q)) {
+        return "Here are solutions for common challenges:\n\n" +
+          "**Reverse a string (JS):**\n<pre><code>function reverseString(str) {\n  let reversed = '';\n  for (let i = str.length - 1; i >= 0; i--) {\n    reversed += str[i];\n  }\n  return reversed;\n}</code></pre>\n\n" +
+          "**Check Prime (Python):**\n<pre><code>def is_prime(n):\n    if n < 2:\n        return False\n    for i in range(2, int(n**0.5) + 1):\n        if n % i == 0:\n            return False\n    return True</code></pre>\n\n" +
+          "Try to understand the logic, then code it yourself!" +
+          getSuggestions(['Another challenge', 'Explain the logic', 'Start a quiz']);
+      }
+
+      if (/hint|give.*hint/i.test(q)) {
+        return pickRandom([
+          "**Hint:** Think about iterating through each character/element one by one. What would you do at each step?",
+          "**Hint:** Break the problem into smaller parts. First, handle the simplest case. Then build up!",
+          "**Hint:** Try writing out the steps in plain English first, then convert each step to code.",
+          "**Hint:** Consider edge cases - what happens with empty input, zero, or negative numbers?"
+        ]) + getSuggestions(['More specific hint', 'Show solution', 'Different challenge']);
+      }
+
+      // Handle learning path / what to learn next
+      if (/what.*next|next.*learn|aage kya|what should i|recommend|suggest.*topic/i.test(q)) {
+        var suggestion = this.getProactiveSuggestion();
+        if (suggestion) return suggestion;
+
+        return "Based on your learning journey so far, here are my recommendations:\n\n" +
+          "**Your explored topics:** " + (this.learnedTopics.length > 0 ? this.learnedTopics.join(', ') : 'None yet') + "\n\n" +
+          "**Suggested next steps:**\n" +
+          "1. If you're a beginner: Start with **HTML + CSS + JavaScript**\n" +
+          "2. If you know basics: Try **React** or **Python**\n" +
+          "3. If you're intermediate: Learn **APIs**, **databases**, or **Git**\n\n" +
+          "Tell me your current level and goals, and I'll create a personalized plan!" +
+          getSuggestions(['Web dev roadmap', 'I am a beginner', 'I know JavaScript', 'Python roadmap']);
+      }
+
+      // Return null to let the normal processMessage handle it
+      return null;
+    }
+  };
+
+  // Override sendMessage to integrate AI Brain
+  var originalProcessMessage = processMessage;
+  processMessage = function(input) {
+    // Track the topic
+    AIBrain.trackTopic(input);
+
+    // Try AI Brain's smart response first
+    var smartResponse = AIBrain.getThinkingResponse(input);
+    if (smartResponse) return smartResponse;
+
+    // Fall back to original knowledge-base response
+    var response = originalProcessMessage(input);
+
+    // Add smart follow-up suggestion after responses (30% chance)
+    if (Math.random() < 0.3) {
+      var followUp = AIBrain.getSmartFollowUp();
+      if (followUp) {
+        response += "\n\n---\n\n**I'm thinking...**\n" + followUp;
+      }
+    }
+
+    return response;
+  };
+
+  // ══════════════════════════════════════════════
+  // AI TEACHER CODE RUNNER
+  // Run code directly from AI teacher responses
+  // ══════════════════════════════════════════════
+
+  var AI_WANDBOX_API = 'https://wandbox.org/api/compile.json';
+
+  var AI_LANG_MAP = {
+    'python':     { compiler: 'cpython-3.12.7',     name: 'Python' },
+    'javascript': { compiler: 'nodejs-20.17.0',     name: 'JavaScript' },
+    'java':       { compiler: 'openjdk-jdk-22+36',  name: 'Java' },
+    'cpp':        { compiler: 'gcc-14.2.0',         name: 'C++' },
+    'c':          { compiler: 'gcc-14.2.0-c',       name: 'C' },
+    'csharp':     { compiler: 'mono-6.12.0.199',    name: 'C#' },
+    'php':        { compiler: 'php-8.3.12',         name: 'PHP' },
+    'go':         { compiler: 'go-1.23.2',          name: 'Go' },
+    'rust':       { compiler: 'rust-1.82.0',        name: 'Rust' },
+    'kotlin':     { compiler: null,                 name: 'Kotlin' },
+    'swift':      { compiler: 'swift-6.0.1',        name: 'Swift' },
+    'dart':       { compiler: null,                 name: 'Dart' },
+    'bash':       { compiler: 'bash',               name: 'Bash' },
+    'perl':       { compiler: 'perl-5.42.0',        name: 'Perl' },
+    'lua':        { compiler: 'lua-5.4.7',          name: 'Lua' },
+    'r':          { compiler: 'r-4.4.1',            name: 'R' },
+    'haskell':    { compiler: 'ghc-9.10.1',         name: 'Haskell' },
+    'typescript': { compiler: 'typescript-5.6.2',   name: 'TypeScript' },
+    'nodejs':     { compiler: 'nodejs-20.17.0',     name: 'Node.js' },
+    'js':         { compiler: 'nodejs-20.17.0',     name: 'JavaScript' }
+  };
+
+  // Detect language from code content
+  function detectCodeLanguage(code) {
+    code = code.trim();
+    if (/^#!\s*\/.*python/i.test(code) || /\bdef\s+\w+\s*\(|print\s*\(/i.test(code)) return 'python';
+    if (/^#!\s*\/.*bash/i.test(code) || /\becho\s+/i.test(code) && /\bfi\b|\bdone\b|\bdo\b/i.test(code)) return 'bash';
+    if (/\bSystem\.out\.println|public\s+class\s|public\s+static\s+void\s+main/i.test(code)) return 'java';
+    if (/\bConsole\.Write|using\s+System|static\s+void\s+Main/i.test(code)) return 'csharp';
+    if (/^<\?php/i.test(code)) return 'php';
+    if (/\b#include\s*<|printf\s*\(|int\s+main\s*\(/i.test(code) && /\bcout\b|std::|iostream/i.test(code)) return 'cpp';
+    if (/\b#include\s*<|printf\s*\(|int\s+main\s*\(/i.test(code)) return 'c';
+    if (/\bfn\s+main\s*\(|println!\s*\(/i.test(code)) return 'rust';
+    if (/\bpackage\s+main|fmt\.Print/i.test(code)) return 'go';
+    if (/\bfun\s+main\s*\(|println\s*\(/i.test(code) && !/function/i.test(code)) return 'kotlin';
+    if (/\bprint\s*\(.*\)/.test(code) && /\blet\s+\w+\s*[:=]|func\s+\w+/i.test(code) && /\bSwift\b|\bimport\s+Foundation/i.test(code)) return 'swift';
+    if (/\bvoid\s+main\s*\(\)|String\s+\w+\s*=/i.test(code) && /\bprint\s*\(/i.test(code)) return 'dart';
+    if (/\bconsole\.\w+|function\s+\w+|=>\s*{|const\s+|let\s+|var\s+/i.test(code)) return 'javascript';
+    if (/\bcat\s*\(|<-\s/i.test(code)) return 'r';
+    if (/\bdisp\s*\(|fprintf\s*\(/i.test(code) && /end\b/i.test(code)) return 'matlab';
+    if (/\bputStrLn|::\s*IO|main\s*=\s*do/i.test(code)) return 'haskell';
+    if (/\blocal\s+\w+|print\s*\(/i.test(code) && /\bend\b/i.test(code)) return 'lua';
+    if (/\buse\s+strict|my\s+\$/i.test(code)) return 'perl';
+    return 'javascript'; // default
+  }
+
+  // Get error suggestions for AI teacher
+  function getAIErrorSuggestions(errorText, lang) {
+    var suggestions = [];
+    var e = errorText.toLowerCase();
+
+    if (/syntax error|unexpected token|parse error/i.test(e)) {
+      suggestions.push('Check for missing or extra brackets <code>{ }</code>, <code>( )</code>');
+      suggestions.push('Look for missing semicolons or unclosed string quotes');
+    }
+    if (/undefined|not defined|undeclared|cannot find symbol/i.test(e)) {
+      suggestions.push('Make sure the variable/function is declared before use');
+      suggestions.push('Check for typos in names (case-sensitive!)');
+    }
+    if (/type error|typeerror|is not a function/i.test(e)) {
+      suggestions.push('Check data types - you may be calling a method on the wrong type');
+    }
+    if (lang === 'python' && /indentation/i.test(e)) {
+      suggestions.push('Use consistent 4-space indentation in Python');
+    }
+    if (lang === 'python' && /invalid syntax/i.test(e)) {
+      suggestions.push('Check for missing <code>:</code> after if/for/while/def/class');
+    }
+    if ((lang === 'java' || lang === 'csharp') && /main/i.test(e)) {
+      suggestions.push('Make sure you have a proper main method/class');
+    }
+    if (/timeout|time limit/i.test(e)) {
+      suggestions.push('Your code takes too long - check for infinite loops');
+    }
+
+    if (suggestions.length === 0 && /error|exception/i.test(e)) {
+      suggestions.push('Read the error message for the line number where the problem is');
+      suggestions.push('Try searching for this error message online for solutions');
+    }
+    return suggestions;
+  }
+
+  // Run code from AI teacher
+  function aiRunCode(btn) {
+    var wrap = btn.closest('.ai-code-block-wrap');
+    var codeEl = wrap.querySelector('code');
+    if (!codeEl) return;
+
+    var code = codeEl.textContent;
+    var lang = detectCodeLanguage(code);
+    var langConfig = AI_LANG_MAP[lang];
+
+    if (!langConfig || !langConfig.compiler) {
+      showAICodeOutput(wrap, 'This language cannot be run here. Try it in the <a href="playground.html" style="color:#00d4ff">Playground</a>!', true);
+      return;
+    }
+
+    // Disable button
+    btn.disabled = true;
+    btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Running...';
+
+    // Show loading
+    showAICodeOutput(wrap, '<span class="ai-out-loading"><i class="fas fa-circle-notch fa-spin"></i> Running ' + langConfig.name + ' code...</span>', false);
+
+    fetch(AI_WANDBOX_API, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        code: code,
+        compiler: langConfig.compiler
+      })
+    })
+    .then(function(res) {
+      if (!res.ok) throw new Error('Server returned ' + res.status);
+      return res.json();
+    })
+    .then(function(data) {
+      var output = '';
+      var hasError = false;
+
+      var stdout = data.program_output || '';
+      var stderr = data.program_error || '';
+      var compileErr = data.compiler_error || '';
+
+      if (compileErr) {
+        output += '<span class="ai-out-error">Compilation Error:\n' + escapeHtml(compileErr) + '</span>\n';
+        hasError = true;
+      }
+      if (stdout) {
+        output += escapeHtml(stdout);
+      }
+      if (stderr) {
+        output += (output ? '\n' : '') + '<span class="ai-out-error">' + escapeHtml(stderr) + '</span>';
+        hasError = true;
+      }
+      if (!output) {
+        if (data.status === '0' || data.status === 0) {
+          output = '<span style="color:#10b981">Program ran successfully (no output)</span>';
+        } else {
+          output = '<span class="ai-out-error">Program exited with code ' + escapeHtml(String(data.status || 'unknown')) + '</span>';
+          hasError = true;
+        }
+      }
+
+      var html = '<span class="ai-out-label"><i class="fas fa-terminal"></i> ' + langConfig.name + ' Output</span>' + output;
+
+      // Add error suggestions if error occurred
+      if (hasError) {
+        var errorText = (compileErr || '') + '\n' + (stderr || '');
+        var suggestions = getAIErrorSuggestions(errorText, lang);
+        if (suggestions.length > 0) {
+          html += '<div class="ai-error-suggest"><div class="ai-suggest-title"><i class="fas fa-lightbulb"></i> Fix Suggestions</div>';
+          suggestions.forEach(function(s) {
+            html += '<div class="ai-suggest-item"><i class="fas fa-chevron-right"></i> ' + s + '</div>';
+          });
+          html += '</div>';
+        }
+      }
+
+      showAICodeOutput(wrap, html, false);
+
+      btn.disabled = false;
+      btn.innerHTML = '<i class="fas fa-play"></i> Run';
+    })
+    .catch(function(err) {
+      showAICodeOutput(wrap, '<span class="ai-out-error">Network error: ' + escapeHtml(err.message) + '</span>', false);
+      btn.disabled = false;
+      btn.innerHTML = '<i class="fas fa-play"></i> Run';
+    });
+  }
+
+  function showAICodeOutput(wrap, html, isPlain) {
+    // Remove existing output
+    var existing = wrap.querySelector('.ai-code-output');
+    if (existing) existing.remove();
+
+    var outputDiv = document.createElement('div');
+    outputDiv.className = 'ai-code-output';
+    outputDiv.innerHTML = html;
+    wrap.appendChild(outputDiv);
+
+    // Scroll to output
+    outputDiv.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  }
+
+  // Enhance addMessage to add Run buttons to code blocks
+  var originalAddMessage = addMessage;
+  addMessage = function(text, type) {
+    originalAddMessage(text, type);
+
+    // After adding bot message, find code blocks and add Run buttons
+    if (type === 'bot') {
+      var messagesDiv = document.getElementById('aiMessages');
+      var lastMsg = messagesDiv.lastElementChild;
+      if (!lastMsg) return;
+
+      var bubble = lastMsg.querySelector('.ai-msg-bubble');
+      if (!bubble) return;
+
+      var codeBlocks = bubble.querySelectorAll('pre');
+      codeBlocks.forEach(function(pre) {
+        // Skip if already wrapped
+        if (pre.parentElement.classList.contains('ai-code-block-wrap')) return;
+
+        var codeEl = pre.querySelector('code');
+        if (!codeEl) {
+          // Wrap raw pre content in code
+          codeEl = document.createElement('code');
+          codeEl.innerHTML = pre.innerHTML;
+          pre.innerHTML = '';
+          pre.appendChild(codeEl);
+        }
+
+        var code = codeEl.textContent.trim();
+        if (code.length < 10) return; // skip tiny code snippets
+
+        // Check if this is runnable code (not CSS, not HTML-only)
+        var lang = detectCodeLanguage(code);
+        var isRunnable = !!AI_LANG_MAP[lang];
+
+        // Skip pure HTML/CSS that isn't runnable via Wandbox
+        if (/^<!DOCTYPE|^<html|^<div|^<style|^\.|^#|^body\s*{|^\.[\w-]+\s*{/i.test(code) && !/console\.|print\(|System\./i.test(code)) {
+          isRunnable = false;
+        }
+
+        // Wrap in container
+        var wrapper = document.createElement('div');
+        wrapper.className = 'ai-code-block-wrap';
+        pre.parentNode.insertBefore(wrapper, pre);
+        wrapper.appendChild(pre);
+
+        if (isRunnable) {
+          var runBtn = document.createElement('button');
+          runBtn.className = 'ai-run-btn';
+          runBtn.innerHTML = '<i class="fas fa-play"></i> Run';
+          runBtn.onclick = function() { aiRunCode(runBtn); };
+          wrapper.appendChild(runBtn);
+        }
+      });
+    }
+  };
+
+  // --- INIT ---
+  document.addEventListener('DOMContentLoaded', function() {
+    if (!loadChatHistory()) {
+      showWelcomeMessage();
+    }
+    document.getElementById('aiInput').focus();
+    AIBrain.init();
+  });
+  </script>
+  <!-- Prism.js Syntax Highlighting -->
+  <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/prism.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-python.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-java.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-c.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-cpp.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-bash.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-json.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-typescript.min.js"></script>
+  <script src="../js/prism-highlight.js"></script>
+</body>
+</html>

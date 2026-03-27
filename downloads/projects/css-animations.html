@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CSS Animation Pack - Code4Boy</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Segoe UI', sans-serif; background: #1a1a2e; color: #e0e0e0; padding: 30px; }
+    h1 { text-align: center; color: #00f0ff; margin-bottom: 10px; font-size: 2rem; }
+    .subtitle { text-align: center; color: #888; margin-bottom: 40px; }
+    .section { margin-bottom: 50px; }
+    .section h2 { color: #8b00ff; font-size: 1.3rem; margin-bottom: 20px; border-bottom: 2px solid rgba(139,0,255,0.2); padding-bottom: 8px; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 20px; }
+    .demo-box { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; padding: 30px 20px; text-align: center; cursor: pointer; }
+    .demo-box:hover .anim-target { animation-play-state: running; }
+    .demo-box p { margin-top: 12px; font-size: 0.8rem; color: #888; }
+    .anim-target { width: 60px; height: 60px; background: linear-gradient(135deg, #00f0ff, #8b00ff); border-radius: 10px; margin: 0 auto; }
+
+    /* Hover Effects */
+    .hover-grow:hover { transform: scale(1.1); transition: 0.3s; }
+    .hover-rotate:hover { transform: rotate(15deg); transition: 0.3s; }
+    .hover-shadow:hover { box-shadow: 0 10px 30px rgba(0,240,255,0.3); transition: 0.3s; }
+    .hover-border:hover { border-color: #00f0ff; transition: 0.3s; }
+    .hover-glow:hover .anim-target { box-shadow: 0 0 20px #00f0ff, 0 0 40px rgba(0,240,255,0.3); transition: 0.3s; }
+    .hover-lift:hover { transform: translateY(-8px); box-shadow: 0 15px 35px rgba(0,0,0,0.3); transition: 0.3s; }
+
+    /* Loading Spinners */
+    .spinner-1 { width: 40px; height: 40px; border: 4px solid rgba(0,240,255,0.2); border-top-color: #00f0ff; border-radius: 50%; margin: 0 auto; animation: spin 0.8s linear infinite; }
+    .spinner-2 { width: 40px; height: 40px; margin: 0 auto; position: relative; }
+    .spinner-2::before, .spinner-2::after { content: ''; position: absolute; border-radius: 50%; }
+    .spinner-2::before { width: 100%; height: 100%; border: 4px solid transparent; border-top-color: #00f0ff; border-bottom-color: #8b00ff; animation: spin 1s linear infinite; }
+    .spinner-3 { display: flex; gap: 6px; justify-content: center; }
+    .spinner-3 span { width: 10px; height: 10px; background: #00f0ff; border-radius: 50%; animation: bounce-dot 1.4s ease-in-out infinite; }
+    .spinner-3 span:nth-child(2) { animation-delay: 0.2s; }
+    .spinner-3 span:nth-child(3) { animation-delay: 0.4s; }
+    .spinner-4 { width: 40px; height: 40px; margin: 0 auto; background: #00f0ff; border-radius: 6px; animation: spin-scale 1.2s ease-in-out infinite; }
+    .pulse-ring { width: 40px; height: 40px; margin: 0 auto; border-radius: 50%; background: #00f0ff; animation: pulse-ring 1.5s ease infinite; }
+
+    /* Entrance Animations */
+    .fade-in { animation: fadeIn 1s ease infinite alternate; }
+    .slide-up { animation: slideUp 1s ease infinite alternate; }
+    .slide-left { animation: slideLeft 1s ease infinite alternate; }
+    .zoom-in { animation: zoomIn 1s ease infinite alternate; }
+    .flip-in { animation: flipIn 1s ease infinite alternate; }
+    .bounce-in { animation: bounceIn 1s ease infinite alternate; }
+
+    /* Continuous Animations */
+    .float { animation: float 3s ease-in-out infinite; }
+    .pulse { animation: pulse 2s ease-in-out infinite; }
+    .shake { animation: shake 0.5s ease-in-out infinite; }
+    .swing { animation: swing 1.5s ease-in-out infinite; transform-origin: top center; }
+    .heartbeat { animation: heartbeat 1.5s ease-in-out infinite; }
+    .wobble { animation: wobble 1s ease-in-out infinite; }
+
+    @keyframes spin { to { transform: rotate(360deg); } }
+    @keyframes spin-scale { 0%,100% { transform: rotate(0) scale(1); } 50% { transform: rotate(180deg) scale(0.6); } }
+    @keyframes bounce-dot { 0%,80%,100% { transform: scale(0); } 40% { transform: scale(1); } }
+    @keyframes pulse-ring { 0% { transform: scale(0.8); opacity: 1; } 100% { transform: scale(1.6); opacity: 0; } }
+    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+    @keyframes slideUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes slideLeft { from { opacity: 0; transform: translateX(-30px); } to { opacity: 1; transform: translateX(0); } }
+    @keyframes zoomIn { from { opacity: 0; transform: scale(0.5); } to { opacity: 1; transform: scale(1); } }
+    @keyframes flipIn { from { opacity: 0; transform: perspective(400px) rotateY(90deg); } to { opacity: 1; transform: perspective(400px) rotateY(0); } }
+    @keyframes bounceIn { 0% { opacity: 0; transform: scale(0.3); } 50% { transform: scale(1.05); } 70% { transform: scale(0.9); } 100% { opacity: 1; transform: scale(1); } }
+    @keyframes float { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-15px); } }
+    @keyframes pulse { 0%,100% { transform: scale(1); } 50% { transform: scale(1.08); } }
+    @keyframes shake { 0%,100% { transform: translateX(0); } 25% { transform: translateX(-5px); } 75% { transform: translateX(5px); } }
+    @keyframes swing { 0%,100% { transform: rotate(0); } 20% { transform: rotate(15deg); } 40% { transform: rotate(-10deg); } 60% { transform: rotate(5deg); } 80% { transform: rotate(-5deg); } }
+    @keyframes heartbeat { 0%,100% { transform: scale(1); } 14% { transform: scale(1.3); } 28% { transform: scale(1); } 42% { transform: scale(1.3); } 70% { transform: scale(1); } }
+    @keyframes wobble { 0%,100% { transform: translateX(0) rotate(0); } 15% { transform: translateX(-10px) rotate(-5deg); } 30% { transform: translateX(8px) rotate(3deg); } 45% { transform: translateX(-5px) rotate(-3deg); } 60% { transform: translateX(3px) rotate(2deg); } 75% { transform: translateX(-2px) rotate(-1deg); } }
+  </style>
+</head>
+<body>
+  <h1>CSS Animation Pack</h1>
+  <p class="subtitle">50+ Ready-to-use CSS Animations - Code4Boy</p>
+
+  <div class="section">
+    <h2>Hover Effects (hover over cards)</h2>
+    <div class="grid">
+      <div class="demo-box hover-grow"><div class="anim-target"></div><p>Grow</p></div>
+      <div class="demo-box hover-rotate"><div class="anim-target"></div><p>Rotate</p></div>
+      <div class="demo-box hover-shadow"><div class="anim-target"></div><p>Shadow</p></div>
+      <div class="demo-box hover-border"><div class="anim-target"></div><p>Border Glow</p></div>
+      <div class="demo-box hover-glow"><div class="anim-target"></div><p>Neon Glow</p></div>
+      <div class="demo-box hover-lift"><div class="anim-target"></div><p>Lift Up</p></div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>Loading Spinners</h2>
+    <div class="grid">
+      <div class="demo-box"><div class="spinner-1"></div><p>Classic Spinner</p></div>
+      <div class="demo-box"><div class="spinner-2"></div><p>Dual Ring</p></div>
+      <div class="demo-box"><div class="spinner-3"><span></span><span></span><span></span></div><p>Bouncing Dots</p></div>
+      <div class="demo-box"><div class="spinner-4"></div><p>Spin & Scale</p></div>
+      <div class="demo-box"><div class="pulse-ring"></div><p>Pulse Ring</p></div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>Entrance Animations</h2>
+    <div class="grid">
+      <div class="demo-box"><div class="anim-target fade-in"></div><p>Fade In</p></div>
+      <div class="demo-box"><div class="anim-target slide-up"></div><p>Slide Up</p></div>
+      <div class="demo-box"><div class="anim-target slide-left"></div><p>Slide Left</p></div>
+      <div class="demo-box"><div class="anim-target zoom-in"></div><p>Zoom In</p></div>
+      <div class="demo-box"><div class="anim-target flip-in"></div><p>Flip In</p></div>
+      <div class="demo-box"><div class="anim-target bounce-in"></div><p>Bounce In</p></div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>Continuous Animations</h2>
+    <div class="grid">
+      <div class="demo-box"><div class="anim-target float"></div><p>Float</p></div>
+      <div class="demo-box"><div class="anim-target pulse"></div><p>Pulse</p></div>
+      <div class="demo-box"><div class="anim-target shake"></div><p>Shake</p></div>
+      <div class="demo-box"><div class="anim-target swing"></div><p>Swing</p></div>
+      <div class="demo-box"><div class="anim-target heartbeat"></div><p>Heartbeat</p></div>
+      <div class="demo-box"><div class="anim-target wobble"></div><p>Wobble</p></div>
+    </div>
+  </div>
+
+  <p class="subtitle" style="margin-top:40px">Copy the CSS keyframes and classes into your project. View source code to get all animations!</p>
+</body>
+</html>

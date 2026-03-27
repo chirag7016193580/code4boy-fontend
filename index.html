@@ -1,0 +1,867 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Code4Boy - Learn Coding Free with AI Power. Tutorials, Projects, Tools, and Error Solutions for HTML, CSS, JavaScript, Python, and AI.">
+  <meta name="keywords" content="coding, programming, tutorials, HTML, CSS, JavaScript, Python, AI, free learning, code4boy">
+  <meta name="author" content="Code4Boy">
+  <meta name="robots" content="index, follow">
+  <meta http-equiv="X-Content-Type-Options" content="nosniff">
+  <meta http-equiv="X-Frame-Options" content="SAMEORIGIN">
+  <meta http-equiv="X-XSS-Protection" content="1; mode=block">
+  <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://unpkg.com https://accounts.google.com https://apis.google.com https://*.googleapis.com; style-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com https://fonts.googleapis.com https://accounts.google.com; font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com; img-src 'self' data: blob: https://*.googleusercontent.com https://*.google.com; frame-src https://www.youtube.com https://accounts.google.com https://*.google.com; connect-src 'self' http://localhost:8000 http://127.0.0.1:8000 https://code4boy-backend.vercel.app https://ipapi.co http://localhost:11434 http://127.0.0.1:11434 https://accounts.google.com https://*.googleapis.com https://wandbox.org;">
+  <meta http-equiv="Permissions-Policy" content="camera=(), microphone=(), geolocation=()">
+  <link rel="canonical" href="https://code4boy.com/">
+  <meta property="og:title" content="Code4Boy - Learn Coding Free with AI Power">
+  <meta property="og:description" content="Futuristic coding platform with free tutorials, projects, tools, and error solutions.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://code4boy.com/">
+  <meta property="og:image" content="https://code4boy.com/images/logo.jpg">
+  <meta property="og:site_name" content="Code4Boy">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Code4Boy - Learn Coding Free with AI Power">
+  <meta name="twitter:description" content="Futuristic coding platform with free tutorials, projects, tools, and error solutions.">
+  <title>Code4Boy - Learn Coding Free with AI Power</title>
+  <link rel="icon" type="image/jpeg" href="images/logo.jpg">
+  <!-- Preconnect for performance -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/upgrade.css">
+  <link rel="stylesheet" href="css/professional.css">
+  <link rel="stylesheet" href="css/dark-override.css">
+  <link rel="stylesheet" href="css/auth.css">
+  <link rel="stylesheet" href="css/mobile.css">
+  <link rel="stylesheet" href="css/ui-update.css">
+  <link rel="stylesheet" href="css/upgrade-v2.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer">
+  <!-- Structured Data for SEO -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "EducationalOrganization",
+    "name": "Code4Boy",
+    "url": "https://code4boy.com/",
+    "logo": "https://code4boy.com/images/logo.jpg",
+    "description": "Learn Coding Free with AI Power. Tutorials, Projects, Tools, and Error Solutions for HTML, CSS, JavaScript, Python, and AI.",
+    "sameAs": [
+      "https://youtube.com/@code4boy-l4u"
+    ],
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD",
+      "description": "Free coding tutorials and resources"
+    }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "Code4Boy",
+    "url": "https://code4boy.com/",
+    "description": "Learn Coding Free with AI Power",
+    "potentialAction": {
+      "@type": "SearchAction",
+      "target": "https://code4boy.com/?search={search_term_string}",
+      "query-input": "required name=search_term_string"
+    }
+  }
+  </script>
+</head>
+<body class="has-banner">
+  <!-- Announcement Banner -->
+  <div class="announcement-banner" id="announcementBanner">
+    <i class="fas fa-sparkles" aria-hidden="true"></i>
+    <span>New! AI Teacher, Live Playground &amp; 50+ Tutorials now available</span>
+    <button class="close-banner" onclick="document.getElementById('announcementBanner').remove(); document.body.classList.remove('has-banner');" aria-label="Close announcement"><i class="fas fa-times"></i></button>
+  </div>
+
+  <!-- Skip to Content (Accessibility) -->
+  <a href="#main-content" class="skip-to-content">Skip to main content</a>
+
+  <!-- Scroll Progress Bar -->
+  <div class="scroll-progress-bar" id="scrollProgressBar" aria-hidden="true"></div>
+
+  <!-- Loader -->
+  <div class="loader" role="status" aria-label="Loading">
+    <div class="loader-content">
+      <img src="images/logo.jpg" alt="Code4Boy Logo" class="loader-logo" onerror="console.error('Logo failed to load:', this.src);">
+      <div class="loader-bar"><div class="loader-bar-fill"></div></div>
+      <p class="loader-text">Loading Code4Boy...</p>
+    </div>
+  </div>
+
+
+  <!-- Navbar -->
+  <nav class="navbar" role="navigation" aria-label="Main navigation">
+    <div class="nav-container">
+      <a href="index.html" class="nav-logo" aria-label="Code4Boy Home">
+        <img src="images/logo.jpg" alt="Code4Boy Logo" width="44" height="44" onerror="console.error('Nav logo failed:', this.src);">
+        <span>CODE4BOY</span>
+      </a>
+      <ul class="nav-links" role="menubar">
+        <li role="none"><a href="index.html" class="active" role="menuitem"><i class="fas fa-home" aria-hidden="true"></i> Home</a></li>
+        <li role="none"><a href="pages/tutorials.html" role="menuitem"><i class="fas fa-book" aria-hidden="true"></i> Tutorials</a></li>
+        <li role="none"><a href="pages/projects.html" role="menuitem"><i class="fas fa-code" aria-hidden="true"></i> Projects</a></li>
+        <li role="none"><a href="pages/tools.html" role="menuitem"><i class="fas fa-wrench" aria-hidden="true"></i> Tools</a></li>
+        <li role="none"><a href="pages/playground.html" role="menuitem"><i class="fas fa-laptop-code" aria-hidden="true"></i> Playground</a></li>
+        <li role="none"><a href="pages/ai-teacher.html" role="menuitem"><i class="fas fa-robot" aria-hidden="true"></i> AI Teacher</a></li>
+        <li role="none" class="nav-more-dropdown">
+          <button class="nav-more-btn" role="menuitem" aria-expanded="false" aria-haspopup="true"><i class="fas fa-ellipsis-h" aria-hidden="true"></i> More</button>
+          <ul class="nav-more-menu" role="menu">
+            <li role="none"><a href="pages/errors.html" role="menuitem"><i class="fas fa-bug" aria-hidden="true"></i> Errors</a></li>
+            <li role="none"><a href="pages/downloads.html" role="menuitem"><i class="fas fa-download" aria-hidden="true"></i> Downloads</a></li>
+            <li role="none"><a href="https://youtube.com/@code4boy-l4u" target="_blank" rel="noopener noreferrer" role="menuitem"><i class="fab fa-youtube" aria-hidden="true"></i> Videos</a></li>
+            <li role="none"><a href="#contact" role="menuitem"><i class="fas fa-envelope" aria-hidden="true"></i> Contact</a></li>
+          </ul>
+        </li>
+      </ul>
+      <div class="nav-right">
+        <button class="nav-search-btn" title="Search (Press /)" aria-label="Open search"><i class="fas fa-search" aria-hidden="true"></i></button>
+        <button class="theme-toggle" aria-label="Toggle theme"><i class="fas fa-sun" aria-hidden="true"></i> <span>Light</span></button>
+        <div id="authBtnContainer" class="auth-btn-container"></div>
+        <div class="menu-toggle" role="button" tabindex="0" aria-label="Toggle menu" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Search Modal -->
+  <div class="search-modal" role="dialog" aria-label="Search" aria-hidden="true">
+    <button class="search-close" aria-label="Close search"><i class="fas fa-times" aria-hidden="true"></i></button>
+    <div class="search-modal-content">
+      <input type="text" class="search-modal-input" placeholder="Search tutorials, projects, tools..." autofocus aria-label="Search input">
+      <div class="search-results" role="listbox" aria-label="Search results"></div>
+    </div>
+  </div>
+
+  <!-- Hero Section -->
+  <header class="hero" id="home">
+    
+    <div class="hero-container">
+      <div class="hero-left">
+        <div class="hero-badge">
+          <span class="dot" aria-hidden="true"></span>
+          Free Learning Platform
+        </div>
+        <h1>
+          <span class="gradient-text">Learn Coding Free</span><br>
+          with <span class="glow-text" id="heroTypingText">AI Power</span><span class="typing-cursor" aria-hidden="true"></span>
+        </h1>
+        <p class="hero-desc">Master HTML, CSS, JavaScript, Python &amp; AI Tools with step-by-step tutorials, real projects, and smart solutions.</p>
+        <div class="hero-buttons">
+          <a href="pages/tutorials.html" class="btn-primary"><i class="fas fa-rocket" aria-hidden="true"></i> Start Learning</a>
+          <a href="pages/projects.html" class="btn-secondary"><i class="fas fa-code" aria-hidden="true"></i> View Projects</a>
+        </div>
+        <!-- Animated Code Preview -->
+        <div class="hero-code-preview" aria-hidden="true">
+          <div class="code-header">
+            <span class="code-dot red"></span>
+            <span class="code-dot yellow"></span>
+            <span class="code-dot green"></span>
+            <span class="code-title">hello.js</span>
+          </div>
+          <div class="code-body" id="heroCodeBody"><span class="comment">// Start your coding journey</span>
+<span class="keyword">const</span> <span class="variable">student</span> <span class="operator">=</span> {
+  <span class="string">name</span>: <span class="string">"You"</span>,
+  <span class="string">level</span>: <span class="string">"Beginner"</span>,
+  <span class="string">goal</span>: <span class="string">"Full Stack Dev"</span>
+};
+<span class="function">console</span>.<span class="function">log</span>(<span class="string">"Welcome to Code4Boy!"</span>);<span class="code-cursor"></span></div>
+        </div>
+      </div>
+      <div class="hero-right">
+        <div class="hero-stats-grid" role="group" aria-label="Platform statistics">
+          <div class="stat-card reveal">
+            <div class="stat-icon"><i class="fas fa-book-open" aria-hidden="true"></i></div>
+                        <div class="stat-number" data-count="22" data-suffix="+">0</div>
+                        <div class="stat-label">Tutorials</div>
+          </div>
+          <div class="stat-card reveal">
+            <div class="stat-icon"><i class="fas fa-project-diagram" aria-hidden="true"></i></div>
+            <div class="stat-number" data-count="6" data-suffix="+">0</div>
+            <div class="stat-label">Projects</div>
+          </div>
+          <div class="stat-card reveal">
+            <div class="stat-icon"><i class="fas fa-bug" aria-hidden="true"></i></div>
+            <div class="stat-number" data-count="10" data-suffix="+">0</div>
+            <div class="stat-label">Error Fixes</div>
+          </div>
+          <div class="stat-card reveal">
+            <div class="stat-icon"><i class="fas fa-users" aria-hidden="true"></i></div>
+            <div class="stat-number" data-count="24" data-suffix="+">0</div>
+            <div class="stat-label">Languages</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main id="main-content">
+    <!-- What's New Ticker -->
+    <section class="whats-new-section">
+      <div class="whats-new-ticker" id="whatsNewTicker">
+        <div class="whats-new-item">
+          <div class="whats-new-icon purple"><i class="fas fa-robot"></i></div>
+          <div class="whats-new-text"><h4>AI Teacher Launched</h4><p>Chat with AI to learn coding concepts instantly</p></div>
+          <span class="whats-new-badge new">New</span>
+        </div>
+        <div class="whats-new-item">
+          <div class="whats-new-icon blue"><i class="fas fa-laptop-code"></i></div>
+          <div class="whats-new-text"><h4>Live Code Playground</h4><p>Write &amp; run HTML/CSS/JS directly in your browser</p></div>
+          <span class="whats-new-badge hot">Hot</span>
+        </div>
+        <div class="whats-new-item">
+          <div class="whats-new-icon green"><i class="fas fa-download"></i></div>
+          <div class="whats-new-text"><h4>10+ New Downloads</h4><p>Free templates, cheat sheets &amp; starter projects</p></div>
+          <span class="whats-new-badge update">Update</span>
+        </div>
+        <div class="whats-new-item">
+          <div class="whats-new-icon orange"><i class="fas fa-shield-alt"></i></div>
+          <div class="whats-new-text"><h4>Enhanced Security</h4><p>XSS protection, CSRF tokens &amp; rate limiting</p></div>
+          <span class="whats-new-badge new">New</span>
+        </div>
+        <div class="whats-new-item">
+          <div class="whats-new-icon blue"><i class="fab fa-python"></i></div>
+          <div class="whats-new-text"><h4>Python Tutorials</h4><p>18 new lessons from basics to Flask backend</p></div>
+          <span class="whats-new-badge update">Update</span>
+        </div>
+      </div>
+    </section>
+
+    <hr class="section-divider">
+
+    <!-- Learning Roadmap Section -->
+    <section class="section" id="roadmap">
+      <div class="section-header reveal">
+        <span class="section-badge"><i class="fas fa-route" aria-hidden="true"></i> Roadmap</span>
+        <h2 class="section-title">Your Learning <span class="highlight">Roadmap</span></h2>
+        <p class="section-desc">Follow a structured path from beginner to job-ready developer</p>
+        <div class="neon-line mt-20"></div>
+      </div>
+      <div class="roadmap-grid reveal">
+        <div class="roadmap-card" data-step="1">
+          <div class="roadmap-number">01</div>
+          <div class="roadmap-icon-wrap"><i class="fab fa-html5" aria-hidden="true"></i></div>
+          <h3>HTML &amp; CSS Fundamentals</h3>
+          <p>Learn the building blocks of the web. Build your first web pages with semantic HTML and modern CSS layouts.</p>
+          <div class="roadmap-skills"><span class="skill-pill">HTML5</span><span class="skill-pill">CSS3</span><span class="skill-pill">Flexbox</span><span class="skill-pill">Grid</span></div>
+          <span class="roadmap-duration"><i class="fas fa-clock" aria-hidden="true"></i> 4-6 weeks</span>
+        </div>
+        <div class="roadmap-card" data-step="2">
+          <div class="roadmap-number">02</div>
+          <div class="roadmap-icon-wrap"><i class="fab fa-js-square" aria-hidden="true"></i></div>
+          <h3>JavaScript &amp; Interactivity</h3>
+          <p>Add logic and interactivity to your websites. Learn programming fundamentals with JavaScript.</p>
+          <div class="roadmap-skills"><span class="skill-pill">ES6+</span><span class="skill-pill">DOM</span><span class="skill-pill">APIs</span><span class="skill-pill">Async</span></div>
+          <span class="roadmap-duration"><i class="fas fa-clock" aria-hidden="true"></i> 6-8 weeks</span>
+        </div>
+        <div class="roadmap-card" data-step="3">
+          <div class="roadmap-number">03</div>
+          <div class="roadmap-icon-wrap"><i class="fab fa-python" aria-hidden="true"></i></div>
+          <h3>Python &amp; Backend</h3>
+          <p>Expand your skills with Python. Build server-side applications, automate tasks, and work with databases.</p>
+          <div class="roadmap-skills"><span class="skill-pill">Python</span><span class="skill-pill">Flask</span><span class="skill-pill">SQL</span><span class="skill-pill">REST</span></div>
+          <span class="roadmap-duration"><i class="fas fa-clock" aria-hidden="true"></i> 6-8 weeks</span>
+        </div>
+        <div class="roadmap-card" data-step="4">
+          <div class="roadmap-number">04</div>
+          <div class="roadmap-icon-wrap"><i class="fas fa-robot" aria-hidden="true"></i></div>
+          <h3>AI Tools &amp; Advanced</h3>
+          <p>Leverage AI for faster development. Master Git, deploy projects, and build your professional portfolio.</p>
+          <div class="roadmap-skills"><span class="skill-pill">ChatGPT</span><span class="skill-pill">Copilot</span><span class="skill-pill">Git</span><span class="skill-pill">Deploy</span></div>
+          <span class="roadmap-duration"><i class="fas fa-clock" aria-hidden="true"></i> 4-6 weeks</span>
+        </div>
+      </div>
+    </section>
+    <!-- Latest Tutorials Section -->
+    <section class="section" id="tutorials">
+      <div class="section-header reveal">
+        <span class="section-badge"><i class="fas fa-book" aria-hidden="true"></i> Tutorials</span>
+        <h2 class="section-title">Latest <span class="highlight">Tutorials</span></h2>
+        <p class="section-desc">Learn coding from scratch with our easy-to-follow step-by-step guides</p>
+        <div class="neon-line mt-20"></div>
+      </div>
+      <div class="category-cards reveal">
+        <a href="pages/tutorials.html#html" class="category-card" data-color="orange"><span class="cat-icon"><i class="fab fa-html5" style="color:#f77f00" aria-hidden="true"></i></span><h3>HTML</h3><p>12 Lessons</p></a>
+        <a href="pages/tutorials.html#css" class="category-card" data-color="blue"><span class="cat-icon"><i class="fab fa-css3-alt" style="color:#00b4d8" aria-hidden="true"></i></span><h3>CSS</h3><p>15 Lessons</p></a>
+        <a href="pages/tutorials.html#javascript" class="category-card" data-color="yellow"><span class="cat-icon"><i class="fab fa-js-square" style="color:#f7df1e" aria-hidden="true"></i></span><h3>JavaScript</h3><p>20 Lessons</p></a>
+        <a href="pages/tutorials.html#python" class="category-card" data-color="green"><span class="cat-icon"><i class="fab fa-python" style="color:#06d6a0" aria-hidden="true"></i></span><h3>Python</h3><p>18 Lessons</p></a>
+        <a href="pages/tutorials.html#ai" class="category-card" data-color="purple"><span class="cat-icon"><i class="fas fa-robot" style="color:#7209b7" aria-hidden="true"></i></span><h3>AI Tools</h3><p>8 Lessons</p></a>
+        <a href="pages/tutorials.html#more-language" class="category-card" data-color="cyan"><span class="cat-icon"><i class="fas fa-language" style="color:#00f0ff" aria-hidden="true"></i></span><h3>More Language</h3><p>Extra Tutorials</p></a>
+      </div>
+      <div class="cards-grid mt-40">
+        <article class="card reveal"><span class="card-tag">HTML</span><h3>HTML Basics - Your First Website</h3><p>Learn the fundamentals of HTML and build your first web page from scratch.</p><a href="pages/tutorials.html#html" class="card-link">Read Tutorial <i class="fas fa-arrow-right" aria-hidden="true"></i></a></article>
+        <article class="card reveal"><span class="card-tag">CSS</span><h3>CSS Flexbox &amp; Grid Mastery</h3><p>Master modern CSS layouts with Flexbox and Grid. Create responsive designs that look amazing on every device.</p><a href="pages/tutorials.html#css" class="card-link">Read Tutorial <i class="fas fa-arrow-right" aria-hidden="true"></i></a></article>
+        <article class="card reveal"><span class="card-tag">JavaScript</span><h3>JavaScript DOM Manipulation</h3><p>Learn how to dynamically change HTML content with JavaScript. Create interactive web experiences.</p><a href="pages/tutorials.html#javascript" class="card-link">Read Tutorial <i class="fas fa-arrow-right" aria-hidden="true"></i></a></article>
+        <article class="card reveal"><span class="card-tag">Python</span><h3>Python for Absolute Beginners</h3><p>Start your Python journey with variables, loops, and functions. Perfect for beginners.</p><a href="pages/tutorials.html#python" class="card-link">Read Tutorial <i class="fas fa-arrow-right" aria-hidden="true"></i></a></article>
+        <article class="card reveal"><span class="card-tag">AI Tools</span><h3>ChatGPT for Developers</h3><p>Learn how to use ChatGPT and AI tools to boost your coding productivity.</p><a href="pages/tutorials.html#ai" class="card-link">Read Tutorial <i class="fas fa-arrow-right" aria-hidden="true"></i></a></article>
+        <article class="card reveal"><span class="card-tag">JavaScript</span><h3>Build a REST API with Node.js</h3><p>Create your own REST API using Node.js and Express. Learn routes, middleware, and databases.</p><a href="pages/tutorials.html#javascript" class="card-link">Read Tutorial <i class="fas fa-arrow-right" aria-hidden="true"></i></a></article>
+      </div>
+    </section>
+    <!-- Featured Projects Section -->
+    <section class="section" id="projects">
+      <div class="section-header reveal">
+        <span class="section-badge"><i class="fas fa-code" aria-hidden="true"></i> Projects</span>
+        <h2 class="section-title">Featured <span class="highlight">Projects</span></h2>
+        <p class="section-desc">Build real-world projects and add them to your portfolio</p>
+        <div class="neon-line mt-20"></div>
+      </div>
+      <div class="cards-grid">
+        <article class="project-card reveal">
+          <div class="project-preview" aria-hidden="true"><i class="fas fa-globe"></i></div>
+          <div class="project-body">
+            <span class="card-tag">HTML / CSS</span><h3>Portfolio Website</h3>
+            <p>Build a modern, responsive portfolio website to showcase your skills and projects.</p>
+            <ul class="project-features"><li>Responsive Design</li><li>Smooth Animations</li><li>Contact Form</li></ul>
+            <div class="project-buttons"><a href="pages/projects.html" class="btn-download"><i class="fas fa-download" aria-hidden="true"></i> Download</a><a href="pages/projects.html" class="card-link">View Code <i class="fas fa-arrow-right" aria-hidden="true"></i></a></div>
+          </div>
+        </article>
+        <article class="project-card reveal">
+          <div class="project-preview" aria-hidden="true"><i class="fas fa-calculator"></i></div>
+          <div class="project-body">
+            <span class="card-tag">JavaScript</span><h3>Calculator App</h3>
+            <p>Create a fully functional calculator with a beautiful UI. Supports basic and scientific operations.</p>
+            <ul class="project-features"><li>Basic &amp; Scientific Mode</li><li>Keyboard Support</li><li>History Feature</li></ul>
+            <div class="project-buttons"><a href="pages/projects.html" class="btn-download"><i class="fas fa-download" aria-hidden="true"></i> Download</a><a href="pages/projects.html" class="card-link">View Code <i class="fas fa-arrow-right" aria-hidden="true"></i></a></div>
+          </div>
+        </article>
+        <article class="project-card reveal">
+          <div class="project-preview" aria-hidden="true"><i class="fas fa-cloud-sun"></i></div>
+          <div class="project-body">
+            <span class="card-tag">API / JavaScript</span><h3>Weather Dashboard</h3>
+            <p>Build a weather app using the OpenWeather API. Display real-time weather data with beautiful visuals.</p>
+            <ul class="project-features"><li>Real-time Weather</li><li>Location Search</li><li>5-Day Forecast</li></ul>
+            <div class="project-buttons"><a href="pages/projects.html" class="btn-download"><i class="fas fa-download" aria-hidden="true"></i> Download</a><a href="pages/projects.html" class="card-link">View Code <i class="fas fa-arrow-right" aria-hidden="true"></i></a></div>
+          </div>
+        </article>
+      </div>
+    </section>
+    <!-- Skills Progress Tracker -->
+    <section class="section" id="skills-tracker">
+      <div class="section-header reveal">
+        <span class="section-badge"><i class="fas fa-chart-line" aria-hidden="true"></i> Progress</span>
+        <h2 class="section-title">Track Your <span class="highlight">Skills</span></h2>
+        <p class="section-desc">Monitor your learning progress across different technologies</p>
+        <div class="neon-line mt-20"></div>
+      </div>
+      <div class="skills-tracker-grid reveal">
+        <div class="skill-tracker-card" data-skill="html">
+          <div class="skill-tracker-header">
+            <div class="skill-tracker-icon" style="color:#f77f00"><i class="fab fa-html5" aria-hidden="true"></i></div>
+            <div class="skill-tracker-info"><h3>HTML5</h3><span class="skill-level" data-level="beginner">Beginner</span></div>
+            <div class="skill-percentage" data-percent="0">0%</div>
+          </div>
+          <div class="skill-progress-bar"><div class="skill-progress-fill" style="--fill-color: #f77f00" data-width="0"></div></div>
+          <div class="skill-tracker-actions">
+            <button class="skill-action-btn" data-action="learn" data-skill="html"><i class="fas fa-book" aria-hidden="true"></i> Start Learning</button>
+            <button class="skill-action-btn mark-complete" data-action="complete" data-skill="html"><i class="fas fa-check" aria-hidden="true"></i> Mark Complete</button>
+          </div>
+        </div>
+        <div class="skill-tracker-card" data-skill="css">
+          <div class="skill-tracker-header">
+            <div class="skill-tracker-icon" style="color:#00b4d8"><i class="fab fa-css3-alt" aria-hidden="true"></i></div>
+            <div class="skill-tracker-info"><h3>CSS3</h3><span class="skill-level" data-level="beginner">Beginner</span></div>
+            <div class="skill-percentage" data-percent="0">0%</div>
+          </div>
+          <div class="skill-progress-bar"><div class="skill-progress-fill" style="--fill-color: #00b4d8" data-width="0"></div></div>
+          <div class="skill-tracker-actions">
+            <button class="skill-action-btn" data-action="learn" data-skill="css"><i class="fas fa-book" aria-hidden="true"></i> Start Learning</button>
+            <button class="skill-action-btn mark-complete" data-action="complete" data-skill="css"><i class="fas fa-check" aria-hidden="true"></i> Mark Complete</button>
+          </div>
+        </div>
+        <div class="skill-tracker-card" data-skill="javascript">
+          <div class="skill-tracker-header">
+            <div class="skill-tracker-icon" style="color:#f7df1e"><i class="fab fa-js-square" aria-hidden="true"></i></div>
+            <div class="skill-tracker-info"><h3>JavaScript</h3><span class="skill-level" data-level="beginner">Beginner</span></div>
+            <div class="skill-percentage" data-percent="0">0%</div>
+          </div>
+          <div class="skill-progress-bar"><div class="skill-progress-fill" style="--fill-color: #f7df1e" data-width="0"></div></div>
+          <div class="skill-tracker-actions">
+            <button class="skill-action-btn" data-action="learn" data-skill="javascript"><i class="fas fa-book" aria-hidden="true"></i> Start Learning</button>
+            <button class="skill-action-btn mark-complete" data-action="complete" data-skill="javascript"><i class="fas fa-check" aria-hidden="true"></i> Mark Complete</button>
+          </div>
+        </div>
+        <div class="skill-tracker-card" data-skill="python">
+          <div class="skill-tracker-header">
+            <div class="skill-tracker-icon" style="color:#06d6a0"><i class="fab fa-python" aria-hidden="true"></i></div>
+            <div class="skill-tracker-info"><h3>Python</h3><span class="skill-level" data-level="beginner">Beginner</span></div>
+            <div class="skill-percentage" data-percent="0">0%</div>
+          </div>
+          <div class="skill-progress-bar"><div class="skill-progress-fill" style="--fill-color: #06d6a0" data-width="0"></div></div>
+          <div class="skill-tracker-actions">
+            <button class="skill-action-btn" data-action="learn" data-skill="python"><i class="fas fa-book" aria-hidden="true"></i> Start Learning</button>
+            <button class="skill-action-btn mark-complete" data-action="complete" data-skill="python"><i class="fas fa-check" aria-hidden="true"></i> Mark Complete</button>
+          </div>
+        </div>
+        <div class="skill-tracker-card" data-skill="ai">
+          <div class="skill-tracker-header">
+            <div class="skill-tracker-icon" style="color:#7209b7"><i class="fas fa-robot" aria-hidden="true"></i></div>
+            <div class="skill-tracker-info"><h3>AI Tools</h3><span class="skill-level" data-level="beginner">Beginner</span></div>
+            <div class="skill-percentage" data-percent="0">0%</div>
+          </div>
+          <div class="skill-progress-bar"><div class="skill-progress-fill" style="--fill-color: #7209b7" data-width="0"></div></div>
+          <div class="skill-tracker-actions">
+            <button class="skill-action-btn" data-action="learn" data-skill="ai"><i class="fas fa-book" aria-hidden="true"></i> Start Learning</button>
+            <button class="skill-action-btn mark-complete" data-action="complete" data-skill="ai"><i class="fas fa-check" aria-hidden="true"></i> Mark Complete</button>
+          </div>
+        </div>
+        <div class="skill-tracker-card" data-skill="git">
+          <div class="skill-tracker-header">
+            <div class="skill-tracker-icon" style="color:#f05032"><i class="fab fa-git-alt" aria-hidden="true"></i></div>
+            <div class="skill-tracker-info"><h3>Git &amp; GitHub</h3><span class="skill-level" data-level="beginner">Beginner</span></div>
+            <div class="skill-percentage" data-percent="0">0%</div>
+          </div>
+          <div class="skill-progress-bar"><div class="skill-progress-fill" style="--fill-color: #f05032" data-width="0"></div></div>
+          <div class="skill-tracker-actions">
+            <button class="skill-action-btn" data-action="learn" data-skill="git"><i class="fas fa-book" aria-hidden="true"></i> Start Learning</button>
+            <button class="skill-action-btn mark-complete" data-action="complete" data-skill="git"><i class="fas fa-check" aria-hidden="true"></i> Mark Complete</button>
+          </div>
+        </div>
+      </div>
+      <div class="skills-reset-row reveal text-center mt-40">
+        <button class="btn-secondary" id="resetSkills"><i class="fas fa-redo" aria-hidden="true"></i> Reset All Progress</button>
+      </div>
+    </section>
+
+    <hr class="section-divider">
+
+    <!-- Tech Stack Badges -->
+    <section class="tech-stack-section">
+      <p style="font-size:0.8rem;text-transform:uppercase;letter-spacing:2px;font-weight:700;margin-bottom:16px;color:var(--dark-text-dim,#5a6577)">Technologies You'll Learn</p>
+      <div class="tech-stack-row">
+        <div class="tech-badge"><i class="fab fa-html5" style="color:#e34c26"></i> HTML5</div>
+        <div class="tech-badge"><i class="fab fa-css3-alt" style="color:#264de4"></i> CSS3</div>
+        <div class="tech-badge"><i class="fab fa-js-square" style="color:#f7df1e"></i> JavaScript</div>
+        <div class="tech-badge"><i class="fab fa-python" style="color:#3572A5"></i> Python</div>
+        <div class="tech-badge"><i class="fab fa-react" style="color:#61DAFB"></i> React</div>
+        <div class="tech-badge"><i class="fab fa-node-js" style="color:#68a063"></i> Node.js</div>
+        <div class="tech-badge"><i class="fab fa-git-alt" style="color:#f05032"></i> Git</div>
+        <div class="tech-badge"><i class="fas fa-robot" style="color:#7b61ff"></i> AI Tools</div>
+        <div class="tech-badge"><i class="fas fa-database" style="color:#336791"></i> SQL</div>
+        <div class="tech-badge"><i class="fab fa-figma" style="color:#f24e1e"></i> Figma</div>
+      </div>
+    </section>
+
+    <hr class="section-divider">
+
+    <!-- Watch Tutorials (YouTube) Section -->
+    <section class="section" id="videos">
+      <div class="section-header reveal">
+        <span class="section-badge"><i class="fab fa-youtube" aria-hidden="true"></i> Video Tutorials</span>
+        <h2 class="section-title">Watch <span class="highlight">Tutorials</span></h2>
+        <p class="section-desc">Learn by watching step-by-step video tutorials from top Indian YouTubers</p>
+        <div class="neon-line mt-20"></div>
+      </div>
+      <div class="youtube-nav reveal">
+        <div class="yt-brand"><i class="fab fa-youtube" aria-hidden="true"></i><span>Code4Boy</span></div>
+        <a href="https://youtube.com/@code4boy-l4u" target="_blank" rel="noopener noreferrer" class="yt-subscribe"><i class="fab fa-youtube" aria-hidden="true"></i> Subscribe</a>
+        <div class="yt-stats">
+          <span><i class="fas fa-video" aria-hidden="true"></i> 5 Videos</span>
+          <span><i class="fas fa-users" aria-hidden="true"></i> 3 Subscribers</span>
+        </div>
+        <a href="https://youtube.com/@code4boy-l4u" target="_blank" rel="noopener noreferrer" class="card-link">View Channel <i class="fas fa-arrow-right" aria-hidden="true"></i></a>
+      </div>
+      <div class="video-grid mt-40">
+        <article class="video-card reveal">
+          <div class="video-thumb"><iframe width="100%" height="100%" src="https://www.youtube.com/embed/HcOc7P5BMi4" title="HTML Tutorial - Apna College" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy" sandbox="allow-scripts allow-same-origin allow-presentation"></iframe></div>
+          <div class="video-info"><h3>HTML Tutorial for Beginners (Hindi) - Apna College</h3><p>Complete HTML tutorial in Hindi by Shraddha Didi - Apna College</p></div>
+        </article>
+        <article class="video-card reveal">
+          <div class="video-thumb"><iframe width="100%" height="100%" src="https://www.youtube.com/embed/ESnrn1kAD4E" title="CSS Tutorial - Apna College" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy" sandbox="allow-scripts allow-same-origin allow-presentation"></iframe></div>
+          <div class="video-info"><h3>CSS Tutorial for Beginners (Hindi) - Apna College</h3><p>Complete CSS tutorial in Hindi by Shraddha Didi - Apna College</p></div>
+        </article>
+        <article class="video-card reveal">
+          <div class="video-thumb"><iframe width="100%" height="100%" src="https://www.youtube.com/embed/VlPiVmYuoqw" title="JavaScript Tutorial - Apna College" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy" sandbox="allow-scripts allow-same-origin allow-presentation"></iframe></div>
+          <div class="video-info"><h3>JavaScript Full Course (Hindi) - Apna College</h3><p>Complete JavaScript tutorial in Hindi by Apna College</p></div>
+        </article>
+      </div>
+    </section>
+    <!-- Tools Section -->
+    <section class="section" id="tools">
+      <div class="section-header reveal">
+        <span class="section-badge"><i class="fas fa-wrench" aria-hidden="true"></i> Tools</span>
+        <h2 class="section-title">Developer <span class="highlight">Tools</span></h2>
+        <p class="section-desc">Essential tools every developer needs in their toolkit</p>
+        <div class="neon-line mt-20"></div>
+      </div>
+      <div class="tools-grid">
+        <article class="tool-card reveal">
+          <div class="tool-icon"><i class="fas fa-code" style="color:#00b4d8" aria-hidden="true"></i></div>
+          <div class="tool-info"><h3>Visual Studio Code</h3><p>The most popular free code editor with extensions for every language.</p>
+            <a href="https://code.visualstudio.com/" target="_blank" rel="noopener noreferrer" class="tool-link">Download Free <i class="fas fa-external-link-alt" aria-hidden="true"></i></a></div>
+        </article>
+        <article class="tool-card reveal">
+          <div class="tool-icon"><i class="fas fa-robot" style="color:#8b00ff" aria-hidden="true"></i></div>
+          <div class="tool-info"><h3>GitHub Copilot</h3><p>AI-powered code completion that helps you write code faster.</p>
+            <a href="https://github.com/features/copilot" target="_blank" rel="noopener noreferrer" class="tool-link">Learn More <i class="fas fa-external-link-alt" aria-hidden="true"></i></a></div>
+        </article>
+        <article class="tool-card reveal">
+          <div class="tool-icon"><i class="fas fa-brain" style="color:#00ff88" aria-hidden="true"></i></div>
+          <div class="tool-info"><h3>ChatGPT</h3><p>Use AI to debug code, explain concepts, and generate solutions.</p>
+            <a href="https://chat.openai.com/" target="_blank" rel="noopener noreferrer" class="tool-link">Try Free <i class="fas fa-external-link-alt" aria-hidden="true"></i></a></div>
+        </article>
+        <article class="tool-card reveal">
+          <div class="tool-icon"><i class="fab fa-github" style="color:#fff" aria-hidden="true"></i></div>
+          <div class="tool-info"><h3>GitHub</h3><p>Host your code, collaborate with others, and build your portfolio.</p>
+            <a href="https://github.com/" target="_blank" rel="noopener noreferrer" class="tool-link">Sign Up Free <i class="fas fa-external-link-alt" aria-hidden="true"></i></a></div>
+        </article>
+        <article class="tool-card reveal">
+          <div class="tool-icon"><i class="fab fa-figma" style="color:#ff6600" aria-hidden="true"></i></div>
+          <div class="tool-info"><h3>Figma</h3><p>Design beautiful UIs and prototypes &#8212; free for individual use.</p>
+            <a href="https://www.figma.com/" target="_blank" rel="noopener noreferrer" class="tool-link">Start Free <i class="fas fa-external-link-alt" aria-hidden="true"></i></a></div>
+        </article>
+        <article class="tool-card reveal">
+          <div class="tool-icon"><i class="fas fa-terminal" style="color:#00b4d8" aria-hidden="true"></i></div>
+          <div class="tool-info"><h3>Replit</h3><p>Code in your browser &#8212; no setup required. Supports 50+ languages.</p>
+            <a href="https://replit.com/" target="_blank" rel="noopener noreferrer" class="tool-link">Try Free <i class="fas fa-external-link-alt" aria-hidden="true"></i></a></div>
+        </article>
+      </div>
+      <div class="text-center mt-40"><a href="pages/tools.html" class="btn-secondary"><i class="fas fa-arrow-right" aria-hidden="true"></i> View All Tools</a></div>
+    </section>
+    <!-- Why Choose Us Section -->
+    <section class="section" id="why-choose">
+      <div class="section-header reveal">
+        <span class="section-badge"><i class="fas fa-star" aria-hidden="true"></i> Why Code4Boy</span>
+        <h2 class="section-title">Why Choose <span class="highlight">Code4Boy</span>?</h2>
+        <p class="section-desc">Everything you need to become a confident developer, completely free</p>
+        <div class="neon-line mt-20"></div>
+      </div>
+      <div class="why-choose-grid reveal">
+        <article class="why-card">
+          <div class="why-icon"><i class="fas fa-graduation-cap" aria-hidden="true"></i></div>
+          <h3>Beginner Friendly</h3>
+          <p>Start from zero with step-by-step tutorials designed for absolute beginners. No prior experience needed.</p>
+        </article>
+        <article class="why-card">
+          <div class="why-icon"><i class="fas fa-laptop-code" aria-hidden="true"></i></div>
+          <h3>Real-World Projects</h3>
+          <p>Build portfolio-ready projects with complete source code. Learn by doing, not just watching.</p>
+        </article>
+        <article class="why-card">
+          <div class="why-icon"><i class="fas fa-robot" aria-hidden="true"></i></div>
+          <h3>AI-Powered Learning</h3>
+          <p>Leverage AI tools like ChatGPT and GitHub Copilot to accelerate your coding journey.</p>
+        </article>
+        <article class="why-card">
+          <div class="why-icon"><i class="fas fa-dollar-sign" aria-hidden="true"></i></div>
+          <h3>100% Free Forever</h3>
+          <p>No hidden costs, no subscriptions, no paywalls. Quality coding education for everyone.</p>
+        </article>
+        <article class="why-card">
+          <div class="why-icon"><i class="fas fa-bolt" aria-hidden="true"></i></div>
+          <h3>Quick Error Fixes</h3>
+          <p>Searchable database of common coding errors with instant solutions to keep you moving forward.</p>
+        </article>
+        <article class="why-card">
+          <div class="why-icon"><i class="fas fa-code" aria-hidden="true"></i></div>
+          <h3>Live Code Playground</h3>
+          <p>Write, test, and experiment with code directly in your browser with our built-in editor.</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- Error Solutions Section -->
+    <section class="section" id="errors">
+      <div class="section-header reveal">
+        <span class="section-badge"><i class="fas fa-bug" aria-hidden="true"></i> Error Solutions</span>
+        <h2 class="section-title">Common <span class="highlight">Error Fixes</span></h2>
+        <p class="section-desc">Quick solutions to the most common coding errors</p>
+        <div class="neon-line mt-20"></div>
+      </div>
+      <div class="error-search-box reveal">
+        <input type="text" class="error-search-input" placeholder="Search errors..." aria-label="Search errors">
+        <i class="fas fa-search search-icon" aria-hidden="true"></i>
+      </div>
+      <div class="reveal">
+        <article class="error-card">
+          <h3><i class="fas fa-exclamation-triangle" aria-hidden="true"></i> .ts file not running in HTML</h3>
+          <p>TypeScript files cannot be directly linked in HTML. Browsers only understand JavaScript.</p>
+          <div class="solution"><h4><i class="fas fa-check-circle" aria-hidden="true"></i> Solution</h4>
+            <p>Compile your TypeScript file to JavaScript using <code>tsc filename.ts</code> command, then link the generated <code>.js</code> file in your HTML.</p></div>
+        </article>
+        <article class="error-card">
+          <h3><i class="fas fa-exclamation-triangle" aria-hidden="true"></i> VLC No Audio Fix</h3>
+          <p>VLC media player sometimes doesn't play audio in video files due to codec or settings issues.</p>
+          <div class="solution"><h4><i class="fas fa-check-circle" aria-hidden="true"></i> Solution</h4>
+            <p>Go to Tools &gt; Preferences &gt; Audio &gt; Reset Preferences. If that doesn't work, reinstall VLC with all codecs.</p></div>
+        </article>
+        <article class="error-card">
+          <h3><i class="fas fa-exclamation-triangle" aria-hidden="true"></i> npm ERR! ERESOLVE unable to resolve dependency tree</h3>
+          <p>Dependency conflicts when installing npm packages due to version mismatches.</p>
+          <div class="solution"><h4><i class="fas fa-check-circle" aria-hidden="true"></i> Solution</h4>
+            <p>Use <code>npm install --legacy-peer-deps</code> or <code>npm install --force</code> to bypass the conflict.</p></div>
+        </article>
+      </div>
+      <div class="text-center mt-40"><a href="pages/errors.html" class="btn-secondary"><i class="fas fa-arrow-right" aria-hidden="true"></i> View All Error Fixes</a></div>
+    </section>
+    <!-- Security Features Section -->
+    <section class="section" id="security">
+      <div class="section-header reveal">
+        <span class="section-badge"><i class="fas fa-shield-alt" aria-hidden="true"></i> Security</span>
+        <h2 class="section-title">Website <span class="highlight">Security</span></h2>
+        <p class="section-desc">Your safety is our priority. Built with enterprise-grade security measures.</p>
+        <div class="neon-line mt-20"></div>
+      </div>
+      <div class="security-grid">
+        <article class="security-feature-card reveal"><div class="security-icon"><i class="fas fa-lock" aria-hidden="true"></i></div><h3>XSS Protection</h3><p>All user inputs are sanitized to prevent cross-site scripting attacks.</p></article>
+        <article class="security-feature-card reveal"><div class="security-icon"><i class="fas fa-fingerprint" aria-hidden="true"></i></div><h3>CSRF Tokens</h3><p>Cross-Site Request Forgery protection with cryptographically secure tokens.</p></article>
+        <article class="security-feature-card reveal"><div class="security-icon"><i class="fas fa-user-shield" aria-hidden="true"></i></div><h3>Brute Force Protection</h3><p>Rate limiting and account lockout mechanisms protect against automated attacks.</p></article>
+        <article class="security-feature-card reveal"><div class="security-icon"><i class="fas fa-key" aria-hidden="true"></i></div><h3>SHA-256 Encryption</h3><p>Admin passwords are hashed using SHA-256 cryptographic algorithm.</p></article>
+        <article class="security-feature-card reveal"><div class="security-icon"><i class="fas fa-helmet-safety" aria-hidden="true"></i></div><h3>Content Security Policy</h3><p>CSP headers restrict resource loading origins, preventing injection of malicious content.</p></article>
+        <article class="security-feature-card reveal"><div class="security-icon"><i class="fas fa-clock" aria-hidden="true"></i></div><h3>Session Management</h3><p>Auto-expiring sessions with secure token-based authentication and 30-minute timeout.</p></article>
+      </div>
+    </section>
+    <!-- FAQ Section -->
+    <section class="section" id="faq">
+      <div class="section-header reveal">
+        <span class="section-badge"><i class="fas fa-question-circle" aria-hidden="true"></i> FAQ</span>
+        <h2 class="section-title">Frequently Asked <span class="highlight">Questions</span></h2>
+        <p class="section-desc">Quick answers to common questions about Code4Boy</p>
+        <div class="neon-line mt-20"></div>
+      </div>
+      <div class="faq-container reveal">
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false"><span>Is Code4Boy really free?</span><i class="fas fa-plus faq-icon" aria-hidden="true"></i></button>
+          <div class="faq-answer" aria-hidden="true"><p>Yes, 100% free! All tutorials, projects, tools, cheat sheets, and downloadable resources are completely free. We believe quality coding education should be accessible to everyone.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false"><span>Do I need any prior coding experience?</span><i class="fas fa-plus faq-icon" aria-hidden="true"></i></button>
+          <div class="faq-answer" aria-hidden="true"><p>Not at all! Our tutorials start from the absolute basics. We guide you step-by-step from writing your first line of HTML to building complete projects.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false"><span>What programming languages do you teach?</span><i class="fas fa-plus faq-icon" aria-hidden="true"></i></button>
+          <div class="faq-answer" aria-hidden="true"><p>We currently offer tutorials in HTML, CSS, JavaScript, Python, and AI Tools (ChatGPT, GitHub Copilot). We are constantly adding new content including Node.js and React.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false"><span>Can I download projects and use them in my portfolio?</span><i class="fas fa-plus faq-icon" aria-hidden="true"></i></button>
+          <div class="faq-answer" aria-hidden="true"><p>Absolutely! All projects are open-source and free to use. We encourage you to customize them, add your own features, and showcase them in your portfolio.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false"><span>How do I track my learning progress?</span><i class="fas fa-plus faq-icon" aria-hidden="true"></i></button>
+          <div class="faq-answer" aria-hidden="true"><p>Use our Skills Progress Tracker on this page! Click "Mark Complete" as you finish topics. Your progress is saved locally in your browser.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false"><span>How can I contribute or report issues?</span><i class="fas fa-plus faq-icon" aria-hidden="true"></i></button>
+          <div class="faq-answer" aria-hidden="true"><p>You can contribute via our GitHub repository, report bugs through the contact form below, or leave comments on our YouTube videos.</p></div>
+        </div>
+      </div>
+    </section>
+    <!-- Downloads Section -->
+    <section class="section" id="downloads">
+      <div class="section-header reveal">
+        <span class="section-badge"><i class="fas fa-download" aria-hidden="true"></i> Downloads</span>
+        <h2 class="section-title">Free <span class="highlight">Resources</span></h2>
+        <p class="section-desc">Download free code templates, cheat sheets, and starter files</p>
+        <div class="neon-line mt-20"></div>
+      </div>
+      <div class="download-grid">
+        <article class="download-card reveal"><div class="dl-icon" aria-hidden="true"><i class="fas fa-file-code"></i></div><h3>HTML/CSS Starter Template</h3><p>A clean, responsive HTML/CSS starter template with modern design patterns.</p><button class="btn-download"><i class="fas fa-download" aria-hidden="true"></i> Download ZIP</button></article>
+        <article class="download-card reveal"><div class="dl-icon" aria-hidden="true"><i class="fas fa-file-alt"></i></div><h3>JavaScript Cheat Sheet</h3><p>Complete JavaScript reference with all the essential methods and syntax.</p><button class="btn-download"><i class="fas fa-download" aria-hidden="true"></i> Download PDF</button></article>
+        <article class="download-card reveal"><div class="dl-icon" aria-hidden="true"><i class="fas fa-palette"></i></div><h3>CSS Animation Pack</h3><p>50+ ready-to-use CSS animations. Copy-paste into your projects instantly.</p><button class="btn-download"><i class="fas fa-download" aria-hidden="true"></i> Download ZIP</button></article>
+        <article class="download-card reveal"><div class="dl-icon" aria-hidden="true"><i class="fab fa-python"></i></div><h3>Python Starter Projects</h3><p>5 beginner-friendly Python projects with complete source code and instructions.</p><button class="btn-download"><i class="fas fa-download" aria-hidden="true"></i> Download ZIP</button></article>
+      </div>
+    </section>
+  </main>
+  <!-- Footer -->
+  <footer class="footer" id="contact">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <div class="nav-logo" style="margin-bottom:20px">
+          <img src="images/logo.jpg" alt="Code4Boy" style="width:45px;height:45px;border-radius:50%;border:2px solid rgba(99,102,241,0.3)" width="45" height="45" onerror="console.error('Footer logo failed:', this.src);">
+          <span style="font-family:var(--font-heading);font-size:1.2rem;font-weight:700;color:#1a73e8">CODE4BOY</span>
+        </div>
+        <p>Learn coding free with AI-powered tutorials, real-world projects, and smart error solutions. Your journey starts here.</p>
+        <div class="social-links">
+          <a href="https://youtube.com/@code4boy-l4u" target="_blank" rel="noopener noreferrer" class="social-link" title="YouTube" aria-label="YouTube"><i class="fab fa-youtube" aria-hidden="true"></i></a>
+          <a href="https://github.com/code4boy" target="_blank" rel="noopener noreferrer" class="social-link" title="GitHub" aria-label="GitHub"><i class="fab fa-github" aria-hidden="true"></i></a>
+          <a href="https://twitter.com/code4boy" target="_blank" rel="noopener noreferrer" class="social-link" title="Twitter" aria-label="Twitter"><i class="fab fa-twitter" aria-hidden="true"></i></a>
+          <a href="https://instagram.com/code4boy" target="_blank" rel="noopener noreferrer" class="social-link" title="Instagram" aria-label="Instagram"><i class="fab fa-instagram" aria-hidden="true"></i></a>
+          <a href="https://t.me/code4boy" target="_blank" rel="noopener noreferrer" class="social-link" title="Telegram" aria-label="Telegram"><i class="fab fa-telegram-plane" aria-hidden="true"></i></a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h3>Quick Links</h3>
+        <ul class="footer-links">
+          <li><a href="index.html"><i class="fas fa-chevron-right" aria-hidden="true"></i> Home</a></li>
+          <li><a href="pages/tutorials.html"><i class="fas fa-chevron-right" aria-hidden="true"></i> Tutorials</a></li>
+          <li><a href="pages/projects.html"><i class="fas fa-chevron-right" aria-hidden="true"></i> Projects</a></li>
+          <li><a href="pages/tools.html"><i class="fas fa-chevron-right" aria-hidden="true"></i> Tools</a></li>
+          <li><a href="pages/errors.html"><i class="fas fa-chevron-right" aria-hidden="true"></i> Error Solutions</a></li>
+          <li><a href="pages/downloads.html"><i class="fas fa-chevron-right" aria-hidden="true"></i> Downloads</a></li>
+          <li><a href="pages/youtube.html"><i class="fas fa-chevron-right" aria-hidden="true"></i> YouTube Videos</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h3>Categories</h3>
+        <ul class="footer-links">
+          <li><a href="pages/tutorials.html#html"><i class="fas fa-chevron-right" aria-hidden="true"></i> HTML Tutorials</a></li>
+          <li><a href="pages/tutorials.html#css"><i class="fas fa-chevron-right" aria-hidden="true"></i> CSS Tutorials</a></li>
+          <li><a href="pages/tutorials.html#javascript"><i class="fas fa-chevron-right" aria-hidden="true"></i> JavaScript</a></li>
+          <li><a href="pages/tutorials.html#python"><i class="fas fa-chevron-right" aria-hidden="true"></i> Python</a></li>
+          <li><a href="pages/tutorials.html#ai"><i class="fas fa-chevron-right" aria-hidden="true"></i> AI Tools</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h3>Contact Us</h3>
+        <form class="contact-form">
+          <input type="text" placeholder="Your Name" required minlength="2" maxlength="100" autocomplete="name" aria-label="Your name">
+          <input type="email" placeholder="Your Email" required maxlength="200" autocomplete="email" aria-label="Your email">
+          <textarea placeholder="Your Message" required minlength="10" maxlength="2000" aria-label="Your message"></textarea>
+          <div class="honeypot-field" aria-hidden="true" style="position:absolute;left:-9999px;"><input type="text" name="website" tabindex="-1" autocomplete="off"></div>
+          <button type="submit" class="btn-primary"><i class="fas fa-paper-plane" aria-hidden="true"></i> Send Message</button>
+        </form>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 Code4Boy. All Rights Reserved. Built with love for Developers.</p>
+      <div class="footer-bottom-links"><a href="pages/privacy-policy.html">Privacy Policy</a><a href="pages/terms-of-use.html">Terms of Use</a><a href="pages/sitemap.html">Sitemap</a></div>
+    </div>
+  </footer>
+  <!-- Back to Top -->
+  <button class="back-to-top" title="Back to Top" aria-label="Scroll to top"><i class="fas fa-chevron-up" aria-hidden="true"></i></button>
+
+
+  <!-- Cookie Consent Banner -->
+  <div class="cookie-consent" id="cookieConsent" role="alert">
+    <div class="cookie-content">
+      <div class="cookie-text">
+        <i class="fas fa-cookie-bite" aria-hidden="true"></i>
+        <p>We use cookies to enhance your experience and save your preferences. By continuing to use this site, you agree to our use of cookies.</p>
+      </div>
+      <div class="cookie-actions">
+        <button class="cookie-accept" onclick="acceptCookies()">Accept All</button>
+        <button class="cookie-decline" onclick="declineCookies()">Decline</button>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- AI Help Agent Chat Widget -->
+  <div class="chat-widget" id="chatWidget">
+    <button class="chat-toggle" id="chatToggle" onclick="toggleChat()" title="Need Help? Chat with us" aria-label="Open chat assistant">
+      <i class="fas fa-comment-dots" id="chatToggleIcon" aria-hidden="true"></i>
+      <span class="chat-pulse" aria-hidden="true"></span>
+    </button>
+    <div class="chat-window" id="chatWindow" role="dialog" aria-label="JARVIS Chat Assistant">
+      <div class="chat-header">
+        <div class="chat-header-info">
+          <div class="chat-avatar" aria-hidden="true"><i class="fas fa-comment-dots"></i></div>
+          <div><h4>Code4Boy Help</h4><span class="chat-status"><span class="chat-status-dot" aria-hidden="true"></span> Online</span></div>
+        </div>
+        <button class="chat-close" onclick="toggleChat()" aria-label="Close chat"><i class="fas fa-times" aria-hidden="true"></i></button>
+      </div>
+      <div class="chat-messages" id="chatMessages" role="log" aria-live="polite">
+        <div class="chat-message bot">
+          <div class="chat-msg-avatar" aria-hidden="true"><i class="fas fa-comment-dots"></i></div>
+          <div class="chat-msg-bubble"><p>Hi there! I'm your <strong>Code4Boy</strong> assistant. How can I help you today?</p></div>
+        </div>
+        <div class="chat-suggestions" id="chatSuggestions">
+          <button class="chat-suggestion-btn" onclick="sendSuggestion('How do I start learning coding?')">How to start coding?</button>
+          <button class="chat-suggestion-btn" onclick="sendSuggestion('What tutorials do you offer?')">Available tutorials</button>
+          <button class="chat-suggestion-btn" onclick="sendSuggestion('Show me free tools')">Free tools</button>
+          <button class="chat-suggestion-btn" onclick="sendSuggestion('How to download resources?')">Download resources</button>
+          <button class="chat-suggestion-btn" onclick="sendSuggestion('Tell me about security features')">Security features</button>
+        </div>
+      </div>
+      <div class="chat-input-area">
+        <input type="text" id="chatInput" placeholder="Type your message..." maxlength="500" autocomplete="off" aria-label="Chat message input">
+        <button class="chat-send" id="chatSend" onclick="sendChatMessage()" aria-label="Send message"><i class="fas fa-paper-plane" aria-hidden="true"></i></button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Code Playground - Interactive Live Editor -->
+  <div class="playground-overlay" id="playgroundOverlay">
+    <div class="playground-container" id="playgroundContainer">
+      <div class="playground-header">
+        <div class="playground-title">
+          <i class="fas fa-terminal" aria-hidden="true"></i>
+          <span>Code4Boy Playground</span>
+          <span class="playground-badge">LIVE</span>
+        </div>
+        <div class="playground-actions">
+          <select id="playgroundTemplate" class="playground-template-select" aria-label="Select template">
+            <option value="">-- Templates --</option>
+            <option value="hello">Hello World</option>
+            <option value="card">Glassmorphism Card</option>
+            <option value="animation">CSS Animation</option>
+            <option value="todo">Todo App</option>
+            <option value="api">Fetch API Demo</option>
+            <option value="game">Mini Game</option>
+          </select>
+          <button class="pg-btn" onclick="playgroundRun()" title="Run Code (Ctrl+Enter)"><i class="fas fa-play"></i> Run</button>
+          <button class="pg-btn" onclick="playgroundClear()" title="Clear All"><i class="fas fa-trash-alt"></i></button>
+          <button class="pg-btn" onclick="playgroundCopy()" title="Copy Code"><i class="fas fa-copy"></i></button>
+          <button class="pg-btn" onclick="playgroundDownload()" title="Download as HTML"><i class="fas fa-download"></i></button>
+          <button class="pg-btn" onclick="playgroundFullscreen()" title="Fullscreen"><i class="fas fa-expand"></i></button>
+          <button class="pg-btn pg-close" onclick="togglePlayground()" title="Close"><i class="fas fa-times"></i></button>
+        </div>
+      </div>
+      <div class="playground-body">
+        <div class="playground-editors">
+          <div class="playground-tabs">
+            <button class="pg-tab active" data-lang="html" onclick="switchPlaygroundTab('html')"><i class="fab fa-html5"></i> HTML</button>
+            <button class="pg-tab" data-lang="css" onclick="switchPlaygroundTab('css')"><i class="fab fa-css3-alt"></i> CSS</button>
+            <button class="pg-tab" data-lang="js" onclick="switchPlaygroundTab('js')"><i class="fab fa-js-square"></i> JS</button>
+          </div>
+          <div class="playground-editor-wrap">
+            <div class="pg-line-numbers" id="pgLineNumbers"></div>
+            <textarea class="playground-editor" id="pgEditorHTML" spellcheck="false" placeholder="Write HTML here..." data-lang="html"></textarea>
+            <textarea class="playground-editor" id="pgEditorCSS" spellcheck="false" placeholder="Write CSS here..." data-lang="css" style="display:none"></textarea>
+            <textarea class="playground-editor" id="pgEditorJS" spellcheck="false" placeholder="Write JavaScript here..." data-lang="js" style="display:none"></textarea>
+          </div>
+        </div>
+        <div class="playground-divider" id="playgroundDivider"></div>
+        <div class="playground-preview-wrap">
+          <div class="playground-preview-header">
+            <span><i class="fas fa-eye"></i> Live Preview</span>
+            <div class="preview-size-info" id="previewSizeInfo">--</div>
+          </div>
+          <iframe class="playground-preview" id="playgroundPreview" sandbox="allow-scripts allow-modals" title="Code preview"></iframe>
+          <div class="playground-console" id="playgroundConsole">
+            <div class="console-header">
+              <span><i class="fas fa-terminal"></i> Console</span>
+              <button onclick="clearConsole()" title="Clear console"><i class="fas fa-ban"></i></button>
+            </div>
+            <div class="console-output" id="consoleOutput"></div>
+          </div>
+        </div>
+      </div>
+      <div class="playground-statusbar">
+        <span id="pgStatusLang">HTML</span>
+        <span id="pgStatusChars">0 chars</span>
+        <span id="pgAutoRun"><label><input type="checkbox" id="pgAutoRunCheck" checked> Auto-run</label></span>
+        <span class="pg-shortcut">Ctrl+Enter = Run | Ctrl+S = Download</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Floating Playground Launch Button -->
+  <button class="playground-fab" id="playgroundFab" onclick="togglePlayground()" title="Open Code Playground" aria-label="Open Code Playground">
+    <i class="fas fa-code"></i>
+    <span class="fab-label">Playground</span>
+  </button>
+
+  <!-- GSAP + ScrollTrigger + SplitText -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollToPlugin.min.js"></script>
+  <!-- Google Identity Services -->
+  <script src="https://accounts.google.com/gsi/client" async defer></script>
+  <script src="js/google-config.js"></script>
+  <script src="js/server-sync.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/gsap-animations.js"></script>
+  <script src="js/mobile-animations.js"></script>
+  <script src="js/code-runner.js"></script>
+  <script src="js/miniplayer.js"></script>
+</body>
+</html>

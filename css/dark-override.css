@@ -1,0 +1,965 @@
+/* ============================================
+   Code4Boy - Dark Theme Override v1.0
+   MUST load AFTER professional.css
+   Eliminates ALL white corners/backgrounds
+   Creates next-level dark glassmorphism design
+   ============================================ */
+
+/* ============================================
+   ROOT DARK VARIABLES
+   ============================================ */
+:root {
+  --dark-bg-primary: #060b18;
+  --dark-bg-secondary: #0c1225;
+  --dark-bg-card: rgba(12, 18, 40, 0.85);
+  --dark-bg-card-hover: rgba(18, 28, 60, 0.9);
+  --dark-surface-1: rgba(15, 22, 45, 0.9);
+  --dark-surface-2: rgba(20, 30, 55, 0.8);
+  --dark-border: rgba(100, 140, 255, 0.08);
+  --dark-border-hover: rgba(100, 160, 255, 0.18);
+  --dark-glow-blue: rgba(66, 133, 244, 0.15);
+  --dark-glow-purple: rgba(139, 92, 246, 0.12);
+  --dark-glow-green: rgba(52, 168, 83, 0.12);
+  --dark-glow-cyan: rgba(0, 212, 255, 0.1);
+  --dark-text-primary: #e8ecf4;
+  --dark-text-secondary: #8b95a8;
+  --dark-text-dim: #5a6577;
+  --dark-accent: #4285f4;
+  --dark-accent-light: #6ea8fe;
+  --dark-gradient-accent: linear-gradient(135deg, #4285f4, #7b61ff, #34a853);
+  --dark-gradient-card: linear-gradient(135deg, rgba(66,133,244,0.05), rgba(139,92,246,0.03));
+  --dark-gradient-hero: linear-gradient(180deg, #060b18 0%, #0a1128 40%, #0c1225 100%);
+  --dark-glass-bg: rgba(10, 17, 40, 0.75);
+  --dark-glass-border: rgba(100, 150, 255, 0.1);
+  --dark-shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.3);
+  --dark-shadow-md: 0 4px 20px rgba(0, 0, 0, 0.4);
+  --dark-shadow-lg: 0 8px 40px rgba(0, 0, 0, 0.5);
+  --dark-shadow-glow: 0 0 30px rgba(66, 133, 244, 0.1);
+}
+
+/* ============================================
+   BODY & GLOBAL BACKGROUNDS
+   ============================================ */
+[data-theme="dark"] body {
+  background: var(--dark-bg-primary) !important;
+  color: var(--dark-text-primary) !important;
+}
+
+[data-theme="dark"] main {
+  background: transparent !important;
+}
+
+/* ============================================
+   NAVBAR - Frosted Glass
+   ============================================ */
+[data-theme="dark"] .navbar {
+  background: rgba(6, 11, 24, 0.82) !important;
+  backdrop-filter: blur(20px) saturate(180%) !important;
+  -webkit-backdrop-filter: blur(20px) saturate(180%) !important;
+  border-bottom: 1px solid rgba(100, 150, 255, 0.06) !important;
+  box-shadow: 0 1px 20px rgba(0, 0, 0, 0.3) !important;
+}
+
+[data-theme="dark"] .navbar.scrolled {
+  background: rgba(6, 11, 24, 0.95) !important;
+  box-shadow: 0 2px 30px rgba(0, 0, 0, 0.5) !important;
+}
+
+[data-theme="dark"] .nav-logo span {
+  color: #fff !important;
+  -webkit-text-fill-color: #fff !important;
+}
+
+[data-theme="dark"] .nav-links li a {
+  color: var(--dark-text-secondary) !important;
+}
+
+[data-theme="dark"] .nav-links li a:hover,
+[data-theme="dark"] .nav-links li a.active {
+  color: var(--dark-accent-light) !important;
+}
+
+[data-theme="dark"] .nav-links li a::after {
+  background: var(--dark-accent-light) !important;
+}
+
+[data-theme="dark"] .theme-toggle {
+  color: var(--dark-text-secondary) !important;
+}
+
+[data-theme="dark"] .nav-search-btn {
+  color: var(--dark-text-secondary) !important;
+}
+
+/* ============================================
+   HERO - Epic Dark Gradient
+   ============================================ */
+[data-theme="dark"] .hero {
+  background: var(--dark-gradient-hero) !important;
+  min-height: auto !important;
+  position: relative;
+}
+
+[data-theme="dark"] .hero::before {
+  background:
+    radial-gradient(ellipse at 25% 40%, rgba(66, 133, 244, 0.08) 0%, transparent 55%),
+    radial-gradient(ellipse at 75% 30%, rgba(139, 92, 246, 0.06) 0%, transparent 55%),
+    radial-gradient(ellipse at 50% 80%, rgba(52, 168, 83, 0.04) 0%, transparent 50%) !important;
+}
+
+[data-theme="dark"] .hero h1 {
+  color: #ffffff !important;
+}
+
+[data-theme="dark"] .hero h1 .gradient-text,
+[data-theme="dark"] .hero h1 .glow-text {
+  background: linear-gradient(135deg, #6ea8fe, #a78bfa, #6ee7b7) !important;
+  -webkit-background-clip: text !important;
+  background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  color: transparent !important;
+}
+
+[data-theme="dark"] .hero-desc {
+  color: var(--dark-text-secondary) !important;
+}
+
+[data-theme="dark"] .hero-badge {
+  background: rgba(66, 133, 244, 0.1) !important;
+  border: 1px solid rgba(66, 133, 244, 0.2) !important;
+  color: var(--dark-accent-light) !important;
+  backdrop-filter: blur(8px);
+}
+
+[data-theme="dark"] .hero p {
+  color: var(--dark-text-secondary) !important;
+}
+
+/* ============================================
+   STAT CARDS - Glassmorphism
+   ============================================ */
+[data-theme="dark"] .stat-card {
+  background: var(--dark-glass-bg) !important;
+  backdrop-filter: blur(16px) saturate(150%) !important;
+  -webkit-backdrop-filter: blur(16px) saturate(150%) !important;
+  border: 1px solid var(--dark-glass-border) !important;
+  box-shadow: var(--dark-shadow-sm), inset 0 1px 0 rgba(255,255,255,0.03) !important;
+}
+
+[data-theme="dark"] .stat-card:hover {
+  background: var(--dark-bg-card-hover) !important;
+  border-color: var(--dark-border-hover) !important;
+  box-shadow: var(--dark-shadow-md), var(--dark-shadow-glow) !important;
+  transform: translateY(-6px) !important;
+}
+
+[data-theme="dark"] .stat-card .stat-number {
+  background: linear-gradient(135deg, #6ea8fe, #a78bfa) !important;
+  -webkit-background-clip: text !important;
+  background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  color: transparent !important;
+}
+
+[data-theme="dark"] .stat-icon {
+  color: var(--dark-accent-light) !important;
+}
+
+[data-theme="dark"] .stat-card .stat-label {
+  color: var(--dark-text-dim) !important;
+}
+
+/* ============================================
+   ALL CARDS - Dark Glassmorphism
+   ============================================ */
+[data-theme="dark"] .card,
+[data-theme="dark"] .project-card,
+[data-theme="dark"] .tool-card,
+[data-theme="dark"] .category-card,
+[data-theme="dark"] .download-card,
+[data-theme="dark"] .roadmap-card,
+[data-theme="dark"] .error-card,
+[data-theme="dark"] .video-card,
+[data-theme="dark"] .tutorial-card,
+[data-theme="dark"] .testimonial-card,
+[data-theme="dark"] .why-card,
+[data-theme="dark"] .security-feature-card,
+[data-theme="dark"] .skill-card,
+[data-theme="dark"] .skill-tracker-card,
+[data-theme="dark"] .newsletter-section,
+[data-theme="dark"] .newsletter-wrapper {
+  background: var(--dark-glass-bg) !important;
+  backdrop-filter: blur(16px) saturate(150%) !important;
+  -webkit-backdrop-filter: blur(16px) saturate(150%) !important;
+  border: 1px solid var(--dark-glass-border) !important;
+  color: var(--dark-text-primary) !important;
+  box-shadow: var(--dark-shadow-sm), inset 0 1px 0 rgba(255,255,255,0.02) !important;
+}
+
+/* Card hover states */
+[data-theme="dark"] .card:hover,
+[data-theme="dark"] .project-card:hover,
+[data-theme="dark"] .tool-card:hover,
+[data-theme="dark"] .category-card:hover,
+[data-theme="dark"] .download-card:hover,
+[data-theme="dark"] .roadmap-card:hover,
+[data-theme="dark"] .video-card:hover,
+[data-theme="dark"] .tutorial-card:hover,
+[data-theme="dark"] .why-card:hover,
+[data-theme="dark"] .security-feature-card:hover,
+[data-theme="dark"] .skill-tracker-card:hover {
+  background: var(--dark-bg-card-hover) !important;
+  border-color: var(--dark-border-hover) !important;
+  box-shadow: var(--dark-shadow-md), var(--dark-shadow-glow) !important;
+  background-image: none !important;
+  background-origin: unset !important;
+  background-clip: unset !important;
+}
+
+/* Card hover gradient border override */
+[data-theme="dark"] .card:hover::before,
+[data-theme="dark"] .stat-card:hover::before,
+[data-theme="dark"] .project-card:hover::before,
+[data-theme="dark"] .tool-card:hover::before,
+[data-theme="dark"] .download-card:hover::before,
+[data-theme="dark"] .category-card:hover::before {
+  background: var(--dark-gradient-accent) !important;
+}
+
+/* Card text colors */
+[data-theme="dark"] .card h3,
+[data-theme="dark"] .project-card h3,
+[data-theme="dark"] .tool-card h3,
+[data-theme="dark"] .download-card h3,
+[data-theme="dark"] .roadmap-card h3,
+[data-theme="dark"] .video-card h3,
+[data-theme="dark"] .why-card h3,
+[data-theme="dark"] .security-feature-card h3,
+[data-theme="dark"] .skill-card h3,
+[data-theme="dark"] .error-card h3 {
+  color: var(--dark-text-primary) !important;
+}
+
+[data-theme="dark"] .card p,
+[data-theme="dark"] .project-card p,
+[data-theme="dark"] .tool-card p,
+[data-theme="dark"] .download-card p,
+[data-theme="dark"] .roadmap-card p,
+[data-theme="dark"] .video-card p,
+[data-theme="dark"] .why-card p,
+[data-theme="dark"] .security-feature-card p,
+[data-theme="dark"] .skill-card p {
+  color: var(--dark-text-secondary) !important;
+}
+
+/* Card links and tags */
+[data-theme="dark"] .card-link {
+  color: var(--dark-accent-light) !important;
+}
+
+[data-theme="dark"] .card-tag {
+  background: rgba(66, 133, 244, 0.12) !important;
+  color: var(--dark-accent-light) !important;
+  border: none !important;
+}
+
+[data-theme="dark"] .tool-link {
+  color: var(--dark-accent-light) !important;
+}
+
+/* ============================================
+   CATEGORY CARDS - Colored
+   ============================================ */
+[data-theme="dark"] .category-card {
+  background: var(--dark-glass-bg) !important;
+}
+
+[data-theme="dark"] .category-card.active,
+[data-theme="dark"] .category-card.active:hover {
+  background: linear-gradient(135deg, #1a73e8, #1557b0) !important;
+  border-color: rgba(66, 133, 244, 0.5) !important;
+  box-shadow: 0 4px 20px rgba(66, 133, 244, 0.3) !important;
+}
+
+[data-theme="dark"] .category-card[data-color="orange"] { border-top-color: #ea4335 !important; }
+[data-theme="dark"] .category-card[data-color="blue"] { border-top-color: #4285f4 !important; }
+[data-theme="dark"] .category-card[data-color="yellow"] { border-top-color: #fbbc04 !important; }
+[data-theme="dark"] .category-card[data-color="green"] { border-top-color: #34a853 !important; }
+[data-theme="dark"] .category-card[data-color="purple"] { border-top-color: #7b61ff !important; }
+
+/* ============================================
+   SECTIONS - Dark Alternating
+   ============================================ */
+[data-theme="dark"] .section,
+[data-theme="dark"] section {
+  background-color: transparent !important;
+}
+
+[data-theme="dark"] .section:nth-child(even) {
+  background-color: rgba(10, 17, 40, 0.5) !important;
+}
+
+/* Section headers */
+[data-theme="dark"] .section-header {
+  color: var(--dark-text-primary) !important;
+}
+
+[data-theme="dark"] .section-title {
+  color: var(--dark-text-primary) !important;
+}
+
+[data-theme="dark"] .section-title .highlight {
+  background: linear-gradient(135deg, #6ea8fe, #a78bfa) !important;
+  -webkit-background-clip: text !important;
+  background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  color: transparent !important;
+}
+
+[data-theme="dark"] .section-desc {
+  color: var(--dark-text-secondary) !important;
+}
+
+[data-theme="dark"] .section-badge {
+  background: rgba(66, 133, 244, 0.1) !important;
+  color: var(--dark-accent-light) !important;
+  border: 1px solid rgba(66, 133, 244, 0.15) !important;
+}
+
+/* Neon line */
+[data-theme="dark"] .neon-line {
+  background: linear-gradient(90deg, #4285f4, #7b61ff, #34a853) !important;
+  box-shadow: 0 0 12px rgba(66, 133, 244, 0.3) !important;
+  opacity: 1 !important;
+}
+
+/* ============================================
+   ROADMAP CARDS
+   ============================================ */
+[data-theme="dark"] .roadmap-number {
+  background: linear-gradient(135deg, #6ea8fe, #a78bfa) !important;
+  -webkit-background-clip: text !important;
+  background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  color: transparent !important;
+  opacity: 0.3 !important;
+}
+
+/* ============================================
+   BUTTONS - Vibrant Dark
+   ============================================ */
+[data-theme="dark"] .btn-primary {
+  background: linear-gradient(135deg, #4285f4, #3b78e7) !important;
+  color: #ffffff !important;
+  border: none !important;
+  box-shadow: 0 2px 12px rgba(66, 133, 244, 0.35) !important;
+}
+
+[data-theme="dark"] .btn-primary:hover {
+  background: linear-gradient(135deg, #5a9aff, #4285f4) !important;
+  box-shadow: 0 4px 20px rgba(66, 133, 244, 0.5) !important;
+}
+
+[data-theme="dark"] .btn-secondary {
+  background: transparent !important;
+  color: var(--dark-accent-light) !important;
+  border: 1.5px solid rgba(66, 133, 244, 0.4) !important;
+}
+
+[data-theme="dark"] .btn-secondary:hover {
+  background: rgba(66, 133, 244, 0.1) !important;
+  border-color: rgba(66, 133, 244, 0.6) !important;
+  box-shadow: 0 0 20px rgba(66, 133, 244, 0.15) !important;
+}
+
+[data-theme="dark"] .btn-download {
+  color: var(--dark-accent-light) !important;
+  background: rgba(66, 133, 244, 0.1) !important;
+  border: 1.5px solid rgba(66, 133, 244, 0.25) !important;
+}
+
+[data-theme="dark"] .btn-download:hover {
+  background: rgba(66, 133, 244, 0.2) !important;
+  box-shadow: 0 0 15px rgba(66, 133, 244, 0.2) !important;
+}
+
+/* ============================================
+   GRADIENT TEXT
+   ============================================ */
+[data-theme="dark"] .gradient-text {
+  background: linear-gradient(135deg, #6ea8fe, #a78bfa, #6ee7b7) !important;
+  -webkit-background-clip: text !important;
+  background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  color: transparent !important;
+}
+
+/* ============================================
+   FOOTER - Dark Glass
+   ============================================ */
+[data-theme="dark"] .footer {
+  background: rgba(8, 12, 28, 0.95) !important;
+  border-top: 1px solid rgba(100, 150, 255, 0.06) !important;
+  color: var(--dark-text-secondary) !important;
+}
+
+[data-theme="dark"] .footer::after {
+  background: linear-gradient(90deg, transparent, rgba(66, 133, 244, 0.3), rgba(139, 92, 246, 0.2), rgba(52, 168, 83, 0.2), transparent) !important;
+}
+
+[data-theme="dark"] .footer h3 {
+  color: var(--dark-text-primary) !important;
+}
+
+[data-theme="dark"] .footer p,
+[data-theme="dark"] .footer a {
+  color: var(--dark-text-secondary) !important;
+}
+
+[data-theme="dark"] .footer a:hover {
+  color: var(--dark-accent-light) !important;
+}
+
+[data-theme="dark"] .footer-bottom {
+  border-top: 1px solid rgba(100, 150, 255, 0.06) !important;
+  color: var(--dark-text-dim) !important;
+}
+
+[data-theme="dark"] .footer .nav-logo span,
+[data-theme="dark"] .footer .footer-logo span {
+  color: var(--dark-accent-light) !important;
+  -webkit-text-fill-color: var(--dark-accent-light) !important;
+}
+
+[data-theme="dark"] .footer .nav-logo img,
+[data-theme="dark"] .footer .footer-logo img {
+  border-color: rgba(66, 133, 244, 0.3) !important;
+}
+
+/* Social links */
+[data-theme="dark"] .social-link {
+  background: rgba(66, 133, 244, 0.08) !important;
+  color: var(--dark-text-secondary) !important;
+  border: 1px solid rgba(100, 150, 255, 0.1) !important;
+}
+
+[data-theme="dark"] .social-link:hover {
+  background: linear-gradient(135deg, #4285f4, #7b61ff) !important;
+  color: #ffffff !important;
+  border-color: transparent !important;
+  box-shadow: 0 4px 15px rgba(66, 133, 244, 0.35) !important;
+}
+
+/* ============================================
+   FAQ - Dark
+   ============================================ */
+[data-theme="dark"] .faq-question {
+  background: var(--dark-glass-bg) !important;
+  border: 1px solid var(--dark-glass-border) !important;
+  color: var(--dark-text-primary) !important;
+}
+
+[data-theme="dark"] .faq-question:hover {
+  background: var(--dark-bg-card-hover) !important;
+  border-color: var(--dark-border-hover) !important;
+}
+
+[data-theme="dark"] .faq-answer {
+  background: rgba(8, 14, 30, 0.6) !important;
+  color: var(--dark-text-secondary) !important;
+}
+
+[data-theme="dark"] .faq-question::before {
+  background: var(--dark-accent-light) !important;
+}
+
+/* ============================================
+   CONTACT FORM
+   ============================================ */
+[data-theme="dark"] .contact-form input,
+[data-theme="dark"] .contact-form textarea,
+[data-theme="dark"] .contact-form select {
+  background: rgba(10, 17, 40, 0.6) !important;
+  color: var(--dark-text-primary) !important;
+  border: 1px solid var(--dark-glass-border) !important;
+}
+
+[data-theme="dark"] .contact-form input:focus,
+[data-theme="dark"] .contact-form textarea:focus {
+  border-color: var(--dark-accent) !important;
+  box-shadow: 0 0 0 3px rgba(66, 133, 244, 0.15), 0 0 15px rgba(66, 133, 244, 0.1) !important;
+}
+
+[data-theme="dark"] .contact-form input::placeholder,
+[data-theme="dark"] .contact-form textarea::placeholder {
+  color: var(--dark-text-dim) !important;
+}
+
+/* ============================================
+   SEARCH MODAL
+   ============================================ */
+[data-theme="dark"] .search-modal {
+  background: rgba(0, 0, 0, 0.7) !important;
+}
+
+[data-theme="dark"] .search-modal-content {
+  background: var(--dark-bg-secondary) !important;
+  color: var(--dark-text-primary) !important;
+  border: 1px solid var(--dark-glass-border) !important;
+}
+
+[data-theme="dark"] .search-input,
+[data-theme="dark"] .search-modal-input {
+  background: rgba(10, 17, 40, 0.8) !important;
+  color: var(--dark-text-primary) !important;
+  border: 1px solid var(--dark-glass-border) !important;
+}
+
+/* ============================================
+   COOKIE CONSENT
+   ============================================ */
+[data-theme="dark"] .cookie-consent {
+  background: rgba(8, 12, 28, 0.95) !important;
+  border-top: 1px solid var(--dark-glass-border) !important;
+  box-shadow: 0 -4px 30px rgba(0, 0, 0, 0.5) !important;
+  color: var(--dark-text-secondary) !important;
+}
+
+[data-theme="dark"] .cookie-content {
+  background: rgba(12, 18, 38, 0.95) !important;
+  border-top: 1px solid var(--dark-glass-border) !important;
+}
+
+/* ============================================
+   SKILLS TRACKER
+   ============================================ */
+[data-theme="dark"] .skill-progress-bar {
+  background: rgba(100, 150, 255, 0.08) !important;
+}
+
+[data-theme="dark"] .skill-progress-fill {
+  background: linear-gradient(90deg, #4285f4, #34a853) !important;
+  box-shadow: 0 0 8px rgba(66, 133, 244, 0.3) !important;
+}
+
+[data-theme="dark"] .skill-action-btn {
+  border-color: var(--dark-glass-border) !important;
+  color: var(--dark-text-secondary) !important;
+}
+
+[data-theme="dark"] .skill-action-btn:hover {
+  border-color: var(--dark-accent) !important;
+  color: var(--dark-accent-light) !important;
+  background: rgba(66, 133, 244, 0.08) !important;
+}
+
+/* ============================================
+   CHAT WIDGET
+   ============================================ */
+[data-theme="dark"] .chat-widget {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+[data-theme="dark"] .chat-toggle {
+  background: linear-gradient(135deg, #4285f4, #7b61ff) !important;
+  box-shadow: 0 4px 20px rgba(66, 133, 244, 0.4) !important;
+}
+
+[data-theme="dark"] .chat-window {
+  background: var(--dark-bg-secondary) !important;
+  border: 1px solid var(--dark-glass-border) !important;
+  box-shadow: var(--dark-shadow-lg) !important;
+}
+
+[data-theme="dark"] .chat-header {
+  background: rgba(15, 22, 45, 0.95) !important;
+  border-bottom: 1px solid var(--dark-glass-border) !important;
+  color: var(--dark-text-primary) !important;
+}
+
+[data-theme="dark"] .chat-messages {
+  background: rgba(6, 11, 24, 0.8) !important;
+}
+
+[data-theme="dark"] .chat-message.bot .chat-msg-bubble {
+  background: var(--dark-glass-bg) !important;
+  border: 1px solid var(--dark-glass-border) !important;
+}
+
+[data-theme="dark"] .chat-message.user .chat-msg-bubble {
+  background: rgba(66, 133, 244, 0.15) !important;
+  border: 1px solid rgba(66, 133, 244, 0.2) !important;
+}
+
+[data-theme="dark"] .chat-suggestion-btn {
+  background: var(--dark-glass-bg) !important;
+  border: 1px solid var(--dark-glass-border) !important;
+  color: var(--dark-accent-light) !important;
+}
+
+[data-theme="dark"] .chat-input-area {
+  background: rgba(15, 22, 45, 0.95) !important;
+  border-top: 1px solid var(--dark-glass-border) !important;
+}
+
+[data-theme="dark"] .chat-input-area input,
+[data-theme="dark"] .chat-input input {
+  background: rgba(10, 17, 40, 0.8) !important;
+  color: var(--dark-text-primary) !important;
+  border: 1px solid var(--dark-glass-border) !important;
+}
+
+/* ============================================
+   ERROR CARDS
+   ============================================ */
+[data-theme="dark"] .error-card {
+  border-left-color: #f59e0b !important;
+}
+
+[data-theme="dark"] .error-card h3 {
+  color: #fbbf24 !important;
+}
+
+[data-theme="dark"] .error-card .solution {
+  background: rgba(52, 168, 83, 0.06) !important;
+  border: 1px solid rgba(52, 168, 83, 0.12) !important;
+}
+
+[data-theme="dark"] .error-card .solution h4 {
+  color: #6ee7b7 !important;
+}
+
+[data-theme="dark"] .error-search-box input,
+[data-theme="dark"] .error-search-input {
+  background: var(--dark-glass-bg) !important;
+  border-color: var(--dark-glass-border) !important;
+  color: var(--dark-text-primary) !important;
+}
+
+/* ============================================
+   CODE BLOCKS
+   ============================================ */
+[data-theme="dark"] .code-block {
+  border-color: var(--dark-glass-border) !important;
+}
+
+[data-theme="dark"] .code-header {
+  background: rgba(15, 22, 45, 0.9) !important;
+  border-bottom: 1px solid var(--dark-glass-border) !important;
+}
+
+[data-theme="dark"] .code-lang {
+  color: var(--dark-accent-light) !important;
+}
+
+[data-theme="dark"] .copy-btn {
+  background: rgba(66, 133, 244, 0.12) !important;
+  color: var(--dark-accent-light) !important;
+  border: none !important;
+}
+
+/* ============================================
+   TABS
+   ============================================ */
+[data-theme="dark"] .tab-nav {
+  background: var(--dark-glass-bg) !important;
+  border: 1px solid var(--dark-glass-border) !important;
+}
+
+[data-theme="dark"] .tab-btn {
+  background: transparent !important;
+  color: var(--dark-text-secondary) !important;
+  border-color: rgba(100, 150, 255, 0.08) !important;
+}
+
+[data-theme="dark"] .tab-btn:hover {
+  background: rgba(66, 133, 244, 0.08) !important;
+  color: var(--dark-accent-light) !important;
+  border-color: rgba(66, 133, 244, 0.2) !important;
+}
+
+[data-theme="dark"] .tab-btn.active {
+  background: linear-gradient(135deg, #4285f4, #3b78e7) !important;
+  color: #ffffff !important;
+  border-color: transparent !important;
+  box-shadow: 0 2px 12px rgba(66, 133, 244, 0.35) !important;
+}
+
+/* ============================================
+   PAGE HEADER - Sub Pages
+   ============================================ */
+[data-theme="dark"] .page-header {
+  background: linear-gradient(180deg, #060b18 0%, #0c1225 100%) !important;
+}
+
+[data-theme="dark"] .page-header h1 {
+  color: #ffffff !important;
+}
+
+[data-theme="dark"] .page-header p {
+  color: var(--dark-text-secondary) !important;
+}
+
+[data-theme="dark"] .breadcrumb {
+  background: var(--dark-glass-bg) !important;
+  border: 1px solid var(--dark-glass-border) !important;
+  backdrop-filter: blur(8px);
+}
+
+/* ============================================
+   BACK TO TOP
+   ============================================ */
+[data-theme="dark"] .back-to-top {
+  background: linear-gradient(135deg, #4285f4, #7b61ff) !important;
+  color: #ffffff !important;
+  border: none !important;
+  box-shadow: 0 4px 15px rgba(66, 133, 244, 0.35) !important;
+}
+
+[data-theme="dark"] .back-to-top:hover {
+  box-shadow: 0 6px 25px rgba(66, 133, 244, 0.5) !important;
+}
+
+/* ============================================
+   LOADER
+   ============================================ */
+[data-theme="dark"] .loader {
+  background: var(--dark-bg-primary) !important;
+}
+
+[data-theme="dark"] .loader-text {
+  color: var(--dark-text-secondary) !important;
+}
+
+[data-theme="dark"] .loader-bar {
+  background: rgba(100, 150, 255, 0.1) !important;
+}
+
+/* ============================================
+   NEWSLETTER
+   ============================================ */
+[data-theme="dark"] .newsletter-wrapper h2 {
+  color: var(--dark-text-primary) !important;
+}
+
+[data-theme="dark"] .newsletter-form input[type="email"] {
+  background: rgba(10, 17, 40, 0.6) !important;
+  border: 1px solid var(--dark-glass-border) !important;
+  color: var(--dark-text-primary) !important;
+}
+
+[data-theme="dark"] .newsletter-note {
+  color: var(--dark-text-dim) !important;
+}
+
+/* ============================================
+   TESTIMONIALS
+   ============================================ */
+[data-theme="dark"] .testimonial-text {
+  color: var(--dark-text-secondary) !important;
+}
+
+[data-theme="dark"] .testimonial-author {
+  color: var(--dark-text-primary) !important;
+}
+
+[data-theme="dark"] .testimonial-nav-btn {
+  background: var(--dark-glass-bg) !important;
+  border: 1px solid var(--dark-glass-border) !important;
+  color: var(--dark-text-primary) !important;
+}
+
+/* ============================================
+   SECURITY ICONS
+   ============================================ */
+[data-theme="dark"] .security-icon {
+  background: rgba(52, 168, 83, 0.08) !important;
+  color: #6ee7b7 !important;
+}
+
+[data-theme="dark"] .why-icon {
+  background: rgba(66, 133, 244, 0.1) !important;
+  color: var(--dark-accent-light) !important;
+}
+
+/* ============================================
+   YOUTUBE NAV
+   ============================================ */
+[data-theme="dark"] .youtube-nav {
+  background: var(--dark-glass-bg) !important;
+  border: 1px solid var(--dark-glass-border) !important;
+}
+
+[data-theme="dark"] .yt-brand {
+  color: var(--dark-text-primary) !important;
+}
+
+[data-theme="dark"] .yt-stats {
+  color: var(--dark-text-secondary) !important;
+}
+
+/* ============================================
+   PLAYGROUND
+   ============================================ */
+[data-theme="dark"] .playground-fab {
+  background: var(--dark-glass-bg) !important;
+  border: 1px solid var(--dark-glass-border) !important;
+  color: var(--dark-accent-light) !important;
+}
+
+[data-theme="dark"] .playground-container {
+  background: var(--dark-bg-secondary) !important;
+  border: 1px solid var(--dark-glass-border) !important;
+}
+
+[data-theme="dark"] .playground-header {
+  background: rgba(15, 22, 45, 0.95) !important;
+  border-bottom: 1px solid var(--dark-glass-border) !important;
+}
+
+/* ============================================
+   ADMIN
+   ============================================ */
+[data-theme="dark"] .admin-login-card {
+  background: var(--dark-glass-bg) !important;
+  border: 1px solid var(--dark-glass-border) !important;
+}
+
+/* ============================================
+   MOBILE MENU
+   ============================================ */
+@media (max-width: 768px) {
+  [data-theme="dark"] .nav-links {
+    background: rgba(6, 11, 24, 0.98) !important;
+    backdrop-filter: blur(24px) !important;
+    -webkit-backdrop-filter: blur(24px) !important;
+  }
+
+  [data-theme="dark"] .nav-links li a {
+    color: var(--dark-text-secondary) !important;
+  }
+
+  [data-theme="dark"] .nav-links li a:hover,
+  [data-theme="dark"] .nav-links li a.active {
+    color: var(--dark-accent-light) !important;
+    background: rgba(66, 133, 244, 0.08) !important;
+  }
+}
+
+/* ============================================
+   SCROLLBAR
+   ============================================ */
+[data-theme="dark"] ::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+[data-theme="dark"] ::-webkit-scrollbar-track {
+  background: rgba(6, 11, 24, 0.5);
+}
+
+[data-theme="dark"] ::-webkit-scrollbar-thumb {
+  background: rgba(100, 150, 255, 0.15) !important;
+  border-radius: 4px;
+}
+
+[data-theme="dark"] ::-webkit-scrollbar-thumb:hover {
+  background: rgba(100, 150, 255, 0.25) !important;
+}
+
+/* ============================================
+   AMBIENT GLOW EFFECTS (Next-Level)
+   ============================================ */
+[data-theme="dark"] .hero::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 600px;
+  height: 600px;
+  transform: translate(-50%, -50%);
+  background: radial-gradient(circle, rgba(66, 133, 244, 0.04) 0%, transparent 70%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Subtle floating particles for hero */
+@keyframes floatGlow {
+  0%, 100% { transform: translateY(0) scale(1); opacity: 0.3; }
+  50% { transform: translateY(-20px) scale(1.1); opacity: 0.6; }
+}
+
+/* ============================================
+   VIDEO CONTAINERS
+   ============================================ */
+[data-theme="dark"] .video-container {
+  border-color: var(--dark-glass-border) !important;
+  box-shadow: var(--dark-shadow-md) !important;
+}
+
+/* ============================================
+   MARQUEE TEXT
+   ============================================ */
+[data-theme="dark"] .marquee-text {
+  color: rgba(100, 150, 255, 0.06) !important;
+  -webkit-text-stroke-color: rgba(100, 150, 255, 0.06) !important;
+}
+
+/* ============================================
+   DOWNLOAD CARD ICON
+   ============================================ */
+[data-theme="dark"] .dl-icon {
+  filter: drop-shadow(0 0 8px rgba(66, 133, 244, 0.15));
+}
+
+/* ============================================
+   NOTIFICATIONS
+   ============================================ */
+[data-theme="dark"] .c4b-notification {
+  background: var(--dark-bg-secondary) !important;
+  border: 1px solid var(--dark-glass-border) !important;
+  color: var(--dark-text-primary) !important;
+}
+
+/* ============================================
+   LINKS GLOBAL
+   ============================================ */
+[data-theme="dark"] a {
+  color: var(--dark-accent-light);
+}
+
+[data-theme="dark"] a:hover {
+  color: #8bb8ff;
+}
+
+/* ============================================
+   TOOLTIP
+   ============================================ */
+[data-theme="dark"] [data-tooltip]::before {
+  background: var(--dark-bg-secondary) !important;
+  color: var(--dark-text-primary) !important;
+  border: 1px solid var(--dark-glass-border);
+}
+
+/* ============================================
+   SKELETON LOADING
+   ============================================ */
+[data-theme="dark"] .skeleton {
+  background: linear-gradient(90deg, rgba(15,22,45,0.8) 25%, rgba(25,35,65,0.8) 50%, rgba(15,22,45,0.8) 75%) !important;
+}
+
+/* ============================================
+   FOCUS STATES
+   ============================================ */
+[data-theme="dark"] *:focus-visible {
+  outline-color: var(--dark-accent-light) !important;
+}
+
+[data-theme="dark"] button:focus-visible,
+[data-theme="dark"] a:focus-visible,
+[data-theme="dark"] input:focus-visible,
+[data-theme="dark"] textarea:focus-visible {
+  box-shadow: 0 0 0 4px rgba(66, 133, 244, 0.2) !important;
+}
