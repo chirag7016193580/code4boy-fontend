@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset
+      xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
+            http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+<!-- created with Free Online Sitemap Generator www.xml-sitemaps.com -->
+
+
+<url>
+  <loc>https://code4boy-fontend.vercel.app/</loc>
+  <lastmod>2026-03-27T14:47:52+00:00</lastmod>
+  <priority>1.00</priority>
+</url>
+<url>
+  <loc>https://code4boy-fontend.vercel.app/index.html</loc>
+  <lastmod>2026-03-27T14:47:53+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://code4boy-fontend.vercel.app/pages/tutorials.html</loc>
+  <lastmod>2026-03-27T14:47:53+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://code4boy-fontend.vercel.app/pages/projects.html</loc>
+  <lastmod>2026-03-27T14:47:53+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://code4boy-fontend.vercel.app/pages/tools.html</loc>
+  <lastmod>2026-03-27T14:47:54+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://code4boy-fontend.vercel.app/pages/playground.html</loc>
+  <lastmod>2026-03-27T14:47:54+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://code4boy-fontend.vercel.app/pages/ai-teacher.html</loc>
+  <lastmod>2026-03-27T14:47:54+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://code4boy-fontend.vercel.app/pages/errors.html</loc>
+  <lastmod>2026-03-27T14:47:54+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://code4boy-fontend.vercel.app/pages/downloads.html</loc>
+  <lastmod>2026-03-27T14:47:55+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://code4boy-fontend.vercel.app/pages/youtube.html</loc>
+  <lastmod>2026-03-27T14:47:55+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://code4boy-fontend.vercel.app/pages/privacy-policy.html</loc>
+  <lastmod>2026-03-27T14:47:55+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://code4boy-fontend.vercel.app/pages/terms-of-use.html</loc>
+  <lastmod>2026-03-27T14:47:55+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://code4boy-fontend.vercel.app/pages/sitemap.html</loc>
+  <lastmod>2026-03-27T14:47:55+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://code4boy-fontend.vercel.app/pages/profile.html</loc>
+  <lastmod>2026-03-27T14:47:55+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+
+
+</urlset>
